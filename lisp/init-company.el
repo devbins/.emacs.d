@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -233,6 +233,22 @@ candidates will be from company-tabnine, others keeping their own origin order."
 
   (with-eval-after-load 'lsp-mode
     (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
+
+(use-package insert-translated-name
+  :load-path "~/.emacs.d/site-lisp/insert-translated-name/"
+  :bind ("C-c t t" . 'insert-translated-name-insert)
+  :commands (insert-translated-name-insert)
+  :init (setq insert-translated-name-translate-engine 'youdao)
+  :config
+  (defvar insert-translated-name-camel-style-mode-list
+    '(go-mode)))
+
+(use-package company-english-helper
+  :load-path "~/.emacs.d/site-lisp/company-english-helper/"
+  :after company
+  :commands (toggle-company-english-helper)
+  :bind ("C-c t e" . 'toggle-company-english-helper))
+
 
 (provide 'init-company)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
