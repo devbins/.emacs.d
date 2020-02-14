@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -288,6 +288,26 @@
   :diminish
   :init
   (beacon-mode 1))
+
+;; Tab
+(use-package awesome-tab
+  :load-path "~/.emacs.d/site-lisp/awesome-tab/"
+  :hook (after-init . awesome-tab-mode)
+  :init(setq awesome-tab-style 'wave
+             awesome-tab-display-icon (if (display-graphic-p) t nil)
+             awesome-tab-display-sticky-function-name t)
+  :config
+  (when (not (display-graphic-p))
+    (setq frame-background-mode 'dark))
+  (with-eval-after-load 'evil
+    (define-key evil-normal-state-map (kbd ",tt") 'awesome-tab-switch-group)
+    (define-key evil-normal-state-map (kbd ",ta") 'awesome-tab-select-beg-tab)
+    (define-key evil-normal-state-map (kbd ",te") 'awesome-tab-select-end-tab)
+    (define-key evil-normal-state-map (kbd ",t<") 'awesome-tab-move-current-tab-to-left)
+    (define-key evil-normal-state-map (kbd ",t>") 'awesome-tab-move-current-tab-to-right)
+    (define-key evil-normal-state-map (kbd ",th") 'awesome-tab-forward)
+    (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
+  (setq awesome-tab-cycle-scope 'tabs))
 
 
 (defvar active-transparency 90
