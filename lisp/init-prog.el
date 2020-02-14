@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,6 +138,10 @@
   :hook (fish-mode . (lambda ()
                        (add-hook 'before-save-hook
                                  #'fish_indent-before-save))))
+
+(use-package unicad
+  :load-path "~/.emacs.d/site-lisp/unicad/"
+  :hook (after-init . unicad-enable))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
