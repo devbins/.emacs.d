@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -107,6 +107,7 @@
                    "只要你见性志诚，念念回首处，即是灵山。"
                    "大风可以吹起一张白纸，却无法吹走一只蝴蝶，因为生命的力量在于不顺从。——冯骥才"
                    "繁花落尽，我心中仍留有花落的声音，一朵、一朵，在无人的山间轻轻飘落。——慕容熙"
+                   "纸上得来终觉浅，绝知此事要躬行。——陆游"
                    "矮人看戏何曾见，都是随人说长短。——赵翼"
                    "如同明月将死那样生活，如同永远不死那样求知。——甘地"))
   (setq dashboard-banner-logo-title (nth (random (length welcomes)) welcomes)
