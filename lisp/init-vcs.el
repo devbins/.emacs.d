@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,6 +55,9 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-popup))
   :config
+  (setq magit-repository-directories '(("~/git/" . 2)
+                                       ("~/.emacs.d" . 0))
+        magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
   (when sys/win32p
     (setenv "GIT_ASKPASS" "git-gui--askpass"))
 
@@ -94,7 +97,21 @@
   (git-timemachine-minibuffer-author-face ((t (:inherit success))))
   (git-timemachine-minibuffer-detail-face ((t (:inherit warning))))
   :bind (:map vc-prefix-map
-         ("t" . git-timemachine))
+         ("t" . git-timemachine)
+         ("?" . git-timemachine-hydra/body))
+  :pretty-hydra
+  ((:title "[_p_/_N_] previous [_n_] next [_c_] current [_g_] goto nth rev [_Y_] copy hash [_q_] quit" :color pink :quit-key "q")
+   ("go"
+    (("c" git-timemachine-show-current-revision "Current")
+     ("g" git-timemachine-show-nth-revision "go nth"))
+    "Previous"
+    (("p" git-timemachine-show-previous-revision "Previous")
+     ("N" git-timemachine-show-previous-revision "Previous"))
+    "Next"
+    (("n" git-timemachine-show-next-revision "Next"))
+    "quit"
+    (("Y" git-timemachine-kill-revision "Kill")
+     ("q" nil "quit" :exit t))))
   :config
   (evil-make-overriding-map git-timemachine-mode-map 'normal))
 
