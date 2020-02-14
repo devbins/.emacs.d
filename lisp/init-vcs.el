@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,14 +65,13 @@
 
   ;; Access Git forges from Magit
   (when (executable-find "cc")
-    (use-package forge :demand))
+    (use-package forge))
 
   ;; Show TODOs in magit
-  (when emacs/>=25.2p
-    (use-package magit-todos
-      :init
-      (setq magit-todos-nice (if (executable-find "nice") t nil))
-      (magit-todos-mode 1))))
+  (use-package magit-todos
+    :init
+    (setq magit-todos-nice (if (executable-find "nice") t nil))
+    (magit-todos-mode 1)))
 
 ;; evil magit
 (use-package evil-magit

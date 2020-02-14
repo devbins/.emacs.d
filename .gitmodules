@@ -1,0 +1,3 @@
+[submodule "header2"]
+	path = site-lisp/header2
+	url = https://github.com/emacsmirror/header2
