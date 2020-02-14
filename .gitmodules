@@ -1,3 +1,24 @@
 [submodule "header2"]
 	path = site-lisp/header2
 	url = https://github.com/emacsmirror/header2
+[submodule "unicad"]
+	path = site-lisp/unicad
+	url = https://github.com/emacsmirror/unicad.git
+[submodule "aria2"]
+	path = site-lisp/aria2
+	url = https://github.com/LdBeth/aria2.el.git
+[submodule "snails"]
+	path = site-lisp/snails
+	url = https://github.com/manateelazycat/snails.git
+[submodule "awesome-tab"]
+	path = site-lisp/awesome-tab
+	url = https://github.com/manateelazycat/awesome-tab.git
+[submodule "aweshell"]
+	path = site-lisp/aweshell
+	url = https://github.com/manateelazycat/aweshell.git
+[submodule "company-english-helper"]
+	path = site-lisp/company-english-helper
+	url = https://github.com/manateelazycat/company-english-helper.git
+[submodule "insert-translated-name"]
+	path = site-lisp/insert-translated-name
+	url = https://github.com/manateelazycat/insert-translated-name.git
