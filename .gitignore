@@ -9,3 +9,18 @@
 
 # Undo-tree save-files
 *.~undo-tree
+/var/
+/url/
+/transient/
+/recentf
+/projectile-bookmarks.eld
+/places
+/persp-confs/
+/history
+/elpa/
+/.env
+/.elfeed/
+/.mc-lists.el
+/.persistent-scratch
+/amx-items
+/forge-database.sqlite
