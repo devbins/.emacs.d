@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,8 +45,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
-
-(require 'pretty-magit)
 
 (use-package pretty-mode
   :commands (turn-on-pretty-mode global-prettify-symbols-mode)
