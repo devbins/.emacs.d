@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -162,6 +162,24 @@
   ;; `cd' to frequent directory in `eshell'
   (use-package eshell-z
     :hook (eshell-mode . (lambda () (require 'eshell-z)))))
+
+(use-package aweshell
+  :commands (aweshell-toggle)
+  :load-path "~/.emacs.d/site-lisp/aweshell/"
+  :init
+  (defun eshell-keymap ()
+    (evil-define-key 'insert eshell-mode-map
+      (kbd "C-u") 'eshell-kill-input
+      (kbd "C-a") 'eshell-bol
+      (kbd "C-d") 'kevin/quit-or-delete-char
+      (kbd "C-r") 'kevin/ivy-eshell-history
+      (kbd "TAB") 'pcomplete-std-complete))
+  :hook (eshell-first-time-mode . eshell-keymap)
+  :config
+  (use-package eshell-prompt-extras)
+  (setq eshell-highlight-prompt t)
+  (setq eshell-prompt-function 'epe-theme-lambda)
+  (setq eshell-history-file-name (concat user-emacs-directory "eshell/history")))
 
 (provide 'init-eshell)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
