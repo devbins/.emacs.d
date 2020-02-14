@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -148,8 +148,8 @@
             (lambda (&rest _) (restore-previous-session)))
            (,(when (display-graphic-p)
                (all-the-icons-octicon "tools" :height 1.0 :v-adjust 0.0))
-            "Settings" "Open custom file"
-            (lambda (&rest _) (find-file custom-file)))
+            "Settings" "Open init file"
+            (lambda (&rest _) (find-file (expand-file-name "init.el" user-emacs-directory))))
            (,(if (display-graphic-p)
                  (all-the-icons-faicon "question" :height 1.2 :v-adjust -0.1)
                "?")
