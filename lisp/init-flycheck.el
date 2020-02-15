@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,7 +48,6 @@
 
 (use-package flycheck
   :diminish
-  :hook (after-init . global-flycheck-mode)
   :config
   (setq flycheck-global-modes
         '(not org-mode text-mode outline-mode fundamental-mode
