@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,7 +57,8 @@
                                    (get-process "Python"))))
   :init
   ;; Disable readline based native completion
-  (setq python-shell-completion-native-enable nil)
+  (setq python-shell-completion-native-enable nil
+        python-indent-offset 4)
   :config
   ;; Default to Python 3. Prefer the versioned Python binaries since some
   ;; systems stupidly make the unversioned one point at Python 2.
