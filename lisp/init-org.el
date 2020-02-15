@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -729,25 +729,25 @@ prepended to the element after the #+HEADER: tag."
       "mds" 'org-agenda-schedule
       "mie" 'org-agenda-set-effort
       "mit" 'org-agenda-set-tags
-      "msr" 'org-agenda-refile)))
+      "msr" 'org-agenda-refile))
 
+  (use-package org-projectile
+    :defer t
+    :commands (org-projectile-location-for-project)
+    :init
+    (progn
+      (setq org-projectile-file "TODOs.org")
+      (with-eval-after-load 'org-capture
+        (require 'org-projectile)))
+    :config
+    (if (file-name-absolute-p org-projectile-file)
+        (progn
+          (setq org-projectile-projects-file org-projectile-file)
+          (push (org-projectile-project-todo-entry :empty-lines 1)
+                org-capture-templates))
+      (org-projectile-per-project)
+      (setq org-projectile-per-project-filepath org-projectile-file))))
 
-(use-package org-projectile
-  :defer t
-  :commands (org-projectile-location-for-project)
-  :init
-  (progn
-    (setq org-projectile-file "TODOs.org")
-    (with-eval-after-load 'org-capture
-      (require 'org-projectile)))
-  :config
-  (if (file-name-absolute-p org-projectile-file)
-      (progn
-        (setq org-projectile-projects-file org-projectile-file)
-        (push (org-projectile-project-todo-entry :empty-lines 1)
-              org-capture-templates))
-    (org-projectile-per-project)
-    (setq org-projectile-per-project-filepath org-projectile-file)))
 
 (use-package deft
   :defer t
