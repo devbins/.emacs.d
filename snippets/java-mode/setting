@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: setting
+# key: setting
+# --
+
+/**
+ * 打开设置页面打开权限
+ *
+ * @param context
+ */
+public static void startSettingActivity(@NonNull Activity context) {
+
+    try {
+        Intent intent =
+                new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" +
+                        context.getPackageName()));
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        context.startActivityForResult(intent, 10); //这里的requestCode和onActivityResult中requestCode要一致
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}

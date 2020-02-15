@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: dash
+# key: dash
+# --
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+android:shape="line" >
+<size android:height="1dp" />
+
+<stroke
+android:width="0.5dp"
+android:color="@color/color5"
+android:dashWidth="2dp"
+android:dashGap="3dp" />
+
+<!--需要加入不然会显示实线-->
+<!--android:hardwareAccelerated="false"-->
+<!--需要在View加入-->
+<!--android:layerType="software"-->
+
+</shape >

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: weekreport
+# key: weekreport
+# --
+#+BEGIN: clocktable :maxlevel 5 :scope agenda-with-archives :block thisweek :fileskip0 t :indent t
+#+END:

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: plantuml
+# key: plantuml
+# --
+
+#+begin_src plantuml :file $1.png :cmdline -charset utf-8
+@startuml
+$2
+@enduml
+#+end_src
+$0

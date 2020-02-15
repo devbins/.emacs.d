@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: column
+# key: column
+# --
+
+:COLUMNS:  %ITEM(Task) %8PRIORITY(Priority) %TODO(Status) %CLOCKSUM(Clock){:} %SCHEDULED %DEADLINE

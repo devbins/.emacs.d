@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: hugo
+# key: hugo
+# --
+#+HUGO_BASE_DIR: ~/git/blog/
+#+TITLE: $1
+#+DATE: `(format-time-string "%Y-%m-%d")`
+#+CATEGORIES: $2
+#+TAGS: $3
+#+TOC: true
+#+IMAGE: /images/$4
+#+HUGO_SECTION: ./post
+
+
+$0

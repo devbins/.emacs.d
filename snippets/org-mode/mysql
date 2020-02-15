@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: mysql
+# key: mysql
+# --
+#+BEGIN_SRC sql :engine mysql :dbhost 127.0.0.1 :database $1 :dbuser $2 :dbpassword "$3"
+$0
+#+END_SRC
