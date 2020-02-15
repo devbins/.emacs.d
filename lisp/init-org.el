@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -132,8 +132,14 @@ prepended to the element after the #+HEADER: tag."
 
                        (push '("#+BEGIN_SRC" . ?✎) prettify-symbols-alist)
                        (push '("#+END_SRC" . ?□) prettify-symbols-alist)
+                       (push '("#+begin_src" . ?✎) prettify-symbols-alist)
+                       (push '("#+end_src" . ?□) prettify-symbols-alist)
+
                        (push '("#+BEGIN_QUOTE" . ?») prettify-symbols-alist)
                        (push '("#+END_QUOTE" . ?«) prettify-symbols-alist)
+                       (push '("#+begin_quote" . ?») prettify-symbols-alist)
+                       (push '("#+end_quote" . ?«) prettify-symbols-alist)
+
                        (push '("#+HEADERS" . ?☰) prettify-symbols-alist)
                        (push '("#+RESULTS:" . ?💻) prettify-symbols-alist)
 
