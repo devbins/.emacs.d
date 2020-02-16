@@ -580,12 +580,12 @@ prepended to the element after the #+HEADER: tag."
         (notify-linux title msg)))
     :bind (:map org-agenda-mode-map
            ("P" . org-pomodoro))
-    :hook ((org-pomodoro-started . (lambda ()(when *sys/mac* (do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell"))))
+    :hook ((org-pomodoro-started . (lambda ()(when sys/macp (do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell"))))
            (org-pomodoro-finished . (lambda () (pomodoro-notify "Pomodoro Completed!" "Time for a break.")))
            (org-pomodoro-break-finished . (lambda () (pomodoro-notify "Pomodoro Short Break Finished" "Ready for Another?")))
            (org-pomodoro-long-break-finished . (lambda () (pomodoro-notify "Pomodoro Long Break Finished" "Ready for Another?")))
            (org-pomodoro-killed . (lambda () (progn (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")
-                                               (when *sys/mac* (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
+                                               (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
 
   (use-package org-download
     :commands (org-download-enable
