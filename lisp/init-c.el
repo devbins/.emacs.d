@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,8 +51,9 @@
   :ensure nil
   :bind (:map c-mode-base-map
          ("C-c c" . compile))
-  :hook (c-mode-common . (lambda () (c-set-style "bsd")))
-  :init (setq-default c-basic-offset 4)
+  :hook (c-mode-common . (lambda () (c-set-style "bsd")
+                           (setq c-basic-offset 4
+                                 tab-width 4)))
   :config
   (use-package modern-cpp-font-lock
     :diminish
