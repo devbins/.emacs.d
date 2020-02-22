@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: ria
+# key: ria
+# --
+|R|$1|
+|I|$2|
+|A1|$3|
+|A2|$4|
