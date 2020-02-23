@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -292,6 +292,29 @@ containing the current file by the default explorer."
       (if file-path
           (open-in-external-app file-path)
         (message "No file associated to this buffer.")))))
+
+
+;; brew install terminal-notifier
+;; brew linkapps
+(defun notify-osx (title msg)
+  (call-process "terminal-notifier"
+                nil 0 nil
+                "-group" "Emacs"
+                "-title" title
+                "-sender" "org.gnu.Emacs"
+                "-message" msg
+                "-active" "org.gnu.Emacs"))
+
+(defun notify-linux (title msg)
+  (call-process "notify-send"
+                nil 0 nil
+                "-i" "face-monkey"
+                title
+                msg))
+
+(defun notify (title msg)
+  (cond (sys/macp (notify-osx title msg))
+        (sys/linuxp (notify-linux title msg))))
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
