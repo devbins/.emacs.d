@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -412,6 +412,7 @@ If FRAME is nil, it defaults to the selected frame."
 
 (when (display-graphic-p)
   (display-time-mode 1)
+  (setq display-time-24hr-format t)
   (display-battery-mode 1))
 
 (provide 'init-ui)
