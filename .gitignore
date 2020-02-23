@@ -26,3 +26,6 @@
 /forge-database.sqlite
 /bookmarks
 /aria2c.session
+/newsticker/
+/.extension/
+/.cache/
