@@ -150,8 +150,7 @@ prepended to the element after the #+HEADER: tag."
                               ;; @see https://github.com/seagle0128/.emacs.d/issues/88
                               (make-variable-buffer-local 'show-paren-mode)
                               (setq show-paren-mode nil))))
-  :init (setq org-agenda-files '("~/org")
-              org-todo-keywords
+  :init (setq org-todo-keywords
               '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")
                 (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
               org-todo-keyword-faces '(("TODO")
