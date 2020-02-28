@@ -545,38 +545,13 @@ prepended to the element after the #+HEADER: tag."
     "mis" 'org-insert-subheading
     "mit" 'org-set-tags-command)
 
-  (evil-leader/set-key-for-mode 'org-src-mode
-    "c" 'org-edit-src-exit
-    "k" 'org-edit-src-abort)
-
   (evil-define-key 'normal org-mode-map (kbd "RET") 'org-open-at-point)
 
   ;; Pomodoro
   (use-package org-pomodoro
     :preface
-    ;; brew install terminal-notifier
-    ;; brew linkapps
-    (defun notify-osx (title msg)
-      (call-process "terminal-notifier"
-                    nil 0 nil
-                    "-group" "Emacs"
-                    "-title" title
-                    "-sender" "org.gnu.Emacs"
-                    "-message" msg
-                    "-active" "org.gnu.Emacs"))
-
-    (defun notify-linux (title msg)
-      (call-process "notify-send"
-                    nil 0 nil
-                    "-i" "face-monkey"
-                    title
-                    msg))
-
-
     (defun pomodoro-notify (title msg)
-      (if (eq system-type 'darwin)
-          (notify-osx title msg)
-        (notify-linux title msg)))
+      (notify title msg))
     :bind (:map org-agenda-mode-map
            ("P" . org-pomodoro))
     :hook ((org-pomodoro-started . (lambda ()(when sys/macp (do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell"))))
