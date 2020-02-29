@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,7 +65,6 @@
   :config
   (setq treemacs-collapse-dirs           (if treemacs-python-executable 3 0)
         treemacs-sorting                 'alphabetic-case-insensitive-asc
-        treemacs-follow-after-init       t
         treemacs-is-never-other-window   t
         treemacs-silent-filewatch        t
         treemacs-silent-refresh          t
@@ -105,8 +104,7 @@
      (treemacs-git-mode 'simple)))
 
   (use-package treemacs-evil
-    :after treemacs evil
-    :ensure t)
+    :demand t)
 
   (use-package treemacs-icons-dired
     :after treemacs dired
