@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -112,6 +112,7 @@
     "quit"
     (("Y" git-timemachine-kill-revision "Kill")
      ("q" nil "quit" :exit t))))
+  :hook (git-timemachine-mode . evil-normalize-keymaps)
   :config
   (evil-make-overriding-map git-timemachine-mode-map 'normal))
 
