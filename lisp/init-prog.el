@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -112,7 +112,8 @@
 (use-package dockerfile-mode)
 (use-package julia-mode)
 (use-package lua-mode)
-(use-package plantuml-mode)
+(use-package plantuml-mode
+  :init (setq org-plantuml-jar-path (concat user-emacs-directory"plantuml.jar")))
 (use-package powershell)
 (use-package rmsbolt)                   ; A compiler output viewer
 (use-package scala-mode)
