@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -436,6 +436,10 @@
 (use-package fancy-narrow
   :diminish
   :hook (after-init . fancy-narrow-mode))
+
+(use-package so-long
+  :ensure nil
+  :config (global-so-long-mode 1))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
