@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -141,7 +141,10 @@
                                  #'fish_indent-before-save))))
 
 (use-package unicad
+  :commands (unicad-enable unicad-disable)
   :load-path "~/.emacs.d/site-lisp/unicad/")
+
+(use-package format-all)
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
