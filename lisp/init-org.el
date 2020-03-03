@@ -47,7 +47,7 @@
 ;;; Code:
 
 (use-package org
-  :ensure nil
+  :ensure org-plus-contrib
   :custom-face (org-ellipsis ((t (:foreground nil))))
   :preface
   (defun hot-expand (str &optional mod)
