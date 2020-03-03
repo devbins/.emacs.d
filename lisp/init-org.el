@@ -665,7 +665,7 @@ prepended to the element after the #+HEADER: tag."
           ;; 恢复默认日历行为
           org-habit-show-habits-only-for-today nil)
 
-    (require 'org-projectile)
+    (use-package org-projectile)
     (mapcar #'(lambda (file)
                 (when (file-exists-p file)
                   (push file org-agenda-files)))
