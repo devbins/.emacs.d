@@ -312,6 +312,7 @@ prepended to the element after the #+HEADER: tag."
   (defvar load-language-list '((emacs-lisp . t)
                                (perl . t)
                                (python . t)
+                               (sql . t)
                                (ruby . t)
                                (js . t)
                                (css . t)
@@ -749,8 +750,7 @@ same directory as the org-buffer and insert a link to this file."
   (interactive)
   (make-frame '((name . "remember") (width . 80) (height . 16)
                 (top . 400) (left . 300)
-                (font . "Source Code Pro")
-                ))
+                (font . "Source Code Pro")))
   (select-frame-by-name "remember")
   (org-capture))
 
