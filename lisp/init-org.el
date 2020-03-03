@@ -319,6 +319,7 @@ prepended to the element after the #+HEADER: tag."
                                (sass . t)
                                (C . t)
                                (java . t)
+                               (dot . t)
                                (plantuml . t)))
 
   ;; ob-sh renamed to ob-shell since 26.1.
@@ -753,6 +754,11 @@ same directory as the org-buffer and insert a link to this file."
                 (font . "Source Code Pro")))
   (select-frame-by-name "remember")
   (org-capture))
+
+
+(use-package graphviz-dot-mode
+  :config
+  (setq graphviz-dot-indent-width 4))
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
