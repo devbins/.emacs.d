@@ -2,7 +2,7 @@
 ** 介绍
    这份 =Emacs= 配置基于 [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]] 定制而来，增加了 =Vim(Evil)= 的支持，使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 的快捷键绑定。因为之前一直使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 所以习惯了它的快捷键。
 ** Screenshot
-   [[file:/Users/bin/.emacs.d/screenshot.png]]
+   [[file:./screenshot.png]]
 ** 安装
    #+begin_src sh
    mv .emacs.d .emacs.d.bak
@@ -45,7 +45,7 @@
     #+begin_src js
     javascript:window.open('org-protocol://capture?template=B'+ '&url='+encodeURIComponent(window.location.href)+ '&title='+encodeURIComponent(document.title)+ '&body='+encodeURIComponent(window.getSelection()));window.resizeTo(0,0); window.moveTo(0,window.screen.availHeight+10);
     #+end_src
-   
+    或者
     #+begin_src js
     javascript:location.href='org-protocol://capture?template=B&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'&body='+encodeURIComponent(window.getSelection())
     #+end_src
@@ -53,9 +53,9 @@
 
 ** FAQ
 *** 无法显示字体 
-    [[https://github.com/adobe-fonts/source-code-pro][Source-Code-Pro]] 
-    [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][FiraCode 安装]]
-    [[http://users.teilar.gr/~g1951d/][Unicode Fonts for Ancient Scripts]] 
+    - [[https://github.com/adobe-fonts/source-code-pro][Source-Code-Pro]] 
+    - [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][FiraCode 安装]]
+    - [[http://users.teilar.gr/~g1951d/][Unicode Fonts for Ancient Scripts]] 
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
 *** void-function org-outline-overlay-data
@@ -69,5 +69,5 @@
     #+end_src
 
 ** Thanks
-*** [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]  A Fancy and Fast Emacs Configuration
-*** [[https://github.com/syl20bnr/spacemacs][Spacemacs]] A community-driven Emacs distribution - The best editor is neither Emacs nor Vim, it's Emacs *and* Vim!
+   - [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]  A Fancy and Fast Emacs Configuration
+   - [[https://github.com/syl20bnr/spacemacs][Spacemacs]] A community-driven Emacs distribution - The best editor is neither Emacs nor Vim, it's Emacs *and* Vim!
