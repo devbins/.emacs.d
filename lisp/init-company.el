@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -170,6 +170,8 @@
               (TypeParameter . ,(all-the-icons-faicon "arrows" :height 0.8 :v-adjust -0.05))
               (Template . ,(all-the-icons-material "format_align_left" :height 0.85 :v-adjust -0.2)))
             company-box-icons-alist 'company-box-icons-all-the-icons)))
+
+  (use-package company-flx)
 
   ;; Popup documentation for completion candidates
   (when (and (not emacs/>=26p) (display-graphic-p))
