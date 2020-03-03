@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -199,6 +199,9 @@
     (restart-emacs)))
 
 (use-package command-log-mode)
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'no-error 'no-message)
 
 (provide 'init-basic)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
