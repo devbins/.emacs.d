@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -157,10 +157,11 @@
     "fCd" 'unix2dos
     "fCu" 'dos2unix
     "fE" 'sudo-edit
+    "fd" 'delete-this-file
     "ft" 'treemacs
     "fo" 'open-file-or-directory-in-external-app
     "fr" 'counsel-recentf
-    "fR" 'rename-buffer
+    "fR" 'rename-this-file
     "fs" 'save-buffer
     "fa" 'save-some-buffers
     "fyy" 'copy-file-name
@@ -176,7 +177,7 @@
 
     "gs" 'magit-status
     "gt" 'git-timemachine
-    "gb" 'git-blame
+    "gb" 'magit-blame
     "gp" 'git-messenger:popup-message
 
     "hf" 'describe-function
