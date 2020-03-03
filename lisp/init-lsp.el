@@ -217,7 +217,6 @@ Return a list of strings as the completion candidates."
          (java-mode . (lambda () (require 'dap-java)))
          ((c-mode c++-mode objc-mode swift-mode) . (lambda () (require 'dap-lldb)))
          (php-mode . (lambda () (require 'dap-php)))
-         (elixir-mode . (lambda () (require 'dap-elixir)))
          ((js-mode js2-mode) . (lambda () (require 'dap-chrome)))
          (powershell-mode . (lambda () (require 'dap-pwsh)))))
 
