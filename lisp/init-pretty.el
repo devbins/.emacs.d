@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -241,7 +241,12 @@
                                   ("tuple"  . #x1d635)  ;; 𝕥 𝖙 𝘵
 
                                   ("Union"  . #x22c3)  ;; ⋃
-                                  ("union"  . #x22c3))))))  ;; ⋃
+                                  ("union"  . #x22c3)))))  ;; ⋃
+
+         (haskell-mode . (lambda ()
+                           (mapc (lambda (pair) (push pair prettify-symbols-alist))
+                                 '(;; Syntax
+                                   ("pure" . (#x21f0 (Br . Bl) #x2006))))))) ;; ⇰  x
   ;; (" . "  . (?\s (Br . Bl) #x2218 (Br . Bl) ?\s (Br . Bl) #x2006)) ;; ∘
 
   :config
@@ -252,6 +257,10 @@
    '(:equality :ordering :ordering-double :ordering-triple
      :arrows :arrows-twoheaded :punctuation
      :logic :sets :arithmetic-double :arithmetic-triple)))
+
+(use-package ipretty
+  :defer t
+  :hook (after-init . ipretty-mode))
 
 ;; https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
 ;; This works when using emacs --daemon + emacsclient
@@ -379,6 +388,7 @@
     (mac-auto-operator-composition-mode)
   (pretty-fonts-set-kwds
    '((pretty-fonts-fira-font prog-mode-hook org-mode-hook))))
+
 
 (use-package pretty-magit
   :defer t

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,6 @@
 ;; e.g. display “lambda” as “λ”
 (use-package prog-mode
   :ensure nil
-  :hook (prog-mode . prettify-symbols-mode)
   :init
   (setq-default prettify-symbols-alist '(("lambda" . ?λ)
                                          ("<-" . ?←)
