@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,50 +89,6 @@
       (interactive)
       (ein:worksheet-merge-cell (ein:worksheet--get-ws-or-error) (ein:worksheet-get-current-cell) t t))
 
-    (evil-leader/set-key-for-mode 'ein:notebook-multilang-mode
-      "my" 'ein:worksheet-copy-cell
-      "mp" 'ein:worksheet-yank-cell
-      "md" 'ein:worksheet-kill-cell
-      "mh" 'ein:notebook-worksheet-open-prev-or-last
-      "mi" 'ein:worksheet-insert-cell-below
-      "mI" 'ein:worksheet-insert-cell-above
-      "mj" 'ein:worksheet-goto-next-input
-      "mk" 'ein:worksheet-goto-prev-input
-      "ml" 'ein:notebook-worksheet-open-next-or-first
-      "mH" 'ein:notebook-worksheet-move-prev
-      "mJ" 'ein:worksheet-move-cell-down
-      "mK" 'ein:worksheet-move-cell-up
-      "mL" 'ein:notebook-worksheet-move-next
-      "mt" 'ein:worksheet-toggle-output
-      "mR" 'ein:worksheet-rename-sheet
-      "RET" 'ein:worksheet-execute-cell-and-goto-next
-      ;; Output
-      "C-l" 'ein:worksheet-clear-output
-      "C-S-l" 'ein:worksheet-clear-all-output
-      ;;Console
-      "C-o" 'ein:console-open
-      ;; Merge cells
-      "C-k" 'ein:worksheet-merge-cell
-      "C-j" 'devbins/ein:worksheet-merge-cell-next
-      "s" 'ein:worksheet-split-cell-at-point
-      ;; Notebook
-      "C-s" 'ein:notebook-save-notebook-command
-      "C-r" 'ein:notebook-rename-command
-      "m1" 'ein:notebook-worksheet-open-1th
-      "m2" 'ein:notebook-worksheet-open-2th
-      "m3" 'ein:notebook-worksheet-open-3th
-      "m4" 'ein:notebook-worksheet-open-4th
-      "m5" 'ein:notebook-worksheet-open-5th
-      "m6" 'ein:notebook-worksheet-open-6th
-      "m7" 'ein:notebook-worksheet-open-7th
-      "m8" 'ein:notebook-worksheet-open-8th
-      "m9" 'ein:notebook-worksheet-open-last
-      "m+" 'ein:notebook-worksheet-insert-next
-      "m-" 'ein:notebook-worksheet-delete
-      "mx" 'ein:notebook-close
-      "mu" 'ein:worksheet-change-cell-type
-      "mfs" 'ein:notebook-save-notebook-command)
-
     ;; keybindings for ipython notebook traceback mode
     (evil-leader/set-key-for-mode 'ein:traceback-mode
       "RET" 'ein:tb-jump-to-source-at-point-command
@@ -155,13 +111,7 @@
       (kbd "<C-return>") 'ein:worksheet-execute-cell
       (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
       "gj" 'ein:worksheet-goto-next-input
-      "gk" 'ein:worksheet-goto-prev-input)
-
-    ;; if this is not required then the following keygindings fail
-    (use-package ein-multilang
-      :config
-      (define-key ein:notebook-multilang-mode-map (kbd "M-j") 'ein:worksheet-move-cell-down)
-      (define-key ein:notebook-multilang-mode-map (kbd "M-k") 'ein:worksheet-move-cell-up))))
+      "gk" 'ein:worksheet-goto-prev-input)))
 
 (defun pyuic()
   "use pyuic5 convert .ui file to .py"
