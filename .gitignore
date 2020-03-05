@@ -31,3 +31,5 @@
 /.cache/
 /eshell/
 /eclipse.jdt.ls/
+/.dap-breakpoints
+/.lsp-session-v1
