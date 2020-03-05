@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -158,9 +158,10 @@
       "gk" 'ein:worksheet-goto-prev-input)
 
     ;; if this is not required then the following keygindings fail
-    (require 'ein-multilang)
-    (define-key ein:notebook-multilang-mode-map (kbd "M-j") 'ein:worksheet-move-cell-down)
-    (define-key ein:notebook-multilang-mode-map (kbd "M-k") 'ein:worksheet-move-cell-up)))
+    (use-package ein-multilang
+      :config
+      (define-key ein:notebook-multilang-mode-map (kbd "M-j") 'ein:worksheet-move-cell-down)
+      (define-key ein:notebook-multilang-mode-map (kbd "M-k") 'ein:worksheet-move-cell-up))))
 
 (defun pyuic()
   "use pyuic5 convert .ui file to .py"
