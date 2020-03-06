@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -295,6 +295,7 @@
 
 ;; Tab
 (use-package awesome-tab
+  :if (display-graphic-p)
   :load-path "~/.emacs.d/site-lisp/awesome-tab/"
   :hook (after-init . awesome-tab-mode)
   :init(setq awesome-tab-style 'wave
