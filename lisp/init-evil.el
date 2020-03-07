@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,17 +105,6 @@
   (evil-set-initial-state 'term-mode 'emacs)
   (evil-set-initial-state 'snails-mode 'emacs)
   (evil-set-initial-state 'multi-term-mode 'emacs)
-
-  ;; remove all keybindings from insert-state keymap,it is VERY VERY important
-  (setcdr evil-insert-state-map nil)
-
-  ;;;把emacs模式下的按键绑定到Insert模式下
-  (define-key evil-insert-state-map
-    (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
-
-
-  ;; but [escape] should switch back to normal state
-  (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
   (evil-define-key 'normal help-mode-map
     "q" 'quit-window)
@@ -305,6 +294,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (setq deactivate-mark  t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
+
+;; remove all keybindings from insert-state keymap,it is VERY VERY important
+(setcdr evil-insert-state-map nil)
+
+  ;;;把emacs模式下的按键绑定到Insert模式下
+(define-key evil-insert-state-map
+  (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
+
+
+;; but [escape] should switch back to normal state
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
