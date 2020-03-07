@@ -665,12 +665,6 @@ prepended to the element after the #+HEADER: tag."
           ;; 恢复默认日历行为
           org-habit-show-habits-only-for-today nil)
 
-    (use-package org-projectile
-      :config
-      (mapcar #'(lambda (file)
-                  (when (file-exists-p file)
-                    (push file org-agenda-files)))
-              (org-projectile-todo-files)))
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "RET") 'org-agenda-switch-to
       "c" 'org-agenda-goto-calendar
