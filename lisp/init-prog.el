@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 15
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,26 @@
                                          (">=>" . ?↣)
                                          ("&&" . ?∧)
                                          ("||" . ?∨)
-                                         ("not" . ?¬)))
+                                         ("not" . ?¬)
+                                         ("alpha" . ?α)
+                                         ("beta" . ?β)
+                                         ("gamma" . ?γ)
+                                         ("delta" . Δ)
+                                         ("epsilon" . ?ε)
+                                         ("zeta" . ?ζ)
+                                         ("eta" . ?η)
+                                         ("theta" . ?θ)
+                                         ("micro" . ?μ)
+                                         ("pi" . ?π)
+                                         ("rho" . ?ρ)
+                                         ("sigma" . ?σ)
+                                         ("phi" . ?φ)
+                                         ("omega" . ?Ω)
+                                         ("sqrt" . ?√)
+                                         ("sum" . ∑)
+                                         ("infinity" . ∞)
+                                         ("Infinity" . ∞)
+                                         ("->" . ?→)))
   (setq prettify-symbols-unprettify-at-point 'right-edge))
 
 ;; Jump to definition
