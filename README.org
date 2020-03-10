@@ -40,6 +40,18 @@
 ** Org mode
 *** 在 Org-mode 中使用截图功能，并插入到当前文件
     =org-screenshot=
+*** Org Agenda
+    | 快捷键    | 描述            | 对应函数        |
+    |-----------+-----------------+-----------------|
+    | SPC a o a | 打开 Org Agenda | =org-agenda-list= |
+    | SPC m C p | 打开 pomodoro   | =org-pomodoro=    |
+*** Org Mode
+    | 快捷键    | 描述          | 对应函数         |
+    |-----------+---------------+------------------|
+    | SPC m p   | 设置优先级    | =org-priority=     |
+    | SPC m i p | 设置 property | =org-set-property= |
+    | SPC m o T | 设置 tags     | =org-set-tags=     |
+    | SPC a o c | 捕获内容      | =org-capture=      |
 *** Org protocol
     在浏览器中，把下面的网址存为标签，在需要的网页中打开标签
     #+begin_src js
