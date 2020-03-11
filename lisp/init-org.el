@@ -615,6 +615,36 @@ prepended to the element after the #+HEADER: tag."
     :ensure nil
     :defer t
     :preface
+    ;;Sunrise and Sunset
+    ;;日出而作, 日落而息
+    (defun diary-sunrise ()
+      (let ((dss (diary-sunrise-sunset)))
+        (with-temp-buffer
+          (insert dss)
+          (goto-char (point-min))
+          (while (re-search-forward " ([^)]*)" nil t)
+            (replace-match "" nil nil))
+          (goto-char (point-min))
+          (search-forward ",")
+          (buffer-substring (point-min) (match-beginning 0)))))
+
+    (defun diary-sunset ()
+      (let ((dss (diary-sunrise-sunset))
+            start end)
+        (with-temp-buffer
+          (insert dss)
+          (goto-char (point-min))
+          (while (re-search-forward " ([^)]*)" nil t)
+            (replace-match "" nil nil))
+          (goto-char (point-min))
+          (search-forward ", ")
+          (setq start (match-end 0))
+          (search-forward " at")
+          (setq end (match-beginning 0))
+          (goto-char start)
+          (capitalize-word 1)
+          (buffer-substring start end))))
+
     (defun org-agenda-time-grid-spacing ()
       "Set different line spacing w.r.t. time duration."
       (save-excursion
@@ -645,6 +675,10 @@ prepended to the element after the #+HEADER: tag."
           org-agenda-use-tag-inheritance nil ;; 3-4x speedup
           ;;https://sachachua.com/blog/2015/06/adding-calculations-based-on-time-to-the-org-agenda-clock-report/
           org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80))
+          org-agenda-use-time-grid t
+          org-agenda-time-grid (quote (((daily today require-timed)
+                                        (300 600 900 1200 1500 1800 2100 2400)
+                                        "......" "----------------")))
 
           org-agenda-include-diary t
 
