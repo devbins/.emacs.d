@@ -156,6 +156,7 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-projectile)
 (require 'init-lsp)
 
+(require 'init-leetcode)
 (require 'init-prog)
 (require 'init-elisp)
 (require 'init-c)
