@@ -9,7 +9,6 @@
    git clone --recurse-submodules -j8 https://github.com/devbins/.emacs.d.git
    #+end_src
 ** Buffer
-*** 快捷键
     | 快捷键  | 描述                | 对应函数                 |
     |---------+---------------------+--------------------------|
     | SPC b b | 切换 buffer         | =ivy-switch-buffer=        |
@@ -20,16 +19,15 @@
     | SPC b t | 打开 imenu-list     | =imenu-list-smart-toggle=  |
 
 ** 文件
-*** 快捷键
-    | 快捷键  | 描述                     | 对应函数            |
-    |---------+--------------------------+---------------------|
-    | SPC f d | 删除当前文件             | =delete-this-file=    |
-    | SPC f R | 重命名文件               | =rename-this-file=    |
-    | 无      | 把当前文件转为 UTF-8编码 | =save-buffer-as-utf8= |
-    | SPC f t | 打开 treemacs            | =treemacs=            |
+    | 快捷键  | 描述                      | 对应函数             |
+    |---------+---------------------------+----------------------|
+    | SPC f d | 删除当前文件              | =delete-this-file=     |
+    | SPC f R | 重命名文件                | =rename-this-file=     |
+    | SPC f t | 打开 treemacs             | =treemacs=             |
+    | 无      | 把当前文件转为 UTF-8编码  | =save-buffer-as-utf8=  |
+    | 无      | 在 finder 中显示（macOS） | =reveal-in-osx-finder= |
 
 ** Git
-*** 快捷键
     | 快捷键  | 描述          | 对应函数                    |
     |---------+---------------+-----------------------------|
     | SPC g s | 选择 Git 仓库 | =magit-status=                |
