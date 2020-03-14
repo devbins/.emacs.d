@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,7 +52,7 @@
   :commands (leetcode)
   :config
   (url-debug t)
-  (leetcode-prefer-language "java"))
+  (setq leetcode-prefer-language "java"))
 
 (provide 'init-leetcode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
