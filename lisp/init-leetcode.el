@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,12 +46,11 @@
 ;;
 ;;; Code:
 
+;; pip3 install my_cookies
 (use-package leetcode
   :defer t
   :commands (leetcode)
-  :init
-  (setq leetcode-account "devbins")
-  :custom
+  :config
   (url-debug t)
   (leetcode-prefer-language "java"))
 

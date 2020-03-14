@@ -1,0 +1,10 @@
+;;Day info
+;; 日出而作, 日落而息
+%%(diary-sunrise)
+%%(diary-sunset)
+%%(diary-lunar-phases)
+;;
+%%(diary-iso-date)
+;;中国农历
+%%(diary-chinese-date)
+
