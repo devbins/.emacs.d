@@ -245,7 +245,7 @@ prepended to the element after the #+HEADER: tag."
               ;; org-startup-indented t
               ;; org-startup-folded    'content
               org-startup-truncated nil
-              org-ellipsis (if (char-displayable-p ?) "  " "  ▼")
+              org-ellipsis (if (char-displayable-p ?⤵) "  ⤵" "  ▼")
               org-tag-alist (quote ((:startgroup)
                                     ("@errand" . ?e)
                                     ("@office" . ?o)
@@ -415,7 +415,6 @@ prepended to the element after the #+HEADER: tag."
     "mov" 'org-columns
     "moq" 'org-columns-quit
 
-    "'" 'org-edit-special
     "mc" 'org-capture
 
     ;; Clock
@@ -662,7 +661,7 @@ prepended to the element after the #+HEADER: tag."
           (while (setq pos (next-single-property-change (point) 'duration))
             (goto-char pos)
             (when (and (not (equal pos (point-at-eol)))
-                       (setq duration (org-get-at-bol 'duration)))
+                     (setq duration (org-get-at-bol 'duration)))
               (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
                     (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
                 (overlay-put ov 'face `(:background ,(car colors)
