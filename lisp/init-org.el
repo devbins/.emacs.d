@@ -198,6 +198,10 @@ prepended to the element after the #+HEADER: tag."
                                       ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
                                        "* %?\n  %i\n %U"
                                        :empty-lines 1)
+                                      ("a" "Anki basic"
+                                       entry
+                                       (file+headline org-agenda-file-note "ANKI")
+                                       "* %<%H:%M>   %^g\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n%x\n")
                                       ("N" "notes" entry (file+headlie org-agenda-file-note "Browser notes")
                                        "* %U - %:annotation %^g\n\n  %?"
                                        :empty-lines 1 :kill-buffer t)
