@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 15
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,7 @@
 ;;; Code:
 
 (use-package leetcode
+  :defer t
   :commands (leetcode)
   :init
   (setq leetcode-account "devbins")
