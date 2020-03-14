@@ -164,6 +164,19 @@
 
 (use-package format-all)
 
+(use-package helm-dash
+  :config
+  (progn
+    (setq helm-dash-browser-func 'eww)
+    (setq helm-dash-docsets-path (expand-file-name "~/.emacs.d/docsets"))
+
+    (helm-dash-activate-docset "Go")
+    (helm-dash-activate-docset "Python 3")
+    (helm-dash-activate-docset "CMake")
+    (helm-dash-activate-docset "Bash")
+    (helm-dash-activate-docset "Java")
+    (helm-dash-activate-docset "C++")
+    (helm-dash-activate-docset "Emacs Lisp")))
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-prog.el ends here
