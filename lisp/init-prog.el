@@ -177,6 +177,15 @@
     (helm-dash-activate-docset "Java")
     (helm-dash-activate-docset "C++")
     (helm-dash-activate-docset "Emacs Lisp")))
+
+(use-package gdb-mi
+  :init
+  (setq
+   ;; use gdb-many-windows by default when `M-x gdb'
+   gdb-many-windows t
+   ;; Non-nil means display source file containing the main routine at startup
+   gdb-show-main t))
+
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-prog.el ends here
