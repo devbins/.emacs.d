@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -380,7 +380,7 @@ If FRAME is nil, it defaults to the selected frame."
 ;; Fonts
 (when (display-graphic-p)
   ;; Set default font
-  (cl-loop for font in '("SF Mono" "Hack" "Source Code Pro" "Fira Code" "Fira Code Symbol"
+  (cl-loop for font in '("SF Mono" "Hack" "Source Code Pro" "Fira Code" "Fira Code Symbol" "Operator Mono Lig"
                       "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
            return (set-face-attribute 'default nil
