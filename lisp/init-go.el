@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,17 +54,13 @@
          ("C-c R" . go-remove-unused-imports)
          ("<f1>" . godoc-at-point))
   :config
-  ;; Env vars
-  (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))
-
   ;; Install or update tools
   (defvar go--tools '("golang.org/x/tools/cmd/goimports"
-                      "github.com/go-delve/delve/cmd/dlv"
-                      "github.com/josharian/impl"
-                      "github.com/cweill/gotests/..."
-                      "github.com/fatih/gomodifytags"
-                      "github.com/davidrjenni/reftools/cmd/fillstruct")
+                     "github.com/go-delve/delve/cmd/dlv"
+                     "github.com/josharian/impl"
+                     "github.com/cweill/gotests/..."
+                     "github.com/fatih/gomodifytags"
+                     "github.com/davidrjenni/reftools/cmd/fillstruct")
     "All necessary go tools.")
 
   ;; Do not use the -u flag for gopls, as it will update the dependencies to incompatible versions
@@ -145,7 +141,7 @@
     (shell-command
      (format "go run %s %s"
              (shell-quote-argument (or (file-remote-p (buffer-file-name (buffer-base-buffer)) 'localname)
-                                       (buffer-file-name (buffer-base-buffer))))
+                                      (buffer-file-name (buffer-base-buffer))))
              go-run-args)))
 
   (evil-leader/set-key-for-mode 'go-mode
