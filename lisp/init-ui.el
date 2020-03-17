@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -380,14 +380,14 @@ If FRAME is nil, it defaults to the selected frame."
 ;; Fonts
 (when (display-graphic-p)
   ;; Set default font
-  (cl-loop for font in '("SF Mono" "Hack" "Source Code Pro" "Fira Code"
-                         "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
+  (cl-loop for font in '("SF Mono" "Hack" "Source Code Pro" "Fira Code" "Fira Code Symbol"
+                      "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
            return (set-face-attribute 'default nil
-                                      :font font
-                                      :height (cond (sys/mac-x-p 130)
-                                                    (sys/win32p 110)
-                                                    (t 100))))
+                                  :font font
+                                  :height (cond (sys/mac-x-p 130)
+                                                (sys/win32p 110)
+                                                (t 100))))
 
   ;; Specify font for all unicode characters
   (cl-loop for font in '("Symbola" "Apple Symbols" "Symbol" "icons-in-terminal")
