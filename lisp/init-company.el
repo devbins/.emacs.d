@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,6 +52,8 @@
   :commands company-abort
   :bind (("M-/" . company-complete)
          ("C-M-/" . company-yasnippet)
+         :map company-mode-map
+         ("<backtab>" . company-yasnippet)
          :map company-active-map
          ("C-p" . company-select-previous)
          ("C-n" . company-select-next)
@@ -108,7 +110,7 @@
                                                      (length company-common) nil)))
                 (align-string (when annotation
                                 (concat " " (and company-tooltip-align-annotations
-                                                 (propertize " " 'display `(space :align-to (- right-fringe ,(or len-a 0) 1)))))))
+                                               (propertize " " 'display `(space :align-to (- right-fringe ,(or len-a 0) 1)))))))
                 (space company-box--space)
                 (icon-p company-box-enable-icon)
                 (annotation-string (and annotation (propertize annotation 'face 'company-box-annotation)))
