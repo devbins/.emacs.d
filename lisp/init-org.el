@@ -162,6 +162,7 @@ prepended to the element after the #+HEADER: tag."
                                    (?B . warning)
                                    (?C . success))
 
+              org-imenu-depth 5
               ;; define the refile targets
               org-refile-targets '((org-agenda-files :maxlevel . 3))
               org-refile-use-outline-path 'file
