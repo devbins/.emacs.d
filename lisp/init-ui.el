@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 33
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -76,6 +76,9 @@
 
 (when (fboundp 'menu-bar-mode)
   (menu-bar-mode -1))
+
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
 ;; Theme
 (use-package solaire-mode
