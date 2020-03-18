@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 65
+;;     Update #: 66
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package org
-  :ensure org-plus-contrib
   :custom-face (org-ellipsis ((t (:foreground nil))))
   :preface
   (defun hot-expand (str &optional mod)

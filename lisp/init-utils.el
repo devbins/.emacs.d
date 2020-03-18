@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -460,6 +460,8 @@
 (use-package memory-usage)
 (use-package tldr)
 (use-package reveal-in-osx-finder
+  :if sys/macp)
+(use-package grab-mac-link
   :if sys/macp)
 
 (provide 'init-utils)
