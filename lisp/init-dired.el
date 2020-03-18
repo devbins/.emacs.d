@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,7 +55,7 @@
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always)
-
+  (put 'dired-find-alternate-file 'disabled nil)  ;; 只有一个buffer
   (when sys/macp
     ;; Suppress the warning: `ls does not support --dired'.
     (setq dired-use-ls-dired nil)
@@ -65,7 +65,7 @@
       (setq insert-directory-program "gls")))
 
   (when (or (and sys/macp (executable-find "gls"))
-            (and (not sys/macp) (executable-find "ls")))
+           (and (not sys/macp) (executable-find "ls")))
     ;; Using `insert-directory-program'
     (setq ls-lisp-use-insert-directory-program t)
 
@@ -182,6 +182,11 @@
     (dired-rainbow-define partition   "#e3342f" ("dmg" "iso" "bin" "nrg" "qcow" "toast" "vcd" "vmdk" "bak"))
     (dired-rainbow-define vc          "#0074d9" ("git" "gitignore" "gitattributes" "gitmodules"))
     (dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")))
+
+(use-package dired-async
+  :ensure async
+  :diminish dired-async-mode
+  :hook (dired-mode-hook . dired-async-mode))
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")
