@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 32
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -290,8 +290,16 @@
   :defer t
   :if (display-graphic-p)
   :diminish
-  :init
-  (beacon-mode 1))
+  :hook (after-init . beacon-mode)
+  :config
+  ;; only flash on window/buffer changes...
+  (setq beacon-blink-when-window-changes t
+        ;; ... don't be excessive:
+        beacon-blink-when-window-scrolls nil
+        beacon-blink-when-point-moves-vertically nil
+        beacon-blink-duration .2       ; default .3
+        beacon-blink-delay .2          ; default .3
+        beacon-size 20))
 
 ;; Tab
 (use-package awesome-tab
@@ -346,8 +354,8 @@ default value for ALPHA is based on
 `inactive-transparency'."
   (interactive)
   (let ((alpha-setting (or alpha
-                           (cons active-transparency
-                                 inactive-transparency))))
+                          (cons active-transparency
+                                inactive-transparency))))
     (set-frame-parameter frame 'alpha alpha-setting)))
 
 (defun disable-transparency (&optional frame)
