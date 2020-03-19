@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 33
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -321,8 +321,8 @@
     (define-key evil-normal-state-map (kbd ",te") 'awesome-tab-select-end-tab)
     (define-key evil-normal-state-map (kbd ",t<") 'awesome-tab-move-current-tab-to-left)
     (define-key evil-normal-state-map (kbd ",t>") 'awesome-tab-move-current-tab-to-right)
-    (define-key evil-normal-state-map (kbd ",th") 'awesome-tab-forward)
-    (define-key evil-normal-state-map (kbd ",tl") 'awesome-tab-backward))
+    (define-key evil-normal-state-map (kbd ",tp") 'awesome-tab-forward)
+    (define-key evil-normal-state-map (kbd ",tn") 'awesome-tab-backward))
   (setq awesome-tab-cycle-scope 'tabs))
 
 
