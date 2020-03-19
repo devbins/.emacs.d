@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 66
+;;     Update #: 82
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -602,7 +602,8 @@ prepended to the element after the #+HEADER: tag."
     :if sys/macp
     :hook(after-init . pinentry-start))
 
-  (use-package orgit)
+  (use-package orgit
+    :defer t)
 
   (use-package evil-org
     :defer t
@@ -763,6 +764,15 @@ prepended to the element after the #+HEADER: tag."
     (setq appt-display-format 'window) ;; 只有这样才能使用自定义的通知函数
     (setq appt-disp-window-function (function appt-disp-window-and-notification))))
 
+
+(use-package easy-hugo
+  :defer t
+  :init
+  (setq easy-hugo-basedir "~/git/blog/")
+  (setq easy-hugo-url "https://devbins.github.io/")
+  (setq easy-hugo-preview-url "http://127.0.0.1:1313/")
+  (setq easy-hugo-postdir "content/post")
+  (setq easy-hugo-default-ext ".org"))
 
 (use-package deft
   :defer t
