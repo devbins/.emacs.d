@@ -210,7 +210,7 @@ prepended to the element after the #+HEADER: tag."
                                        :empty-lines 1)
                                       ("B" "Protocol Bookmarks" entry (file+headline org-agenda-file-inbox "Bookmarks")
                                        "* %U - %:annotation"
-                                       :immediate-finish t :kill-buffer t :empty-lines 1)
+                                       :kill-buffer t :empty-lines 1)
                                       ("s" "Code Snippet" entry
                                        (file org-agenda-file-code-snippet)
                                        "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
@@ -268,6 +268,7 @@ prepended to the element after the #+HEADER: tag."
               org-pretty-entities nil
               org-hide-emphasis-markers t)
   :config
+  (add-to-list 'org-modules 'org-protocol)
   ;; Add new template
   (add-to-list 'org-structure-template-alist '("n" . "note"))
 
