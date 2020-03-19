@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -147,6 +147,7 @@
     "bd" 'kill-this-buffer
     "bm" 'bookmark-set
     "bj" 'bookmark-jump
+    "bI" 'ibuffer
     "bp" 'previous-buffer
     "bn" 'next-buffer
     "bt" 'imenu-list-smart-toggle
