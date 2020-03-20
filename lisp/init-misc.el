@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -77,10 +77,6 @@
 (use-package figlet
   :defer t
   :init (setq figlet-default-font "banner"))
-
-(use-package edit-server
-  :hook(after-init . edit-server-start)
-  :config (setq edit-server-default-major-mode 'org-mode))
 
 (use-package carbon-now-sh
   :defer t)
