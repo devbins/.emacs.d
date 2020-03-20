@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -162,6 +162,11 @@
   (if (fboundp 'gfm-mode)
       (setq atomic-chrome-url-major-mode-alist
             '(("github\\.com" . gfm-mode)))))
+
+;; https://manateelazycat.github.io/emacs/2018/09/17/indium.html
+(use-package indium
+  :defer t
+  :hook(js2-mode . indium-interaction))
 
 (provide 'init-web)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
