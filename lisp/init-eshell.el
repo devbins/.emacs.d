@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -167,15 +167,12 @@
   :commands (aweshell-toggle)
   :load-path "~/.emacs.d/site-lisp/aweshell/"
   :init
-  (defun eshell-keymap ()
-    (evil-define-key 'insert eshell-mode-map
-      (kbd "C-u") 'eshell-kill-input
-      (kbd "C-a") 'eshell-bol
-      (kbd "C-d") 'kevin/quit-or-delete-char
-      (kbd "C-r") 'kevin/ivy-eshell-history
-      (kbd "TAB") 'pcomplete-std-complete))
-  :hook (eshell-first-time-mode . eshell-keymap)
+  (setq aweshell-complete-selection-key "M-/")
   :config
+  (evil-define-key 'insert eshell-mode-map
+    (kbd "C-u") 'eshell-kill-input
+    (kbd "C-a") 'eshell-bol
+    (kbd "TAB") 'pcomplete-std-complete)
   (use-package eshell-prompt-extras)
   (setq eshell-highlight-prompt t)
   (setq eshell-prompt-function 'epe-theme-lambda)

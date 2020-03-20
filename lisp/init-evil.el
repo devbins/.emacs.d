@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -106,6 +106,7 @@
   (evil-set-initial-state 'term-mode 'emacs)
   (evil-set-initial-state 'snails-mode 'emacs)
   (evil-set-initial-state 'multi-term-mode 'emacs)
+  (evil-set-initial-state 'aweshell-mode 'emacs)
 
   (evil-define-key 'normal help-mode-map
     "q" 'quit-window)
