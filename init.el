@@ -149,6 +149,7 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-utils)
 (require 'init-misc)
 (require 'init-pretty)
+(require 'init-mail)
 
 ;; Programming
 (require 'init-vcs)

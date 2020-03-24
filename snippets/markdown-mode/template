@@ -1,0 +1,67 @@
+# -*- mode: snippet -*-
+# name: template
+# key: template
+# --
+## 个人信息
+
+姓名：              电话: 13xxx　　　　　　　 　　　
+
+Email: XXX@gmail.com  Blog: www.XX.com
+
+---
+
+### 工作经历
+
+#### 20xx/xx-至今　　　　　　　　xxx2 公司	　　　　　　　Android 资深开发
+
+带领移动团队负责 xx，取得了什么成绩
+
+#### 20xx/xx-20xx/xx　　　　　　 xxx1 公司	　　　　　　　Android 高级开发
+
+负责 xx 产品，取得了什么成绩
+
+
+
+---
+
+### 专业技能
+
+
+* x 年团队管理经验，x 年开发经验，x 年移动开发经验
+* 开源 xx 项目，用于 xx，多少 Star，多少 Contributors
+* 博客主要分享 xx xx
+* 熟悉 Android 应用框架设计，熟悉 Android 高性能编程及调优
+* 熟悉 xx 技术点，xx 技术点，xx 技术点
+
+---
+
+### 项目经历
+
+#### 20xx/xx-20xx/xx　　　　　　XX 项目　　　　　　　　　　 codeKK2 公司
+
+##### 项目简介：
+
+
+
+##### 职责：
+
+*
+
+#### 20xx/xx-20xx/xx　　　　　　XX 项目　　　　　　　　　　 codeKK1 公司
+
+##### 项目简介：
+
+
+
+##### 职责：
+
+*
+#### 20xx/xx-20xx/xx　　　　　　XX 项目　　　　　　　　　　 codeKK1 公司
+
+##### 项目简介：
+
+
+
+##### 职责：
+
+*
