@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,6 +62,13 @@
         org-mime-library 'semi
         pgg-scheme 'gpg
         mime-edit-split-message nil)
+  (setq mime-view-text/html-previewer shr
+        shr-use-fonts nil
+        shr-use-colors nil
+        mime-w3m-safe-url-regexp nil
+        mime-setup-enable-inline-html 'shr
+        mime-shr-blocked-images nil
+        mime-setup-enable-inline-image t)
 
   (if (boundp 'mail-user-agent)
       (setq mail-user-agent 'wl-user-agent))
