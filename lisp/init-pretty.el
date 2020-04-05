@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -401,6 +401,11 @@
      ("Add"     ? (:foreground "#375E97" :height 1.2))
      ("Fix"     ? (:foreground "#FB6542" :height 1.2))
      ("Clean"   ? (:foreground "#FFBB00" :height 1.2))
+     ("Perf"    ?🚀 (:foreground "#66bb6a" :height 1.2))
+     ("Style"   ?🎨 (:foreground "#4fc3f7" :height 1.2))
+     ("Test"    ?🔧 (:foreground "#8d6e63" :height 1.2))
+     ("Refactor" ?🔨 (:foreground "#ef6c00" :height 1.2))
+     ("Chore"   ?🏠 (:foreground "#9c27b0" :height 1.2))
      ("Docs"    ? (:foreground "#3F681C" :height 1.2)))))
 
 (provide 'init-pretty)
