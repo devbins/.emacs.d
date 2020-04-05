@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 31
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -101,6 +101,7 @@
   (evil-set-initial-state 'esup-mode 'emacs)
   (evil-set-initial-state 'diff-mode 'normal)
   (evil-set-initial-state 'deft-mode 'emacs)
+  (evil-set-initial-state 'leetcode--problems-mode 'emacs)
   (evil-set-initial-state 'image-mode 'motion)
   (evil-set-initial-state 'image-dired-minor-mode 'emacs)
   (evil-set-initial-state 'term-mode 'emacs)
@@ -144,6 +145,7 @@
     "aoa" 'org-agenda-list
     "aoc" 'org-capture
     "aot" 'org-todo-list
+    "am"  'wl
 
     "bb" 'ivy-switch-buffer
     "bd" 'kill-this-buffer
