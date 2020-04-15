@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -440,6 +440,21 @@
 (use-package so-long
   :ensure nil
   :config (global-so-long-mode 1))
+
+;; https://github.com/DogLooksGood/emacs-rime
+(use-package rime
+  :init
+  (cond (sys/macp (setq rime-user-data-dir "~/Library/Rime"))
+        (sys/linuxp (setq rime-user-data-dir "~/.config/fcitx/rime")))
+  (setq rime-disable-predicates
+        '(rime-predicate-evil-mode-p
+          rime-predicate-after-alphabet-char-p
+          rime-predicate-prog-in-code-p))
+  :custom
+  (default-input-method "rime")
+  (rime-show-candidate 'posframe)
+  (when sys/macp
+    (rime-librime-root "~/.emacs.d/librime/dist")))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
