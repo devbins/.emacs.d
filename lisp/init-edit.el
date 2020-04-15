@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -440,6 +440,14 @@
 (use-package so-long
   :ensure nil
   :config (global-so-long-mode 1))
+
+(use-package rime
+  :init
+  (setq rime-user-data-dir "~/Library/Rime")
+  :custom
+  (default-input-method "rime")
+  (rime-show-candidate 'posframe)
+  (rime-librime-root "~/.emacs.d/librime/dist"))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
