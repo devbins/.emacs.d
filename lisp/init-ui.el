@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -94,7 +94,6 @@
 (use-package doom-themes
   :defines doom-themes-treemacs-theme
   :functions doom-themes-hide-modeline
-  :custom (doom-dark+-blue-modeline t)
   :init (load-theme 'doom-one t)
   :config
   ;; Enable flashing mode-line on errors
