@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -74,22 +74,24 @@
   (use-package magit-todos
     :init
     (setq magit-todos-nice (if (executable-find "nice") t nil))
-    (magit-todos-mode 1)))
+    (magit-todos-mode 1))
 
-;; evil magit
-(use-package evil-magit
-  :defer t
-  :after magit
-  :init
-  (setq evil-magit-state 'normal)
-  (evil-magit-init))
+  ;; evil magit
+  (use-package evil-magit
+    :defer t
+    :after magit
+    :init
+    (setq evil-magit-state 'normal)
+    (evil-magit-init))
 
-;; Git Flow
-(use-package magit-gitflow
-  :defer t
-  :hook(magit-mode . turn-on-magit-gitflow)
-  :config
-  (define-key magit-mode-map "%" 'magit-gitflow-popup))
+  ;; Git Flow
+  (use-package magit-gitflow
+    :defer t
+    :hook(magit-mode . turn-on-magit-gitflow)
+    :config
+    (define-key magit-mode-map "%" 'magit-gitflow-popup)))
+
+
 
 ;; Walk through git revisions of a file
 (use-package git-timemachine
