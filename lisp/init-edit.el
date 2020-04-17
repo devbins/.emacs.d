@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -448,13 +448,11 @@
         (sys/linuxp (setq rime-user-data-dir "~/.config/fcitx/rime")))
   (setq rime-disable-predicates
         '(rime-predicate-evil-mode-p
-          rime-predicate-after-alphabet-char-p
           rime-predicate-prog-in-code-p))
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
-  (when sys/macp
-    (rime-librime-root "~/.emacs.d/librime/dist")))
+  (rime-librime-root "~/.emacs.d/librime/dist"))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
