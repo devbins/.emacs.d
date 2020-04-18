@@ -160,7 +160,7 @@
 
 (use-package unicad
   :commands (unicad-enable unicad-disable)
-  :load-path "~/.emacs.d/site-lisp/unicad/")
+  :load-path (lambda ()(expand-file-name "site-lisp/unicad/" user-emacs-directory)))
 
 (use-package format-all)
 
