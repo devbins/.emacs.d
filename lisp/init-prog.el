@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -168,6 +168,12 @@
   :config
   (setq helm-dash-browser-func 'eww))
 
+;; https://github.com/xuchunyang/dash-alfred.el
+(use-package dash-alfred
+  :if sys/macp
+  :commands dash-alfred-helm
+  :init
+  (setq dash-alfred-workflow (car (file-expand-wildcards "~/Library/Application Support/Alfred 3/Alfred.alfredpreferences/workflows/user.workflow.*/dashAlfredWorkflow"))))
 
 (use-package gdb-mi
   :init
