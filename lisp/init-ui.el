@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -306,7 +306,7 @@
 ;; Tab
 (use-package awesome-tab
   :if (display-graphic-p)
-  :load-path "~/.emacs.d/site-lisp/awesome-tab/"
+  :load-path (lambda () (expand-file-name "site-lisp/awesome-tab/" user-emacs-directory))
   :hook (after-init . awesome-tab-mode)
   :init(setq awesome-tab-style 'wave
              awesome-tab-display-icon (if (display-graphic-p) t nil)

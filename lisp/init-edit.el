@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -454,7 +454,7 @@
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
-  (rime-librime-root "~/.emacs.d/librime/dist"))
+  (rime-librime-root (expand-file-name "librime/dist" user-emacs-directory)))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

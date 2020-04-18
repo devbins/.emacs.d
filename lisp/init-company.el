@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -207,7 +207,7 @@
     "The first two candidates will be from company-lsp, the following two
 candidates will be from company-tabnine, others keeping their own origin order."
     (if (or (functionp company-backend)
-            (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
+           (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
         candidates
       (let ((candidates-table (make-hash-table :test #'equal))
             candidates-1
@@ -231,7 +231,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
   (defadvice company-echo-show (around disable-tabnine-upgrade-message activate)
     (let ((company-message-func (ad-get-arg 0)))
       (when (and company-message-func
-                 (stringp (funcall company-message-func)))
+               (stringp (funcall company-message-func)))
         (unless (string-match "The free version of TabNine only indexes up to" (funcall company-message-func))
           ad-do-it))))
 
@@ -239,7 +239,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
 
 (use-package insert-translated-name
-  :load-path "~/.emacs.d/site-lisp/insert-translated-name/"
+  :load-path (lambda () (expand-file-name "site-lisp/insert-translated-name" user-emacs-directory))
   :bind ("C-c t t" . 'insert-translated-name-insert)
   :commands (insert-translated-name-insert)
   :init (setq insert-translated-name-translate-engine 'youdao)
@@ -248,7 +248,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     '(go-mode)))
 
 (use-package company-english-helper
-  :load-path "~/.emacs.d/site-lisp/company-english-helper/"
+  :load-path (lambda () (expand-file-name "site-lisp/company-english-helper" user-emacs-directory))
   :after company
   :commands (toggle-company-english-helper)
   :bind ("C-c t e" . 'toggle-company-english-helper))
