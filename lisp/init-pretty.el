@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -393,7 +393,7 @@
 (use-package pretty-magit
   :defer t
   :commands(pretty-magit-setup)
-  :load-path "~/.emacs.d/site-lisp/pretty-magit"
+  :load-path (lambda () (expand-file-name "site-lisp/pretty-magit" user-emacs-directory))
   :hook(magit-mode . pretty-magit-setup)
   :config
   (pretty-magit-add-leaders
