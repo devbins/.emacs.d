@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -165,7 +165,7 @@
 
 (use-package aweshell
   :commands (aweshell-toggle)
-  :load-path "~/.emacs.d/site-lisp/aweshell/"
+  :load-path (lambda () (expand-file-name "site-lisp/aweshell/" user-emacs-directory))
   :init
   (setq aweshell-complete-selection-key "M-/")
   :config
