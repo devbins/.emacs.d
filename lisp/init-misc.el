@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (use-package aria2
   :defer t
   :commands aria2-downloads-list
-  :load-path "~/.emacs.d/site-lisp/aria2"
+  :load-path (lambda () (expand-file-name "site-lisp/aria2" user-emacs-directory))
   :config
   (evil-define-key 'normal aria2-mode-map
     "f" 'aria2-add-file
@@ -62,7 +62,7 @@
 ;; Header2Pac
 (use-package header2
   :demand t
-  :load-path "~/.emacs.d/site-lisp/header2"
+  :load-path (lambda () (expand-file-name "site-lisp/header2" user-emacs-directory))
   :custom
   (header-copyright-notice (concat "Copyright (C) 2019 " (user-full-name) "\n"))
   :config
