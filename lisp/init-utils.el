@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -421,7 +421,7 @@
 
 (use-package snails
   :defer t
-  :load-path "~/.emacs.d/site-lisp/snails/"
+  :load-path (lambda () (expand-file-name "site-lisp/snails/" user-emacs-directory))
   :if (display-graphic-p)
   :custom-face
   (snails-content-buffer-face ((t (:background "#111" :height 110))))
