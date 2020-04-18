@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 31
+;;     Update #: 32
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -197,6 +197,22 @@
     "np" 'narrow-to-page
     "nr" 'narrow-to-region
     "nw" 'widen
+
+    ;; Project
+    "pb" 'projectile-switch-to-buffer
+    "pc" 'projectile-compile-project
+    "pd" 'projectile-find-dir
+    "pe" 'projectile-edit-dir-locals
+    "pf" 'projectile-find-file
+    "pg" 'projectile-find-tag
+    "pk" 'projectile-kill-buffers
+    "pp" 'projectile-switch-project
+    "pr" 'projectile-recentf
+    "pR" 'projectile-replace
+    "ps" 'projectile-switch-project
+    "pv" 'projectile-vc
+    "px" 'projectile-remove-known-project
+    "pz" 'projectile-cache-current-file
 
     "Pc" 'password-store-copy
     "Pg" 'password-store-generate
