@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -449,6 +449,8 @@
   (setq rime-disable-predicates
         '(rime-predicate-evil-mode-p
           rime-predicate-prog-in-code-p))
+  :bind(:map rime-mode-map
+        ("M-j" . rime-inline-ascii))
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
