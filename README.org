@@ -59,7 +59,12 @@
     #+begin_src js
     javascript:location.href='org-protocol://capture?template=B&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'&body='+encodeURIComponent(window.getSelection())
     #+end_src
-   
+*** Org Archive
+    | 快捷键    | 描述                                     | 对应函数               |
+    |-----------+------------------------------------------+------------------------|
+    | SPC m s a | 切换 =Archive= tag                         | =org-toggle-archive-tag= |
+    | SPC m s A | 把有 =Archive= tag 的移动到 =Archive= 文件中 | =org-archive-subtree=    |
+    
 ** FAQ
 *** 无法显示字体 
     - [[https://github.com/adobe-fonts/source-code-pro][Source-Code-Pro]] 
