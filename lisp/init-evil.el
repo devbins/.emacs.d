@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 33
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -101,6 +101,7 @@
   (evil-set-initial-state 'esup-mode 'emacs)
   (evil-set-initial-state 'diff-mode 'normal)
   (evil-set-initial-state 'deft-mode 'emacs)
+  (evil-set-initial-state 'bongo-mode 'emacs)
   (evil-set-initial-state 'leetcode--problems-mode 'emacs)
   (evil-set-initial-state 'image-mode 'motion)
   (evil-set-initial-state 'image-dired-minor-mode 'emacs)
