@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 36
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -133,41 +133,30 @@
   :init (unless (or sys/win32p (font-installed-p "all-the-icons"))
           (all-the-icons-install-fonts t))
   :config
-  (with-no-warnings
-    ;; FIXME: Align the directory icons
-    ;; @see https://github.com/domtronn/all-the-icons.el/pull/173
-    (defun all-the-icons-icon-for-dir (dir &optional chevron padding)
-      "Format an icon for DIR with CHEVRON similar to tree based directories."
-      (let* ((matcher (all-the-icons-match-to-alist (file-name-base (directory-file-name dir)) all-the-icons-dir-icon-alist))
-             (path (expand-file-name dir))
-             (chevron (if chevron (all-the-icons-octicon (format "chevron-%s" chevron) :height 0.8 :v-adjust -0.1) ""))
-             (padding (or padding "\t"))
-             (icon (cond
-                    ((file-symlink-p path)
-                     (all-the-icons-octicon "file-symlink-directory" :height 1.0 :v-adjust 0.0))
-                    ((all-the-icons-dir-is-submodule path)
-                     (all-the-icons-octicon "file-submodule" :height 1.0 :v-adjust 0.0))
-                    ((file-exists-p (format "%s/.git" path))
-                     (format "%s" (all-the-icons-octicon "repo" :height 1.1 :v-adjust 0.0)))
-                    (t (apply (car matcher) (list (cadr matcher) :v-adjust 0.0))))))
-        (format "%s%s%s%s%s" padding chevron padding icon padding)))
-
-    (defun all-the-icons-reset ()
-      "Reset (unmemoize/memoize) the icons."
-      (interactive)
+  (declare-function memoize 'memoize)
+  (declare-function memoize-restore 'memoize)
+  (defun all-the-icons-reset ()
+    "Reset (unmemoize/memoize) the icons."
+    (interactive)
+    (ignore-errors
       (dolist (f '(all-the-icons-icon-for-file
                    all-the-icons-icon-for-mode
                    all-the-icons-icon-for-url
                    all-the-icons-icon-family-for-file
                    all-the-icons-icon-family-for-mode
                    all-the-icons-icon-family))
-        (ignore-errors
-          (memoize-restore f)
-          (memoize f)))
-      (message "Reset all-the-icons")))
+        (memoize-restore f)
+        (memoize f)))
+    (message "Reset all-the-icons"))
 
   (add-to-list 'all-the-icons-icon-alist
+               '("^Rakefile$" all-the-icons-alltheicon "ruby-alt" :face all-the-icons-red))
+  (add-to-list 'all-the-icons-icon-alist
                '("\\.go$" all-the-icons-fileicon "go" :face all-the-icons-blue))
+  (add-to-list 'all-the-icons-icon-alist
+               '("\\go.mod$" all-the-icons-fileicon "go" :face all-the-icons-dblue))
+  (add-to-list 'all-the-icons-icon-alist
+               '("\\go.sum$" all-the-icons-fileicon "go" :face all-the-icons-dpurple))
   (add-to-list 'all-the-icons-mode-icon-alist
                '(go-mode all-the-icons-fileicon "go" :face all-the-icons-blue))
   (add-to-list 'all-the-icons-mode-icon-alist
@@ -188,6 +177,8 @@
                '(diff-mode all-the-icons-octicon "git-compare" :v-adjust 0.0 :face all-the-icons-lred))
   (add-to-list 'all-the-icons-mode-icon-alist
                '(flycheck-error-list-mode all-the-icons-octicon "checklist" :height 1.1 :v-adjust 0.0 :face all-the-icons-lred))
+  (add-to-list 'all-the-icons-icon-alist
+               '("\\.rss$" all-the-icons-octicon "rss" :height 1.1 :v-adjust 0.0 :face all-the-icons-lorange))
   (add-to-list 'all-the-icons-mode-icon-alist
                '(elfeed-search-mode all-the-icons-faicon "rss-square" :v-adjust -0.1 :face all-the-icons-orange))
   (add-to-list 'all-the-icons-mode-icon-alist
