@@ -48,6 +48,7 @@
     |-----------+---------------+------------------|
     | SPC m p   | 设置优先级    | =org-priority=     |
     | SPC m i p | 设置 property | =org-set-property= |
+    | SPC m i e | 设置 effort   | =org-set-effort=   |
     | SPC m o T | 设置 tags     | =org-set-tags=     |
     | SPC a o c | 捕获内容      | =org-capture=      |
 *** Org protocol
