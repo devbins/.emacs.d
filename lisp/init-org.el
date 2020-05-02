@@ -653,12 +653,14 @@ prepended to the element after the #+HEADER: tag."
           (capitalize-word 1)
           (buffer-substring start end))))
 
-    (defun org-agenda-time-grid-spacing ()
-      "Set different line spacing w.r.t. time duration."
+    (defun org-agenda-time-grid-spacing()
+      "Set different line spacing based on clock time duration."
       (save-excursion
-        (let* ((background (alist-get 'background-mode (frame-parameters)))
-               (background-dark-p (string= background "dark"))
-               (colors (list "#1ABC9C" "#2ECC71" "#3498DB" "#9966ff"))
+        (let* ((colors (cl-case (alist-get 'background-mode (frame-parameters))
+		                 ('light
+		                  (list "#F6B1C3" "#FFFF9D" "#BEEB9F" "#ADD5F7"))
+		                 ('dark
+		                  (list "#1ABC9C" "#2ECC71" "#3498D8" "#9966ff"))))
                pos
                duration)
           (nconc colors colors)
@@ -667,14 +669,14 @@ prepended to the element after the #+HEADER: tag."
             (goto-char pos)
             (when (and (not (equal pos (point-at-eol)))
                      (setq duration (org-get-at-bol 'duration)))
-              (let ((line-height (if (< duration 30) 1.0 (+ 0.5 (/ duration 60))))
+              ;; larger duration bar height
+              (let ((line-height (if (< duration 15) 1.0 (+ 0.5 (/ duration 30))))
                     (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
-                (overlay-put ov 'face `(:background ,(car colors)
-                                        :foreground
-                                        ,(if background-dark-p "black" "white")))
+                (overlay-put ov 'face `(:background ,(car colors) :foreground "black"))
                 (setq colors (cdr colors))
                 (overlay-put ov 'line-height line-height)
                 (overlay-put ov 'line-spacing (1- line-height))))))))
+
     :hook (org-agenda-finalize . org-agenda-time-grid-spacing)
     :init
     (setq org-agenda-restore-windows-after-quit t
