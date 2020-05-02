@@ -39,3 +39,5 @@
 /librime/
 *.bongo-library
 /.pdf-view-restore
+/emojis/
+/*.eieio
