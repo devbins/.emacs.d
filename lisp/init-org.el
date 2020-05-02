@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 83
+;;     Update #: 93
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -691,7 +691,7 @@ prepended to the element after the #+HEADER: tag."
                                         "......" "----------------")))
 
           org-agenda-include-diary t
-
+          org-agenda-show-log t
           ;; org-agenda-log-mode-items (quote (closed state))
           org-agenda-compact-blocks t
           org-agenda-sticky t
@@ -708,6 +708,14 @@ prepended to the element after the #+HEADER: tag."
           org-habit-following-days 2
           ;; 恢复默认日历行为
           org-habit-show-habits-only-for-today nil)
+
+    (with-eval-after-load 'all-the-icons
+      (setq org-agenda-category-icon-alist
+            `(("Diary" ,(list (all-the-icons-faicon "file-text-o")) nil nil :ascent center)
+              ("gtd" ,(list (all-the-icons-faicon "check-square-o" :height 1.2)) nil nil :ascent center)
+              ("inbox" ,(list (all-the-icons-faicon "refresh")) nil nil :ascent center)
+              ("Star" ,(list (all-the-icons-faicon "star-o")) nil nil :ascent center)
+              ("Org" ,(list (all-the-icons-fileicon "org")) nil nil :ascent center))))
 
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "RET") 'org-agenda-switch-to
