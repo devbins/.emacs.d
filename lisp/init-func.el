@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -232,14 +232,12 @@ Same as `replace-string C-q C-m RET RET'."
   (interactive)
   (setq url-proxy-services `(("http" . ,http-proxy)
                              ("https" . ,http-proxy)
-                             ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
-  (proxy-http-show))
+                             ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)"))))
 
 (defun proxy-http-disable ()
   "Disable HTTP/HTTPS proxy."
   (interactive)
-  (setq url-proxy-services nil)
-  (proxy-http-show))
+  (setq url-proxy-services nil))
 
 (defun proxy-http-toggle ()
   "Toggle HTTP/HTTPS proxy."
