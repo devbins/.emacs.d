@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,7 @@
   :commands aria2-downloads-list
   :load-path (lambda () (expand-file-name "site-lisp/aria2" user-emacs-directory))
   :config
+  (setq aria2-download-directory (expand-file-name "~/Downloads"))
   (evil-define-key 'normal aria2-mode-map
     "f" 'aria2-add-file
     "u" 'aria2-add-uris
