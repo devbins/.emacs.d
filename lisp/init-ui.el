@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -96,8 +96,6 @@
   :functions doom-themes-hide-modeline
   :init (load-theme 'doom-one t)
   :config
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
 
   ;; Enable customized theme (`all-the-icons' must be installed!)
   (setq doom-themes-treemacs-theme "doom-colors")
