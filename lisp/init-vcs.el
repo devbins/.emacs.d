@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,7 +73,8 @@
   ;; Show TODOs in magit
   (use-package magit-todos
     :init
-    (setq magit-todos-nice (if (executable-find "nice") t nil))
+    (setq magit-todos-nice (if (executable-find "nice") t nil)
+          magit-todos-exclude-globs '("*.map"))
     (magit-todos-mode 1))
 
   ;; evil magit
