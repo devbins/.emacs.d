@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 93
+;;     Update #: 95
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -815,6 +815,12 @@ same directory as the org-buffer and insert a link to this file."
 (use-package graphviz-dot-mode
   :config
   (setq graphviz-dot-indent-width 4))
+
+(use-package gif-screencast
+  :defer t
+  :init (setq gif-screencast-args '("-x")
+              gif-screencast-cropping-program "mogrify"
+              gif-screencast-capture-format "ppm"))
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
