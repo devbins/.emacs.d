@@ -22,3 +22,6 @@
 [submodule "insert-translated-name"]
 	path = site-lisp/insert-translated-name
 	url = https://github.com/manateelazycat/insert-translated-name.git
+[submodule "emacs-application-framework"]
+	path = site-lisp/emacs-application-framework
+	url = https://github.com/manateelazycat/emacs-application-framework.git
