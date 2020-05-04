@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 33
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,6 +103,7 @@
   (evil-set-initial-state 'deft-mode 'emacs)
   (evil-set-initial-state 'bongo-mode 'emacs)
   (evil-set-initial-state 'leetcode--problems-mode 'emacs)
+  (evil-set-initial-state 'eaf-mode 'emacs)
   (evil-set-initial-state 'image-mode 'motion)
   (evil-set-initial-state 'image-dired-minor-mode 'emacs)
   (evil-set-initial-state 'term-mode 'emacs)

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 13
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -444,7 +444,7 @@
 (use-package eaf
   :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
   :if sys/linuxp
-  :commands (eaf-open-browser)
+  :commands (eaf-open-browser eaf-open)
   :custom
   (eaf-find-alternate-file-in-dired t)
   (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
