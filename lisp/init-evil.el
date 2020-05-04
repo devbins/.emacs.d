@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 47
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -119,7 +119,7 @@
 
 (use-package evil-leader
   :defer t
-  :init(global-evil-leader-mode)
+  :hook (after-init . global-evil-leader-mode)
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
@@ -276,15 +276,17 @@
 
 
 (use-package evil-nerd-commenter
-  :init (evil-leader/set-key
-          "ci" 'evilnc-comment-or-uncomment-lines
-          "cl" 'evilnc-comment-or-uncomment-lines
-          "cc" 'evilnc-copy-and-comment-lines
-          "cp" 'evilnc-comment-or-uncomment-paragraphs
-          "cr" 'comment-or-uncomment-region
-          "cv" 'evilnc-toggle-invert-comment-line-by-line
-          "."  'evilnc-copy-and-comment-operator
-          "/" 'evilnc-comment-operator))
+  :defer t
+  :init
+  (evil-leader/set-key
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-comment-or-uncomment-lines
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "."  'evilnc-copy-and-comment-operator
+    "/" 'evilnc-comment-operator))
 
 (use-package evil-lion
   :ensure t
