@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -446,9 +446,12 @@
   :init
   (cond (sys/macp (setq rime-user-data-dir "~/Library/Rime"))
         (sys/linuxp (setq rime-user-data-dir "~/.config/fcitx/rime")))
-  (setq rime-disable-predicates
-        '(rime-predicate-evil-mode-p
-          rime-predicate-prog-in-code-p))
+  (setq rime-disable-predicates '(rime-predicate-evil-mode-p
+                                  rime-predicate-after-alphabet-char-p
+                                  rime-predicate-prog-in-code-p)
+        rime-inline-predicates '(rime-predicate-space-after-cc-p
+                                 rime-predicate-current-uppercase-letter-p)
+        rime-inline-ascii-trigger 'shift-l)
   :bind(:map rime-mode-map
         ("M-j" . rime-inline-ascii))
   :custom
