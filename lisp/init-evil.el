@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -289,13 +289,10 @@
     "/" 'evilnc-comment-operator))
 
 (use-package evil-lion
-  :ensure t
-  :config
-  (evil-lion-mode))
+  :hook (after-init . evil-lion-mode))
 
 (use-package evil-surround
   :defer t
-  :ensure t
   :commands
   (evil-surround-edit
    evil-Surround-edit
@@ -306,8 +303,7 @@
   (evil-define-key 'operator global-map "S" 'evil-Surround-edit)
   (evil-define-key 'visual global-map "S" 'evil-surround-region)
   (evil-define-key 'visual global-map "gS" 'evil-Surround-region)
-  :config
-  (global-evil-surround-mode))
+  :hook (after-init . global-evil-surround-mode))
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
