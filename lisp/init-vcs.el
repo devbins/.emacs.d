@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,7 +88,7 @@
     :after magit
     :init
     (setq evil-magit-state 'normal)
-    (evil-magit-init))
+    :hook (magit-mode . evil-magit-init))
 
   ;; Git Flow
   (use-package magit-gitflow
