@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 95
+;;     Update #: 98
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -689,6 +689,16 @@ prepended to the element after the #+HEADER: tag."
           org-agenda-time-grid (quote (((daily today require-timed)
                                         (300 600 900 1200 1500 1800 2100 2400)
                                         "......" "----------------")))
+
+          org-agenda-align-tags-to-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
+          org-agenda-tags-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
+
+          org-agenda-prefix-format '((agenda . " %i %-12:c %? e %?-12t % s")
+                                     (timeline . " % s")
+                                     (effort . " %e %(or (org-entry-get (point) \"Effort\") \"0:00\")")
+                                     (todo . " %i %-12:c")
+                                     (search . " %i %-12:c")
+                                     (tags . " %i %-12:c"))
 
           org-agenda-include-diary t
           org-agenda-show-log t
