@@ -686,9 +686,9 @@ prepended to the element after the #+HEADER: tag."
           ;;https://sachachua.com/blog/2015/06/adding-calculations-based-on-time-to-the-org-agenda-clock-report/
           org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80))
           org-agenda-use-time-grid t
-          org-agenda-time-grid (quote (((daily today require-timed)
-                                        (300 600 900 1200 1500 1800 2100 2400)
-                                        "......" "----------------")))
+          org-agenda-time-grid (quote ((daily today require-timed)
+                                       (300 600 900 1200 1500 1800 2100 2400)
+                                       "......" "----------------"))
 
           org-agenda-align-tags-to-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
           org-agenda-tags-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
