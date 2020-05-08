@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 98
+;;     Update #: 118
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -768,7 +768,22 @@ prepended to the element after the #+HEADER: tag."
       "mds" 'org-agenda-schedule
       "mie" 'org-agenda-set-effort
       "mit" 'org-agenda-set-tags
-      "msr" 'org-agenda-refile)))
+      "msr" 'org-agenda-refile))
+
+  (use-package appt
+    :ensure nil
+    :init
+    (setq appt-time-msg-list nil
+          appt-message-warning-time '10
+          appt-display-format 'window
+          appt-display-interval '5
+          appt-audible t)
+    (appt-activate 1)
+    (run-at-time "24:01" 3600 'org-agenda-to-appt)
+    (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
+      (notify current-time appt-msg)) ;同时也调用原有的提醒函数
+    (setq appt-disp-window-function (function appt-disp-window-and-notification))
+    :hook (org-agenda-finalize . org-agenda-to-appt)))
 
 
 (use-package easy-hugo
