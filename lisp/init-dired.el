@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,7 +88,6 @@
            ("C-c C-r" . dired-rsync)))
 
   (use-package dired-subtree
-    :defer t
     :bind (:map dired-mode-map
            ("TAB" . dired-subtree-cycle)))
 

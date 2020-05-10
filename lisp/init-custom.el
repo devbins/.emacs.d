@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (defgroup devbins nil
   "Emacs customizations."
   :group 'convenience
-  :link '(url-link :tag "Homepage" "https://github.com/seagle0128/.emacs.d"))
+  :link '(url-link :tag "Homepage" "https://github.com/devbins/.emacs.d"))
 
 ;; ELPA: refer to https://github.com/melpa/melpa and https://elpa.emacs-china.org/.
 (defcustom package-archives-alist
