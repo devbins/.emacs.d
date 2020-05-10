@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (use-package company
   :diminish
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
-  :commands company-abort
+  :commands company-cancel
   :bind (("M-/" . company-complete)
          ("C-M-/" . company-yasnippet)
          :map company-mode-map
@@ -68,14 +68,13 @@
   (defun my-company-yasnippet ()
     "Hide the current completeions and show snippets."
     (interactive)
-    (company-abort)
+    (company-cancel)
     (call-interactively 'company-yasnippet))
-  :config
   (setq company-tooltip-align-annotations t
         company-tooltip-limit 12
         company-idle-delay 0
         company-echo-delay (if (display-graphic-p) nil 0)
-        company-minimum-prefix-length 2
+        company-minimum-prefix-length 1
         company-require-match nil
         completion-ignore-case t
         company-dabbrev-ignore-case nil
@@ -83,7 +82,7 @@
         company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode shell-mode)
         company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
-
+  :config
   ;; Better sorting and filtering
   (use-package company-prescient
     :init (company-prescient-mode 1))
@@ -190,7 +189,6 @@
   :config (use-package yasnippet-snippets))
 
 (use-package company-tabnine
-  :ensure t
   :after company
   :config
   (defun tabnine//merge-company-tabnine-to-company-lsp ()
