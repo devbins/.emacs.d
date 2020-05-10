@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 39
+;;     Update #: 54
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -92,16 +92,13 @@
               :after #'solaire-mode-restore-persp-mode-buffers))
 
 (use-package doom-themes
-  :defines doom-themes-treemacs-theme
-  :functions doom-themes-hide-modeline
+  :custom-face
+  (doom-modeline-buffer-file ((t (:inherit (mode-line bold)))))
+  :custom
+  (doom-themes-treemacs-theme "doom-colors")
   :init (load-theme 'doom-one t)
   :config
-
-  ;; Enable customized theme (`all-the-icons' must be installed!)
-  (setq doom-themes-treemacs-theme "doom-colors")
-  (doom-themes-treemacs-config)
-  (with-eval-after-load 'treemacs
-    (remove-hook 'treemacs-mode-hook #'doom-themes-hide-modeline)))
+  (doom-themes-treemacs-config))
 
 ;; Mode-line
 (use-package doom-modeline
