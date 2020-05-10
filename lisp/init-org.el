@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 119
+;;     Update #: 120
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -782,7 +782,7 @@ prepended to the element after the #+HEADER: tag."
     (run-at-time "24:01" 3600 'org-agenda-to-appt)
     (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
       (notify current-time appt-msg)) ;同时也调用原有的提醒函数
-    (setq appt-disp-window-function (function appt-disp-window-and-notification))
+    (setq appt-disp-window-function 'appt-disp-window-and-notification)
     :hook (org-agenda-finalize . org-agenda-to-appt)))
 
 

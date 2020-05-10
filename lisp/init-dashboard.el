@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -128,14 +128,14 @@
                                   (registers . "database"))
 
         dashboard-set-footer t
-        dashboard-footer (format "Powered by devbins, %s" (format-time-string "%Y"))
+        dashboard-footer (format "Powered by devbins(1.01^365=37.8), %s" (format-time-string "%Y"))
         dashboard-footer-icon (cond ((display-graphic-p)
                                      (all-the-icons-faicon "heart"
                                                            :height 1.1
                                                            :v-adjust -0.05
                                                            :face 'error))
                                     ((char-displayable-p ?🧡) "🧡 ")
-                                    (t (propertize ">" 'face 'font-lock-doc-face)))
+                                    (t (propertize ">" 'face 'dashboard-footer)))
 
         dashboard-set-navigator t
         dashboard-navigator-buttons
@@ -185,6 +185,17 @@
           (insert (format "%s\n\n" (propertize title 'face 'dashboard-banner-logo-title)))))))
   (advice-add #'dashboard-insert-image-banner :override #'my-dashboard-insert-image-banner)
 
+  ;; FIXME: Insert copyright
+  ;; @see https://github.com/emacs-dashboard/emacs-dashboard/issues/219
+  (defun my-dashboard-insert-copyright ()
+    "Insert copyright in the footer."
+    (when dashboard-footer
+      (insert "\n  ")
+      (dashboard-center-line dashboard-footer)
+      (insert (propertize dashboard-footer 'face 'font-lock-comment-face))
+      (insert "\n")))
+  (advice-add #'dashboard-insert-footer :after #'my-dashboard-insert-copyright)
+
   (defvar dashboard-recover-layout-p nil
     "Wether recovers the layout.")
 
@@ -195,7 +206,7 @@
     (if (> (length (window-list-1))
            ;; exclude `treemacs' window
            (if (and (fboundp 'treemacs-current-visibility)
-                    (eq (treemacs-current-visibility) 'visible))
+                  (eq (treemacs-current-visibility) 'visible))
                2
              1))
         (setq dashboard-recover-layout-p t))
@@ -217,7 +228,7 @@
     (interactive)
     (quit-window t)
     (when (and dashboard-recover-layout-p
-               (bound-and-true-p winner-mode))
+             (bound-and-true-p winner-mode))
       (winner-undo)
       (setq dashboard-recover-layout-p nil)))
 
