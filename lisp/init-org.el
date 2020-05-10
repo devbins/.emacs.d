@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 118
+;;     Update #: 119
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -772,7 +772,7 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package appt
     :ensure nil
-    :init
+    :config
     (setq appt-time-msg-list nil
           appt-message-warning-time '10
           appt-display-format 'window

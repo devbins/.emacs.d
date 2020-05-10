@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 54
+;;     Update #: 59
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -409,12 +409,6 @@ If FRAME is nil, it defaults to the selected frame."
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-
-(when (display-graphic-p)
-  (display-time-mode 1)
-  (setq display-time-24hr-format t)
-  (display-battery-mode 1))
 
 (provide 'init-ui)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

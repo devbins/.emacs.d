@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 57
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -110,6 +110,26 @@
   (evil-set-initial-state 'snails-mode 'emacs)
   (evil-set-initial-state 'multi-term-mode 'emacs)
   (evil-set-initial-state 'aweshell-mode 'emacs)
+
+
+  ;; remove all keybindings from insert-state keymap,it is VERY VERY important
+  (setcdr evil-insert-state-map nil)
+
+  ;;;把emacs模式下的按键绑定到Insert模式下
+  (define-key evil-insert-state-map
+    (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
+
+  ;; but [escape] should switch back to normal state
+  (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+  (define-key evil-normal-state-map [escape] 'keyboard-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  (global-set-key [escape] 'evil-exit-emacs-state)
 
   (evil-define-key 'normal help-mode-map
     "q" 'quit-window)
@@ -274,31 +294,16 @@
   :config
   (evil-lisp-state-leader "SPC k"))
 
-
-(use-package evil-nerd-commenter
-  :defer t
-  :init
-  (evil-leader/set-key
-    "ci" 'evilnc-comment-or-uncomment-lines
-    "cl" 'evilnc-comment-or-uncomment-lines
-    "cc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
-    "cr" 'comment-or-uncomment-region
-    "cv" 'evilnc-toggle-invert-comment-line-by-line
-    "."  'evilnc-copy-and-comment-operator
-    "/" 'evilnc-comment-operator))
-
 (use-package evil-lion
   :hook (after-init . evil-lion-mode))
 
 (use-package evil-surround
-  :defer t
   :commands
   (evil-surround-edit
    evil-Surround-edit
    evil-surround-region
    evil-Surround-region)
-  :init
+  :config
   (evil-define-key 'operator global-map "s" 'evil-surround-edit)
   (evil-define-key 'operator global-map "S" 'evil-Surround-edit)
   (evil-define-key 'visual global-map "S" 'evil-surround-region)
@@ -316,25 +321,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
-;; remove all keybindings from insert-state keymap,it is VERY VERY important
-(setcdr evil-insert-state-map nil)
-
-  ;;;把emacs模式下的按键绑定到Insert模式下
-(define-key evil-insert-state-map
-  (read-kbd-macro evil-toggle-key) 'evil-emacs-state)
-
-
-;; but [escape] should switch back to normal state
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'evil-exit-emacs-state)
 
 
 (provide 'init-evil)
