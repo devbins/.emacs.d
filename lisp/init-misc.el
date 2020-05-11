@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 15
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,28 +62,24 @@
 
 ;; Header2Pac
 (use-package header2
-  :demand t
+  :hook (emacs-lisp-mode . auto-make-header)
   :load-path (lambda () (expand-file-name "site-lisp/header2" user-emacs-directory))
   :custom
   (header-copyright-notice (concat "Copyright (C) 2019 " (user-full-name) "\n"))
   :config
   (autoload 'auto-make-header "header2")
   (autoload 'auto-update-file-header "header2")
-  (add-hook 'write-file-hooks 'auto-update-file-header)
-  (add-hook 'emacs-lisp-mode-hook 'auto-make-header))
+  (add-hook 'write-file-hooks 'auto-update-file-header))
 
 
 ;; broadway isometric1 starwars doom banner
 ;; sudo pacman -S figlet
 (use-package figlet
-  :defer t
-  :init (setq figlet-default-font "banner"))
+  :config (setq figlet-default-font "banner"))
 
-(use-package carbon-now-sh
-  :defer t)
+(use-package carbon-now-sh)
 
-(use-package speed-type
-  :defer t)
+(use-package speed-type)
 
 (use-package telega
   :commands (telega)
@@ -94,8 +90,7 @@
                                 :type (:@type "proxyTypeSocks5"))
                               )))
 
-(use-package password-store
-  :defer t)
+(use-package password-store)
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
