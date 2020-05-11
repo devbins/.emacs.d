@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -189,14 +189,10 @@ Same as `replace-string C-q C-m RET RET'."
   (if read-mode
       (progn
         (when (fboundp 'olivetti-mode)
-          (olivetti-mode 1))
-        (when (fboundp 'mixed-pitch-mode)
-          (mixed-pitch-mode 1)))
+          (olivetti-mode 1)))
     (progn
       (when (fboundp 'olivetti-mode)
-        (olivetti-mode -1))
-      (when (fboundp 'mixed-pitch-mode)
-        (mixed-pitch-mode -1)))))
+        (olivetti-mode -1)))))
 (global-set-key (kbd "M-<f7>") #'read-mode)
 
 ;; Pakcage archives
