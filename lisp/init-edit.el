@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,42 +46,6 @@
 ;;
 ;;; Code:
 
-;; Delete selection if you insert
-(use-package delsel
-  :ensure nil
-  :hook (after-init . delete-selection-mode))
-
-;; Rectangle
-(use-package rect
-  :ensure nil
-  :bind (:map text-mode-map
-         ("<C-return>" . rect-hydra/body)
-         :map prog-mode-map
-         ("<C-return>" . rect-hydra/body))
-  :pretty-hydra
-  ((:title (pretty-hydra-title "Rectangle" 'material "border_all" :height 1.1 :v-adjust -0.225)
-    :color amaranth :body-pre (rectangle-mark-mode) :post (deactivate-mark) :quit-key ("q" "C-g"))
-   ("Move"
-    (("h" backward-char "←")
-     ("j" next-line "↓")
-     ("k" previous-line "↑")
-     ("l" forward-char "→"))
-    "Action"
-    (("w" copy-rectangle-as-kill "copy") ; C-x r M-w
-     ("y" yank-rectangle "yank")         ; C-x r y
-     ("t" string-rectangle "string")     ; C-x r t
-     ("d" kill-rectangle "kill")         ; C-x r d
-     ("c" clear-rectangle "clear")       ; C-x r c
-     ("o" open-rectangle "open"))        ; C-x r o
-    "Misc"
-    (("N" rectangle-number-lines "number lines")        ; C-x r N
-     ("e" rectangle-exchange-point-and-mark "exchange") ; C-x C-x
-     ("u" undo "undo")
-     ("r" (if (region-active-p)
-              (deactivate-mark)
-            (rectangle-mark-mode 1))
-      "reset")))))
-
 ;; Automatically reload files was modified by external program
 (use-package autorevert
   :ensure nil
@@ -100,33 +64,6 @@
   :init
   (with-eval-after-load 'dired
     (bind-key "C-c C-z f" #'browse-url-of-file dired-mode-map)))
-
-(use-package xwidget
-  :ensure nil
-  :if (featurep 'xwidget-internal)
-  :bind (("C-c C-z w" . xwidget-webkit-browse-url)
-         :map xwidget-webkit-mode-map
-         ("?" . xwidget-hydra/body))
-  :pretty-hydra
-  ((:title (pretty-hydra-title "Webkit" 'faicon "chrome")
-    :color amaranth :quit-key "q")
-   ("Navigate"
-    (("b" xwidget-webkit-back "back")
-     ("f" xwidget-webkit-forward "forward")
-     ("r" xwidget-webkit-reload "refresh")
-     ("SPC" xwidget-webkit-scroll-up "scroll up")
-     ("DEL" xwidget-webkit-scroll-down "scroll down")
-     ("S-SPC" xwidget-webkit-scroll-down "scroll down"))
-    "Zoom"
-    (("+" xwidget-webkit-zoom-in "zoom in")
-     ("=" xwidget-webkit-zoom-in "zoom in")
-     ("-" xwidget-webkit-zoom-out "zoom out"))
-    "Misc"
-    (("g" xwidget-webkit-browse-url "browse url" :exit t)
-     ("u" xwidget-webkit-current-url "show url" :exit t)
-     ("w" xwidget-webkit-current-url-message-kill "copy url" :exit t)
-     ("h" describe-mode "help" :exit t)
-     ("Q" quit-window "quit" :exit t)))))
 
 ;; Click to browse URL or to send to e-mail address
 (use-package goto-addr
@@ -161,16 +98,12 @@
   :bind ("M-o" . ace-link-addr)
   :hook (after-init . ace-link-setup-default)
   :config
-  (with-eval-after-load 'org
-    (bind-key "M-o" #'ace-link-org org-mode-map))
   (with-eval-after-load 'gnus
     (bind-keys
      :map gnus-summary-mode-map
      ("M-o" . ace-link-gnus)
      :map gnus-article-mode-map
-     ("M-o" . ace-link-gnus)))
-  (with-eval-after-load 'ert
-    (bind-key "o" #'ace-link-help ert-results-mode-map)))
+     ("M-o" . ace-link-gnus))))
 
 ;; Jump to Chinese characters
 (use-package ace-pinyin
@@ -197,10 +130,10 @@
   ;; Be slightly less aggressive in C/C++/C#/Java/Go/Swift
   (add-to-list
    'aggressive-indent-dont-indent-if
-   '(and (derived-mode-p 'c-mode 'c++-mode 'csharp-mode
-                         'java-mode 'go-mode 'swift-mode)
-         (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
-                             (thing-at-point 'line))))))
+   '(and (derived-mode-p 'c-mode 'c++-mode
+                       'java-mode 'go-mode 'swift-mode)
+       (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+                           (thing-at-point 'line))))))
 
 ;; Show number of matches in mode-line while searching
 (use-package anzu
@@ -211,15 +144,6 @@
          ([remap isearch-query-replace] . anzu-isearch-query-replace)
          ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
   :hook (after-init . global-anzu-mode))
-
-;; Redefine M-< and M-> for some modes
-(use-package beginend
-  :diminish (beginend-mode beginend-global-mode)
-  :hook (after-init . beginend-global-mode)
-  :config
-  (mapc (lambda (pair)
-          (add-hook (car pair) (lambda () (diminish (cdr pair)))))
-        beginend-modes))
 
 ;; An all-in-one comment command to rule them all
 (use-package comment-dwim-2
@@ -258,7 +182,6 @@
   :bind (("C-;" . iedit-mode)
          ("C-x r RET" . iedit-rectangle-mode)
          :map isearch-mode-map ("C-;" . iedit-mode-from-isearch)
-         :map esc-map ("C-;" . iedit-execute-last-modification)
          :map help-map ("C-;" . iedit-mode-toggle-on-function))
   :config
   ;; Avoid restoring `iedit-mode'
@@ -316,18 +239,11 @@
   :hook (after-init . global-hungry-delete-mode)
   :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
-;; Framework for mode-specific buffer indexes
-(use-package imenu
-  :ensure nil
-  :bind (("C-." . imenu)))
-
 ;; Imenu list in slide
 (use-package imenu-list
-  :defer t
-  :init
+  :config
   (setq imenu-list-focus-after-activation t
         imenu-list-auto-resize t)
-  :config
   (evil-define-key 'normal imenu-list-major-mode-map
     (kbd "RET") 'imenu-list-goto-entry
     (kbd "TAB") 'hs-toggle-hiding
@@ -336,31 +252,6 @@
     "k" 'previous-line
     "g" 'imenu-list-refresh
     "q" 'imenu-list-quit-window))
-
-;; popup imenu
-(use-package popup-imenu
-  :defer t
-  :config
-  (define-key evil-normal-state-map (kbd "C-p") nil)
-  (define-key evil-visual-state-map (kbd "C-p") nil)
-  (define-key evil-normal-state-map (kbd "C-p") 'popup-imenu)
-  (define-key evil-visual-state-map (kbd "C-p") 'popup-imenu))
-
-;; Move to the beginning/end of line or code
-(use-package mwim
-  :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
-         ([remap move-end-of-line] . mwim-end-of-code-or-line)))
-
-;; Windows-scroll commands
-(use-package pager
-  :bind (([remap scroll-up-command] . pager-page-down)
-         ([remap scroll-down-command] . pager-page-up)
-         ([next]   . pager-page-down)
-         ([prior]  . pager-page-up)
-         ([M-up]   . pager-row-up)
-         ([M-kp-8] . pager-row-up)
-         ([M-down] . pager-row-down)
-         ([M-kp-2] . pager-row-down)))
 
 ;; Treat undo history as a tree
 (use-package undo-tree
@@ -376,37 +267,6 @@
     (make-variable-buffer-local 'undo-tree-visualizer-diff)
     (setq-default undo-tree-visualizer-diff t)))
 
-;; Goto last change
-(use-package goto-chg
-  :bind ("C-," . goto-last-change))
-
-;; Record and jump to the last point in the buffer
-(use-package goto-last-point
-  :diminish
-  :bind ("C-M-," . goto-last-point)
-  :hook (after-init . goto-last-point-mode))
-
-;; Preview when `goto-char'
-(use-package goto-char-preview
-  :bind ([remap goto-char] . goto-char-preview))
-
-;; Preview when `goto-line'
-(use-package goto-line-preview
-  :bind ([remap goto-line] . goto-line-preview))
-
-;; Handling capitalized subwords in a nomenclature
-(use-package subword
-  :ensure nil
-  :diminish
-  :hook ((prog-mode . subword-mode)
-         (minibuffer-setup . subword-mode)))
-
-;; Hideshow
-(use-package hideshow
-  :ensure nil
-  :diminish hs-minor-mode
-  :bind (:map hs-minor-mode-map
-         ("C-`" . hs-toggle-hiding)))
 
 ;; Flexible text folding
 (use-package origami
@@ -431,15 +291,6 @@
 ;; Open files as another user
 (unless sys/win32p
   (use-package sudo-edit))
-
-;; Narrow/Widen
-(use-package fancy-narrow
-  :diminish
-  :hook (after-init . fancy-narrow-mode))
-
-(use-package so-long
-  :ensure nil
-  :config (global-so-long-mode 1))
 
 ;; https://github.com/DogLooksGood/emacs-rime
 (use-package rime

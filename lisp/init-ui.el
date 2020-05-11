@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 59
+;;     Update #: 63
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,16 +81,6 @@
   (scroll-bar-mode -1))
 
 ;; Theme
-(use-package solaire-mode
-  :functions persp-load-state-from-file
-  :hook (((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
-         (minibuffer-setup . solaire-mode-in-minibuffer)
-         (after-load-theme . solaire-mode-swap-bg))
-  :init
-  (solaire-global-mode 1)
-  (advice-add #'persp-load-state-from-file
-              :after #'solaire-mode-restore-persp-mode-buffers))
-
 (use-package doom-themes
   :custom-face
   (doom-modeline-buffer-file ((t (:inherit (mode-line bold)))))
@@ -113,9 +103,6 @@
   (unless after-init-time
     (setq doom-modeline--old-format mode-line-format)
     (setq-default mode-line-format nil)))
-
-(use-package hide-mode-line
-  :hook (((completion-list-mode completion-in-region-mode) . hide-mode-line-mode)))
 
 ;; A minor-mode menu for mode-line
 (use-package minions
@@ -258,10 +245,6 @@
       window-divider-default-bottom-width 1
       window-divider-default-right-width 1)
 (add-hook 'window-setup-hook #'window-divider-mode)
-
-;; Use fixed pitch where it's sensible
-(use-package mixed-pitch
-  :diminish)
 
 (when sys/macp
   ;; Render thinner fonts
