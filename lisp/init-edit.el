@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 47
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -250,7 +250,7 @@
     "," 'imenu-list-display-entry
     "j" 'next-line
     "k" 'previous-line
-    "g" 'imenu-list-refresh
+    "gr" 'imenu-list-refresh
     "q" 'imenu-list-quit-window))
 
 ;; Treat undo history as a tree
