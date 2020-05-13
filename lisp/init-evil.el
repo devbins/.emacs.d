@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 69
+;;     Update #: 80
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package evil
-  :defer t
   :preface
   (setq evil-want-visual-char-semi-exclusive t
         evil-magic t
@@ -67,8 +66,7 @@
         ;; evil-emacs-state-cursor  '(box '(face-foreground 'mode-line))
         ;; evil-insert-state-cursor 'bar
         evil-visual-state-cursor 'hollow)
-  :hook ((after-init . evil-mode)
-         (org-capture-mode . evil-insert-state))
+  :hook (after-init . evil-mode)
   :config
   (setq evil-magic 'very-magic)
   (setq evil-want-fine-undo t)
@@ -110,6 +108,7 @@
   (evil-set-initial-state 'snails-mode 'emacs)
   (evil-set-initial-state 'multi-term-mode 'emacs)
   (evil-set-initial-state 'aweshell-mode 'emacs)
+  (evil-set-initial-state 'org-capture-mode 'insert)
 
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
@@ -285,7 +284,7 @@
 (use-package evil-lisp-state
   :init
   (setq evil-lisp-state-global t)
-  :hook (prog-mode . evil-lisp-state)
+  :hook (prog-mode . (lambda ()(require 'evil-lisp-state)))
   :config
   (evil-lisp-state-leader "SPC k"))
 
@@ -317,7 +316,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
       (setq deactivate-mark  t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
-
 
 
 (provide 'init-evil)
