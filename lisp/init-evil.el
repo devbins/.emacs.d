@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 80
+;;     Update #: 98
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -137,7 +137,7 @@
     "q" 'quit-window))
 
 (use-package evil-leader
-  :hook (after-init . global-evil-leader-mode)
+  :init(global-evil-leader-mode)
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
@@ -275,7 +275,6 @@
     "yi"  'youdao-dictionary-search-from-input
 
     "qq"  'save-buffers-kill-terminal
-    "qr"  'devbins/restart-emacs
 
     "     '" 'shell-pop
     "TAB" 'switch-to-prev-buffer))
