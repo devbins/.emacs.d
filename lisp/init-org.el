@@ -668,7 +668,7 @@ prepended to the element after the #+HEADER: tag."
           (while (setq pos (next-single-property-change (point) 'duration))
             (goto-char pos)
             (when (and (not (equal pos (point-at-eol)))
-                     (setq duration (org-get-at-bol 'duration)))
+                       (setq duration (org-get-at-bol 'duration)))
               ;; larger duration bar height
               (let ((line-height (if (< duration 15) 1.0 (+ 0.5 (/ duration 30))))
                     (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))

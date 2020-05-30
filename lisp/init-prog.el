@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 31
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,6 +50,7 @@
 ;; e.g. display “lambda” as “λ”
 (use-package prog-mode
   :ensure nil
+  :hook (prog-mode . prettify-symbols-mode)
   :init
   (setq-default prettify-symbols-alist '(("lambda" . ?λ)
                                          ("<-" . ?←)
@@ -62,8 +63,6 @@
                                          ("==" . ?≡)
                                          ("<=" . ?≤)
                                          (">=" . ?≥)
-                                         ("=<<" . (?= (Br . Bl) ?≪))
-                                         (">>=" . (?≫ (Br . Bl) ?=))
                                          ("<=<" . ?↢)
                                          (">=>" . ?↣)
                                          ("&&" . ?∧)
@@ -72,7 +71,7 @@
                                          ("alpha" . ?α)
                                          ("beta" . ?β)
                                          ("gamma" . ?γ)
-                                         ("delta" . Δ)
+                                         ("delta" . ?Δ)
                                          ("epsilon" . ?ε)
                                          ("zeta" . ?ζ)
                                          ("eta" . ?η)
@@ -84,10 +83,9 @@
                                          ("phi" . ?φ)
                                          ("omega" . ?Ω)
                                          ("sqrt" . ?√)
-                                         ("sum" . ∑)
-                                         ("infinity" . ∞)
-                                         ("Infinity" . ∞)
-                                         ("->" . ?→)))
+                                         ("sum" . ?∑)
+                                         ("infinity" . ?∞)
+                                         ("Infinity" . ?∞)))
   (setq prettify-symbols-unprettify-at-point 'right-edge))
 
 ;; Jump to definition
