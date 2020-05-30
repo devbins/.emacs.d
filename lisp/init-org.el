@@ -824,7 +824,7 @@ same directory as the org-buffer and insert a link to this file."
       (call-process "import" nil nil nil filename))
   ;; insert into file if correctly taken
   (if (file-exists-p filename)
-      (insert (concat "[[file:" filename "]]")))
+      (insert (concat "[[file:./imgs/" (file-name-nondirectory filename) "]]")))
   (org-display-inline-images))
 
 ;; https://github.com/jjasghar/alfred-org-capture
