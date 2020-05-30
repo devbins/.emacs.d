@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,9 +57,6 @@
                                     ("float"  . #x211d)  ;; ℝxxx
                                     ("Int"    . #x2124)  ;; ℤxxx
                                     ("int"    . #x2124)  ;; 𝕫xxx
-                                    ;; ("String" . #x1d57e)  ;; 𝕊 𝕾
-                                    ;; ("string" . #x1d598)  ;; 𝕤 𝖘
-                                    ;; ("str"    . #x1d598)  ;; 𝕤 𝖘
                                     ("String" . (#x1d54a (Br . Bl) #x2006))  ;; 𝕊 xxxxxx
                                     ("string" . (#x1d564 (Br . Bl) #x2006))  ;; 𝕤 xxxxxx
                                     ("str"    . (#x1d564 (Br . Bl) #x2006))  ;; 𝕤 xxxx
@@ -76,7 +73,6 @@
                                     ("and"    . #x22cf)  ;; ⋏
                                     ("Or"     . #x22c1)  ;; ⋁
                                     ("or"     . #x22cE)  ;; ⋎
-                                    ("not"    . #x00ac)  ;; ¬
                                     ("not_"   . #x00ac)  ;; ¬
 
                                     ("All"    . #x2200)  ;; ∀
@@ -86,9 +82,7 @@
                                     ("forall" . #x2200)  ;; ∀
                                     ("forM"   . #x2200)  ;; ∀
 
-                                    ("pi"     . #x03c0)  ;; π
 
-                                    ("sum"    . #x2211)  ;; ∑
                                     ("Sum"    . #x2211)  ;; ∑
                                     ("Product" . #x220F) ;; ∏
                                     ("product" . #x220F) ;; ∏
@@ -106,124 +100,116 @@
                                     ("pure"   . (#x21f0 (Br . Bl)))))))          ;; ⇰ x
 
          ((prog-mode
-           emacs-lisp-mode
-           org-mode) . (lambda () (mapc (lambda (pair) (push pair prettify-symbols-alist))
-                                   '(;; Global
-                                     ;; Pipes
-                                     ("<|"  . (?\s (Br . Bl) #Xe14d))
-                                     ("<>"  . (?\s (Br . Bl) #Xe15b))
-                                     ("<|>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14e))
-                                     ("|>"  . (?\s (Br . Bl) #Xe135))
+           emacs-lisp-mode) . (lambda () (mapc (lambda (pair) (push pair prettify-symbols-alist))
+                                          '(;; Global
+                                            ;; Pipes
+                                            ("<|"  . (?\s (Br . Bl) #Xe14d))
+                                            ("<>"  . (?\s (Br . Bl) #Xe15b))
+                                            ("<|>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14e))
+                                            ("|>"  . (?\s (Br . Bl) #Xe135))
 
-                                     ;; Brackets
-                                     ("<*"  . (?\s (Br . Bl) #Xe14b))
-                                     ("<*>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14c))
-                                     ("*>"  . (?\s (Br . Bl) #Xe104))
-                                     ("<$"  . (?\s (Br . Bl) #Xe14f))
-                                     ("<$>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe150))
-                                     ("$>"  . (?\s (Br . Bl) #Xe137))
-                                     ("<+"  . (?\s (Br . Bl) #Xe155))
-                                     ("<+>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe156))
-                                     ("+>"  . (?\s (Br . Bl) #Xe13a))
-                                     ("[]"  . (#x2005 (Br . Bl) #x1d731 (Br . Bl) #x2005))
+                                            ;; Brackets
+                                            ("<*"  . (?\s (Br . Bl) #Xe14b))
+                                            ("<*>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14c))
+                                            ("*>"  . (?\s (Br . Bl) #Xe104))
+                                            ("<$"  . (?\s (Br . Bl) #Xe14f))
+                                            ("<$>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe150))
+                                            ("$>"  . (?\s (Br . Bl) #Xe137))
+                                            ("<+"  . (?\s (Br . Bl) #Xe155))
+                                            ("<+>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe156))
+                                            ("+>"  . (?\s (Br . Bl) #Xe13a))
+                                            ("[]"  . (#x2005 (Br . Bl) #x1d731 (Br . Bl) #x2005))
 
-                                     ;; Equality
-                                     ("=/="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe143))
-                                     ("/="   . (?\s (Br . Bl) #Xe12c))
-                                     ("/=="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe12d))
-                                     ("/==>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Br . Bl) #Xe13c))
-                                     ("!==>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Br . Bl) #Xe13c))
-                                     ;; Special
-                                     ("||="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe133))
-                                     ("|="   . (?\s (Br . Bl) #Xe134))
-                                     ("~="   . (?\s (Br . Bl) #Xe166))
-                                     ("^="   . (?\s (Br . Bl) #Xe136))
-                                     ("=:="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe13b))
+                                            ;; Equality
+                                            ("=/="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe143))
+                                            ("/=="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe12d))
+                                            ("/==>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Br . Bl) #Xe13c))
+                                            ("!==>" . (?\s (Br . Bl) ?\s (Br . Bl) ?\s (Br . Bl) #Xe13c))
+                                            ;; Special
+                                            ("||="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe133))
+                                            ("|="   . (?\s (Br . Bl) #Xe134))
+                                            ("~="   . (?\s (Br . Bl) #Xe166))
+                                            ("^="   . (?\s (Br . Bl) #Xe136))
+                                            ("=:="  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe13b))
 
-                                     ;; Comparisons
-                                     ("</"   . (?\s (Br . Bl) #Xe162))
-                                     ("</>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe163))
+                                            ;; Comparisons
+                                            ("</"   . (?\s (Br . Bl) #Xe162))
+                                            ("</>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe163))
 
-                                     ;; Shifts
-                                     ("=>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe147))
-                                     ("->>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe147))
-                                     (">>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14a))
-                                     (">>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14a))
-                                     ("=<<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15c))
-                                     ("-<<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15c))
-                                     ("<<<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15f))
+                                            ;; Shifts
+                                            ("=>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe147))
+                                            (">>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14a))
+                                            (">>>"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe14a))
+                                            ("-<<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15c))
+                                            ("<<<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15f))
 
-                                     ;; Dots
-                                     (".-"   . (?\s (Br . Bl) #Xe122))
-                                     (".="   . (?\s (Br . Bl) #Xe123))
-                                     ("..<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe125))
+                                            ;; Dots
+                                            (".-"   . (?\s (Br . Bl) #Xe122))
+                                            (".="   . (?\s (Br . Bl) #Xe123))
+                                            ("..<"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe125))
 
-                                     ;; Hashes
-                                     ("#{"   . (?\s (Br . Bl) #Xe119))
-                                     ("#("   . (?\s (Br . Bl) #Xe11e))
-                                     ("#_"   . (?\s (Br . Bl) #Xe120))
-                                     ("#_("  . (?\s (Br . Bl) #Xe121))
-                                     ("#?"   . (?\s (Br . Bl) #Xe11f))
-                                     ("#["   . (?\s (Br . Bl) #Xe11a))
+                                            ;; Hashes
+                                            ("#{"   . (?\s (Br . Bl) #Xe119))
+                                            ("#("   . (?\s (Br . Bl) #Xe11e))
+                                            ("#_"   . (?\s (Br . Bl) #Xe120))
+                                            ("#_("  . (?\s (Br . Bl) #Xe121))
+                                            ("#?"   . (?\s (Br . Bl) #Xe11f))
+                                            ("#["   . (?\s (Br . Bl) #Xe11a))
 
-                                     ;; REPEATED CHARACTERS
-                                     ;; 2-Repeats
-                                     ("!!"   . (?\s (Br . Bl) #Xe10d))
-                                     ("%%"   . (?\s (Br . Bl) #Xe16a))
+                                            ;; REPEATED CHARACTERS
+                                            ;; 2-Repeats
+                                            ("!!"   . (?\s (Br . Bl) #Xe10d))
+                                            ("%%"   . (?\s (Br . Bl) #Xe16a))
 
-                                     ;; 2+3-Repeats
-                                     ("##"   . (?\s (Br . Bl) #Xe11b))
-                                     ("###"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe11c))
-                                     ("####" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe11d))
-                                     ;; ("---"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe112))
-                                     ("{-"   . (?\s (Br . Bl) #Xe108))
-                                     ("-}"   . (?\s (Br . Bl) #Xe110))
-                                     ("\\\\" . (?\s (Br . Bl) #Xe106))
-                                     ("\\\\\\" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe107))
-                                     (".."   . (?\s (Br . Bl) #Xe124))
-                                     ("..."  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe126))
-                                     ("+++"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe139))
-                                     ("//"   . (?\s (Br . Bl) #Xe12f))
-                                     ("///"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe130))
-                                     ("::"   . (?\s (Br . Bl) #Xe10a))  ;; 
-                                     (":::"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe10b))
+                                            ;; 2+3-Repeats
+                                            ("##"   . (?\s (Br . Bl) #Xe11b))
+                                            ("###"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe11c))
+                                            ("####" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe11d))
+                                            ;; ("---"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe112))
+                                            ("{-"   . (?\s (Br . Bl) #Xe108))
+                                            ("-}"   . (?\s (Br . Bl) #Xe110))
+                                            ("\\\\" . (?\s (Br . Bl) #Xe106))
+                                            ("\\\\\\" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe107))
+                                            (".."   . (?\s (Br . Bl) #Xe124))
+                                            ("..."  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe126))
+                                            ("+++"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe139))
+                                            ("//"   . (?\s (Br . Bl) #Xe12f))
+                                            ("///"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe130))
+                                            ("::"   . (?\s (Br . Bl) #Xe10a))  ;; 
+                                            (":::"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe10b))
 
-                                     ;; Arrows
-                                     ;; Direct
-                                     ;; ("->"  . (?\s (Br . Bl) #Xe114))  ;; 
-                                     ;; ("=>"  . (?\s (Br . Bl) #Xe13f))
-                                     ("->>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe115))
-                                     ("=>>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe140))
-                                     ("<<-" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15d))
-                                     ("<<=" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15e))
-                                     ("<->" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe154))
-                                     ("<=>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe159))
-                                     ;; Branches
-                                     ("-<"  . (?\s (Br . Bl) #Xe116))
-                                     ("-<<" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe117))
-                                     (">-"  . (?\s (Br . Bl) #Xe144))
-                                     (">>-" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe148))
-                                     ("=<<" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe142))
-                                     (">=>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe146))
-                                     (">>=" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe149))
-                                     ("<=<" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15a))
-                                     ;; Squiggly
-                                     ("<~"  . (?\s (Br . Bl) #Xe160))
-                                     ("<~~" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe161))
-                                     ("~>"  . (?\s (Br . Bl) #Xe167))
-                                     ("~~>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe169))
-                                     ("-~"  . (?\s (Br . Bl) #Xe118))
-                                     ("~-"  . (?\s (Br . Bl) #Xe165))
+                                            ;; Arrows
+                                            ;; Direct
+                                            ;; ("->"  . (?\s (Br . Bl) #Xe114))  ;; 
+                                            ;; ("=>"  . (?\s (Br . Bl) #Xe13f))
+                                            ("=>>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe140))
+                                            ("<<-" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15d))
+                                            ("<<=" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe15e))
+                                            ("<->" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe154))
+                                            ("<=>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe159))
+                                            ;; Branches
+                                            ("-<"  . (?\s (Br . Bl) #Xe116))
+                                            ("-<<" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe117))
+                                            (">-"  . (?\s (Br . Bl) #Xe144))
+                                            (">>-" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe148))
+                                            ("=<<" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe142))
+                                            ;; Squiggly
+                                            ("<~"  . (?\s (Br . Bl) #Xe160))
+                                            ("<~~" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe161))
+                                            ("~>"  . (?\s (Br . Bl) #Xe167))
+                                            ("~~>" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe169))
+                                            ("-~"  . (?\s (Br . Bl) #Xe118))
+                                            ("~-"  . (?\s (Br . Bl) #Xe165))
 
-                                     ;; MISC
-                                     ("www" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe100))
-                                     ("~@"  . (?\s (Br . Bl) #Xe164))
-                                     ("~~"  . (?\s (Br . Bl) #Xe168))
-                                     ("?="  . (?\s (Br . Bl) #Xe127))
-                                     (":="  . (?\s (Br . Bl) #Xe10c))
-                                     ("/>"  . (?\s (Br . Bl) #Xe12e))
-                                     ("+"   . #Xe16d)
-                                     ("(:"  . (?\s (Br . Bl) #Xe16c))))))
+                                            ;; MISC
+                                            ("www" . (?\s (Br . Bl) ?\s (Br . Bl) #Xe100))
+                                            ("~@"  . (?\s (Br . Bl) #Xe164))
+                                            ("~~"  . (?\s (Br . Bl) #Xe168))
+                                            ("?="  . (?\s (Br . Bl) #Xe127))
+                                            (":="  . (?\s (Br . Bl) #Xe10c))
+                                            ("/>"  . (?\s (Br . Bl) #Xe12e))
+                                            ("+"   . #Xe16d)
+                                            ("(:"  . (?\s (Br . Bl) #Xe16c))))))
 
 
          (python-mode . (lambda ()
