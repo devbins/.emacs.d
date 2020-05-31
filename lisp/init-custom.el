@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -100,7 +100,34 @@
                               name)))
                     package-archives-alist)))
 
-(setq devbins-package-archives 'tencent)
+(setq devbins-package-archives 'tuna)
+
+
+(defcustom prettify-org-symbols-alist
+  '(("[ ]" . ?☐)
+    ("[X]" . ?☑)
+    ("[-]" . ?⛝)
+
+    ("#+ARCHIVE:" . ?📦)
+    ("#+AUTHOR:" . ?👤)
+    ("#+CREATOR:" . ?💁)
+    ("#+DATE:" . ?📆)
+    ("#+DESCRIPTION:" . ?⸙)
+    ("#+EMAIL:" . ?🖂)
+    ("#+OPTIONS:" . ?⛭)
+    ("#+SETUPFILE:" . ?⛮)
+    ("#+TAGS:" . ?🏷)
+    ("#+TITLE:" . ?🕮)
+
+    ("#+BEGIN_SRC" . ?✎)
+    ("#+END_SRC" . ?□)
+    ("#+BEGIN_QUOTE" . ?»)
+    ("#+END_QUOTE" . ?«)
+    ("#+HEADERS" . ?☰)
+    ("#+RESULTS:" . ?💻))
+  "Alist of symbol prettifications for `org-mode'."
+  :group 'devbins
+  :type '(alist :key-type string :value-type (choice character sexp)))
 
 (provide 'init-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

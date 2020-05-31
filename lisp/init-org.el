@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 124
+;;     Update #: 138
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,7 @@
 ;;; Code:
 
 (use-package org
+  :ensure nil
   :custom-face (org-ellipsis ((t (:foreground nil))))
   :preface
   (defun hot-expand (str &optional mod)
@@ -114,34 +115,7 @@ prepended to the element after the #+HEADER: tag."
                     (self-insert-command 1)))))
   :hook ((org-mode . (lambda ()
                        "Beautify org symbols."
-                       (push '("[ ]" . ?☐) prettify-symbols-alist)
-                       (push '("[X]" . ?☑) prettify-symbols-alist)
-                       (push '("[-]" . ?⛝) prettify-symbols-alist)
-
-                       (push '("#+ARCHIVE:" . ?📦) prettify-symbols-alist)
-                       (push '("#+AUTHOR:" . ?👤) prettify-symbols-alist)
-                       (push '("#+CREATOR:" . ?💁) prettify-symbols-alist)
-                       (push '("#+DATE:" . ?📆) prettify-symbols-alist)
-                       (push '("#+DESCRIPTION:" . ?⸙) prettify-symbols-alist)
-                       (push '("#+EMAIL:" . ?🖂) prettify-symbols-alist)
-                       (push '("#+OPTIONS:" . ?⛭) prettify-symbols-alist)
-                       (push '("#+SETUPFILE:" . ?⛮) prettify-symbols-alist)
-                       (push '("#+TAGS:" . ?🏷) prettify-symbols-alist)
-                       (push '("#+TITLE:" . ?🕮) prettify-symbols-alist)
-
-                       (push '("#+BEGIN_SRC" . ?✎) prettify-symbols-alist)
-                       (push '("#+END_SRC" . ?□) prettify-symbols-alist)
-                       (push '("#+begin_src" . ?✎) prettify-symbols-alist)
-                       (push '("#+end_src" . ?□) prettify-symbols-alist)
-
-                       (push '("#+BEGIN_QUOTE" . ?») prettify-symbols-alist)
-                       (push '("#+END_QUOTE" . ?«) prettify-symbols-alist)
-                       (push '("#+begin_quote" . ?») prettify-symbols-alist)
-                       (push '("#+end_quote" . ?«) prettify-symbols-alist)
-
-                       (push '("#+HEADERS" . ?☰) prettify-symbols-alist)
-                       (push '("#+RESULTS:" . ?💻) prettify-symbols-alist)
-
+                       (setq prettify-symbols-alist prettify-org-symbols-alist)
                        (prettify-symbols-mode 1)))
          (org-indent-mode . (lambda()
                               (diminish 'org-indent-mode)
@@ -160,7 +134,6 @@ prepended to the element after the #+HEADER: tag."
               org-priority-faces '((?A . error)
                                    (?B . warning)
                                    (?C . success))
-
               org-imenu-depth 5
               ;; define the refile targets
               org-refile-targets '((org-agenda-files :maxlevel . 3))
@@ -567,7 +540,7 @@ prepended to the element after the #+HEADER: tag."
            (org-pomodoro-break-finished . (lambda () (pomodoro-notify "Pomodoro Short Break Finished" "Ready for Another?")))
            (org-pomodoro-long-break-finished . (lambda () (pomodoro-notify "Pomodoro Long Break Finished" "Ready for Another?")))
            (org-pomodoro-killed . (lambda () (progn (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")
-                                               (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
+                                                    (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
 
   (use-package org-download
     :commands (org-download-enable
