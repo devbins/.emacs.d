@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 98
+;;     Update #: 99
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -273,6 +273,8 @@
 
     "yp"  'youdao-dictionary-search-at-point-posframe
     "yi"  'youdao-dictionary-search-from-input
+    "yv"  'youdao-dictionary-play-voice-at-point
+    "ys"  'youdao-dictionary-play-voice-from-input
 
     "qq"  'save-buffers-kill-terminal
 
