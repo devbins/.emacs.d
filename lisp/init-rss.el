@@ -86,7 +86,10 @@
                              ("http://www.masteringemacs.org/feed/" mastering)
                              ("https://oremacs.com/atom.xml" oremacs)
                              ("https://pinecast.com/feed/emacscast" emacscast)
-                             ("https://www.reddit.com/r/emacs.rss" reddit)))
+                             ("https://www.reddit.com/r/emacs.rss" reddit)
+                             ("http://feed.williamlong.info/" Blog News) ; 月光博客
+                             ("http://www.ruanyifeng.com/blog/atom.xml" Blog) ; 阮一峰
+                             ("https://manateelazycat.github.io/feed.xml" Blog))) ; manateelazycat 懒猫 王勇
   :config (push elfeed-db-directory recentf-exclude))
 
 ;; Another Atom/RSS reader
@@ -100,7 +103,10 @@
                 ("Mastering Emacs" "http://www.masteringemacs.org/feed/")
                 ("Oremacs" "https://oremacs.com/atom.xml")
                 ("EmacsCast" "https://pinecast.com/feed/emacscast")
-                ("Emacs Reddit" "https://www.reddit.com/r/emacs.rss"))))
+                ("Emacs Reddit" "https://www.reddit.com/r/emacs.rss")
+                ("Blog News" "http://feed.williamlong.info/") ; 月光博客
+                ("Blog Ruanyifeng" "http://www.ruanyifeng.com/blog/atom.xml") ; 阮一峰
+                ("manateelazycat" "https://manateelazycat.github.io/feed.xml")))) ; manateelazycat 懒猫 王勇
 
 (provide 'init-rss)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
