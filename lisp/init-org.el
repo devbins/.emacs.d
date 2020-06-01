@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 138
+;;     Update #: 148
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,55 +153,6 @@ prepended to the element after the #+HEADER: tag."
                                             ("STYLE_ALL" . "habit")))
 
 
-              org-agenda-dir "~/.org/.agenda/"
-              org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir)
-              org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir)
-              org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir)
-              org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir)
-              org-agenda-file-punch (expand-file-name "punch.org" org-agenda-dir)
-              org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
-              org-agenda-files (list org-agenda-dir)
-
-              org-capture-templates '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
-                                       "* %?\n  %i\n %U"
-                                       :empty-lines 1)
-                                      ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
-                                       "* TODO [#B] %?\n  %i\n"
-                                       :empty-lines 1)
-                                      ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
-                                       "* %?\n  %i\n %U"
-                                       :empty-lines 1)
-                                      ("a" "Anki basic"
-                                       entry
-                                       (file+headline org-agenda-file-note "ANKI")
-                                       "* %<%H:%M>   %^g\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n%x\n")
-                                      ("N" "notes" entry (file+headlie org-agenda-file-note "Browser notes")
-                                       "* %U - %:annotation %^g\n\n  %?"
-                                       :empty-lines 1 :kill-buffer t)
-                                      ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
-                                       "* TODO [#B] %?\n  %i\n %U"
-                                       :empty-lines 1)
-                                      ("B" "Protocol Bookmarks" entry (file+headline org-agenda-file-inbox "Bookmarks")
-                                       "* %U - %:annotation"
-                                       :kill-buffer t :empty-lines 1)
-                                      ("s" "Code Snippet" entry
-                                       (file org-agenda-file-code-snippet)
-                                       "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
-                                      ("w" "work" entry (file+headline org-agenda-file-gtd "work")
-                                       "* TODO [#A] %?\n  %i\n %U"
-                                       :empty-lines 1[[zsh:1: command not found: osascript]])
-                                      ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
-                                      ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
-                                       "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
-                                       :empty-lines 1)
-                                      ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
-                                       "* TODO [#C] %?\n  %i\n %a \n %U"
-                                       :empty-lines 1)
-                                      ("p" "punch" entry (file+olp+datetree org-agenda-file-punch)
-                                       "* %^{想法}%? %U")
-                                      ("j" "Journal Entry" entry (file+olp+datetree org-agenda-file-journal)
-                                       "* %?"
-                                       :empty-lines 1))
 
               ;; #+CAPTION: 设定图片宽度为100
               ;; #+ATTR_HTML: :width 100
@@ -540,7 +491,7 @@ prepended to the element after the #+HEADER: tag."
            (org-pomodoro-break-finished . (lambda () (pomodoro-notify "Pomodoro Short Break Finished" "Ready for Another?")))
            (org-pomodoro-long-break-finished . (lambda () (pomodoro-notify "Pomodoro Long Break Finished" "Ready for Another?")))
            (org-pomodoro-killed . (lambda () (progn (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")
-                                                    (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
+                                               (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
 
   (use-package org-download
     :commands (org-download-enable
@@ -672,6 +623,57 @@ prepended to the element after the #+HEADER: tag."
                                      (todo . " %i %-12:c")
                                      (search . " %i %-12:c")
                                      (tags . " %i %-12:c"))
+
+
+          org-agenda-dir "~/.org/.agenda/"
+          org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir)
+          org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir)
+          org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir)
+          org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir)
+          org-agenda-file-punch (expand-file-name "punch.org" org-agenda-dir)
+          org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
+          org-agenda-files (list org-agenda-dir)
+
+          org-capture-templates '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
+                                   "* %?\n  %i\n %U"
+                                   :empty-lines 1)
+                                  ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
+                                   "* TODO [#B] %?\n  %i\n"
+                                   :empty-lines 1)
+                                  ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
+                                   "* %?\n  %i\n %U"
+                                   :empty-lines 1)
+                                  ("a" "Anki basic"
+                                   entry
+                                   (file+headline org-agenda-file-note "ANKI")
+                                   "* %<%H:%M>   %^g\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n%x\n")
+                                  ("N" "notes" entry (file+headlie org-agenda-file-note "Browser notes")
+                                   "* %U - %:annotation %^g\n\n  %?"
+                                   :empty-lines 1 :kill-buffer t)
+                                  ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
+                                   "* TODO [#B] %?\n  %i\n %U"
+                                   :empty-lines 1)
+                                  ("B" "Protocol Bookmarks" entry (file+headline org-agenda-file-inbox "Bookmarks")
+                                   "* %U - %:annotation"
+                                   :kill-buffer t :empty-lines 1)
+                                  ("s" "Code Snippet" entry
+                                   (file org-agenda-file-code-snippet)
+                                   "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
+                                  ("w" "work" entry (file+headline org-agenda-file-gtd "work")
+                                   "* TODO [#A] %?\n  %i\n %U"
+                                   :empty-lines 1[[zsh:1: command not found: osascript]])
+                                  ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
+                                  ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
+                                   "* TODO [#C] %?\n %(org-mac-chrome-get-frontmost-url)\n %i\n %U"
+                                   :empty-lines 1)
+                                  ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
+                                   "* TODO [#C] %?\n  %i\n %a \n %U"
+                                   :empty-lines 1)
+                                  ("p" "punch" entry (file+olp+datetree org-agenda-file-punch)
+                                   "* %^{想法}%? %U")
+                                  ("j" "Journal Entry" entry (file+olp+datetree org-agenda-file-journal)
+                                   "* %?"
+                                   :empty-lines 1))
 
           org-agenda-include-diary t
           org-agenda-show-log t
