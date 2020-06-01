@@ -823,6 +823,29 @@ same directory as the org-buffer and insert a link to this file."
               gif-screencast-cropping-program "mogrify"
               gif-screencast-capture-format "ppm"))
 
+
+(use-package org-roam
+  :custom ((org-roam-directory (expand-file-name "~/.org/roam"))
+           (org-roam-mute-cache-build t))
+  :bind (:map org-roam-mode-map
+         (("C-c n l" . org-roam)
+          ("C-c n f" . org-roam-find-file)
+          ("C-c n g" . org-roam-show-graph))
+         :map org-mode-map
+         (("C-c n i" . org-roam-insert)))
+  :init
+  (use-package company-org-roam
+    :config
+    (push 'company-org-roam company-backends))
+
+  (use-package org-roam-bibtex
+    :hook (org-roam-mode . org-roam-bibtex-mode)
+    :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
+
+  (use-package org-roam-server
+    :commands (org-roam-server-mode)))
+
+
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-org.el ends here
