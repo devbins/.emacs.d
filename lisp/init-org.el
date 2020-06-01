@@ -845,6 +845,8 @@ same directory as the org-buffer and insert a link to this file."
   (use-package org-roam-server
     :commands (org-roam-server-mode)))
 
+(use-package org-analyzer
+  :commands (org-analyzer-start))
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
