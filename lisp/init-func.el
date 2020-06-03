@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -272,6 +272,16 @@ Same as `replace-string C-q C-m RET RET'."
   (if (bound-and-true-p socks-noproxy)
       (proxy-socks-disable)
     (proxy-socks-enable)))
+
+
+(defun open-in-external-app (file-path)
+  "Open `file-path' in external application."
+  (cond
+   (sys/win32p
+    (w32-shell-execute "open" (replace-regexp-in-string "/" "\\\\" file-path)))
+   (sys/macp (shell-command (format "open \"%s\"" file-path)))
+   (sys/linuxp (let ((process-connection-type nil))
+                 (start-process "" nil "xdg-open" file-path)))))
 
 (defun open-file-or-directory-in-external-app (arg)
   "Open current file in external application.
