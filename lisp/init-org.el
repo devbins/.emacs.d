@@ -160,6 +160,8 @@ prepended to the element after the #+HEADER: tag."
               org-image-actual-width (/ (display-pixel-width) 3)
               org-startup-with-inline-images t
 
+              org-hide-emphasis-markers t
+              org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
               org-export-with-broken-links                  'mark
               org-export-with-sub-superscripts              '{}
               org-use-sub-superscripts                      '{}
@@ -188,9 +190,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("crypt" . ?E)
                                     ("NOTE" . ?n)
                                     ("CANCELLED" . ?c)
-                                    ("FLAGGED" . ??)))
-              org-pretty-entities nil
-              org-hide-emphasis-markers t)
+                                    ("FLAGGED" . ??))))
   :config
   (add-to-list 'org-modules 'org-protocol)
   ;; Add new template
