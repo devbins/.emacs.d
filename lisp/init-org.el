@@ -524,7 +524,9 @@ prepended to the element after the #+HEADER: tag."
   (use-package pinentry
     :defer t
     :if sys/macp
-    :hook(after-init . pinentry-start))
+    :config
+    (with-eval-after-load 'org
+      (pinentry-start)))
 
   (use-package orgit
     :defer t)
