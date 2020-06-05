@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -121,6 +121,8 @@
 
     ("#+BEGIN_SRC" . ?✎)
     ("#+END_SRC" . ?□)
+    ("#+begin_src" . ?✎)
+    ("#+end_src" . ?□)
     ("#+BEGIN_QUOTE" . ?»)
     ("#+END_QUOTE" . ?«)
     ("#+HEADERS" . ?☰)
