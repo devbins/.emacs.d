@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 63
+;;     Update #: 71
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -388,7 +388,9 @@ If FRAME is nil, it defaults to the selected frame."
                       (font-spec :family chinese :size chinese-size))))
 
 (when (display-graphic-p)
-  (set-monospaced-font "Source Code Pro" "STKaiti" 15 18))
+  (cl-loop for font in '("SF Mono" "Source Code Pro" "DejaVu Sans Mono")
+           when (font-installed-p font)
+           return (set-monospaced-font "SF Mono" "STKaiti" 15 18)))
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
