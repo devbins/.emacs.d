@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,7 +65,7 @@
       (setq insert-directory-program "gls")))
 
   (when (or (and sys/macp (executable-find "gls"))
-           (and (not sys/macp) (executable-find "ls")))
+            (and (not sys/macp) (executable-find "ls")))
     ;; Using `insert-directory-program'
     (setq ls-lisp-use-insert-directory-program t)
 
@@ -117,7 +117,7 @@
               (goto-char (point-min))
               (while (not (eobp))
                 (when (dired-move-to-filename nil)
-                  (let ((file (dired-get-filename 'relative 'noerror)))
+                  (let ((file (file-local-name (dired-get-filename 'relative 'noerror))))
                     (when file
                       (let ((icon (if (file-directory-p file)
                                       (all-the-icons-icon-for-dir file
