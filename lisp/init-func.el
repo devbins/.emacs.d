@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -238,14 +238,14 @@ Same as `replace-string C-q C-m RET RET'."
 (defun proxy-http-toggle ()
   "Toggle HTTP/HTTPS proxy."
   (interactive)
-  (if url-proxy-services
+  (if (bound-and-true-p url-proxy-services)
       (proxy-http-disable)
     (proxy-http-enable)))
 
 (defun proxy-socks-show ()
   "Show SOCKS proxy."
   (interactive)
-  (if socks-noproxy
+  (if (bound-and-true-p socks-noproxy)
       (message "Current SOCKS%d proxy is %s:%d"
                (cadddr socks-server) (cadr socks-server) (caddr socks-server))
     (message "No SOCKS proxy")))

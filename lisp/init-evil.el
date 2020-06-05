@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 99
+;;     Update #: 101
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -137,7 +137,8 @@
     "q" 'quit-window))
 
 (use-package evil-leader
-  :init(global-evil-leader-mode)
+  :init
+  (global-evil-leader-mode)
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
