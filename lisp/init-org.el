@@ -127,7 +127,7 @@ prepended to the element after the #+HEADER: tag."
               '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")
                 (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
               org-todo-keyword-faces '(("TODO")
-                                       ("DOING" . "yellow")
+                                       ("DOING" . "orange")
                                        ("DONE" . "green")
                                        ("ABORT" . "grey")
                                        ("❓" . warning))
