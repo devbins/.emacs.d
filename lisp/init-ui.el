@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 78
+;;     Update #: 105
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -104,10 +104,10 @@
     (setq-default mode-line-format nil)))
 
 (use-package circadian
-  :config
-  ;; NOTE: make sure to use `:defer' keyword for theme `use-package'.
-  (setq circadian-themes '((:sunrise . doom-one-light)
-                           (:sunset . doom-one)))
+  :ensure t
+  :custom (circadian-themes '(("6:00" . doom-one-light)
+                              ("18:30" . doom-one)))
+  :init
   (circadian-setup))
 
 ;; A minor-mode menu for mode-line
