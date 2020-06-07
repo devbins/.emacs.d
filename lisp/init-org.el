@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 148
+;;     Update #: 183
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -185,7 +185,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("WORK" . ?W)
                                     ("FARM" . ?F)
                                     ("ORG" . ?O)
-                                    ("BLOG" . ?B)
+                                    ("BLOG" . ?b)
                                     ("NORANG" . ?N)
                                     ("crypt" . ?E)
                                     ("NOTE" . ?n)
