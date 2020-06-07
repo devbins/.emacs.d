@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,7 +81,7 @@
      (treemacs-git-mode 'simple)))
 
   (use-package treemacs-evil
-    :demand t)
+    :after treemacs evil)
 
   ;; Projectile integration
   (use-package treemacs-projectile
