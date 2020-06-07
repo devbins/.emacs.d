@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,7 +105,7 @@ decrease this. If you experience stuttering, increase this.")
 
 (update-load-path)
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Constants
 (require 'init-const)
