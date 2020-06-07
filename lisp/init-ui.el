@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 71
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,7 +86,6 @@
   (doom-modeline-buffer-file ((t (:inherit (mode-line bold)))))
   :custom
   (doom-themes-treemacs-theme "doom-colors")
-  :init (load-theme 'doom-one t)
   :config
   (doom-themes-treemacs-config))
 
@@ -103,6 +102,13 @@
   (unless after-init-time
     (setq doom-modeline--old-format mode-line-format)
     (setq-default mode-line-format nil)))
+
+(use-package circadian
+  :config
+  ;; NOTE: make sure to use `:defer' keyword for theme `use-package'.
+  (setq circadian-themes '((:sunrise . doom-one-light)
+                           (:sunset . doom-one)))
+  (circadian-setup))
 
 ;; A minor-mode menu for mode-line
 (use-package minions
