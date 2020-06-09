@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 106
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,7 +105,7 @@
 
 (use-package circadian
   :ensure t
-  :custom (circadian-themes '(("6:00" . doom-one-light)
+  :custom (circadian-themes '(("06:00" . doom-one-light)
                               ("18:30" . doom-one)))
   :init
   (circadian-setup))
