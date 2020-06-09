@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,6 +103,8 @@
   (use-package go-dlv)
   (use-package go-fill-struct)
   (use-package go-impl)
+  (use-package go-rename)
+  (use-package godoctor)
 
   ;; Install: See https://github.com/golangci/golangci-lint#install
   (use-package flycheck-golangci-lint
@@ -141,7 +143,7 @@
     (shell-command
      (format "go run %s %s"
              (shell-quote-argument (or (file-remote-p (buffer-file-name (buffer-base-buffer)) 'localname)
-                                      (buffer-file-name (buffer-base-buffer))))
+                                       (buffer-file-name (buffer-base-buffer))))
              go-run-args)))
 
   (evil-leader/set-key-for-mode 'go-mode
