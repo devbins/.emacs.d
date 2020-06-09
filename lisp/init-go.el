@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -141,10 +141,8 @@
   (defun go-run-main ()
     (interactive)
     (shell-command
-     (format "go run %s %s"
-             (shell-quote-argument (or (file-remote-p (buffer-file-name (buffer-base-buffer)) 'localname)
-                                       (buffer-file-name (buffer-base-buffer))))
-             go-run-args)))
+     (format "go run %s"
+             (shell-quote-argument (buffer-file-name)))))
 
   (evil-leader/set-key-for-mode 'go-mode
     "mig" 'go-goto-imports
