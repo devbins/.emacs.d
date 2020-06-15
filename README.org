@@ -66,6 +66,22 @@
     | SPC m s a | 切换 =Archive= tag                         | =org-toggle-archive-tag= |
     | SPC m s A | 把有 =Archive= tag 的移动到 =Archive= 文件中 | =org-archive-subtree=    |
     
+** lsp
+*** C/C++
+    #+begin_src sh
+    sudo pacman -S ccls
+    #+end_src
+*** Go
+    #+begin_src sh
+    go get golang.org/x/tools/gopls@latest
+    #+end_src
+*** Rust
+    安装好 =Rust= 之后，需要安装 RLS(Rust Language Server)
+    #+begin_src sh
+    rustup component add rls --toolchain stable
+    rustup component add rust-analysis --toolchain stable
+    rustup component add rust-src --toolchain stable
+    #+end_src
 ** FAQ
 *** 无法显示字体 
     - [[https://github.com/adobe-fonts/source-code-pro][Source-Code-Pro]] 
