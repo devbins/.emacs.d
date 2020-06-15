@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 51
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -297,15 +297,20 @@
   :init
   (cond (sys/macp (setq rime-user-data-dir "~/Library/Rime"))
         (sys/linuxp (setq rime-user-data-dir "~/.config/fcitx/rime")))
-  (setq rime-disable-predicates '(rime-predicate-evil-mode-p
-                                  rime-predicate-after-alphabet-char-p
-                                  rime-predicate-prog-in-code-p)
-        rime-inline-predicates '(rime-predicate-space-after-cc-p
-                                 rime-predicate-current-uppercase-letter-p)
-        rime-inline-ascii-trigger 'shift-l)
-  :bind(:map rime-mode-map
-        ("M-j" . rime-inline-ascii))
+  :bind
+  (:map
+   rime-active-mode-map
+   ("<tab>" . 'rime-inline-ascii)
+   :map rime-mode-map
+   ("C-`" . 'rime-send-keybinding)
+   ("M-j" . 'rime-force-enable)
+   ("C-SPC" . 'toggle-input-method))
   :custom
+  (rime-disable-predicates '(rime-predicate-prog-in-code-p
+                             rime-predicate-after-alphabet-char-p))
+  (rime-inline-predicates '(rime-predicate-space-after-cc-p
+                            rime-predicate-current-uppercase-letter-p))
+  (rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g"))
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
   (rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
