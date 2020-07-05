@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,8 @@
   :defines (projectile-project-root-files-bottom-up)
   :init (setq dart-format-on-save t)
   :config
+  (use-package lsp-dart
+    :hook (dart-mode . lsp))
   (evil-leader/set-key-for-mode 'dart-mode
     "mxx" 'flutter-run-or-hot-reload)
 
