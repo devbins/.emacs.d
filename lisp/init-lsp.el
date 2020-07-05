@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,29 +49,57 @@
 ;; Emacs client for the Language Server Protocol
 ;; https://github.com/emacs-lsp/lsp-mode#supported-languages
 (use-package lsp-mode
+  :defines (lsp-clients-python-library-directories
+            lsp-rust-server)
+  :commands (lsp-enable-which-key-integration
+             lsp-format-buffer
+             lsp-organize-imports)
   :diminish
-  :hook (prog-mode . (lambda ()
-                       (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
-                         (lsp-deferred))))
+  :hook ((prog-mode . (lambda ()
+                        (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
+                          (lsp-deferred))))
+         (lsp-mode . (lambda ()
+                       ;; Integrate `which-key'
+                       (lsp-enable-which-key-integration)
+
+                       ;; Format and organize imports
+                       (unless (apply #'derived-mode-p centaur-lsp-format-on-save-ignore-modes)
+                         (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                         (add-hook 'before-save-hook #'lsp-organize-imports t t)))))
   :bind (:map lsp-mode-map
-         ("C-c C-d" . lsp-describe-thing-at-point))
-  :init (setq lsp-auto-guess-root t        ; Detect project root
-              lsp-keep-workspace-alive nil ; Auto-kill LSP server
-              lsp-prefer-flymake nil       ; Use lsp-ui and flycheck
-              flymake-fringe-indicator-position 'right-fringe)
+         ("C-c C-d" . lsp-describe-thing-at-point)
+         ([remap xref-find-definitions] . lsp-find-definition)
+         ([remap xref-find-references] . lsp-find-references))
+  :init
+  (setq lsp-auto-guess-root t        ; Detect project root
+        read-process-output-max (* 1024 1024)
+        lsp-keep-workspace-alive nil ; Auto-kill LSP server
+        lsp-prefer-flymake nil       ; Use lsp-ui and flycheck
+        flymake-fringe-indicator-position 'right-fringe
+        lsp-prefer-capf t
+        lsp-signature-auto-activate nil
+        lsp-modeline-code-actions-enable nil
+
+        lsp-enable-file-watchers nil
+        lsp-enable-folding nil
+        lsp-enable-semantic-highlighting nil
+        lsp-enable-symbol-highlighting nil
+        lsp-enable-text-document-color nil
+
+        lsp-enable-indentation nil
+        lsp-enable-on-type-formatting nil)
+
+  (setq lsp-clients-python-library-directories '("~/anaconda3/bin/" "/usr/local/" "/usr/"))
+  (when (executable-find "rust-analyzer")
+    (setq lsp-rust-server 'rust-analyzer))
   :config
   ;; Configure LSP clients
-  (use-package lsp-clients
-    :ensure nil
-    :functions (lsp-format-buffer lsp-organize-imports)
-    :hook (go-mode . (lambda ()
-                       "Format and add/delete imports."
-                       (add-hook 'before-save-hook #'lsp-format-buffer t t)
-                       (add-hook 'before-save-hook #'lsp-organize-imports t t)))
-    :init
-    (setq lsp-clients-python-library-directories '("~/anaconda3/bin/" "/usr/local/" "/usr/"))
-    (unless (executable-find "rls")
-      (setq lsp-rust-rls-server-command '("rustup" "run" "stable" "rls")))))
+  (with-no-warnings
+    (defun my-lsp--init-if-visible (func &rest args)
+      "Not enabling lsp in `git-timemachine-mode'."
+      (unless (bound-and-true-p git-timemachine-mode)
+        (apply func args)))
+    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)))
 
 (use-package lsp-ui
   :custom-face
