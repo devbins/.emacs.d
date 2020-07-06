@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 183
+;;     Update #: 189
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -835,7 +835,14 @@ same directory as the org-buffer and insert a link to this file."
           ("C-c n g" . org-roam-show-graph))
          :map org-mode-map
          (("C-c n i" . org-roam-insert)))
-  :init
+  :config
+  (evil-leader/set-key-for-mode 'org-roam-mode
+    "mrl" 'org-roam
+    "mrt" 'org-roam-dailies-today
+    "mrb" 'org-roam-switch-to-buffer
+    "mrf" 'org-roam-find-file
+    "mri" 'org-roam-insert
+    "mrg" 'org-roam-graph)
   (use-package company-org-roam
     :config
     (push 'company-org-roam company-backends))
