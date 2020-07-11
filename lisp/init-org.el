@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 189
+;;     Update #: 195
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -497,7 +497,13 @@ prepended to the element after the #+HEADER: tag."
     :commands (org-download-enable
                org-download-yank
                org-download-screenshot)
-    :hook (org-mode . org-download-enable))
+    :hook (org-mode . org-download-enable)
+    :config
+    (setq org-download-display-inline-images 'posframe)
+    (setq org-download-image-attr-list
+          '("#+ATTR_HTML: :width 80% :align center"))
+    (when (eq system-type 'windows-nt)
+      (setq org-download-screenshot-method "convert clipboard: %s")))
 
   ;; 加密文章
   ;; "http://coldnew.github.io/blog/2013/07/13_5b094.html"
