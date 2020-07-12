@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 101
+;;     Update #: 102
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -164,6 +164,10 @@
     "aoc" 'org-capture
     "aot" 'org-todo-list
     "am"  'wl
+    "aojj" 'org-journal-new-entry
+    "aojs" 'org-journal-search-forever
+    "aojt" 'org-journal-new-scheduled-entry
+    "aojv" 'org-journal-schedule-view
 
     "bb"  'ivy-switch-buffer
     "bd"  'kill-this-buffer
