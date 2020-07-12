@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 107
+;;     Update #: 108
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -394,7 +394,7 @@ If FRAME is nil, it defaults to the selected frame."
                       (font-spec :family chinese :size chinese-size))))
 
 (when (display-graphic-p)
-  (cl-loop for font in '("SF Mono" "Source Code Pro" "DejaVu Sans Mono")
+  (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "DejaVu Sans Mono")
            when (font-installed-p font)
            return (set-monospaced-font font "STKaiti" 15 18)))
 
