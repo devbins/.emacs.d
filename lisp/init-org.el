@@ -754,6 +754,31 @@ prepended to the element after the #+HEADER: tag."
       "mit"                       'org-agenda-set-tags
       "msr"                       'org-agenda-refile))
 
+  (use-package org-journal
+    :defer t
+    :commands (org-journal-new-entry org-journal-search-forever)
+    :config
+    (setq org-journal-dir "~/.org/journal/"
+          org-journal-file-format "%Y-%m"
+          org-journal-file-type 'monthly
+          org-journal-date-format "%Y %B %d, %A"
+          org-journal-start-on-weekday 'Sunday
+          org-journal-enable-agenda-integration t)
+    (evil-leader/set-key-for-mode 'org-journal-mode
+      "mj" 'org-journal-new-entry
+      "mn" 'org-journal-next-entry
+      "mp" 'org-journal-previous-entry)
+    (evil-leader/set-key-for-mode 'calendar-mode
+      "mr" 'org-journal-read-entry
+      "mi" 'org-journal-new-date-entry
+      "mn" 'org-journal-next-entry
+      "mp" 'org-journal-previous-entry
+      "ms" 'org-journal-search-forever
+      "mw" 'org-journal-search-calendar-week
+      "mm" 'org-journal-search-calendar-month
+      "my" 'org-journal-search-calendar-year)
+    )
+
   (use-package appt
     :ensure nil
     :config
