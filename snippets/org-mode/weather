@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: weather
+# key: weather
+# --
+
+#+BEGIN_SRC sh :results output
+curl 'wttr.in/?0T'
+#+END_SRC
