@@ -65,7 +65,11 @@
     |-----------+------------------------------------------+------------------------|
     | SPC m s a | 切换 =Archive= tag                         | =org-toggle-archive-tag= |
     | SPC m s A | 把有 =Archive= tag 的移动到 =Archive= 文件中 | =org-archive-subtree=    |
-    
+*** Org Roam
+    | 快捷键    | 描述                   | 对应函数                  |
+    |-----------+------------------------+---------------------------|
+    | SPC m r l | 打开 Org roam          | =org-roam=                  |
+    | SPC m r b | 切换到 Org roam buffer | =org-roam-switch-to-buffer= |
 ** lsp
 *** C/C++
     #+begin_src sh
