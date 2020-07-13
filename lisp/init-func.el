@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 39
+;;     Update #: 43
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,8 @@
 (defvar package-archives-alist)
 (defvar http-proxy)
 (defvar socks-noproxy)
-(defvar socks-server)
+(defvar socks-proxy)
+(defvar socks-port)
 
 (declare-function async-inject-variables 'async)
 (declare-function chart-bar-quickie 'chart)
@@ -256,7 +257,7 @@ Same as `replace-string C-q C-m RET RET'."
   (require 'socks)
   (setq url-gateway-method 'socks
         socks-noproxy '("localhost")
-        socks-server '("Default server" "127.0.0.1" 1086 5))
+        socks-server '("Default server" socks-proxy socks-port 5))
   (proxy-socks-show))
 
 (defun proxy-socks-disable ()
