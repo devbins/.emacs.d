@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -508,15 +508,22 @@
   :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
   :if sys/linuxp
   :commands (eaf-open-browser eaf-open)
-  :custom
-  (eaf-find-alternate-file-in-dired t)
-  (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
+  :preface
   (defun eaf-proxy-enable ()
     "Enable proxy in eaf"
     (interactive)
     (setq eaf-proxy-type "socks5"
           eaf-proxy-host socks-proxy
           eaf-proxy-port socks-port))
+  (defun eaf-proxy-disable ()
+    "Disable proxy in eaf"
+    (interactive)
+    (setq eaf-proxy-type nil
+          eaf-proxy-host nil
+          eaf-proxy-port nil))
+  :custom
+  (eaf-find-alternate-file-in-dired t)
+  (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
   :config
   (defalias 'browse-web #'eaf-open-browser)
   ;; I already bind "RET", "<mouse-2>", "^" to `dired-find-alternate-file' in `init-dired.el'.
