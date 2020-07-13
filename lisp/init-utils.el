@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -511,6 +511,12 @@
   :custom
   (eaf-find-alternate-file-in-dired t)
   (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
+  (defun eaf-proxy-enable ()
+    "Enable proxy in eaf"
+    (interactive)
+    (setq eaf-proxy-type "socks5"
+          eaf-proxy-host socks-proxy
+          eaf-proxy-port socks-port))
   :config
   (defalias 'browse-web #'eaf-open-browser)
   ;; I already bind "RET", "<mouse-2>", "^" to `dired-find-alternate-file' in `init-dired.el'.
