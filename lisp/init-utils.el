@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 30
+;;     Update #: 31
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -518,9 +518,9 @@
   (defun eaf-proxy-disable ()
     "Disable proxy in eaf"
     (interactive)
-    (setq eaf-proxy-type nil
-          eaf-proxy-host nil
-          eaf-proxy-port nil))
+    (setq eaf-proxy-type ""
+          eaf-proxy-host ""
+          eaf-proxy-port ""))
   :custom
   (eaf-find-alternate-file-in-dired t)
   (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
