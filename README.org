@@ -90,7 +90,9 @@
 ** 设置代理
    在 =~/.emacs.d/custom.el= 中加入
    #+begin_src emacs-lisp
-   (setq http-proxy "127.0.0.1:1080")
+   (setq http-proxy "127.0.0.1:1080"
+         socks-proxy "127.0.0.1"
+         socks-port 1086)
    #+end_src
 ** FAQ
 *** 无法显示字体 
