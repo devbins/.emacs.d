@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 31
+;;     Update #: 32
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -529,6 +529,7 @@
   ;; I already bind "RET", "<mouse-2>", "^" to `dired-find-alternate-file' in `init-dired.el'.
   ;; Comment this line out of you don't want to use EAF to open available files in dired.
   ;; (global-set-key [remap dired-find-alternate-file] #'eaf-file-open-in-dired)
+  (eaf-setq eaf-browser-enable-adblocker "true")
   (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
   (eaf-bind-key scroll_to_end "M->" eaf-pdf-viewer-keybinding)
   (eaf-bind-key scroll_to_home "M-<" eaf-pdf-viewer-keybinding)
