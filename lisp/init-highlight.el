@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,7 +153,8 @@ FACE defaults to inheriting from default and highlight."
   :commands highlight-indent-guides--highlighter-default
   :functions my-indent-guides-for-all-but-first-column
   :hook (prog-mode . highlight-indent-guides-mode)
-  :init (setq highlight-indent-guides-responsive 'stack)
+  :init (setq highlight-indent-guides-responsive 'stack
+              highlight-indent-guides-method 'character)
   :config
   ;; Don't display indentations while editing with `company'
   (with-eval-after-load 'company
