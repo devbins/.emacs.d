@@ -856,9 +856,9 @@ same directory as the org-buffer and insert a link to this file."
               gif-screencast-cropping-program "mogrify"
               gif-screencast-capture-format "ppm"))
 
-
+;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
-  :custom ((org-roam-directory (expand-file-name "~/.org/roam"))
+  :custom ((org-roam-directory (expand-file-name "~/.org"))
            (org-roam-mute-cache-build t))
   :bind (:map org-roam-mode-map
          (("C-c n l" . org-roam)
@@ -867,6 +867,19 @@ same directory as the org-buffer and insert a link to this file."
          :map org-mode-map
          (("C-c n i" . org-roam-insert)))
   :config
+  (setq org-roam-capture-templates
+        '("d" "default" plain (function org-roam-capture--get-point)
+          "%?"
+          :file-name "${slug}"
+          :head "#+title: ${title}\n#+roam_alias: \n#+roam_tags: \n"
+          :unnarrowed t))
+  (add-to-list 'org-roam-capture-ref-templates
+               '("a" "Annotation" plain (function org-roam-capture--get-point)
+                 "%U ${body}\n"
+                 :file-name "${slug}"
+                 :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+                 :immediate-finish t
+                 :unnarrowed t))
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
