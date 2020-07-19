@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 13
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -98,14 +98,13 @@
           "^Date:"))
 
   ;; ;; IMAP
-  ;; (setq elmo-imap4-default-server "imap.gmail.com"
-  ;;       elmo-imap4-default-user "<accountname>@gmail.com"
-  ;;       elmo-imap4-default-port 993
-  ;;       elmo-imap4-default-authenticate-type 'clear ; CRAM-MD5
-  ;;       elmo-imap4-default-user user-mail-address
-  ;;       elmo-imap4-default-stream-type 'ssl
-  ;;       elmo-imap4-use-modified-utf7 t
-  ;;       elmo-imap4-set-seen-flag-explicitly t)
+  (setq elmo-imap4-default-server "imap.gmail.com"
+        elmo-imap4-default-port 993
+        elmo-imap4-default-user user-mail-address
+        elmo-imap4-default-authenticate-type 'clear ; CRAM-MD5
+        elmo-imap4-default-stream-type 'ssl
+        elmo-imap4-use-modified-utf7 t
+        elmo-imap4-set-seen-flag-explicitly t)
 
   ;; SMTP
   (setq wl-smtp-connection-type 'starttls
