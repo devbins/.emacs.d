@@ -25,3 +25,6 @@
 [submodule "emacs-application-framework"]
 	path = site-lisp/emacs-application-framework
 	url = https://github.com/manateelazycat/emacs-application-framework.git
+[submodule "valign"]
+	path = site-lisp/valign
+	url = https://github.com/casouri/valign.git
