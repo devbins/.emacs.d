@@ -234,6 +234,10 @@ prepended to the element after the #+HEADER: tag."
                     '("⚡" "⬆" "⬇" "☕")
                   '("HIGH" "MEDIUM" "LOW" "OPTIONAL"))))
 
+  (use-package valign
+    :load-path (lambda () (expand-file-name "site-lisp/align" user-emacs-directory))
+    :hook (org-mode . valign-mode))
+
   ;; Babel
   (setq org-confirm-babel-evaluate nil
         org-edit-src-content-indentation 0
