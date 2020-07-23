@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 43
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -257,7 +257,7 @@ Same as `replace-string C-q C-m RET RET'."
   (require 'socks)
   (setq url-gateway-method 'socks
         socks-noproxy '("localhost")
-        socks-server '("Default server" socks-proxy socks-port 5))
+        socks-server `("Default server" ,socks-proxy ,socks-port 5))
   (proxy-socks-show))
 
 (defun proxy-socks-disable ()
