@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 102
+;;     Update #: 103
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,6 +95,7 @@
   (evil-set-initial-state 'calc-mode 'normal)
   (evil-set-initial-state 'easy-hugo-mode 'emacs)
   (evil-set-initial-state 'shell-mode 'emacs)
+  (evil-set-initial-state 'vterm-mode 'emacs)
   (evil-set-initial-state 'calendar-mode 'emacs)
   (evil-set-initial-state 'esup-mode 'emacs)
   (evil-set-initial-state 'diff-mode 'normal)
