@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 32
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -74,8 +74,6 @@
   (setq lsp-auto-guess-root t        ; Detect project root
         read-process-output-max (* 1024 1024)
         lsp-keep-workspace-alive nil ; Auto-kill LSP server
-        lsp-prefer-flymake nil       ; Use lsp-ui and flycheck
-        flymake-fringe-indicator-position 'right-fringe
         lsp-prefer-capf t
         lsp-signature-auto-activate nil
         lsp-modeline-code-actions-enable nil
@@ -85,7 +83,7 @@
         lsp-enable-semantic-highlighting nil
         lsp-enable-symbol-highlighting nil
         lsp-enable-text-document-color nil
-
+        lsp-keymap-prefix "C-c l"
         lsp-enable-indentation nil
         lsp-enable-on-type-formatting nil)
 
@@ -139,8 +137,7 @@
   :bind (("C-c u" . lsp-ui-imenu)
          :map lsp-ui-mode-map
          ("M-<f6>" . lsp-ui-hydra/body)
-         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-         ([remap xref-find-references] . lsp-ui-peek-find-references))
+         ("M-RET" . lsp-ui-sideline-apply-code-actions))
   :hook (lsp-mode . lsp-ui-mode)
   :init (setq lsp-ui-doc-enable t
               lsp-ui-doc-header t
@@ -176,14 +173,7 @@
             (lambda ()
               (setq lsp-ui-doc-border (face-foreground 'default))
               (set-face-background 'lsp-ui-doc-background
-                                   (face-background 'tooltip))))
-
-  ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
-  ;; @see https://github.com/emacs-lsp/lsp-ui/issues/243
-  (defun my-lsp-ui-imenu-hide-mode-line ()
-    "Hide the mode-line in lsp-ui-imenu."
-    (setq mode-line-format nil))
-  (advice-add #'lsp-ui-imenu :after #'my-lsp-ui-imenu-hide-mode-line))
+                                   (face-background 'tooltip)))))
 
 ;; Ivy integration
 (use-package lsp-ivy
