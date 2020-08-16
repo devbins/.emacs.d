@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,8 +65,8 @@
     (("}" dashboard-next-section "next")
      ("{" dashboard-previous-section "previous")
      ("r" dashboard-goto-recent-files "recent files")
-     ("m" dashboard-goto-bookmarks "projects")
-     ("p" dashboard-goto-projects "bookmarks"))
+     ("m" dashboard-goto-bookmarks "bookmarks")
+     ("p" dashboard-goto-projects "projects"))
     "Item"
     (("RET" widget-button-press "open" :exit t)
      ("<tab>" widget-forward "next")
