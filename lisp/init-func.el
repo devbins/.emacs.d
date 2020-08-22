@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -317,9 +317,13 @@ containing the current file by the default explorer."
                 title
                 msg))
 
+(defun notify-windows (title msg)
+  (org-notify title msg))
+
 (defun notify (title msg)
   (cond (sys/macp (notify-osx title msg))
-        (sys/linuxp (notify-linux title msg))))
+        (sys/linuxp (notify-linux title msg))
+        (sys/win32p (notify-windows title msg))))
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
