@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -172,6 +172,9 @@
    gdb-many-windows t
    ;; Non-nil means display source file containing the main routine at startup
    gdb-show-main t))
+
+(use-package realgud
+  :defer t)
 
 (use-package quickrun
   :bind
