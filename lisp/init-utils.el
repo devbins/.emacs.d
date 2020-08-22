@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -550,6 +550,8 @@
   :if sys/macp)
 (use-package grab-mac-link
   :if sys/macp)
+(use-package command-log-mode
+  :commands global-command-log-mode)
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

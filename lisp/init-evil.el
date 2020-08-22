@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 107
+;;     Update #: 108
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -156,6 +156,7 @@
     "9"   'winum-select-window-9
     "0"   'treemacs-select-window
 
+    "atl" 'global-command-log-mode
     "ayl" 'ein:notebooklist-login
     "ayo" 'ein:notebooklist-open
     "ayr" 'ein:run
