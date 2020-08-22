@@ -86,6 +86,18 @@
     rustup component add rust-analysis --toolchain stable
     rustup component add rust-src --toolchain stable
     #+end_src
+*** Python
+    #+begin_src sh
+    pip install ‘python-language-server[all]’
+    #+end_src
+*** CMake
+    #+begin_src sh
+    pip install cmake-language-server
+    #+end_src
+*** Json
+    #+begin_src sh
+    npm i -g vscode-json-languageserver
+    #+end_src
 
 ** 设置代理
    在 =~/.emacs.d/custom.el= 中加入
