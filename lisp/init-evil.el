@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 103
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -213,9 +213,6 @@
     "hv"  'describe-variable
     "hp"  'describe-package
 
-    "Ti"  'org-toggle-inline-images
-    "Tl"  'org-toggle-link-display
-
     "nf"  'narrow-to-defun
     "np"  'narrow-to-page
     "nr"  'narrow-to-region
@@ -250,9 +247,14 @@
     "ss"  'swiper
     "sn"  'snails
 
+    "te"  'toggle-company-english-helper
+    "tt"  'insert-translated-name-insert
     "tl"  'toggle-truncate-lines
     "tw"  'toggle-frame-maximized
     "tf"  'toggle-frame-fullscreen
+
+    "Ti"  'org-toggle-inline-images
+    "Tl"  'org-toggle-link-display
 
     "ww"  'other-window
     "wm"  'toggle-maximize-buffer
