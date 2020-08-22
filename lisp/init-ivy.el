@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,7 +80,6 @@
          ("C-c h" . counsel-command-history)
          ("C-c i" . counsel-git)
          ("C-c j" . counsel-git-grep)
-         ("C-c l" . counsel-locate)
          ("C-c o" . counsel-outline)
          ("C-c r" . counsel-rg)
          ("C-c z" . counsel-fzf)
