@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -151,7 +151,16 @@
   (with-eval-after-load 'company
     (use-package company-restclient
       :defines company-backends
-      :init (add-to-list 'company-backends 'company-restclient))))
+      :init (add-to-list 'company-backends 'company-restclient)))
+
+  (evil-leader/set-key-for-mode 'restclient-mode
+    "mn" 'restclient-jump-next
+    "mp" 'restclient-jump-prev
+    "ms" 'restclient-http-send-current-stay-in-window
+    "mS" 'restclient-http-send-current
+    "mr" 'spacemacs/restclient-http-send-current-raw-stay-in-window
+    "mR" 'restclient-http-send-current-raw
+    "my" 'restclient-copy-curl-command))
 
 ;; Edit text for browsers with GhostText or AtomicChrome extension
 (use-package atomic-chrome
