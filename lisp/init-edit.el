@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 51
+;;     Update #: 54
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -294,12 +294,8 @@
 
 ;; https://github.com/DogLooksGood/emacs-rime
 (use-package rime
-  :init
-  (cond (sys/macp (setq rime-user-data-dir "~/Library/Rime"))
-        (sys/linuxp (setq rime-user-data-dir "~/.config/fcitx/rime")))
   :bind
-  (:map
-   rime-active-mode-map
+  (:map rime-active-mode-map
    ("<tab>" . 'rime-inline-ascii)
    :map rime-mode-map
    ("C-`" . 'rime-send-keybinding)
