@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 47
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -318,7 +318,7 @@ containing the current file by the default explorer."
                 msg))
 
 (defun notify-windows (title msg)
-  (org-notify title msg))
+  (org-notify (concat title "," msg)))
 
 (defun notify (title msg)
   (cond (sys/macp (notify-osx title msg))
