@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 39
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -168,6 +168,7 @@
 (use-package gdb-mi
   :init
   (setq
+   gdb-mi-decode-strings "utf-8"
    ;; use gdb-many-windows by default when `M-x gdb'
    gdb-many-windows t
    ;; Non-nil means display source file containing the main routine at startup
