@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 195
+;;     Update #: 244
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -761,6 +761,9 @@ prepended to the element after the #+HEADER: tag."
   ;; Super agenda mode
   (use-package org-super-agenda
     :hook (org-agenda-mode . org-super-agenda-mode)
+    :bind (:map org-super-agenda-header-map
+           ("j" . 'evil-next-line)
+           ("k" . 'evil-previous-line))
     :config
     (setq org-super-agenda-groups '((:log t)
                                     (:name "Important" :priority "A")
