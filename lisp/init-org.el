@@ -760,9 +760,8 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Super agenda mode
   (use-package org-super-agenda
-    :ensure t
     :hook (org-agenda-mode . org-super-agenda-mode)
-    :init
+    :config
     (setq org-super-agenda-groups '((:log t)
                                     (:name "Important" :priority "A")
                                     (:name "Today" :scheduled today :time-grid t)
