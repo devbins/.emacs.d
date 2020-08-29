@@ -758,6 +758,19 @@ prepended to the element after the #+HEADER: tag."
       "mit"                       'org-agenda-set-tags
       "msr"                       'org-agenda-refile))
 
+  ;; Super agenda mode
+  (use-package org-super-agenda
+    :ensure t
+    :hook (org-agenda-mode . org-super-agenda-mode)
+    :init
+    (setq org-super-agenda-groups '((:log t)
+                                    (:name "Important" :priority "A")
+                                    (:name "Today" :scheduled today :time-grid t)
+                                    (:name "Due today" :deadline today)
+                                    (:name "Overdue" :deadline past)
+                                    (:habit t)
+                                    (:todo "DOING"))))
+
   (use-package org-journal
     :defer t
     :commands (org-journal-new-entry org-journal-search-forever)
