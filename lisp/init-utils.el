@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -434,6 +434,11 @@
          (mapc 'bongo-insert-file files)))
       (bongo-switch-buffers))
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
+
+(use-package netease-cloud-music
+  :defer t
+  :commands (netease-cloud-music)
+  :load-path (lambda () (expand-file-name "site-lisp/netease-cloud-music/" user-emacs-directory)))
 
 ;; IRC
 (use-package erc
