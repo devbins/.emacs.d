@@ -98,6 +98,12 @@
     #+begin_src sh
     npm i -g vscode-json-languageserver
     #+end_src
+** 播放音乐
+   音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
+   #+begin_src sh
+   sudo pacman -S mplayer # arch
+   brew install mplayer # mac
+   #+end_src
 
 ** 设置代理
    在 =~/.emacs.d/custom.el= 中加入
