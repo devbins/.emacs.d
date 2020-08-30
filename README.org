@@ -112,18 +112,15 @@
          socks-proxy "127.0.0.1"
          socks-port 1086)
    #+end_src
+** 安装字体 
+   #+begin_src sh
+   sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
+   #+end_src
 ** FAQ
-*** 无法显示字体 
-    - [[https://github.com/adobe-fonts/source-code-pro][Source-Code-Pro]] 
-    - [[https://github.com/tonsky/FiraCode/wiki/Emacs-instructions][FiraCode 安装]]
-    - [[https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip][FiraCode-Regular-Symbol]]
-    - [[https://dn-works.com/wp-content/uploads/2020/UFAS-Fonts/Symbola.zip][Unicode Fonts for Ancient Scripts]] 
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
 *** void-function org-outline-overlay-data
     进入 =~/.emacs.d/elpa/= 删除 =expand-region= 后重启两次 Emacs , 第一次会碰到 =smart-region= 的问题
-*** Org mode fontification error
-    由于 =org-plus-contrib-20191230= 这个版本有问题，目前先退回到上一个版本。我退回到 =20191125= 就不会有这个问题了。
 *** org-copy-subtree: Invalid function: org-preserve-local-variables
     #+begin_src sh
     cd ~/.emacs.d/elpa
