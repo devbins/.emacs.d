@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 57
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,26 @@
 (use-package which-key
   :diminish
   :bind (:map help-map ("C-h" . which-key-C-h-dispatch))
-  :hook (after-init . which-key-mode))
+  :hook (after-init . which-key-mode)
+  :config
+  (which-key-add-key-based-replacements
+    "SPC a" "application"
+    "SPC a o" "agenda"
+    "SPC a y" "ein"
+    "SPC b" "buffer"
+    "SPC f" "File"
+    "SPC g" "magit"
+    "SPC h" "describe"
+    "SPC n" "narrow"
+    "SPC p" "project"
+    "SPC q" "quit"
+    "SPC s" "search"
+    "SPC t" "toggle"
+    "SPC w" "window"
+    "SPC x" "up/downcase"
+    "SPC y" "youdao"
+    "SPC F" "Frame"
+    "SPC P" "password"))
 
 ;; Youdao Dictionary
 (use-package youdao-dictionary
