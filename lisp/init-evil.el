@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 110
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -254,9 +254,6 @@
     "tl"  'toggle-truncate-lines
     "tw"  'toggle-frame-maximized
     "tf"  'toggle-frame-fullscreen
-
-    "Ti"  'org-toggle-inline-images
-    "Tl"  'org-toggle-link-display
 
     "ww"  'other-window
     "wm"  'toggle-maximize-buffer
