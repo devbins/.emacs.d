@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 50
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -139,7 +139,6 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-window)
 (require 'init-treemacs)
 
-(require 'init-eshell)
 (require 'init-shell)
 
 (require 'init-markdown)
