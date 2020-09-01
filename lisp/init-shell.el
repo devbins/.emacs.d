@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -100,15 +100,6 @@
               (make-local-variable 'font-lock-function)
               (setq font-lock-function #'ignore)))
 
-  ;; For eshell
-  (with-eval-after-load 'esh-mode
-    (add-hook 'eshell-before-prompt-hook
-              (lambda ()
-                (setq xterm-color-preserve-properties t)))
-    (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
-    (setq eshell-output-filter-functions
-          (remove 'eshell-handle-ansi-color eshell-output-filter-functions)))
-
   ;; For compilation buffers
   (setq compilation-environment '("TERM=xterm-256color"))
   (defun my-advice-compilation-filter (f proc string)
@@ -136,6 +127,13 @@
                     (sys/win32p '("eshell" "*eshell*" #'eshell))
                     (t '("terminal" "*terminal*"
                          (lambda () (term shell-pop-term-shell)))))))
+
+(use-package aweshell
+  :load-path (lambda () (expand-file-name "site-lisp/aweshell" user-emacs-directory))
+  :commands (aweshell-new aweshell-dedicated-open)
+  :bind
+  (("M-#" . aweshell-dedicated-open)
+   (:map eshell-mode-map ("M-#" . aweshell-dedicated-close))))
 
 (provide 'init-shell)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
