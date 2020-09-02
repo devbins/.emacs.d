@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -199,13 +199,13 @@
   :config
   (setq image-dired-dir (expand-file-name "image-dired" user-emacs-directory)
         image-dired-thumbnail-storage 'standard)
-  :config  (evil-define-key 'normal image-dired-thumbnail-mode-map
-             "j" 'image-dired-next-line
-             "k" 'image-dired-previous-line
-             "l" 'image-dired-forward-image
-             "h" 'image-dired-backward-image
-             "q" 'image-dired-kill-buffer-and-window
-             "RET" 'image-dired-display-thumbnail-original-image))
+  (evil-define-key 'normal image-dired-thumbnail-mode-map
+    "j" 'image-dired-next-line
+    "k" 'image-dired-previous-line
+    "l" 'image-dired-forward-image
+    "h" 'image-dired-backward-image
+    "q" 'image-dired-kill-buffer-and-window
+    "RET" 'image-dired-display-thumbnail-original-image))
 
 (use-package image-mode
   :ensure nil
