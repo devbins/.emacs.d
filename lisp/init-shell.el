@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -124,7 +124,7 @@
   :init (setq shell-pop-window-size 30
               shell-pop-shell-type
               (cond ((fboundp 'vterm) '("vterm" "*vterm*" #'vterm))
-                    (sys/win32p '("eshell" "*eshell*" #'eshell))
+                    (sys/win32p '("eshell" "*eshell*" #'aweshell-toggle))
                     (t '("terminal" "*terminal*"
                          (lambda () (term shell-pop-term-shell)))))))
 
