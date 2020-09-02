@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 110
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -277,28 +277,6 @@
         beacon-blink-duration .2       ; default .3
         beacon-blink-delay .2          ; default .3
         beacon-size 20))
-
-;; Tab
-(use-package awesome-tab
-  :if (display-graphic-p)
-  :load-path (lambda () (expand-file-name "site-lisp/awesome-tab/" user-emacs-directory))
-  :hook (after-init . awesome-tab-mode)
-  :init(setq awesome-tab-style 'wave
-             awesome-tab-display-icon (if (display-graphic-p) t nil)
-             awesome-tab-display-sticky-function-name t)
-  :config
-  (when (not (display-graphic-p))
-    (setq frame-background-mode 'dark))
-  (with-eval-after-load 'evil
-    (define-key evil-normal-state-map (kbd ",tt") 'awesome-tab-switch-group)
-    (define-key evil-normal-state-map (kbd ",ta") 'awesome-tab-select-beg-tab)
-    (define-key evil-normal-state-map (kbd ",te") 'awesome-tab-select-end-tab)
-    (define-key evil-normal-state-map (kbd ",t<") 'awesome-tab-move-current-tab-to-left)
-    (define-key evil-normal-state-map (kbd ",t>") 'awesome-tab-move-current-tab-to-right)
-    (define-key evil-normal-state-map (kbd ",tp") 'awesome-tab-forward)
-    (define-key evil-normal-state-map (kbd ",tn") 'awesome-tab-backward))
-  (setq awesome-tab-cycle-scope 'tabs))
-
 
 (defvar active-transparency 90
   "A value from the range (0..100), in increasing opacity, which describes the
