@@ -854,12 +854,6 @@ same directory as the org-buffer and insert a link to this file."
   :config
   (setq graphviz-dot-indent-width 4))
 
-(use-package gif-screencast
-  :defer t
-  :init (setq gif-screencast-args '("-x")
-              gif-screencast-cropping-program "mogrify"
-              gif-screencast-capture-format "ppm"))
-
 ;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
   :custom ((org-roam-directory (expand-file-name "~/.org"))
