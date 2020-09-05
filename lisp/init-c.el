@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -64,7 +64,28 @@
 
   (use-package cmake-mode
     :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
-  (use-package company-c-headers :defer t))
+  (use-package company-c-headers :defer t)
+  :custom
+  (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
+                             (c++-mode . "//+!?\\|\\**")
+                             (awk-mode . "#+")
+                             (other    . "//+\\|\\**")))
+  (c-doc-comment-style `((c-mode   . gtkdoc)
+                         ,(if (>= emacs-major-version 28)
+                              '(c++-mode . doxygen)
+                            '(c++-mode . gtkdoc))))
+  (c-offsets-alist '((inline-open           . 0)
+                     (brace-list-open       . 0)
+                     (inextern-lang         . 0)
+                     (statement-case-open   . 4)
+                     (statement-cont        . (c-lineup-ternary-bodies +))
+                     (access-label          . -)
+                     (case-label            . 0)
+                     (member-init-intro     . +)
+                     (topmost-intro         . 0)
+                     (inlambda              . 0) ;; better indentation for lambda
+                     (innamespace           . -) ;; no indentation after namespace
+                     (arglist-cont-nonempty . +))))
 
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
