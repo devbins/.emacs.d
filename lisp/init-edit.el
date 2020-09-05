@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 54
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -144,10 +144,6 @@
          ([remap isearch-query-replace] . anzu-isearch-query-replace)
          ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
   :hook (after-init . global-anzu-mode))
-
-;; An all-in-one comment command to rule them all
-(use-package comment-dwim-2
-  :bind ([remap comment-dwim] . comment-dwim-2)) ;
 
 ;; Drag stuff (lines, words, region, etc...) around
 (use-package drag-stuff
