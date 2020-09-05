@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 57
+;;     Update #: 58
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -505,27 +505,6 @@
          ("C-<f5>" . ztree-hydra/body))
   :init (setq ztree-draw-unicode-lines t
               ztree-show-number-of-children t))
-
-(use-package snails
-  :defer t
-  :load-path (lambda () (expand-file-name "site-lisp/snails/" user-emacs-directory))
-  :if (display-graphic-p)
-  :custom-face
-  (snails-content-buffer-face ((t (:background "#111" :height 110))))
-  (snails-input-buffer-face ((t (:background "#222" :foreground "gold" :height 110))))
-  (snails-header-line-face ((t (:inherit font-lock-function-name-face :underline t :height 1.1))))
-  :config
-  ;; Functions for specific backends
-  (defun snails-current-project ()
-    (interactive)
-    (snails '(snails-backend-projectile snails-backend-rg snails-backend-fd snail-backend-imenu)))
-  (defun snails-active-recent-buffers ()
-    (interactive)
-    (snails '(snails-backend-buffer snails-backend-recentf)))
-  :bind
-  (("M-s s" . snails)
-   ("M-s g" . snails-current-project)
-   ("M-s b" . snails-active-recent-buffers)))
 
 ;; Emacs-appcliation-framework
 (use-package eaf
