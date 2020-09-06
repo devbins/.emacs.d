@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 58
+;;     Update #: 63
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,6 +54,7 @@
   (which-key-add-key-based-replacements
     "SPC a" "application"
     "SPC a o" "agenda"
+    "SPC a t" "command log"
     "SPC a y" "ein"
     "SPC b" "buffer"
     "SPC f" "File"
