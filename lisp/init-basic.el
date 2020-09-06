@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -169,6 +169,7 @@
 (setq-default major-mode 'text-mode
               fill-column 120
               tab-width 4
+              word-wrap t
               indent-tabs-mode nil
               truncate-lines nil)     ; Permanently indent with spaces, never with TABs
 
