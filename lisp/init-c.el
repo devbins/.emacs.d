@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,6 +86,11 @@
                      (inlambda              . 0) ;; better indentation for lambda
                      (innamespace           . -) ;; no indentation after namespace
                      (arglist-cont-nonempty . +))))
+
+(use-package cpp-auto-include
+  :config
+  (evil-leader/set-key-for-mode 'cc-mode
+    "m o i" 'cpp-auto-include))
 
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
