@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 264
+;;     Update #: 269
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -634,7 +634,7 @@ prepended to the element after the #+HEADER: tag."
 
           org-agenda-align-tags-to-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
           org-agenda-tags-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
-
+          org-agenda-columns-add-appointments-to-effort-sum t
           org-agenda-prefix-format '((agenda . " %i %-12:c %? e %?-12t % s")
                                      (timeline . " % s")
                                      (effort . " %e %(or (org-entry-get (point) \"Effort\") \"0:00\")")
