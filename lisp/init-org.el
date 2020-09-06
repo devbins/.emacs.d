@@ -789,23 +789,23 @@ prepended to the element after the #+HEADER: tag."
       "ms" 'org-journal-search-forever
       "mw" 'org-journal-search-calendar-week
       "mm" 'org-journal-search-calendar-month
-      "my" 'org-journal-search-calendar-year)
-    )
+      "my" 'org-journal-search-calendar-year))
 
   (use-package appt
     :ensure nil
     :config
     (setq appt-time-msg-list nil
           appt-message-warning-time '10
+          appt-display-mode-line t
           appt-display-format 'window
           appt-display-interval '5
           appt-audible t)
-    (appt-activate 1)
     (run-at-time "24:01" 3600 'org-agenda-to-appt)
     (defun appt-disp-window-and-notification (min-to-appt current-time appt-msg)
       (notify current-time appt-msg)) ;同时也调用原有的提醒函数
     (setq appt-disp-window-function 'appt-disp-window-and-notification)
-    :hook (org-agenda-finalize . org-agenda-to-appt)))
+    :hook ((org-agenda-finalize . org-agenda-to-appt)
+           (after-init . appt-activate))))
 
 
 (use-package easy-hugo
