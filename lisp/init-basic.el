@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 16
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -160,16 +160,19 @@
 (when (display-graphic-p)
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
-(setq scroll-step 1
-      scroll-margin 0
-      scroll-conservatively 100000)
+(setq scroll-step 2
+      scroll-margin 2
+      scroll-conservatively 101
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01
+      scroll-preserve-screen-position 'always)
 
 ;; Misc
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default major-mode 'text-mode
               fill-column 120
               tab-width 4
-              word-wrap t
+              word-wrap nil
               indent-tabs-mode nil
               truncate-lines nil)     ; Permanently indent with spaces, never with TABs
 
