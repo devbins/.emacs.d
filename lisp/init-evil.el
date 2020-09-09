@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 110
+;;     Update #: 111
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -111,6 +111,7 @@
   (evil-set-initial-state 'multi-term-mode 'emacs)
   (evil-set-initial-state 'aweshell-mode 'emacs)
   (evil-set-initial-state 'org-capture-mode 'insert)
+  (evil-set-initial-state 'calculator-mode 'emacs)
 
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
