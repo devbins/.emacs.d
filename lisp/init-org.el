@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 269
+;;     Update #: 271
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -654,7 +654,7 @@ prepended to the element after the #+HEADER: tag."
 
           org-agenda-include-diary t
           org-agenda-show-log t
-          ;; org-agenda-log-mode-items (quote (closed state))
+          org-agenda-log-mode-items '(clock)
           org-agenda-compact-blocks t
           org-agenda-sticky t
           org-agenda-span 'day
