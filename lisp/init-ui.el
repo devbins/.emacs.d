@@ -266,9 +266,8 @@
   ;; only flash on window/buffer changes...
   (setq beacon-blink-when-window-changes t
         ;; ... don't be excessive:
-        beacon-blink-when-window-scrolls nil
         beacon-blink-when-point-moves-vertically nil
-        beacon-blink-duration .2       ; default .3
+        beacon-blink-duration .5       ; default .3
         beacon-blink-delay .2          ; default .3
         beacon-size 20))
 
