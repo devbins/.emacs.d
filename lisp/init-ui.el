@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 112
+;;     Update #: 118
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -376,7 +376,7 @@ If FRAME is nil, it defaults to the selected frame."
   :ensure nil
   :defer 5
   :config
-  ;; (zone-when-idle 600) ; in seconds
+  (zone-when-idle 600) ; in seconds
   (defun zone-choose (pgm)
     "Choose a PGM to run for `zone'."
     (interactive
