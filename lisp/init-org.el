@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 271
+;;     Update #: 272
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -678,6 +678,15 @@ prepended to the element after the #+HEADER: tag."
               ("inbox" ,(list (all-the-icons-faicon "refresh")) nil nil :ascent center)
               ("Star" ,(list (all-the-icons-faicon "star-o")) nil nil :ascent center)
               ("Org" ,(list (all-the-icons-fileicon "org")) nil nil :ascent center))))
+    (add-to-list 'org-agenda-custom-commands
+                 '("r" "Daily Agenda Review"
+                   ((agenda "" ((org-agenda-overriding-header "今日记录")
+                                (org-agenda-span 'day)
+                                (org-agenda-show-log 'clockcheck)
+                                (org-agenda-start-with-log-mode nil)
+                                (org-agenda-log-mode-items '(closed clock))
+                                (org-agenda-clockreport-mode t)
+                                )))))
 
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "RET")    'org-agenda-switch-to
