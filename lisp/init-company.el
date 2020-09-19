@@ -80,8 +80,9 @@
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil
         company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode shell-mode)
-        company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend))
+        company-backends '((company-capf :with company-yasnippet)
+                           (company-dabbrev-code company-keywords company-files)
+                           company-dabbrev))
   :config
   ;; Better sorting and filtering
   (use-package company-prescient
