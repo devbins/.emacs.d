@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -171,6 +171,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default major-mode 'text-mode
               fill-column 120
+              line-spacing 2
               tab-width 4
               word-wrap nil
               indent-tabs-mode nil
