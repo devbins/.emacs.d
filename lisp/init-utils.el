@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 63
+;;     Update #: 65
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -423,11 +423,7 @@
 (use-package olivetti
   :diminish
   :bind ("<f7>" . olivetti-mode)
-  :hook (olivetti-mode . (lambda ()
-                           (if olivetti-mode
-                               (text-scale-set +2)
-                             (text-scale-set 0))))
-  :init (setq olivetti-body-width 0.618))
+  :init (setq olivetti-body-width 120))
 
 ;; Music player
 (use-package bongo
