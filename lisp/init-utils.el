@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 65
+;;     Update #: 68
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -104,9 +104,13 @@
       ("h" nil nil)
       ("?" nil nil))))
 
-;;
-;; Search tools
-;;
+(use-package go-translate
+  :commands (go-translate go-translate-popup)
+  :config
+  (setq go-translate-base-url "https://translate.google.cn"
+        go-translate-local-language "zh-CN"
+        go-translate-buffer-follow-p t ; 翻译完成后，总是将光标切换到翻译结果窗口
+        go-translate-buffer-source-fold-p t))
 
 ;; Writable `grep' buffer
 (use-package wgrep
