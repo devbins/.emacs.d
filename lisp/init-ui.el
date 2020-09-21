@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 118
+;;     Update #: 119
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -97,7 +97,7 @@
   (doom-modeline-minor-modes t)
   (doom-modeline-unicode-fallback t)
   (doom-modeline-mu4e nil)
-  :hook (after-init . doom-modeline-mode)
+  :hook (window-setup . doom-modeline-mode)
   :init
   ;; prevent flash of unstyled modeline at startup
   (unless after-init-time
