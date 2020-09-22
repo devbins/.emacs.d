@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 111
+;;     Update #: 112
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -251,6 +251,8 @@
     "sn"  'snails
 
     "te"  'toggle-company-english-helper
+    "tg"  'go-translate
+    "tp"  'go-translate-popup
     "tt"  'insert-translated-name-insert
     "tl"  'toggle-truncate-lines
     "tw"  'toggle-frame-maximized
