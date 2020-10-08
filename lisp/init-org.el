@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 272
+;;     Update #: 282
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -916,6 +916,9 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
+
+;; https://gitlab.com/phillord/org-drill
+(use-package org-drill)
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
