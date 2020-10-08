@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -385,7 +385,6 @@
   (use-package prescient
     :commands prescient-persist-mode
     :init
-    (setq prescient-filter-method '(literal regexp initialism fuzzy))
     (prescient-persist-mode 1))
 
   (use-package ivy-prescient
