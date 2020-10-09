@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 50
+;;     Update #: 51
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -143,6 +143,7 @@ decrease this. If you experience stuttering, increase this.")
 
 (require 'init-markdown)
 (require 'init-org)
+(require 'init-agenda)
 
 (require 'init-rss)
 (require 'init-utils)
