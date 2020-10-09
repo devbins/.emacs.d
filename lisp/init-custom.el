@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -130,6 +130,13 @@
   "Alist of symbol prettifications for `org-mode'."
   :group 'devbins
   :type '(alist :key-type string :value-type (choice character sexp)))
+
+(setq org-agenda-dir "~/.org/.agenda/"
+      org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir)
+      org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir)
+      org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir)
+      org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir)
+      org-agenda-file-punch (expand-file-name "punch.org" org-agenda-dir))
 
 (provide 'init-custom)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
