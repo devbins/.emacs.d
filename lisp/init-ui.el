@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 119
+;;     Update #: 120
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -386,6 +386,12 @@ If FRAME is nil, it defaults to the selected frame."
        (mapcar 'symbol-name zone-programs))))
     (let ((zone-programs (list (intern pgm))))
       (zone))))
+
+(use-package shrface
+  :config
+  (shrface-basic)
+  (shrface-trial)
+  (setq shrface-href-versatile t))
 
 (provide 'init-ui)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
