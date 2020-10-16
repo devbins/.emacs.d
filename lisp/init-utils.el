@@ -397,7 +397,9 @@
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
   :functions read-mode
-  :hook (nov-mode . my-nov-setup)
+  :hook (nov-mode . (lambda ()
+                      (my-nov-setup)
+                      (shrface-mode)))
   :init
   (defun my-nov-setup ()
     "Setup `nov-mode' for better reading experience."
@@ -421,7 +423,11 @@
   (when sys/win32p
     (setq process-coding-system-alist
           (cons `(,nov-unzip-program . (gbk . gbk))
-                process-coding-system-alist))))
+                process-coding-system-alist)))
+  :config
+  (require 'shrface)
+  (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))
+  (setq nov-shr-rendering-functions (append nov-shr-rendering-functions shr-external-rendering-functions)))
 
 ;; Nice writing
 (use-package olivetti
