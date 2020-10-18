@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 120
+;;     Update #: 123
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -371,6 +371,10 @@ If FRAME is nil, it defaults to the selected frame."
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; fix chinese & english can't sync scale
+(use-package default-text-scale
+  :hook (after-init . default-text-scale-mode))
 
 (use-package zone
   :ensure nil
