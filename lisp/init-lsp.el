@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -215,13 +215,20 @@
       (push 'lsp-treemacs-symbols-mode aw-ignored-buffers)
       (push 'lsp-treemacs-java-deps-mode aw-ignored-buffers))))
 
-;; Microsoft python-language-server support
-(use-package lsp-python-ms
-  :hook (python-mode . (lambda () (require 'lsp-python-ms)))
+;; Python: pyright
+(use-package lsp-pyright
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (add-hook 'after-save-hook #'lsp-pyright-format-buffer t t)))
   :init
-  (setq lsp-python-ms-extra-paths '("~/anaconda3/lib/python3.7/site-packages/"))
   (when (executable-find "python3")
-    (setq lsp-python-ms-python-executable-cmd "python3")))
+    (setq lsp-pyright-python-executable-cmd "python3"))
+
+  ;; Use yapf to format
+  (defun lsp-pyright-format-buffer ()
+    (interactive)
+    (when (and (executable-find "yapf") buffer-file-name)
+      (call-process "yapf" nil nil nil "-i" buffer-file-name))))
 
 ;; C/C++/Objective-C support
 (use-package ccls
