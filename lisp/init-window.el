@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -254,6 +254,9 @@
           (("*lsp-help*" "*lsp session*") :size 0.3 :align 'below :autoclose t)
           ("*DAP Templates*" :select t :size 0.4 :align 'below :autoclose t)
           (dap-server-log-mode :size 15 :align 'below :autoclose t)
+
+          ("*rustfmt*" :select t :size 0.3 :align 'below :autoclose t)
+          ((rustic-compilation-mode rustic-cargo-clippy-mode rustic-cargo-outdated-mode rustic-cargo-test-mode) :select t :size 0.3 :align 'below :autoclose t)
 
           (profiler-report-mode :select t :size 0.5 :align 'below)
           ("*ELP Profiling Restuls*" :select t :size 0.5 :align 'below)
