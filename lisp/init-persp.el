@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,7 @@
   (defun persp-save-frame ()
     "Save the current frame parameters to file."
     (interactive)
-    (when persp-mode
+    (when (and (display-graphic-p) persp-mode)
       (condition-case error
           (with-temp-buffer
             (erase-buffer)
@@ -90,10 +90,20 @@
   (defun persp-load-frame ()
     "Load frame with the previous frame's geometry."
     (interactive)
-    (when persp-mode
+    (when (and (display-graphic-p) persp-mode)
       (fix-fullscreen-cocoa)
       (when (file-readable-p persp-frame-file)
-        (load persp-frame-file))))
+        (condition-case error
+            (progn
+              (load persp-frame-file)
+
+              ;; Handle multiple monitors gracefully
+              (when (>= (eval (frame-parameter nil 'left)) (display-pixel-width))
+                (set-frame-parameter nil 'left 0))
+              (when (>= (eval (frame-parameter nil 'top)) (display-pixel-height))
+                (set-frame-parameter nil 'top 0)))
+          (error
+           (warn "persp frame: %s" (error-message-string error)))))))
 
   ;; Don't save if the sate is not loaded
   (with-no-warnings
