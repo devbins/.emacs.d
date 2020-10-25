@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 71
+;;     Update #: 72
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -218,10 +218,10 @@
              (hotspots (pdf-view-apply-hotspot-functions
                         window page size)))
         (pdf-view-create-image data
-          :width width
-          :scale (if (pdf-view-use-scaling-p) 0.5 1)
-          :map hotspots
-          :pointer 'arrow)))
+                               :width width
+                               :scale (if (pdf-view-use-scaling-p) 0.5 1)
+                               :map hotspots
+                               :pointer 'arrow)))
     (advice-add #'pdf-view-create-page :override #'my-pdf-view-create-page)
 
     (defun my-pdf-util-frame-scale-factor ()
@@ -284,23 +284,23 @@
             (when highlight-p
               (pdf-view-display-image
                (pdf-view-create-image
-                   (pdf-cache-renderpage-highlight
-                    page (car size)
-                    `("white" "steel blue" 0.35 ,@edges))
-                 :map (pdf-view-apply-hotspot-functions
-                       window page size)
-                 :width (car size))))
+                (pdf-cache-renderpage-highlight
+                 page (car size)
+                 `("white" "steel blue" 0.35 ,@edges))
+                :map (pdf-view-apply-hotspot-functions
+                      window page size)
+                :width (car size))))
             (pdf-util-scroll-to-edges
              (pdf-util-scale-relative-to-pixel (car edges)))))))
     (advice-add #'pdf-annot-show-annotation :override #'my-pdf-annot-show-annotation))
 
 
   ;; Recover last viewed position
-  (when emacs/>=26p
-    (use-package pdf-view-restore
-      :hook (pdf-view-mode . pdf-view-restore-mode)
-      :init (setq pdf-view-restore-filename
-                  (locate-user-emacs-file ".pdf-view-restore"))))
+  (use-package saveplace-pdf-view
+    :commands (saveplace-pdf-view-find-file-advice saveplace-pdf-view-to-alist-advice)
+    :init
+    (advice-add 'save-place-find-file-hook :around #'saveplace-pdf-view-find-file-advice)
+    (advice-add 'save-place-to-alist :around #'saveplace-pdf-view-to-alist-advice))
 
   (evil-leader/set-key-for-mode 'pdf-view-mode
     ;; Slicing image
