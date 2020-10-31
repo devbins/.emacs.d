@@ -28,12 +28,12 @@
     | 无      | 在 finder 中显示（macOS） | =reveal-in-osx-finder= |
 
 ** Git
-    | 快捷键  | 描述          | 对应函数                      |
-    |---------+---------------+-------------------------------|
-    | SPC g s | 选择 Git 仓库 | =magit-status=                  |
-    | SPC g t | git 时光机    | =git-timemachine=               |
-    | SPC g b | git blame     | =magit-blame=                   |
-    | SPC g p | git messenger | =git-messenger:popup-message=   |
+    | 快捷键  | 描述          | 对应函数                    |
+    |---------+---------------+-----------------------------|
+    | SPC g s | 选择 Git 仓库 | =magit-status=                |
+    | SPC g t | git 时光机    | =git-timemachine=             |
+    | SPC g b | git blame     | =magit-blame=                 |
+    | SPC g p | git messenger | =git-messenger:popup-message= |
     
 ** Org mode
 *** 在 Org-mode 中使用截图功能，并插入到当前文件
@@ -98,6 +98,10 @@
     #+begin_src sh
     npm i -g vscode-json-languageserver
     #+end_src
+** vterm
+   #+begin_src sh
+   sudo pacman -S libvterm
+   #+end_src
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
