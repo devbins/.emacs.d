@@ -31,3 +31,6 @@
 [submodule "netease-cloud-music"]
 	path = site-lisp/netease-cloud-music
 	url = https://github.com/SpringHan/netease-cloud-music.el.git
+[submodule "site-lisp/english-teacher"]
+	path = site-lisp/english-teacher
+	url = https://github.com/loyalpartner/english-teacher.el.git
