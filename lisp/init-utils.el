@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 72
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,6 +103,9 @@
       ("C-g" nil nil)
       ("h" nil nil)
       ("?" nil nil))))
+
+(use-package english-teacher
+  :load-path (lambda () (expand-file-name "site-lisp/english-teacher" user-emacs-directory)))
 
 (use-package go-translate
   :commands (go-translate go-translate-popup)
