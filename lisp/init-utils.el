@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 74
+;;     Update #: 75
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,7 +105,15 @@
       ("?" nil nil))))
 
 (use-package english-teacher
-  :load-path (lambda () (expand-file-name "site-lisp/english-teacher" user-emacs-directory)))
+  :load-path (lambda () (expand-file-name "site-lisp/english-teacher" user-emacs-directory))
+  :custom
+  (english-teacher-backend 'baidu)
+  (english-teacher-show-result-function 'english-teacher-eldoc-show-result-function)
+  :hook ((Info-mode
+          elfeed-show-mode
+          eww-mode
+          Man-mode
+          Woman-Mode) . english-teacher-follow-mode))
 
 (use-package go-translate
   :commands (go-translate go-translate-popup)
