@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 40
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,48 +45,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
-
-;; Prettify Symbols
-;; e.g. display “lambda” as “λ”
-(use-package prog-mode
-  :ensure nil
-  :hook (prog-mode . prettify-symbols-mode)
-  :init
-  (setq-default prettify-symbols-alist '(("lambda" . ?λ)
-                                         ("<-" . ?←)
-                                         ("->" . ?→)
-                                         ("->>" . ?↠)
-                                         ("=>" . ?⇒)
-                                         ("map" . ?↦)
-                                         ("/=" . ?≠)
-                                         ("!=" . ?≠)
-                                         ("==" . ?≡)
-                                         ("<=" . ?≤)
-                                         (">=" . ?≥)
-                                         ("<=<" . ?↢)
-                                         (">=>" . ?↣)
-                                         ("&&" . ?∧)
-                                         ("||" . ?∨)
-                                         ("not" . ?¬)
-                                         ("alpha" . ?α)
-                                         ("beta" . ?β)
-                                         ("gamma" . ?γ)
-                                         ("delta" . ?Δ)
-                                         ("epsilon" . ?ε)
-                                         ("zeta" . ?ζ)
-                                         ("eta" . ?η)
-                                         ("theta" . ?θ)
-                                         ("micro" . ?μ)
-                                         ("pi" . ?π)
-                                         ("rho" . ?ρ)
-                                         ("sigma" . ?σ)
-                                         ("phi" . ?φ)
-                                         ("omega" . ?Ω)
-                                         ("sqrt" . ?√)
-                                         ("sum" . ?∑)
-                                         ("infinity" . ?∞)
-                                         ("Infinity" . ?∞)))
-  (setq prettify-symbols-unprettify-at-point 'right-edge))
 
 ;; Jump to definition
 (use-package dumb-jump
