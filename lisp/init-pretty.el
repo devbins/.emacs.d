@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,6 +48,42 @@
 
 (use-package pretty-mode
   :commands (turn-on-pretty-mode global-prettify-symbols-mode)
+  :init
+  (setq-default prettify-symbols-alist '(("lambda" . ?λ)
+                                         ("<-" . ?←)
+                                         ("->" . ?→)
+                                         ("->>" . ?↠)
+                                         ("=>" . ?⇒)
+                                         ("map" . ?↦)
+                                         ("/=" . ?≠)
+                                         ("!=" . ?≠)
+                                         ("==" . ?≡)
+                                         ("<=" . ?≤)
+                                         (">=" . ?≥)
+                                         ("<=<" . ?↢)
+                                         (">=>" . ?↣)
+                                         ("&&" . ?∧)
+                                         ("||" . ?∨)
+                                         ("not" . ?¬)
+                                         ("alpha" . ?α)
+                                         ("beta" . ?β)
+                                         ("gamma" . ?γ)
+                                         ("delta" . ?Δ)
+                                         ("epsilon" . ?ε)
+                                         ("zeta" . ?ζ)
+                                         ("eta" . ?η)
+                                         ("theta" . ?θ)
+                                         ("micro" . ?μ)
+                                         ("pi" . ?π)
+                                         ("rho" . ?ρ)
+                                         ("sigma" . ?σ)
+                                         ("phi" . ?φ)
+                                         ("omega" . ?Ω)
+                                         ("sqrt" . ?√)
+                                         ("sum" . ?∑)
+                                         ("infinity" . ?∞)
+                                         ("Infinity" . ?∞)))
+  (setq prettify-symbols-unprettify-at-point 'right-edge)
   :hook (((text-mode
            org-mode)  . turn-on-pretty-mode)
          (after-init  . global-prettify-symbols-mode)
@@ -237,10 +273,6 @@
    '(:equality :ordering :ordering-double :ordering-triple
      :arrows :arrows-twoheaded :punctuation
      :logic :sets :arithmetic-double :arithmetic-triple)))
-
-(use-package ipretty
-  :defer t
-  :hook (after-init . ipretty-mode))
 
 ;; https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
 ;; This works when using emacs --daemon + emacsclient
