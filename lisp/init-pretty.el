@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -211,7 +211,6 @@
                                             ("+++"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe139))
                                             ("//"   . (?\s (Br . Bl) #Xe12f))
                                             ("///"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe130))
-                                            ("::"   . (?\s (Br . Bl) #Xe10a))  ;; 
                                             (":::"  . (?\s (Br . Bl) ?\s (Br . Bl) #Xe10b))
 
                                             ;; Arrows
