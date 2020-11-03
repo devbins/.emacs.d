@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -243,7 +243,6 @@
                                             ("?="  . (?\s (Br . Bl) #Xe127))
                                             (":="  . (?\s (Br . Bl) #Xe10c))
                                             ("/>"  . (?\s (Br . Bl) #Xe12e))
-                                            ("+"   . #Xe16d)
                                             ("(:"  . (?\s (Br . Bl) #Xe16c))))))
 
 
