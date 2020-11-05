@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 114
+;;     Update #: 115
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -112,7 +112,7 @@
   (evil-set-initial-state 'aweshell-mode 'emacs)
   (evil-set-initial-state 'org-capture-mode 'insert)
   (evil-set-initial-state 'calculator-mode 'emacs)
-
+  (evil-set-initial-state 'ros-process-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
