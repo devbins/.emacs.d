@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,9 @@
   :config
   (setq ros-workspaces '("~/catkin_ws"))
   (setq ros-default-workspace "~/catkin_ws"))
+
+(use-package helm-ros
+  :if (executable-find "roscore"))
 
 (provide 'init-ros)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
