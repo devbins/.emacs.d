@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -63,7 +63,7 @@
   ;; Default to Python 3. Prefer the versioned Python binaries since some
   ;; systems stupidly make the unversioned one point at Python 2.
   (when (and (executable-find "python3")
-             (string= python-shell-interpreter "python"))
+           (string= python-shell-interpreter "python"))
     (setq python-shell-interpreter "python3"))
 
   (evil-leader/set-key-for-mode 'python-mode
@@ -119,6 +119,15 @@
   (let ((name (file-relative-name (buffer-file-name))))
     (shell-command
      (format "pyuic5 %s -o %s.py" name (file-name-sans-extension name)))))
+
+(defun uic()
+  "use uic convert .ui file to .h"
+  (interactive)
+  (if (executable-find "uic")
+      (let ((name (file-relative-name (buffer-file-name))))
+        (shell-command
+         (format "uic %s -o %s.h" name (file-name-sans-extension name))))
+    (message "can not find uic")))
 
 (provide 'init-python)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
