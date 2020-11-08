@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,8 +50,12 @@
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
-         ("C-c C-p" . wdired-change-to-wdired-mode))
+         ("C-c C-p" . wdired-change-to-wdired-mode)
+         ("e" . wdired-change-to-wdired-mode))
   :config
+  (evil-define-key 'normal dired-mode-map
+    "gg" 'evil-goto-first-line
+    "G" 'evil-goto-line)
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always)
@@ -65,7 +69,7 @@
       (setq insert-directory-program "gls")))
 
   (when (or (and sys/macp (executable-find "gls"))
-            (and (not sys/macp) (executable-find "ls")))
+           (and (not sys/macp) (executable-find "ls")))
     ;; Using `insert-directory-program'
     (setq ls-lisp-use-insert-directory-program t)
 
