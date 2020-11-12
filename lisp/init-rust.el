@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,7 +56,17 @@
     :config
     ;; To render buttons correctly, keep it at the last
     (setq compilation-filter-hook
-          (append compilation-filter-hook '(cargo-process--add-errno-buttons)))))
+          (append compilation-filter-hook '(cargo-process--add-errno-buttons)))
+    (evil-leader/set-key-for-mode 'rust-mode
+      "mrr" 'cargo-process-run
+      "mrb" 'cargo-process-run-bin
+      "mre" 'cargo-process-run-example
+      "mrm" 'cargo-process-rm
+      "ma"  'cargo-process-add
+      "mi"  'cargo-process-init
+      "mn"  'cargo-process-new
+      "mb"  'cargo-process-build
+      "mf"  'cargo-process-fmt)))
 
 (use-package rust-playground)
 
