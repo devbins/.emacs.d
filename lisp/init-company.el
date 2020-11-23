@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 31
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,7 +113,7 @@
                 prefix))
           (progn
             (when (and (bound-and-true-p lsp-mode)
-                       arg (not (get-text-property 0 'yas-annotation-patch arg)))
+                     arg (not (get-text-property 0 'yas-annotation-patch arg)))
               (let* ((name (get-text-property 0 'yas-annotation arg))
                      (snip (format "%s (Snippet)" name))
                      (len (length arg)))
@@ -128,12 +128,11 @@
   ;; Icons and quickhelp
   (use-package company-box
     :diminish
+    :defines company-box-icons-all-the-icons
     :hook (company-mode . company-box-mode)
     :init (setq company-box-enable-icon (display-graphic-p)
                 company-box-backends-colors nil
                 company-box-highlight-prefix t
-                company-box-show-single-candidate t
-                company-box-max-candidates 50
                 company-box-doc-delay 0.5)
     :config
     (with-no-warnings
