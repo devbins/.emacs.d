@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 124
+;;     Update #: 125
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -220,6 +220,7 @@
 (if (fboundp 'display-line-numbers-mode)
     (use-package display-line-numbers
       :ensure nil
+      :config (setq display-line-numbers-type 'relative)
       :hook (prog-mode . display-line-numbers-mode))
   (use-package linum-off
     :demand
