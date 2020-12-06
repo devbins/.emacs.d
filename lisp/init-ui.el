@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 125
+;;     Update #: 129
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -345,12 +345,7 @@ If FRAME is nil, it defaults to the selected frame."
 ;;                                   :height (cond (sys/mac-x-p 130)
 ;;                                                 (sys/win32p 110)
 ;;                                                 (t 100))))
-
-;;   ;; Specify font for all unicode characters
-;;   (cl-loop for font in '("Symbola" "Apple Symbols" "Symbol" "icons-in-terminal")
-;;            when (font-installed-p font)
-;;            return (set-fontset-font t 'unicode font nil 'prepend))
-
+;;
 ;;   ;; Specify font for Chinese characters
 ;;   (cl-loop for font in '("WenQuanYi Micro Hei" "Microsoft Yahei")
 ;;            when (font-installed-p font)
@@ -368,7 +363,12 @@ If FRAME is nil, it defaults to the selected frame."
 (when (display-graphic-p)
   (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "DejaVu Sans Mono")
            when (font-installed-p font)
-           return (set-monospaced-font font "STKaiti" 15 18)))
+           return (set-monospaced-font font "STKaiti" 15 18))
+
+  ;; Specify font for all unicode characters
+  (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
+           when (font-installed-p font)
+           return (set-fontset-font t 'unicode font nil 'prepend)))
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
