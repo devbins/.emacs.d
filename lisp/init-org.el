@@ -258,7 +258,7 @@ prepended to the element after the #+HEADER: tag."
                                (js . t)
                                (css . t)
                                (sass . t)
-                               (C . t)
+                               (C . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
                                (java . t)
                                (dot . t)
                                (plantuml . t)))
