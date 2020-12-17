@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -76,7 +76,7 @@
         company-minimum-prefix-length 1
         company-require-match nil
         completion-ignore-case t
-        company-dabbrev-ignore-case nil
+        company-dabbrev-ignore-case t
         company-dabbrev-downcase nil
         company-global-modes '(not erc-mode message-mode help-mode gud-mode eshell-mode shell-mode)
         company-backends '((company-capf :with company-yasnippet)
@@ -181,7 +181,9 @@
               (Template . ,(all-the-icons-material "format_align_left" :height 0.85 :v-adjust -0.2)))
             company-box-icons-alist 'company-box-icons-all-the-icons)))
 
-  (use-package company-flx)
+  ;; let emacs slow down
+  (use-package company-fuzzy
+    :after company-mode)
 
   ;; Popup documentation for completion candidates
   (when (and (not emacs/>=26p) (display-graphic-p))
