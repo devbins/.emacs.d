@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 75
+;;     Update #: 83
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -214,8 +214,8 @@
     (defun my-pdf-view-use-scaling-p ()
       "Return t if scaling should be used."
       (and (or (and (eq system-type 'ns) (>= emacs-major-version 27))
-               (memq (pdf-view-image-type) '(imagemagick image-io)))
-           pdf-view-use-scaling))
+            (memq (pdf-view-image-type) '(imagemagick image-io)))
+         pdf-view-use-scaling))
     (advice-add #'pdf-view-use-scaling-p :override #'my-pdf-view-use-scaling-p)
 
     (defun my-pdf-view-create-page (page &optional window)
@@ -229,21 +229,21 @@
              (hotspots (pdf-view-apply-hotspot-functions
                         window page size)))
         (pdf-view-create-image data
-                               :width width
-                               :scale (if (pdf-view-use-scaling-p) 0.5 1)
-                               :map hotspots
-                               :pointer 'arrow)))
+          :width width
+          :scale (if (pdf-view-use-scaling-p) 0.5 1)
+          :map hotspots
+          :pointer 'arrow)))
     (advice-add #'pdf-view-create-page :override #'my-pdf-view-create-page)
 
     (defun my-pdf-util-frame-scale-factor ()
       "Return the frame scale factor depending on the image type used for display."
       (if (and pdf-view-use-scaling
-               (memq (pdf-view-image-type) '(imagemagick image-io))
-               (fboundp 'frame-monitor-attributes))
+             (memq (pdf-view-image-type) '(imagemagick image-io))
+             (fboundp 'frame-monitor-attributes))
           (or (cdr (assq 'backing-scale-factor (frame-monitor-attributes)))
-              (if (>= (pdf-util-frame-ppi) 180)
-                  2
-                1))
+             (if (>= (pdf-util-frame-ppi) 180)
+                 2
+               1))
         (if (and pdf-view-use-scaling (eq (framep-on-display) 'ns))
             2
           1)))
@@ -261,16 +261,16 @@
                (pdf-info-asynchronous
                 (lambda (status data)
                   (when (and (null status)
-                             (eq tick pdf-isearch--hl-matches-tick)
-                             (buffer-live-p buffer)
-                             (window-live-p window)
-                             (eq (window-buffer window)
-                                 buffer))
+                           (eq tick pdf-isearch--hl-matches-tick)
+                           (buffer-live-p buffer)
+                           (window-live-p window)
+                           (eq (window-buffer window)
+                               buffer))
                     (with-selected-window window
                       (when (and (derived-mode-p 'pdf-view-mode)
-                                 (or isearch-mode
-                                     occur-hack-p)
-                                 (eq page (pdf-view-current-page)))
+                               (or isearch-mode
+                                  occur-hack-p)
+                               (eq page (pdf-view-current-page)))
                         (pdf-view-display-image
                          (pdf-view-create-image data :width width))))))))
           (pdf-info-renderpage-text-regions
@@ -295,12 +295,12 @@
             (when highlight-p
               (pdf-view-display-image
                (pdf-view-create-image
-                (pdf-cache-renderpage-highlight
-                 page (car size)
-                 `("white" "steel blue" 0.35 ,@edges))
-                :map (pdf-view-apply-hotspot-functions
-                      window page size)
-                :width (car size))))
+                   (pdf-cache-renderpage-highlight
+                    page (car size)
+                    `("white" "steel blue" 0.35 ,@edges))
+                 :map (pdf-view-apply-hotspot-functions
+                       window page size)
+                 :width (car size))))
             (pdf-util-scroll-to-edges
              (pdf-util-scale-relative-to-pixel (car edges)))))))
     (advice-add #'pdf-annot-show-annotation :override #'my-pdf-annot-show-annotation))
@@ -340,6 +340,8 @@
 
   (evil-define-key 'normal pdf-view-mode-map
     ;; Navigation
+    "+"  'pdf-view-enlarge
+    "-"  'pdf-view-shrink
     "0"  'image-bol
     "$"  'image-eol
     "j"  'pdf-view-next-line-or-next-page
