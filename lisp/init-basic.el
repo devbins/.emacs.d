@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -160,8 +160,8 @@
 (when (display-graphic-p)
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil))
-(setq scroll-step 2
-      scroll-margin 2
+(setq scroll-step 1
+      scroll-margin 1
       scroll-conservatively 101
       scroll-up-aggressively 0.01
       scroll-down-aggressively 0.01
