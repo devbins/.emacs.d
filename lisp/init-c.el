@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,6 +65,14 @@
   (use-package cmake-mode
     :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
   (use-package company-c-headers :defer t)
+  (use-package clang-format
+    :commands (clang-format
+               clang-format-region
+               clang-format-buffer))
+
+  (use-package flycheck-clang-analyzer
+    :after flycheck
+    :config (flycheck-clang-analyzer-setup))
   :custom
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
