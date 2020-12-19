@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,6 +65,11 @@
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
   (package-initialize))
 
+;; set use-package-verbose to t for interpreted .emacs,
+;; and to nil for byte-compiled .emacs.elc.
+(eval-and-compile
+  (setq use-package-verbose (not (bound-and-true-p byte-compile-current-file))))
+
 ;; Setup `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -75,6 +80,7 @@
   (setq use-package-always-ensure t)
   (setq use-package-always-defer t)
   (setq use-package-expand-minimally t)
+  (setq use-package-compute-statistics t)
   (setq use-package-enable-imenu-support t))
 
 
@@ -92,8 +98,11 @@
 (use-package auto-package-update
   :init
   (setq auto-package-update-delete-old-versions t
+        auto-package-update-prompt-befor-update t
+        auto-package-update-interval 7
         auto-package-update-hide-results t)
-  (defalias 'upgrade-packages #'auto-package-update-now))
+  :config
+  (auto-package-update-maybe))
 
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
