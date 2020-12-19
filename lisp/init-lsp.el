@@ -79,6 +79,10 @@
         lsp-modeline-code-actions-enable nil
 
         lsp-enable-file-watchers nil
+        lsp-log-io nil
+        lsp-eldoc-render-all nil
+        lsp-completion-provider t
+        lsp-signature-render-documentation nil
         lsp-enable-folding nil
         lsp-enable-semantic-highlighting nil
         lsp-enable-symbol-highlighting nil
