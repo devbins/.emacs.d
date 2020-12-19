@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 117
+;;     Update #: 132
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,30 +47,25 @@
 ;;; Code:
 
 (use-package evil
-  :preface
-  (setq evil-want-visual-char-semi-exclusive t
-        evil-magic t
+  :hook (after-init . evil-mode)
+  :config
+  (setq evil-magic 'very-magic
+        evil-want-visual-char-semi-exclusive t
         evil-echo-state t
         evil-indent-convert-tabs t
         evil-ex-search-vim-style-regexp t
         evil-ex-substitute-global t
         evil-ex-visual-char-range t  ; column range for ex commands
         evil-insert-skip-empty-lines t
-        evil-mode-line-format 'nil
+        evil-mode-line-format nil
         evil-respect-visual-line-mode t
-        ;; more vim-like behavior
         evil-symbol-word-search t
-        ;; cursor appearance
-        ;; evil-default-cursor '((face-background 'mode-line) . (face-background 'mode-line))
-        ;; evil-normal-state-cursor '(box '((face-foreground 'mode-line) . (face-foreground 'mode-line)))
-        ;; evil-emacs-state-cursor  '(box '(face-foreground 'mode-line))
-        ;; evil-insert-state-cursor 'bar
-        evil-visual-state-cursor 'hollow)
-  :hook (after-init . evil-mode)
-  :config
-  (setq evil-magic 'very-magic)
-  (setq evil-want-fine-undo t)
-  (setq evil-want-change-word-to-end t)
+        evil-visual-state-cursor 'hollow
+        evil-auto-indent t
+        evil-ex-complete-emacs-commands t
+        evil-want-fine-undo t
+        evil-want-fine-undo t
+        evil-want-change-word-to-end t)
   (evil-set-initial-state 'flycheck-error-list-mode 'normal)
   (evil-set-initial-state 'git-commit-mode 'insert)
   (evil-set-initial-state 'git-rebase-mode 'normal)
@@ -127,11 +122,15 @@
 
   (define-key evil-normal-state-map [escape]           'keyboard-quit)
   (define-key evil-visual-state-map [escape]           'keyboard-quit)
+  (define-key evil-emacs-state-map  [escape]           'evil-normal-state)
+  (define-key evil-motion-state-map [escape]           'evil-normal-state)
+  (define-key evil-operator-state-map [escape]         'evil-normal-state)
   (define-key minibuffer-local-map [escape]            'minibuffer-keyboard-quit)
   (define-key minibuffer-local-ns-map [escape]         'minibuffer-keyboard-quit)
   (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-isearch-map [escape]    'minibuffer-keyboard-quit)
+  (define-key evil-normal-state-map "U" #'undo-tree-visualize)
   (global-set-key [escape]                             'evil-exit-emacs-state)
 
   (evil-define-key 'normal help-mode-map
@@ -318,6 +317,10 @@
   (evil-define-key 'visual global-map "S"   'evil-surround-region)
   (evil-define-key 'visual global-map "gS"  'evil-Surround-region)
   :hook (after-init . global-evil-surround-mode))
+
+;; evil NERD commenter, commenting awesomeness!
+(use-package evil-nerd-commenter
+  :init (global-set-key (kbd "M-;") #'evilnc-comment-or-uncomment-lines))
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
