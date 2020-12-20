@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,8 +71,9 @@
                clang-format-buffer))
 
   (use-package flycheck-clang-analyzer
-    :after flycheck
+    :after flycheck cc-mode
     :config (flycheck-clang-analyzer-setup))
+
   :custom
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
