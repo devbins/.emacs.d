@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 284
+;;     Update #: 296
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -610,7 +610,7 @@ prepended to the element after the #+HEADER: tag."
     :commands (org-journal-new-entry org-journal-search-forever)
     :config
     (setq org-journal-dir "~/.org/journal/"
-          org-journal-file-format "%Y-%m"
+          org-journal-file-format "%Y-%m.org"
           org-journal-file-type 'monthly
           org-journal-date-format "%Y %B %d, %A"
           org-journal-start-on-weekday 'Sunday
