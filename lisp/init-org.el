@@ -697,11 +697,11 @@ same directory as the org-buffer and insert a link to this file."
          (("C-c n i" . org-roam-insert)))
   :config
   (setq org-roam-capture-templates
-        '("d" "default" plain (function org-roam-capture--get-point)
-          "%?"
-          :file-name "${slug}"
-          :head "#+title: ${title}\n#+roam_alias: \n#+roam_tags: \n"
-          :unnarrowed t))
+        '(("d" "default" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "%<%Y%m%d>-${slug}"
+           :head "#+title: ${title}\n#+roam_alias: \n#+roam_tags: \n"
+           :unnarrowed t)))
   (add-to-list 'org-roam-capture-ref-templates
                '("a" "Annotation" plain (function org-roam-capture--get-point)
                  "%U ${body}\n"
