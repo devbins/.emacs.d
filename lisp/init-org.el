@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 296
+;;     Update #: 297
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -696,6 +696,7 @@ same directory as the org-buffer and insert a link to this file."
          :map org-mode-map
          (("C-c n i" . org-roam-insert)))
   :config
+  (add-to-list 'org-modules 'org-roam-protocol)
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
            "%?"
