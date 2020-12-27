@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 132
+;;     Update #: 133
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -66,6 +66,7 @@
         evil-want-fine-undo t
         evil-want-fine-undo t
         evil-want-change-word-to-end t)
+  (evil-set-undo-system 'undo-tree)
   (evil-set-initial-state 'flycheck-error-list-mode 'normal)
   (evil-set-initial-state 'git-commit-mode 'insert)
   (evil-set-initial-state 'git-rebase-mode 'normal)
