@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 83
+;;     Update #: 86
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,6 +50,8 @@
   :diminish
   :bind (:map help-map ("C-h" . which-key-C-h-dispatch))
   :hook (after-init . which-key-mode)
+  :init (setq which-key-show-remaining-keys t
+              which-key-max-description-length 30)
   :config
   (which-key-add-key-based-replacements
     "SPC a" "application"
@@ -57,7 +59,7 @@
     "SPC a t" "command log"
     "SPC a y" "ein"
     "SPC b" "buffer"
-    "SPC f" "File"
+    "SPC f" "file"
     "SPC g" "magit"
     "SPC h" "describe"
     "SPC n" "narrow"
@@ -68,7 +70,7 @@
     "SPC w" "window"
     "SPC x" "up/downcase"
     "SPC y" "youdao"
-    "SPC F" "Frame"
+    "SPC F" "frame"
     "SPC P" "password"))
 
 ;; Youdao Dictionary
