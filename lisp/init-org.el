@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 306
+;;     Update #: 307
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -261,6 +261,7 @@ prepended to the element after the #+HEADER: tag."
                                (C . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
                                (java . t)
                                (dot . t)
+                               (gnupolt . t)
                                (plantuml . t)))
 
   ;; ob-sh renamed to ob-shell since 26.1.
