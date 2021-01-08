@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 307
+;;     Update #: 314
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -261,7 +261,6 @@ prepended to the element after the #+HEADER: tag."
                                (C . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
                                (java . t)
                                (dot . t)
-                               (gnupolt . t)
                                (plantuml . t)))
 
   ;; ob-sh renamed to ob-shell since 26.1.
@@ -295,6 +294,9 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package ob-kotlin
     :init (cl-pushnew '(kotlin . t) load-language-list))
+
+  (use-package gnuplot
+    :init (cl-pushnew '(gnuplot . t) load-language-list))
 
   ;; Rich text clipboard
   (use-package org-rich-yank
