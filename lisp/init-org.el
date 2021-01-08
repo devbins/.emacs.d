@@ -324,6 +324,24 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-preview-html
     :diminish)
 
+  (use-package ox-reveal
+    :hook (org-mode . (lambda() (require 'ox-reveal)))
+    :config
+    (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"
+          org-reveal-theme "black"
+          org-reveal-width 1200
+          org-reveal-height 1000
+          org-reveal-margin "0.1"
+          org-reveal-min-scale "0.5"
+          org-reveal-max-scale "2.5"
+          org-reveal-transition "cube"
+          org-reveal-plugins '(classList markdown zoom notes)
+          org-reveal-control t
+          org-reveal-center t
+          org-reveal-progress t
+          org-reveal-mathjax t
+          org-reveal-history nil))
+
   ;; Presentation
   (use-package org-tree-slide
     :diminish
