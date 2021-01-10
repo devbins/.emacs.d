@@ -120,6 +120,17 @@
    #+begin_src sh
    sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
    #+end_src
+** native-comp 支持
+*** Mac
+    #+begin_src sh
+    brew reinstall gcc libgccgit
+    brew install emacs-plus@28 --with-ctags --with-dbus --with-mailutils --with-no-frame-refocus --with-xwidgets --with-no-titlebar --with-native-comp
+    #+end_src
+    如果启动直接报错，需要使用 =emacs -Q= 打开，让后通过 =load-library= 把配置文件加载进来，等待编译完成，就可以使用了。
+*** ArchLinux
+    #+begin_src sh
+    sudo pacman -S emacs-native-comp
+    #+end_src
 ** FAQ
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
