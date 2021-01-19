@@ -158,7 +158,7 @@ prepended to the element after the #+HEADER: tag."
               ;; #+CAPTION: 设定图片宽度为100
               ;; #+ATTR_HTML: :width 100
               ;; file:data/2013/pict/test.png
-              org-image-actual-width (/ (display-pixel-width) 3)
+              ;; org-image-actual-width (/ (display-pixel-width) 3)
               org-startup-with-inline-images t
 
               org-hide-emphasis-markers t
