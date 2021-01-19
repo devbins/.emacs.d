@@ -141,6 +141,7 @@ prepended to the element after the #+HEADER: tag."
               org-outline-path-complete-in-steps nil
               org-tags-column -80
               org-log-done 'notevery
+              org-html-checkbox-type 'unicode
 
               org-log-into-drawer t
               org-drawers (quote ("PROPERTIES" "LOGBOOK"))
