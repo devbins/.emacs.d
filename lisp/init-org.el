@@ -293,7 +293,13 @@ prepended to the element after the #+HEADER: tag."
   ;; Async src_block execution
   ;; usage: begin_src sh :async
   (use-package ob-async
-    :init (cl-pushnew '(async . t) load-language-list))
+    :init (cl-pushnew '(async . t) load-language-list)
+    :config (setq ob-async-no-async-languages-alist
+                  '("ipython"
+                    "jupyter-python"
+                    "jupyter-julia"
+                    "jupyter-R"
+                    "jupyter-javascript")))
 
 
   (use-package ob-kotlin
