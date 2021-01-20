@@ -165,6 +165,9 @@ prepended to the element after the #+HEADER: tag."
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
               org-export-with-broken-links                  'mark
               org-export-with-sub-superscripts              '{}
+              org-export-use-babel nil ; do not evaluate again during export.
+              org-export-with-toc nil
+              org-export-with-section-numbers nil
               org-use-sub-superscripts                      '{}
 
               org-catch-invisible-edits 'smart
