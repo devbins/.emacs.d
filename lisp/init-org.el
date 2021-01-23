@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 314
+;;     Update #: 346
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -197,7 +197,13 @@ prepended to the element after the #+HEADER: tag."
                                     ("FLAGGED" . ??))))
   :config
   (add-to-list 'org-modules 'org-protocol)
-
+  (set-face-attribute 'org-level-1 nil :height 2.2 :bold t)
+  (set-face-attribute 'org-level-2 nil :height 1.8 :bold t)
+  (set-face-attribute 'org-level-3 nil :height 1.4 :bold t)
+  (set-face-attribute 'org-level-4 nil :height 1.2 :bold t)
+  (set-face-attribute 'org-level-5 nil :height 1.2 :bold t)
+  (set-face-attribute 'org-level-6 nil :height 1.2 :bold t)
+  (set-face-attribute 'org-level-7 nil :height 1.2 :bold t)
   ;; Use embedded webkit browser if possible
   (when (featurep 'xwidget-internal)
     (push '("\\.\\(x?html?\\|pdf\\)\\'"
