@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 129
+;;     Update #: 143
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -385,6 +385,9 @@ If FRAME is nil, it defaults to the selected frame."
 ;; fix chinese & english can't sync scale
 (use-package default-text-scale
   :hook (after-init . default-text-scale-mode))
+
+(use-package mixed-pitch
+  :diminish)
 
 (use-package zone
   :ensure nil
