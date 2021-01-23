@@ -308,6 +308,12 @@ prepended to the element after the #+HEADER: tag."
   (use-package gnuplot
     :init (cl-pushnew '(gnuplot . t) load-language-list))
 
+  (use-package mermaid-mode
+    :if (executable-find "mmdc"))
+  (use-package ob-mermaid
+    :if (executable-find "mmdc"))
+
+
   ;; Rich text clipboard
   (use-package org-rich-yank
     :bind (:map org-mode-map
