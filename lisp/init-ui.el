@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 149
+;;     Update #: 165
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -333,18 +333,14 @@ If FRAME is nil, it defaults to the selected frame."
       (set-frame-parameter frame 'alpha
                            (cons decreased-alpha decreased-alpha)))))
 
-
 ;; Fonts
 (when (display-graphic-p)
   ;; Set default font
   (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
                       "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
-           return (set-face-attribute 'default nil
-                                  :font font
-                                  :height (cond (sys/mac-x-p 150)
-                                                (sys/win32p 110)
-                                                (t 100))))
+           return (set-face-attribute 'default nil :font
+                                  (format "%s:pixelsize=%d" font 18)))
 
   ;; Specify font for all unicode characters
   (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
@@ -358,8 +354,9 @@ If FRAME is nil, it defaults to the selected frame."
   ;; Specify font for Chinese characters
   (cl-loop for font in '("STKaiti" "WenQuanYi Micro Hei" "Microsoft Yahei")
            when (font-installed-p font)
-           return (set-fontset-font t '(#x4e00 . #x9fff) font)))
-
+           return (dolist (charset '(kana han symbol cjk-misc bopomofo))
+                (set-fontset-font (frame-parameter nil 'font) charset
+                                  (font-spec :family font)))))
 
 ;; (defun set-monospaced-font (english chinese english-size chinese-size)
 ;;   "Set MonoSpaceed font to adjust org mode table"
