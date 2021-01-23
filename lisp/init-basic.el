@@ -101,6 +101,8 @@
 (setq locale-coding-system 'utf-8
       default-process-coding-system '(utf-8 . utf-8))
 
+;; 时间戳使用英文星期
+(setq system-time-locale "C")
 ;; Start server
 (use-package server
   :ensure nil
