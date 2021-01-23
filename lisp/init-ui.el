@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 143
+;;     Update #: 149
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -381,6 +381,11 @@ If FRAME is nil, it defaults to the selected frame."
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Display dividers between windows
+(setq window-divider-default-places 'right-only
+      window-divider-default-right-width 1)
+(add-hook 'window-setup-hook #'window-divider-mode)
 
 ;; fix chinese & english can't sync scale
 (use-package default-text-scale
