@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,7 +95,7 @@
         (while (setq pos (next-single-property-change (point) 'duration))
           (goto-char pos)
           (when (and (not (equal pos (point-at-eol)))
-                     (setq duration (org-get-at-bol 'duration)))
+                   (setq duration (org-get-at-bol 'duration)))
             ;; larger duration bar height
             (let ((line-height (if (< duration 15) 1.0 (+ 0.5 (/ duration 30))))
                   (ov (make-overlay (point-at-bol) (1+ (point-at-eol)))))
@@ -131,6 +131,7 @@
         org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
         org-agenda-files (list org-agenda-dir)
 
+        org-agenda-time-leading-zero t
         org-agenda-include-diary t
         org-agenda-show-log t
         org-agenda-log-mode-items '(clock)
