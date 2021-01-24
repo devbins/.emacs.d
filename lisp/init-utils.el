@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 86
+;;     Update #: 87
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -532,6 +532,10 @@
 (use-package eaf
   :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
   :if sys/linuxp
+  :init
+  (use-package epc :defer t)
+  (use-package ctable :defer t)
+  (use-package deferred :defer t)
   :commands (eaf-open-browser eaf-open)
   :preface
   (defun eaf-proxy-enable ()
