@@ -3,7 +3,7 @@
 # key: plantuml
 # --
 
-#+begin_src plantuml :file $1.png :cmdline -charset utf-8
+#+begin_src plantuml :file $1.png :cmdline -charset utf-8 :async
 @startuml
 $2
 @enduml
