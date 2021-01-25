@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: mermaid
+# key: mermaid
+# --
+
+#+begin_src mermaid :file $1.png :async
+sequenceDiagram
+    $0
+#+end_src
