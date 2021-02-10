@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,14 +82,6 @@
            :map magit-todos-item-section-map
            ("j" . nil))
     :hook (magit-status-mode . magit-todos-mode))
-
-  ;; evil magit
-  (use-package evil-magit
-    :defer t
-    :after magit
-    :init
-    (setq evil-magit-state 'normal)
-    :hook (magit-mode . evil-magit-init))
 
   ;; Git Flow
   (use-package magit-gitflow
