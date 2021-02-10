@@ -50,3 +50,5 @@
 /netease-cloud-music/
 /.org-id-locations
 /org-roam.db
+/el-get/
+/eln-cache/
