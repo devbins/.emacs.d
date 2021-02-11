@@ -34,3 +34,6 @@
 [submodule "site-lisp/english-teacher"]
 	path = site-lisp/english-teacher
 	url = https://github.com/loyalpartner/english-teacher.el.git
+[submodule "site-lisp/evil-magit"]
+	path = site-lisp/evil-magit
+	url = https://github.com/emacs-evil/evil-magit.git
