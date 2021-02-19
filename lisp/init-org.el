@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 348
+;;     Update #: 357
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -780,6 +780,7 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; https://gitlab.com/phillord/org-drill
 (use-package org-drill)
+(use-package org-board)
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
