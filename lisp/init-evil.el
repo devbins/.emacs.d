@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 133
+;;     Update #: 135
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -169,6 +169,7 @@
     "aoc" 'org-capture
     "aot" 'org-todo-list
     "am"  'wl
+    "am"  'netease-cloud-music
     "aojj" 'org-journal-new-entry
     "aojs" 'org-journal-search-forever
     "aojt" 'org-journal-new-scheduled-entry
