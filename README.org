@@ -73,9 +73,15 @@
     | SPC m r b | 切换到 Org roam buffer | =org-roam-switch-to-buffer= |
 ** lsp
 *** C/C++
-    #+begin_src sh
-    sudo pacman -S ccls
-    #+end_src
+**** 安装
+     #+begin_src sh
+     sudo pacman -S ccls
+     #+end_src
+**** debug
+     #+begin_src sh
+     sudo pacman -S node unzip gdb lldb
+     #+end_src
+     =M-x dap-gdb-lldb-setup=
 *** Go
     #+begin_src sh
     go get golang.org/x/tools/gopls@latest
