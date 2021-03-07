@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 48
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -241,7 +241,29 @@
   :defines projectile-project-root-files-top-down-recurring
   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
   :config
+  (setq ccls-sem-highlight-method 'font-lock)
+  (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
+  (ccls-use-default-rainbow-sem-highlight)
+  ;; https://github.com/maskray/ccls/blob/master/src/config.h
+  (setq ccls-initialization-options
+        `(:clang
+          (:excludeArgs
+           ;; Linux's gcc options. See ccls/wiki
+           ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
+            "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
+            "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
+           :extraArgs []
+           :pathMappings [])
+          :completion
+          (:include
+           (:blacklist
+            ["^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
+             "^/usr/(local/)?include/c\\+\\+/v1/"
+             ]))
+          :index (:initialBlacklist [] :parametersInDeclarations :json-false :trackDependency 1)))
   (with-eval-after-load 'projectile
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+    (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
     (setq projectile-project-root-files-top-down-recurring
           (append '("compile_commands.json"
                     ".ccls")
