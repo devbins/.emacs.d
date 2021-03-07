@@ -185,6 +185,16 @@
     "bt"  'imenu-list-smart-toggle
     "bs"  'switch-to-scratch-buffer
 
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "."  'evilnc-copy-and-comment-operator
+    "\\" 'evilnc-comment-operator ; if you prefer backslash key
+
     "ff"  'counsel-find-file
     "fj"  'dired-jump
     "fCd" 'unix2dos
@@ -322,7 +332,7 @@
 
 ;; evil NERD commenter, commenting awesomeness!
 (use-package evil-nerd-commenter
-  :init (global-set-key (kbd "M-;") #'evilnc-comment-or-uncomment-lines))
+  :config (evilnc-default-hotkeys))
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
