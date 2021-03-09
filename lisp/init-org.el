@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 357
+;;     Update #: 360
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -764,9 +764,6 @@ same directory as the org-buffer and insert a link to this file."
     "mrf" 'org-roam-find-file
     "mri" 'org-roam-insert
     "mrg" 'org-roam-graph)
-  (use-package company-org-roam
-    :config
-    (push 'company-org-roam company-backends))
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
