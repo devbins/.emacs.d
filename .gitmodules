@@ -16,18 +16,6 @@
 [submodule "aweshell"]
 	path = site-lisp/aweshell
 	url = https://github.com/manateelazycat/aweshell.git
-[submodule "company-english-helper"]
-	path = site-lisp/company-english-helper
-	url = https://github.com/manateelazycat/company-english-helper.git
-[submodule "insert-translated-name"]
-	path = site-lisp/insert-translated-name
-	url = https://github.com/manateelazycat/insert-translated-name.git
-[submodule "emacs-application-framework"]
-	path = site-lisp/emacs-application-framework
-	url = https://github.com/manateelazycat/emacs-application-framework.git
-[submodule "valign"]
-	path = site-lisp/valign
-	url = https://github.com/casouri/valign.git
 [submodule "netease-cloud-music"]
 	path = site-lisp/netease-cloud-music
 	url = https://github.com/SpringHan/netease-cloud-music.el.git

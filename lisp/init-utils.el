@@ -107,7 +107,7 @@
       ("?" nil nil))))
 
 (use-package english-teacher
-  :load-path (lambda () (expand-file-name "site-lisp/english-teacher" user-emacs-directory))
+  :quelpa (english-teacher :fetcher github :repo "loyalpartner/english-teacher.el")
   :custom
   (english-teacher-backend 'baidu)
   (english-teacher-show-result-function 'english-teacher-eldoc-show-result-function)
