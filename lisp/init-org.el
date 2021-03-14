@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 360
+;;     Update #: 361
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -251,7 +251,7 @@ prepended to the element after the #+HEADER: tag."
                   '("HIGH" "MEDIUM" "LOW" "OPTIONAL"))))
 
   (use-package valign
-    :load-path (lambda () (expand-file-name "site-lisp/align" user-emacs-directory))
+    :quelpa (valign :fetcher github :repo "casouri/valign")
     :hook (org-mode . valign-mode))
 
   ;; Babel
