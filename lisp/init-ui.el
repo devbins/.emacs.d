@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 166
+;;     Update #: 169
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -357,24 +357,6 @@ If FRAME is nil, it defaults to the selected frame."
            return (dolist (charset '(kana han symbol cjk-misc bopomofo))
                 (set-fontset-font (frame-parameter nil 'font) charset
                                   (font-spec :family font)))))
-
-;; (defun set-monospaced-font (english chinese english-size chinese-size)
-;;   "Set MonoSpaceed font to adjust org mode table"
-;;   (set-face-attribute 'default nil :font
-;;                       (format   "%s:pixelsize=%d"  english english-size))
-;;   (dolist (charset '(kana han cjk-misc bopomofo))
-;;     (set-fontset-font (frame-parameter nil 'font) charset
-;;                       (font-spec :family chinese :size chinese-size))))
-
-;; (when (display-graphic-p)
-;;   (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "DejaVu Sans Mono")
-;;            when (font-installed-p font)
-;;            return (set-monospaced-font font "STKaiti" 15 18))
-
-;;   ;; Specify font for all unicode characters
-;;   (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
-;;            when (font-installed-p font)
-;;            return (set-fontset-font t 'unicode font nil 'prepend)))
 
 (add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
