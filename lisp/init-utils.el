@@ -477,9 +477,9 @@
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
 
 (use-package netease-cloud-music
+  :quelpa (netease-cloud-music :fetcher github :repo "SpringHan/netease-cloud-music.el")
   :defer t
-  :commands (netease-cloud-music)
-  :load-path (lambda () (expand-file-name "site-lisp/netease-cloud-music/" user-emacs-directory)))
+  :commands (netease-cloud-music))
 
 ;; IRC
 (use-package erc
