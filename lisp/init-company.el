@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 42
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -239,7 +239,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     '(go-mode)))
 
 (use-package company-english-helper
-  :load-path (lambda () (expand-file-name "site-lisp/company-english-helper" user-emacs-directory))
+  :quelpa (company-english-helper :fetcher github :repo "manateelazycat/company-english-helper")
   :after company
   :commands (toggle-company-english-helper)
   :bind ("C-c t e" . 'toggle-company-english-helper))
