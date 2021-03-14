@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -129,7 +129,7 @@
                          (lambda () (term shell-pop-term-shell)))))))
 
 (use-package aweshell
-  :load-path (lambda () (expand-file-name "site-lisp/aweshell" user-emacs-directory))
+  :quelpa (aweshell :fetcher github :repo "manateelazycat/aweshell")
   :commands (aweshell-new aweshell-dedicated-open)
   :bind
   (("M-#" . aweshell-dedicated-open)
