@@ -230,7 +230,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
 
 (use-package insert-translated-name
-  :load-path (lambda () (expand-file-name "site-lisp/insert-translated-name" user-emacs-directory))
+  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name")
   :bind ("C-c t t" . 'insert-translated-name-insert)
   :commands (insert-translated-name-insert)
   :init (setq insert-translated-name-translate-engine 'youdao)
