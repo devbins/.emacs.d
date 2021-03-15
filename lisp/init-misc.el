@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,8 +62,8 @@
 
 ;; Header2Pac
 (use-package header2
+  :quelpa (header2 :fetcher github :repo "emacsmirror/header2")
   :hook (emacs-lisp-mode . auto-make-header)
-  :load-path (lambda () (expand-file-name "site-lisp/header2" user-emacs-directory))
   :custom
   (header-copyright-notice (concat "Copyright (C) 2019 " (user-full-name) "\n"))
   :config
