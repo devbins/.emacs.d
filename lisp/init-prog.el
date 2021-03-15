@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 58
+;;     Update #: 60
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -121,7 +121,7 @@
 
 (use-package helm-dash
   :config
-  (setq helm-dash-browser-func 'eww))
+  (setq helm-dash-browser-func 'w3m))
 
 (use-package gdb-mi
   :init
