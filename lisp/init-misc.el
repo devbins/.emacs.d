@@ -49,7 +49,7 @@
 (use-package aria2
   :defer t
   :commands aria2-downloads-list
-  :load-path (lambda () (expand-file-name "site-lisp/aria2" user-emacs-directory))
+  :quelpa (aria2 :fetcher github :repo "LdBeth/aria2.el")
   :config
   (setq aria2-download-directory (expand-file-name "~/Downloads"))
   (evil-define-key 'normal aria2-mode-map
