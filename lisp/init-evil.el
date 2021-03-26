@@ -202,6 +202,7 @@
     "fCu" 'dos2unix
     "fE"  'sudo-edit
     "fd"  'delete-this-file
+    "fl"  'format-all-buffer
     "ft"  'treemacs
     "fo"  'open-file-or-directory-in-external-app
     "fr"  'counsel-recentf
