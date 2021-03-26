@@ -174,7 +174,7 @@ If all failed, try to complete the common part with `company-complete-common'"
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (after-init . yas-global-mode)
+  :hook ((prog-mode org-mode) . yas-global-mode)
   :config (use-package yasnippet-snippets))
 
 (use-package company-tabnine
