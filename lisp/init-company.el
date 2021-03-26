@@ -163,10 +163,6 @@ If all failed, try to complete the common part with `company-complete-common'"
               (Template . ,(all-the-icons-material "format_align_left" :height 0.85 :v-adjust -0.2)))
             company-box-icons-alist 'company-box-icons-all-the-icons)))
 
-  ;; let emacs slow down
-  (use-package company-fuzzy
-    :after company-mode)
-
   ;; Popup documentation for completion candidates
   (when (and (not emacs/>=26p) (display-graphic-p))
     (use-package company-quickhelp
