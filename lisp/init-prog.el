@@ -100,22 +100,6 @@
 (unless (fboundp 'conf-toml-mode)
   (use-package toml-mode))
 
-;; Batch Mode eXtras
-(use-package bmx-mode
-  :after company
-  :diminish
-  :hook (after-init . bmx-mode-setup-defaults))
-
-;; Fish shell
-(use-package fish-mode
-  :hook (fish-mode . (lambda ()
-                       (add-hook 'before-save-hook
-                                 #'fish_indent-before-save))))
-
-(use-package unicad
-  :commands (unicad-enable unicad-disable)
-  :load-path (lambda ()(expand-file-name "site-lisp/unicad/" user-emacs-directory)))
-
 (use-package format-all)
 
 (use-package helm-dash
