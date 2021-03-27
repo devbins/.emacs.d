@@ -86,8 +86,7 @@
 (use-package julia-mode)
 (use-package lua-mode)
 (use-package plantuml-mode
-  :init (setq org-plantuml-jar-path (concat user-emacs-directory"plantuml.jar")))
-(use-package powershell)
+  :init (setq org-plantuml-jar-path (concat user-emacs-directory "plantuml.jar")))
 (use-package rmsbolt)                   ; A compiler output viewer
 (use-package scala-mode)
 (use-package swift-mode)
