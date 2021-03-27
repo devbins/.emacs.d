@@ -118,17 +118,6 @@
 (use-package realgud)
 (use-package realgud-lldb)
 
-(use-package quickrun
-  :bind
-  (("<f5>" . quickrun)
-   ("M-<f5>" . quickrun-shell)))
-
-(use-package separedit
-  :bind (:map prog-mode-map ("C-c '" . separedit))
-  :init
-  (setq separedit-default-mode 'org-mode
-        separedit-remove-trailing-spaces-in-comment t))
-
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-prog.el ends here
