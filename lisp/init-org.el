@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 361
+;;     Update #: 362
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -251,7 +251,7 @@ prepended to the element after the #+HEADER: tag."
                   '("HIGH" "MEDIUM" "LOW" "OPTIONAL"))))
 
   (use-package valign
-    :quelpa (valign :fetcher github :repo "casouri/valign")
+    :straight (valign :host github :repo "casouri/valign")
     :hook (org-mode . valign-mode))
 
   ;; Babel

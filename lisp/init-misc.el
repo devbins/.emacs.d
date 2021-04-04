@@ -49,7 +49,7 @@
 (use-package aria2
   :defer t
   :commands aria2-downloads-list
-  :quelpa (aria2 :fetcher github :repo "LdBeth/aria2.el")
+  :straight (aria2 :host github :repo "LdBeth/aria2.el")
   :config
   (setq aria2-download-directory (expand-file-name "~/Downloads"))
   (evil-define-key 'normal aria2-mode-map
@@ -62,7 +62,7 @@
 
 ;; Header2Pac
 (use-package header2
-  :quelpa (header2 :fetcher github :repo "emacsmirror/header2")
+  :straight (header2 :host github :repo "emacsmirror/header2")
   :hook (emacs-lisp-mode . auto-make-header)
   :custom
   (header-copyright-notice (concat "Copyright (C) 2019 " (user-full-name) "\n"))

@@ -226,7 +226,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
 
 (use-package insert-translated-name
-  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name")
+  :straight (insert-translated-name :host github :repo "manateelazycat/insert-translated-name")
   :bind ("C-c t t" . 'insert-translated-name-insert)
   :commands (insert-translated-name-insert)
   :init (setq insert-translated-name-translate-engine 'youdao)
@@ -235,7 +235,7 @@ candidates will be from company-tabnine, others keeping their own origin order."
     '(go-mode)))
 
 (use-package company-english-helper
-  :quelpa (company-english-helper :fetcher github :repo "manateelazycat/company-english-helper")
+  :straight (company-english-helper :host github :repo "manateelazycat/company-english-helper")
   :after company
   :commands (toggle-company-english-helper)
   :bind ("C-c t e" . 'toggle-company-english-helper))

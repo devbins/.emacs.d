@@ -129,7 +129,7 @@
                          (lambda () (term shell-pop-term-shell)))))))
 
 (use-package aweshell
-  :quelpa (aweshell :fetcher github :repo "manateelazycat/aweshell")
+  :straight (aweshell :host github :repo "manateelazycat/aweshell")
   :commands (aweshell-new aweshell-dedicated-open)
   :bind
   (("M-#" . aweshell-dedicated-open)

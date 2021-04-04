@@ -107,7 +107,7 @@
       ("?" nil nil))))
 
 (use-package english-teacher
-  :quelpa (english-teacher :fetcher github :repo "loyalpartner/english-teacher.el")
+  :straight (english-teacher :host github :repo "loyalpartner/english-teacher.el")
   :custom
   (english-teacher-backend 'baidu)
   (english-teacher-show-result-function 'english-teacher-eldoc-show-result-function)
@@ -477,7 +477,7 @@
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
 
 (use-package netease-cloud-music
-  :quelpa (netease-cloud-music :fetcher github :repo "SpringHan/netease-cloud-music.el")
+  :straight (netease-cloud-music :host github :repo "SpringHan/netease-cloud-music.el")
   :defer t
   :commands (netease-cloud-music))
 
