@@ -118,7 +118,7 @@
 ;; Show native line numbers if possible, otherwise use `linum'
 (if (fboundp 'display-line-numbers-mode)
     (use-package display-line-numbers
-      :ensure nil
+      :straight (:type built-in)
       :config (setq display-line-numbers-type 'relative)
       :hook (prog-mode . display-line-numbers-mode))
   (use-package linum-off
@@ -273,7 +273,7 @@ If FRAME is nil, it defaults to the selected frame."
   :diminish)
 
 (use-package zone
-  :ensure nil
+  :straight (:type built-in)
   :defer 5
   :config
   (zone-when-idle 600) ; in seconds

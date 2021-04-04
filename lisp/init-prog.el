@@ -93,7 +93,7 @@
 (use-package vimrc-mode)
 
 (use-package nxml-mode
-  :ensure nil
+  :straight (:type built-in)
   :mode (("\\.xaml$" . xml-mode)))
 
 ;; New `conf-toml-mode' in Emacs 26

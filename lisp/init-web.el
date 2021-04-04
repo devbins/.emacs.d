@@ -47,7 +47,7 @@
 ;;; Code:
 
 (use-package css-mode
-  :ensure nil
+  :straight (:type built-in)
   :init (setq css-indent-offset 2))
 
 ;; SCSS mode

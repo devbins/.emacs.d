@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,7 +48,7 @@
 
 ;; Directory operations
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :bind (:map dired-mode-map
          ("C-c C-p" . wdired-change-to-wdired-mode)
          ("e" . wdired-change-to-wdired-mode))
@@ -142,9 +142,9 @@
   (use-package dired-ranger)
 
   ;; Extra Dired functionality
-  (use-package dired-aux :ensure nil)
+  (use-package dired-aux :straight (:type built-in))
   (use-package dired-x
-    :ensure nil
+    :straight (:type built-in)
     :demand
     :config
     (let ((cmd (cond
@@ -203,7 +203,7 @@
   (use-package fd-dired))
 
 (use-package image-dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (image-dired)
   :config
   (setq image-dired-dir (expand-file-name "image-dired" user-emacs-directory)
@@ -217,7 +217,7 @@
     "RET" 'image-dired-display-thumbnail-original-image))
 
 (use-package image-mode
-  :ensure nil
+  :straight (:type built-in)
   :config (evil-define-key 'motion image-mode-map
             "h" 'image-backward-hscroll
             "j" 'image-next-file

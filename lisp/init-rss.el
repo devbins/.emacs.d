@@ -94,7 +94,7 @@
 
 ;; Another Atom/RSS reader
 (use-package newsticker
-  :ensure nil
+  :straight (:type built-in)
   :defer t
   :bind ("C-x W" . newsticker-show-news)
   :hook (newsticker-treeview-item-mode . read-mode)

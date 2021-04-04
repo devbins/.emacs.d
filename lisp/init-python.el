@@ -51,7 +51,7 @@
 ;;   pip install pyflakes
 ;;   pip install autopep8
 (use-package python
-  :ensure nil
+  :straight (:type built-in)
   :hook (inferior-python-mode . (lambda ()
                                   (process-query-on-exit-flag
                                    (get-process "Python"))))

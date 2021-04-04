@@ -48,7 +48,7 @@
 
 ;; Emacs lisp mode
 (use-package elisp-mode
-  :ensure nil
+  :straight (:type built-in)
   :defines (flycheck-disabled-checkers calculate-lisp-indent-last-sexp)
   :functions (helpful-update
               my-lisp-indent-function
@@ -236,7 +236,7 @@ Lisp function does not specify a special indentation."
 ;; Show function arglist or variable docstring
 ;; `global-eldoc-mode' is enabled by default.
 (use-package eldoc
-  :ensure nil
+  :straight (:type built-in)
   :diminish)
 
 ;; Interactive macro expander

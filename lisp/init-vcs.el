@@ -209,7 +209,7 @@
 
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
-  :ensure nil
+  :straight (:type built-in)
   :diminish
   :pretty-hydra
   ((:title (pretty-hydra-title "Smerge" 'octicon "diff")

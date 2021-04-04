@@ -483,7 +483,7 @@
 
 ;; IRC
 (use-package erc
-  :ensure nil
+  :straight (:type built-in)
   :defines erc-autojoin-channels-alist
   :init (setq erc-rename-buffers t
               erc-interpret-mirc-color t

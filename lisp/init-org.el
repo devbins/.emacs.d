@@ -47,7 +47,7 @@
 ;;; Code:
 
 (use-package org
-  :ensure nil
+  :straight (:type built-in)
   :custom-face (org-ellipsis ((t (:foreground nil))))
   :preface
   (defun hot-expand (str &optional mod)
@@ -565,7 +565,7 @@ prepended to the element after the #+HEADER: tag."
   ;; 加密文章
   ;; "http://coldnew.github.io/blog/2013/07/13_5b094.html"
   (use-package org-crypt
-    :ensure nil
+    :straight (:type built-in)
     :demand
     :init
     ;; 设置要加密的 tag 標籤為 secret
@@ -609,7 +609,7 @@ prepended to the element after the #+HEADER: tag."
                         (evil-normalize-keymaps))))
 
   (use-package org-capture
-    :ensure nil
+    :straight (:type built-in)
     :config
     (setq org-capture-templates '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
                                    "* %?\n  %i\n %U"

@@ -47,7 +47,7 @@
 ;;; Code:
 
 (use-package shell
-  :ensure nil
+  :straight (:type built-in)
   :hook ((shell-mode . my-shell-mode-hook)
          (comint-output-filter-functions . comint-strip-ctrl-m))
   :init

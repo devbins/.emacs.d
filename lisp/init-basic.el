@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,16 +105,16 @@
 (setq system-time-locale "C")
 ;; Start server
 (use-package server
-  :ensure nil
+  :straight (:type built-in)
   :hook (after-init . server-mode))
 
 ;; History
 (use-package saveplace
-  :ensure nil
+  :straight (:type built-in)
   :hook (after-init . save-place-mode))
 
 (use-package recentf
-  :ensure nil
+  :straight (:type built-in)
   :bind (("C-x C-r" . recentf-open-files))
   :hook (after-init . recentf-mode)
   :init (setq recentf-max-saved-items 300
@@ -127,7 +127,7 @@
   :config (push (expand-file-name recentf-save-file) recentf-exclude))
 
 (use-package savehist
-  :ensure nil
+  :straight (:type built-in)
   :hook (after-init . savehist-mode)
   :init (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
               history-length 1000
@@ -139,7 +139,7 @@
               savehist-autosave-interval 300))
 
 (use-package simple
-  :ensure nil
+  :straight (:type built-in)
   :hook ((after-init . size-indication-mode)
          ((prog-mode markdown-mode conf-mode) . enable-trailing-whitespace))
   :init

@@ -48,13 +48,13 @@
 
 ;; Automatically reload files was modified by external program
 (use-package autorevert
-  :ensure nil
+  :straight (:type built-in)
   :diminish
   :hook (after-init . global-auto-revert-mode))
 
 ;; Pass a URL to a WWW browser
 (use-package browse-url
-  :ensure nil
+  :straight (:type built-in)
   :bind (("C-c C-z ." . browse-url-at-point)
          ("C-c C-z b" . browse-url-of-buffer)
          ("C-c C-z r" . browse-url-of-region)
@@ -67,7 +67,7 @@
 
 ;; Click to browse URL or to send to e-mail address
 (use-package goto-addr
-  :ensure nil
+  :straight (:type built-in)
   :hook ((text-mode . goto-address-mode)
          (prog-mode . goto-address-prog-mode)))
 
@@ -131,7 +131,7 @@
 
 ;; A comprehensive visual interface to diff & patch
 (use-package ediff
-  :ensure nil
+  :straight (:type built-in)
   :hook(;; show org ediffs unfolded
         (ediff-prepare-buffer . outline-show-all)
         ;; restore window layout when done
@@ -143,7 +143,7 @@
 
 ;; Automatic parenthesis pairing
 (use-package elec-pair
-  :ensure nil
+  :straight (:type built-in)
   :hook (after-init . electric-pair-mode)
   :init (setq electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit))
 
@@ -185,7 +185,7 @@
 
 ;; On-the-fly spell checker
 (use-package flyspell
-  :ensure nil
+  :straight (:type built-in)
   :diminish
   :if (executable-find "aspell")
   :hook (((text-mode outline-mode) . flyspell-mode)

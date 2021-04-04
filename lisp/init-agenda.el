@@ -47,7 +47,7 @@
 ;;; Code:
 
 (use-package org-agenda
-  :ensure nil
+  :straight (:type built-in)
   :defer t
   :preface
   ;;Sunrise and Sunset
@@ -205,7 +205,7 @@
     "msr"                       'org-agenda-refile)
 
   (use-package appt
-    :ensure nil
+    :straight (:type built-in)
     :config
     (setq appt-time-msg-list nil
           appt-message-warning-time '10

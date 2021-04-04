@@ -48,14 +48,14 @@
 
 ;; Highlight the current line
 (use-package hl-line
-  :ensure nil
+  :straight (:type built-in)
   :custom-face (hl-line ((t (:extend t))))
   :hook ((after-init . global-hl-line-mode)
          ((term-mode vterm-mode) . hl-line-unload-function)))
 
 ;; Highlight matching parens
 (use-package paren
-  :ensure nil
+  :straight (:type built-in)
   :hook (after-init . show-paren-mode)
   :init (setq show-paren-when-point-inside-paren t
               show-paren-when-point-in-periphery t)
@@ -251,7 +251,7 @@ FACE defaults to inheriting from default and highlight."
 
 ;; Pulse current line
 (use-package pulse
-  :ensure nil
+  :straight (:type built-in)
   :custom-face
   (pulse-highlight-start-face ((t (:inherit region))))
   (pulse-highlight-face ((t (:inherit region))))
