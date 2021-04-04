@@ -6,7 +6,7 @@
 ** 安装
    #+begin_src sh
    mv .emacs.d .emacs.d.bak
-   git clone --recurse-submodules -j8 https://github.com/devbins/.emacs.d.git
+   git clone --recurse-submodules -j8 -b straight https://github.com/devbins/.emacs.d.git
    #+end_src
 ** Buffer
     | 快捷键  | 描述                | 对应函数                 |
