@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 87
+;;     Update #: 88
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -578,6 +578,8 @@
   (eaf-setq eaf-browser-enable-autofill "true"))
 
 (use-package eww
+  :straight (:type built-in)
+  :commands (eww)
   :hook (eww-after-render . shrface-mode)
   :config
   (require 'shrface))
