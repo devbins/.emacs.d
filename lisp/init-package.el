@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,44 +46,28 @@
 ;;
 ;;; Code:
 
-;; Suppress warnings
-(declare-function set-package-archives 'init-funcs)
+(setq straight-repository-branch "develop"
+        straight-use-package-by-default t
+        straight-check-for-modifications nil
+        straight-vc-git-default-clone-depth 1
+        straight-enable-package-integration nil
+        straight-cache-autoloads t)
 
-;; HACK: DO NOT copy package-selected-packages to init/custom file forcibly.
-;; https://github.com/jwiegley/use-package/issues/383#issuecomment-247801751
-(defun my-save-selected-packages (&optional value)
-  "Set `package-selected-packages' to VALUE but don't save to `custom-file'."
-  (when value
-    (setq package-selected-packages value)))
-(advice-add 'package--save-selected-packages :override #'my-save-selected-packages)
+;; (setq straight-check-for-modifications '(find-when-checking))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Set ELPA packages
-(set-package-archives devbins-package-archives)
-
-;; Initialize packages
-(unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
-  (setq package-enable-at-startup nil)          ; To prevent initializing twice
-  (package-initialize))
-
-;; Setup `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-;; quelpa
-(use-package quelpa-use-package
-:ensure t
-:init
-(setq quelpa-update-melpa-p nil)
-(setq quelpa-self-upgrade-p nil))
-
-;; Should set before loading `use-package'
-(eval-and-compile
-  (setq use-package-always-ensure t)
-  (setq use-package-always-defer t)
-  (setq use-package-expand-minimally t)
-  (setq use-package-enable-imenu-support t))
-
+(straight-use-package 'use-package)
 
 (eval-when-compile
   (require 'use-package))
@@ -94,13 +78,6 @@
 
 ;; Update GPG keyring for GNU ELPA
 (use-package gnu-elpa-keyring-update)
-
-;; Auto update packages
-(use-package auto-package-update
-  :init
-  (setq auto-package-update-delete-old-versions t
-        auto-package-update-prompt-befor-update t
-        auto-package-update-hide-results t))
 
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
