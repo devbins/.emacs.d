@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 52
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -141,7 +141,8 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-utils)
 (require 'init-misc)
 (require 'init-pretty)
-(require 'init-mail)
+;; (require 'init-mail)
+(require 'init-mu4e)
 (require 'init-w3m)
 
 ;; Programming
