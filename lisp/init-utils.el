@@ -174,8 +174,8 @@
 
 ;; PDF reader
 (use-package pdf-view
+  :straight (:type built-in)
   :if (display-graphic-p)
-  :ensure pdf-tools
   :diminish (pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
   :defines pdf-annot-activate-created-annotations
   :functions (my-pdf-view-set-midnight-colors my-pdf-view-set-dark-theme)

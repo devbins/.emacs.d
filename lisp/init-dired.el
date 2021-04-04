@@ -194,7 +194,7 @@
     (dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")))
 
 (use-package dired-async
-  :ensure async
+  :straight (:type built-in)
   :diminish dired-async-mode
   :hook (dired-mode-hook . dired-async-mode))
 

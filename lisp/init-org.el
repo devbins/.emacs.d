@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 362
+;;     Update #: 363
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -526,14 +526,6 @@ prepended to the element after the #+HEADER: tag."
     "mip"                       'org-set-property
     "mis"                       'org-insert-subheading
     "mit"                       'org-set-tags-command)
-  (which-key-add-major-mode-key-based-replacements 'org-mode
-    "SPC m C" "clock"
-    "SPC m t" "table"
-    "SPC m T" "toggle"
-    "SPC m b" "babel"
-    "SPC m d" "time"
-    "SPC m i" "insert"
-    "SPC m s" "subtree")
   (evil-define-key 'normal org-mode-map (kbd "RET") 'org-open-at-point)
 
   ;; Pomodoro
