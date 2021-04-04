@@ -45,6 +45,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
+(if (eq system-type 'darwin)
+    (setenv "LIBRARY_PATH" "/usr/local/opt/gcc/lib/gcc/10:/usr/local/opt/gcc/lib/gcc/10/gcc/x86_64-apple-darwin20/10.2.0"))
 (if (and (fboundp 'native-comp-available-p) (native-comp-available-p) (fboundp 'json-serialize))
     (setq comp-deferred-compilation t
           comp-speed 2)
