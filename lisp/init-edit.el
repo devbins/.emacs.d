@@ -179,10 +179,6 @@
          :map mc/keymap
          ("C-|" . mc/vertical-align-with-space)))
 
-;; Smartly select region, rectangle, multi cursors
-(use-package smart-region
-  :hook (after-init . smart-region-on))
-
 ;; On-the-fly spell checker
 (use-package flyspell
   :ensure nil
@@ -279,7 +275,7 @@
                             rime-predicate-current-uppercase-letter-p))
   (rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g"))
   (default-input-method "rime")
-  (rime-show-candidate 'posframe)
+  (rime-show-candidate 'minibuffer)
   (rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                            (sys/linuxp nil))))
 
