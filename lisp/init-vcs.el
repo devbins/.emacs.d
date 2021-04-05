@@ -83,15 +83,6 @@
            ("j" . nil))
     :hook (magit-status-mode . magit-todos-mode))
 
-  ;; evil magit
-  (use-package evil-magit
-    :load-path (lambda () (expand-file-name "site-lisp/evil-magit" user-emacs-directory))
-    :defer t
-    :after magit
-    :init
-    (setq evil-magit-state 'normal)
-    :hook (magit-mode . evil-magit-init))
-
   ;; Git Flow
   (use-package magit-gitflow
     :defer t
