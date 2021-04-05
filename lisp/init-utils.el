@@ -578,6 +578,8 @@
   (eaf-setq eaf-browser-enable-autofill "true"))
 
 (use-package eww
+  :ensure nil
+  :commands (eww)
   :hook (eww-after-render . shrface-mode)
   :config
   (require 'shrface))
