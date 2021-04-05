@@ -1,6 +1,3 @@
 [submodule "unicad"]
 	path = site-lisp/unicad
 	url = https://github.com/emacsmirror/unicad.git
-[submodule "snails"]
-	path = site-lisp/snails
-	url = https://github.com/manateelazycat/snails.git
