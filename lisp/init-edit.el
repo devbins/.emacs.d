@@ -204,7 +204,12 @@
 (use-package hungry-delete
   :diminish
   :hook (after-init . global-hungry-delete-mode)
-  :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
+  :config
+  (setq-default hungry-delete-chars-to-skip " \t\f\v")
+  (defun my/turn-off-hungry-delete-mode ()
+    "Turn off hungry delete mode."
+    (hungry-delete-mode -1))
+  (add-hook 'minibuffer-setup-hook #'my/turn-off-hungry-delete-mode))
 
 ;; Imenu list in slide
 (use-package imenu-list
