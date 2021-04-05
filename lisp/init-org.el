@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 361
+;;     Update #: 365
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -165,7 +165,7 @@ prepended to the element after the #+HEADER: tag."
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
               org-export-with-broken-links                  'mark
               org-export-with-sub-superscripts              '{}
-              org-export-use-babel nil ; do not evaluate again during export.
+              org-export-use-babel nil ;; 导出的时候不执行代码，会导致设置的 header-arg 无效 do not evaluate again during export.
               org-export-with-toc nil
               org-export-with-section-numbers nil
               org-use-sub-superscripts                      '{}
@@ -191,6 +191,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("ORG" . ?O)
                                     ("BLOG" . ?b)
                                     ("NORANG" . ?N)
+                                    ("THOUGHT". ?T)
                                     ("crypt" . ?E)
                                     ("NOTE" . ?n)
                                     ("CANCELLED" . ?c)
@@ -592,7 +593,7 @@ prepended to the element after the #+HEADER: tag."
       (pinentry-start)))
 
   (use-package orgit
-    :defer t)
+    :disabled)
 
   (use-package evil-org
     :defer t
@@ -778,6 +779,21 @@ same directory as the org-buffer and insert a link to this file."
 ;; https://gitlab.com/phillord/org-drill
 (use-package org-drill)
 (use-package org-board)
+
+;; https://github.com/chenyanming/calibredb.el
+(use-package calibredb
+  :if (executable-find "calibre")
+  :commands (calibredb calibredb-list)
+  :config
+  (setq calibredb-root-dir "~/Calibre Library")
+  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
+
+(use-package org-media-note
+  :quelpa (org-media-note :fetcher github :repo "yuchen-lea/org-media-note")
+  :hook (org-mode .  org-media-note-mode)
+  :bind (("H-v" . org-media-note-hydra/body))  ;; Main entrance
+  :config
+  (setq org-media-note-screenshot-image-dir "~/notes/imgs/"))
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
