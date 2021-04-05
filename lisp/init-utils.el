@@ -530,12 +530,12 @@
 
 ;; Emacs-appcliation-framework
 (use-package eaf
-  :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
+  :straight (emacs-application-framework :host github :repo "manateelazycat/emacs-application-framework" :files ("*"))
   :if sys/linuxp
   :init
-  (use-package epc :defer t)
-  (use-package ctable :defer t)
-  (use-package deferred :defer t)
+  (use-package epc)
+  (use-package ctable)
+  (use-package deferred)
   :commands (eaf-open-browser eaf-open)
   :preface
   (defun eaf-proxy-enable ()
