@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -142,7 +142,6 @@
     (my/sign-or-encrypt-message))
 
   (add-hook 'message-send-hook 'my/send-message-hook)
-  (add-hook 'org-ctrl-c-ctrl-c-hook 'org-mime-org-buffer-htmlize t)
   (setq org-mime-export-ascii 'utf-8
         org-mime-export-options '(:section-numbers nil
                                                    :with-author nil
