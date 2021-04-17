@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 60
+;;     Update #: 71
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -115,8 +115,8 @@
    ;; Non-nil means display source file containing the main routine at startup
    gdb-show-main t))
 
-(use-package realgud)
-(use-package realgud-lldb)
+(straight-use-package 'realgud)
+(straight-use-package 'realgud-lldb)
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
