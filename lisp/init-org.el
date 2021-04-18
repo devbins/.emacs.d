@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 367
+;;     Update #: 371
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -578,7 +578,6 @@ prepended to the element after the #+HEADER: tag."
   ;; http://elpa.gnu.org/packages/pinentry.html
   ;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
   (use-package pinentry
-    :defer t
     :if sys/macp
     :config
     (with-eval-after-load 'org
@@ -588,7 +587,6 @@ prepended to the element after the #+HEADER: tag."
     :disabled)
 
   (use-package evil-org
-    :defer t
     :after org
     :diminish
     :init
@@ -617,6 +615,7 @@ prepended to the element after the #+HEADER: tag."
                                    entry
                                    (file+headline org-agenda-file-note "ANKI")
                                    "* %<%H:%M>   %^g\n:PROPERTIES:\n:ANKI_NOTE_TYPE: Basic\n:ANKI_DECK: Mega\n:END:\n** Front\n%?\n** Back\n%x\n")
+                                  ;; 用于 Browser
                                   ("N" "notes" entry (file+headlie org-agenda-file-note "Browser notes")
                                    "* %U - %:annotation %^g\n\n  %?"
                                    :empty-lines 1 :kill-buffer t)
@@ -769,7 +768,8 @@ same directory as the org-buffer and insert a link to this file."
   :commands (org-analyzer-start))
 
 ;; https://gitlab.com/phillord/org-drill
-(use-package org-drill)
+(use-package org-drill
+  :config (add-to-list 'org-modules 'org-drill))
 (use-package org-board)
 
 ;; https://github.com/chenyanming/calibredb.el
