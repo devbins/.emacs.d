@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 88
+;;     Update #: 89
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -477,9 +477,7 @@
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
 
 (use-package netease-cloud-music
-  :straight (netease-cloud-music :host github :repo "SpringHan/netease-cloud-music.el")
-  :defer t
-  :commands (netease-cloud-music))
+  :straight (netease-cloud-music :host github :repo "SpringHan/netease-cloud-music.el"))
 
 ;; IRC
 (use-package erc
@@ -531,7 +529,7 @@
 ;; Emacs-appcliation-framework
 (use-package eaf
   :straight (emacs-application-framework :host github :repo "manateelazycat/emacs-application-framework" :files ("*"))
-  :if sys/linuxp
+  ;; :if sys/linuxp
   :init
   (use-package epc)
   (use-package ctable)
