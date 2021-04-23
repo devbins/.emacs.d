@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 365
+;;     Update #: 366
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -777,7 +777,8 @@ same directory as the org-buffer and insert a link to this file."
   :commands (org-analyzer-start))
 
 ;; https://gitlab.com/phillord/org-drill
-(use-package org-drill)
+(use-package org-drill
+  :config (add-to-list 'org-modules 'org-drill))
 (use-package org-board)
 
 ;; https://github.com/chenyanming/calibredb.el
