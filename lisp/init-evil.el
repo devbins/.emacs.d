@@ -48,7 +48,7 @@
 
 (use-package evil
   :hook (after-init . evil-mode)
-  :config
+  :init
   (setq evil-magic 'very-magic
         evil-want-visual-char-semi-exclusive t
         evil-echo-state t
@@ -63,9 +63,10 @@
         evil-visual-state-cursor 'hollow
         evil-auto-indent t
         evil-ex-complete-emacs-commands t
-        evil-want-fine-undo t
+        evil-want-keybinding nil
         evil-want-fine-undo t
         evil-want-change-word-to-end t)
+  :config
   (evil-set-undo-system 'undo-tree)
   (evil-set-initial-state 'flycheck-error-list-mode 'normal)
   (evil-set-initial-state 'git-commit-mode 'insert)
