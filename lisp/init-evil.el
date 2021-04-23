@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 139
+;;     Update #: 145
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -139,7 +139,17 @@
     "q" 'quit-window)
 
   (evil-define-key 'normal helpful-mode-map
-    "q" 'quit-window))
+    "q" 'quit-window)
+
+  (use-package evil-collection
+    :custom (evil-collection-setup-minibuffer t)
+    :init
+    ;; The list of supported modes is configured by evil-collection-mode=list
+    (evil-collection-init 'dired)
+    (evil-collection-init 'view)
+    (evil-collection-init 'custom)
+    (evil-collection-init 'ibuffer)
+    (evil-collection-init 'calendar)))
 
 (use-package evil-leader
   :init
