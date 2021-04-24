@@ -53,3 +53,8 @@
 /el-get/
 /eln-cache/
 /quelpa/
+/straight/
+/ncm-playlist
+/.vscode/
+*.data
+/type-break
