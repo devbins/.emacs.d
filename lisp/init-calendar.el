@@ -120,27 +120,6 @@
                 cal-china-x-general-holidays
                 holiday-other-holidays)))
 
-;; Better views of calendar
-(use-package calfw
-  :commands cfw:open-calendar-buffer
-  :bind ("<C-f12>" . open-calendar)
-  :init
-  (use-package calfw-org
-    :commands (cfw:open-org-calendar cfw:org-create-source))
-
-  (use-package calfw-ical
-    :commands (cfw:open-ical-calendar cfw:ical-create-source))
-
-  (defun open-calendar ()
-    "Open calendar."
-    (interactive)
-    (unless (ignore-errors
-              (cfw:open-calendar-buffer
-               :contents-sources
-               (when org-agenda-files
-                 (cfw:org-create-source "YellowGreen"))))
-      (cfw:open-calendar-buffer))))
-
 (provide 'init-calendar)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-calendar.el ends here
