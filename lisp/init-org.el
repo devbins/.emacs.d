@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 366
+;;     Update #: 367
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -180,17 +180,14 @@ prepended to the element after the #+HEADER: tag."
                                     ("@errand" . ?e)
                                     ("@office" . ?o)
                                     ("@home" . ?H)
-                                    ("@farm" . ?f)
                                     (:endgroup)
                                     ("WAITING" . ?w)
                                     ("HOLD" . ?h)
                                     ("READING" . ?r)
                                     ("PERSONAL" . ?P)
                                     ("WORK" . ?W)
-                                    ("FARM" . ?F)
                                     ("ORG" . ?O)
                                     ("BLOG" . ?b)
-                                    ("NORANG" . ?N)
                                     ("THOUGHT". ?T)
                                     ("crypt" . ?E)
                                     ("NOTE" . ?n)
