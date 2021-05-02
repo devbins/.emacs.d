@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dayreport
+# key: dayreport
+# --
+#+BEGIN: clocktable :maxlevel 5 :scope agenda-with-archives :block today :fileskip0 t :indent t :link t :timestamp t
+#+END:
