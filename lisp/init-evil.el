@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 145
+;;     Update #: 147
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,6 +113,7 @@
   (evil-set-initial-state 'telega-chat-mode 'emacs)
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (evil-set-initial-state 'nov-mode 'emacs)
+  (evil-set-initial-state 'elfeed 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
