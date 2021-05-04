@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 52
+;;     Update #: 57
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -147,6 +147,7 @@ decrease this. If you experience stuttering, increase this.")
 
 (require 'init-rss)
 (require 'init-utils)
+(require 'init-reader)
 (require 'init-misc)
 (require 'init-pretty)
 (require 'init-mail)
