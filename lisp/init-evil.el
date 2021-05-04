@@ -112,6 +112,7 @@
   (evil-set-initial-state 'ros-process-mode 'emacs)
   (evil-set-initial-state 'telega-chat-mode 'emacs)
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
+  (evil-set-initial-state 'nov-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
