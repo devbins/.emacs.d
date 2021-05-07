@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,15 +73,19 @@
 
   ;; Show TODOs in magit
   (use-package magit-todos
-    :after magit
     :init
     (setq magit-todos-nice (if (executable-find "nice") t nil)
           magit-todos-exclude-globs '("*.map"))
+    (let ((inhibit-message t))
+        (magit-todos-mode 1))
     :bind (:map magit-todos-section-map
            ("j" . nil)
            :map magit-todos-item-section-map
            ("j" . nil))
-    :hook (magit-status-mode . magit-todos-mode))
+    :config
+    (transient-append-suffix 'magit-status-jump '(0 0 -1)
+        '("T " "Todos" magit-todos-jump-to-todos)))
+
 
   ;; Git Flow
   (use-package magit-gitflow
