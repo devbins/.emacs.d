@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -134,6 +134,7 @@
                  (let ((bname (file-name-nondirectory (buffer-name b))))
                    (or (string-prefix-p ".newsrc" bname)
                        (string-prefix-p "magit" bname)
+                       (string-prefix-p "COMMIT_EDITMSG" bname)
                        (string-prefix-p "Pfuture-Callback" bname)
                        (string-match-p "\\.elc\\|\\.tar\\|\\.gz\\|\\.zip\\'" bname)
                        (string-match-p "\\.bin\\|\\.so\\|\\.dll\\|\\.exe\\'" bname)
