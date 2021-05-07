@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 367
+;;     Update #: 371
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -314,7 +314,8 @@ prepended to the element after the #+HEADER: tag."
   (use-package mermaid-mode
     :if (executable-find "mmdc"))
   (use-package ob-mermaid
-    :if (executable-find "mmdc"))
+    :if (executable-find "mmdc")
+    :init (cl-pushnew '(mermaid . t) load-language-list))
 
 
   ;; Rich text clipboard
