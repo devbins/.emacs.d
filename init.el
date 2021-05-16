@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 57
+;;     Update #: 60
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,11 +47,11 @@
 ;;; Code:
 
 ;; Speed up startup
-(defvar my-gc-cons-threshold (if (display-graphic-p) 8000000 800000)
+(defvar my-gc-cons-threshold (if (display-graphic-p) 64000000 8000000)
   "The default value to use for `gc-cons-threshold'. If you experience freezing,
 decrease this. If you experience stuttering, increase this.")
 
-(defvar my-gc-cons-upper-limit (if (display-graphic-p) 400000000 100000000)
+(defvar my-gc-cons-upper-limit (if (display-graphic-p) 512000000 128000000)
   "The temporary value for `gc-cons-threshold' to defer it.")
 
 (defvar gc-timer (run-with-idle-timer 10 t #'garbage-collect)
