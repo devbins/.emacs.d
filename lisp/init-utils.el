@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 88
+;;     Update #: 90
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -252,8 +252,7 @@
 
 ;; Emacs-appcliation-framework
 (use-package eaf
-  :load-path (lambda () (expand-file-name "site-lisp/emacs-application-framework" user-emacs-directory))
-  :if sys/linuxp
+  :quelpa (eaf :fetcher github :repo "manateelazycat/emacs-application-framework" :files ("*"))
   :init
   (use-package epc :defer t)
   (use-package ctable :defer t)
