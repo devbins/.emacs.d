@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,10 +72,10 @@
 
 ;; quelpa
 (use-package quelpa-use-package
-:ensure t
-:init
-(setq quelpa-update-melpa-p nil)
-(setq quelpa-self-upgrade-p nil))
+  :ensure t
+  :init
+  (setq quelpa-update-melpa-p nil)
+  (setq quelpa-self-upgrade-p nil))
 
 ;; Should set before loading `use-package'
 (eval-and-compile
