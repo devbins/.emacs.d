@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: localdir
+# key: localdir
+# --
+ -*- mode: Org; org-download-image-dir: "./`(file-name-sans-extension (file-relative-name (buffer-file-name)))`"; -*-
