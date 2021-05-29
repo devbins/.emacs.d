@@ -143,7 +143,7 @@
      #+end_src
 *** ArchLinux
     #+begin_src sh
-    sudo pacman -S emacs-native-comp
+    sudo pacman -S emacs-git
     #+end_src
 ** FAQ
 *** json-readtable-error 122
