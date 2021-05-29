@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,6 +71,7 @@ current contents of the file will be overwritten."
     (with-temp-file env-vars-file
       (let ((shell-command-switches (cond
                                      ((or(eq system-type 'darwin)
+                                         (eq system-type 'cygwin)
                                          (eq system-type 'gnu/linux))
                                       ;; execute env twice, once with a
                                       ;; non-interactive login shell and
@@ -79,7 +80,9 @@ current contents of the file will be overwritten."
                                       ;; files possible.
                                       '("-lc" "-ic"))
                                      ((eq system-type 'windows-nt) '("-c"))))
-            (executable (cond ((or(eq system-type 'darwin)
+             (tmpfile (make-temp-file env-vars-file))
+             (executable (cond ((or(eq system-type 'darwin)
+                                  (eq system-type 'cygwin)
                                   (eq system-type 'gnu/linux)) "env")
                               ((eq system-type 'windows-nt) "set"))))
         (insert
@@ -89,9 +92,14 @@ current contents of the file will be overwritten."
           "# ---------------------------------------------------------------------------\n"))
         (let ((env-point (point)))
           (dolist (shell-command-switch shell-command-switches)
-            (insert (shell-command-to-string executable)))
+            (call-process-shell-command
+             (concat executable " > " (shell-quote-argument tmpfile)))
+            (insert-file-contents tmpfile))
+          (delete-file tmpfile)
           ;; sort the environment variables
-          (sort-lines nil env-point (point-max))
+          (sort-regexp-fields nil "^.*$" ".*?=" env-point (point-max))
+          ;; remove adjacent duplicated lines
+          (delete-duplicate-lines env-point (point-max) nil t)
           ;; remove adjacent duplicated lines
           (delete-duplicate-lines env-point (point-max) nil t)
           ;; remove ignored environment variables
@@ -102,6 +110,7 @@ current contents of the file will be overwritten."
              "your shell and saved them to `%s'.\n"
              "Open this file for more info")
      env-vars-file)))
+
 
 (defvar load-env-vars-env-var-regexp
   (rx
@@ -137,17 +146,26 @@ current contents of the file will be overwritten."
 (defun load-env-vars-extract-env-vars ()
   "Extract environment variable name and value from STRING."
   (load-env-vars-re-seq load-env-vars-env-var-regexp))
-
 (defun load-env-vars-set-env (env-vars)
-  "Set envariable variables from key value lists from ENV-VARS."
-  (dolist (element env-vars)
-    (let ((key (car element)) (value (cadr element)))
-      (when (string-equal "PATH" key)
-        (let ((paths (split-string value path-separator)))
-          (dolist (p paths)
-            (add-to-list 'exec-path p 'append))))
-      (setenv key value))))
+  "Set environment variables from key value lists from ENV-VARS."
+  (setq exec-path (cl-remove-duplicates (mapcar #'directory-file-name exec-path)
+                                        :test #'string-equal :from-end t))
+  (let ((convert-to-os-path (if (memq system-type '(windows-nt ms-dos))
+                                (apply-partially #'subst-char-in-string ?/ ?\\)
+                              ;; Assume that we start with forward slashes.
+                              #'identity)))
+    (dolist (element env-vars)
+      (let ((key (car element)) (value (cadr element)))
+        (if (string-equal "PATH" key)
+            (let ((paths (split-string value path-separator)))
+              (setq exec-path (cl-remove-duplicates
+                               (append (mapcar (lambda (path) (directory-file-name (subst-char-in-string ?\\ ?/ path))) paths) exec-path)
+                               :test #'string-equal :from-end t)
+                    )
+              (setenv "PATH" (mapconcat convert-to-os-path exec-path path-separator)))
+          (setenv key value))))))
 
+;;;###autoload
 (defun load-env-vars (file-path)
   "Load environment variables found in FILE-PATH."
   (interactive "fEnvironment variables file: ")
@@ -161,6 +179,7 @@ current contents of the file will be overwritten."
       (init-emacs-env t)
       (load-env-vars env-vars-file))
   (load-env-vars env-vars-file))
+
 
 (provide 'init-env)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
