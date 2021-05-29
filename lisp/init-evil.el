@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 147
+;;     Update #: 149
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -114,6 +114,7 @@
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (evil-set-initial-state 'nov-mode 'emacs)
   (evil-set-initial-state 'elfeed 'emacs)
+  (evil-set-initial-state 'calibredb-search-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
