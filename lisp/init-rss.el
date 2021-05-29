@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,7 +89,18 @@
                              ("https://www.reddit.com/r/emacs.rss" reddit)
                              ("http://feed.williamlong.info/" Blog News) ; 月光博客
                              ("http://www.ruanyifeng.com/blog/atom.xml" Blog) ; 阮一峰
-                             ("https://manateelazycat.github.io/feed.xml" Blog))) ; manateelazycat 懒猫 王勇
+                             ("https://manateelazycat.github.io/feed.xml" lazycat) ; manateelazycat 懒猫 王勇
+                             ("http://coolshell.cn/feed" CoolShell)
+                             ("http://www.ruanyifeng.com/blog/atom.xml" ruanyifeng)
+                             ("http://www.raychase.net/feed" 四火的唠叨)
+                             ("http://blog.csdn.net/luoshengyang/rss/list" 老罗的Android开发之旅)
+                             ("http://www.gcssloop.com/feed.xml" gcssloop)
+                             ("http://gityuan.com/feed.xml" gityuan)
+                             ("http://weishu.me/atom.xml" Weishus Note)
+                             ("http://kaedea.com/atom.xml" 中二病也要开发Android)
+                             ("http://macshuo.com/?feed=rss2" MacTalk)
+                             ("https://sspai.com/feed" 少数派)
+                             ("https://devbins.github.io/index.xml" dev.bins)))
   :config (push elfeed-db-directory recentf-exclude))
 
 ;; Another Atom/RSS reader
