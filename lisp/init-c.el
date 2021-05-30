@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -100,6 +100,34 @@
   :config
   (evil-leader/set-key-for-mode 'cc-mode
     "m o i" 'cpp-auto-include))
+
+(use-package rtags
+  :ensure t
+  :hook (c++-mode . rtags-start-process-unless-running)
+  :config (setq rtags-completions-enabled t
+                rtags-autostart-diagnostics t))
+
+(use-package company-rtags
+  :ensure t
+  :config
+  (progn
+    (push 'company-rtags company-backends)
+    (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))))
+
+;;Live code checking.
+(use-package flycheck-rtags
+  :ensure t
+  :config
+  (progn
+    ;; ensure that we use only rtags checking
+    ;; https://github.com/Andersbakken/rtags#optional-1
+    (defun setup-flycheck-rtags ()
+      (flycheck-select-checker 'rtags)
+      (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+      (setq-local flycheck-check-syntax-automatically nil)
+      (rtags-set-periodic-reparse-timeout 2.0))  ;; Run flycheck 2 seconds after being idle.
+    (add-hook 'c-mode-hook #'setup-flycheck-rtags)
+    (add-hook 'c++-mode-hook #'setup-flycheck-rtags)))
 
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
