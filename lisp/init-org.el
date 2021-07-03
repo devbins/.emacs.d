@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 371
+;;     Update #: 384
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -267,6 +267,7 @@ prepended to the element after the #+HEADER: tag."
                                (css . t)
                                (sass . t)
                                (C . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
+                               (calc . t)
                                (java . t)
                                (dot . t)
                                (plantuml . t)))
