@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,27 +81,26 @@
   :init (setq url-queue-timeout 30
               elfeed-db-directory (locate-user-emacs-file ".elfeed")
               elfeed-show-entry-switch #'pop-to-buffer
-              elfeed-show-entry-delete #'delete-window
-              elfeed-feeds '(("https://planet.emacslife.com/atom.xml" planet emacslife)
-                             ("http://www.masteringemacs.org/feed/" mastering)
-                             ("https://oremacs.com/atom.xml" oremacs)
-                             ("https://pinecast.com/feed/emacscast" emacscast)
-                             ("https://www.reddit.com/r/emacs.rss" reddit)
-                             ("http://feed.williamlong.info/" Blog News) ; 月光博客
-                             ("http://www.ruanyifeng.com/blog/atom.xml" Blog) ; 阮一峰
-                             ("https://manateelazycat.github.io/feed.xml" lazycat) ; manateelazycat 懒猫 王勇
-                             ("http://coolshell.cn/feed" CoolShell)
-                             ("http://www.ruanyifeng.com/blog/atom.xml" ruanyifeng)
-                             ("http://www.raychase.net/feed" 四火的唠叨)
-                             ("http://blog.csdn.net/luoshengyang/rss/list" 老罗的Android开发之旅)
-                             ("http://www.gcssloop.com/feed.xml" gcssloop)
-                             ("http://gityuan.com/feed.xml" gityuan)
-                             ("http://weishu.me/atom.xml" Weishus Note)
-                             ("http://kaedea.com/atom.xml" 中二病也要开发Android)
-                             ("http://macshuo.com/?feed=rss2" MacTalk)
-                             ("https://sspai.com/feed" 少数派)
-                             ("https://devbins.github.io/index.xml" dev.bins)))
+              elfeed-show-entry-delete #'delete-window)
   :config (push elfeed-db-directory recentf-exclude))
+
+(use-package elfeed-dashboard
+  :commands (elfeed-dashboard)
+  :config
+  (setq elfeed-dashboard-file (expand-file-name "elfeed-dashboard.org" user-emacs-directory))
+  ;; update feed counts on elfeed-quit
+  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
+
+(use-package elfeed-org
+  :init (setq rmh-elfeed-org-files (list (expand-file-name "elfeed-feeds.org" user-emacs-directory)))
+  :hook (elfeed-dashboard-mode . my/elfeed-hook)
+  :config
+  (defun my/elfeed-hook ()
+    (defun my/reload-org-feeds ()
+      (interactive)
+      (rmh-elfeed-org-process rmh-elfeed-org-files rmh-elfeed-org-tree-id))
+    (advice-add 'elfeed-dashboard-update :before #'my/reload-org-feeds)
+    (elfeed-org)))
 
 ;; Another Atom/RSS reader
 (use-package newsticker
