@@ -172,6 +172,7 @@ prepended to the element after the #+HEADER: tag."
 
               org-catch-invisible-edits 'smart
 
+              org-ditaa-jar-path (concat user-emacs-directory "ditaa.jar")
               ;; org-startup-indented t
               ;; org-startup-folded    'content
               org-startup-truncated nil
@@ -270,6 +271,7 @@ prepended to the element after the #+HEADER: tag."
                                (calc . t)
                                (java . t)
                                (dot . t)
+                               (ditaa . t)
                                (plantuml . t)))
 
   ;; ob-sh renamed to ob-shell since 26.1.
