@@ -1,0 +1,73 @@
+* Feeds :elfeed:
+** Blogs :blog:
+*** [[https://feeds.feedburner.com/ruanyifeng][ruanyf]]
+*** [[https://www.raychase.net/feed][四火的唠叨]] 
+*** [[https://juanignaciosl.github.io/feed.xml][Juan Ignacio]]
+*** https://feeds.feedburner.com/codinghorror?format=xml
+*** https://endler.dev/rss.xml  :rust:
+*** [[https://medium.com/feed/@steve.yegge][Steve Yegge]]
+*** [[https://1byte.io/rss.xml][1byte]]
+*** [[https://brooker.co.za/blog/rss.xml][Brooker]]
+*** [[https://liujiacai.net/atom.xml][Keep Coding]]
+*** [[https://halfrost.com/rss/][halfrost]]
+*** [[https://erthalion.info/atom.xml][Dmitry Dolgov]] :db:
+*** [[https://ajstorm.medium.com/feed][Adam Storm]]
+*** [[https://fasterthanli.me/index.xml][Amos]] :rust:
+*** [[http://www.brendangregg.com/blog/rss.xml][Brendan Gregg]] :linux:
+*** [[https://thume.ca/atom.xml][Tristan Hume]]
+*** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky]]
+*** [[http://journal.stuffwithstuff.com/rss.xml][stuffwithstuff]]
+*** [[https://jvns.ca/atom.xml][jvns]]
+*** [[https://lemire.me/blog/feed/][Daniel Lemire]]
+*** [[https://sspai.com/feed][少数派]] 
+*** [[http://macshuo.com/?feed=rss2][MacTalk]] 
+*** [[http://coolshell.cn/feed][CoolShell]] 
+*** [[https://manateelazycat.github.io/feed.xml][lazycat]] 
+*** [[https://www.reddit.com/r/emacs.rss][reddit]]
+*** [[http://feed.williamlong.info/][月光博客]]
+*** [[https://devbins.github.io/index.xml][dev.bins]] 
+** Programming Language :pl:
+*** [[https://matklad.github.io/feed.xml][Matklad]] :rust:
+*** [[https://lucumr.pocoo.org/feed.atom][Armin Ronacher]]  :python:rust:
+*** [[https://blog.golang.org/feed.atom][Go blog]] :go:
+*** [[https://clojure.org/feed.xml][Clojure News]] :clojure:
+** Databases :db:
+*** [[https://blog.yugabyte.com/feed/][YugaByteDB]]
+*** [[https://www.cockroachlabs.com/blog/index.xml][CockroachLabs]]
+*** [[https://feeds.feedburner.com/martinkl?format=xml][Martin Kleppmann]]
+*** http://mysql.taobao.org/monthly/feed.xml
+*** [[https://blog.acolyer.org/feed/][Morning Paper]]
+*** [[https://blog.dbi-services.com/author/franckpachot/feed][DBI Franck]]
+*** [[https://rocksdb.org/feed.xml][RocksDB]]
+*** [[https://engineering.mongodb.com/post?format=rss][MongoDB]]
+** Tech Blog :company:
+*** [[https://blogs.dropbox.com/tech/feed/][Dropbox]]
+*** [[https://engineering.linkedin.com/blog.rss.html][LinkedIn]]
+*** [[https://hacks.mozilla.org/feed/][Mozilla]]
+*** [[https://code.facebook.com/posts/rss/][Facebook]]
+*** [[http://tech.meituan.com/atom.xml][Meituan]]
+*** [[https://medium.com/feed/paypal-engineering][PayPal]]
+*** [[https://engineering.grab.com/feed.xml][Grab]]
+*** [[https://medium.com/feed/pinterest-engineering][Pinterest]]
+*** [[https://tech.redplanetlabs.com/feed/][Red Planet Labs]] :clojure:
+** Emacs                                                                 :emacs:
+*** https://jherrlin.github.io/index.xml
+*** [[https://www.masteringemacs.org/feed][Mastering Emacs]]
+*** [[https://emacsredux.com/atom.xml][Emacs Redux]]
+*** [[https://endlessparentheses.com/atom.xml][Endless Parentheses]]
+*** [[https://emacsair.me/feed.xml][Emacsair]]
+*** [[https://oremacs.com/atom.xml][Or Emacs]]
+*** [[https://planet.emacslife.com/atom.xml][planet emacslife]]
+*** [[https://pinecast.com/feed/emacscast][emacscast]]
+
+** News :news:
+*** [[https://lillianli.substack.com/feed/][Chinese Characteristics]]
+*** [[http://ithare.com/feed/][IT Hare]]
+*** [[https://hnrss.org/best][Hacker News: Best]]
+
+** Android                                                             :Android:
+*** [[http://blog.csdn.net/luoshengyang/rss/list][老罗的Android开发之旅]]
+*** [[http://www.gcssloop.com/feed.xml][gcssloop]]
+*** [[http://gityuan.com/feed.xml][gityuan]]
+*** [[http://weishu.me/atom.xml][Weishus Note]]
+*** [[http://kaedea.com/atom.xml][中二病也要开发Android]]
