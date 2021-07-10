@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -124,11 +124,11 @@
     (advice-add #'persp-asave-on-exit :around #'my-persp-asave-on-exit))
 
   ;; Don't save dead or temporary buffers
-  (add-to-list 'persp-filter-save-buffers-functions
+  (add-hook 'persp-filter-save-buffers-functions
                (lambda (b)
                  "Ignore dead buffers."
                  (not (buffer-live-p b))))
-  (add-to-list 'persp-filter-save-buffers-functions
+  (add-hook 'persp-filter-save-buffers-functions
                (lambda (b)
                  "Ignore temporary buffers."
                  (let ((bname (file-name-nondirectory (buffer-name b))))
