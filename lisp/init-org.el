@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 384
+;;     Update #: 387
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -552,15 +552,17 @@ prepended to the element after the #+HEADER: tag."
            (org-pomodoro-killed . (lambda () (progn (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")
                                                (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
 
+  ;;change download dir -*- mode: Org; org-download-image-dir: "images"; -*-
   (use-package org-download
     :commands (org-download-enable
                org-download-yank
                org-download-screenshot)
     :hook (org-mode . org-download-enable)
     :config
-    (setq org-download-display-inline-images 'posframe)
-    (setq org-download-image-attr-list
-          '("#+ATTR_HTML: :width 80% :align center"))
+    (setq org-download-display-inline-images 'posframe
+          org-download-image-attr-list '("#+ATTR_HTML: :width 80% :align center")
+          org-download-method 'directory
+          org-download-image-dir "images/")
     (when (eq system-type 'windows-nt)
       (setq org-download-screenshot-method "convert clipboard: %s")))
 
