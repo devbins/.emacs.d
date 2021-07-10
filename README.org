@@ -74,7 +74,7 @@
     | SPC m r b | 切换到 Org roam buffer | =org-roam-switch-to-buffer= |
 ** lsp
 *** C/C++
-**** 安装
+**** Server 安装
      #+begin_src sh
      sudo pacman -S ccls
      #+end_src
@@ -84,9 +84,14 @@
      #+end_src
      =M-x dap-gdb-lldb-setup=
 *** Go
-    #+begin_src sh
-    go get golang.org/x/tools/gopls@latest
-    #+end_src
+**** Server 安装
+     #+begin_src sh
+     go get golang.org/x/tools/gopls@latest
+     #+end_src
+**** debug
+     #+begin_src sh
+     go install github.com/go-delve/delve/cmd/dlv@latest
+     #+end_src
 *** Rust
     安装好 =Rust= 之后，需要安装 RLS(Rust Language Server)
     #+begin_src sh
@@ -95,9 +100,14 @@
     rustup component add rust-src --toolchain stable
     #+end_src
 *** Python
+**** Server 安装
     #+begin_src sh
     npm install -g pyright
     #+end_src
+**** debug
+     #+begin_src sh
+     pip install debugpy
+     #+end_src
 *** CMake
     #+begin_src sh
     pip install cmake-language-server
