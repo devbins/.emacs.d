@@ -8,6 +8,7 @@
 #+CATEGORIES: $2
 #+TAGS: $3
 #+TOC: true
+#+DRAFT: true
 #+IMAGE: /images/$4
 #+HUGO_SECTION: ./post
 
