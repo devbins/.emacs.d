@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -91,6 +91,27 @@
                               )))
 
 (use-package password-store)
+
+(use-package autoinsert
+  :ensure nil
+  :hook (after-init . auto-insert-mode)
+  :init (setq-default auto-insert-directory (expand-file-name "auto-insert-template" user-emacs-directory))
+  (setq auto-insert-query nil)
+  :config
+  (defun autoinsert-yas-expand ()
+    "Replace text in yasnippet template."
+    (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  (add-to-list 'auto-insert-alist '(("\\.py\\'" . "Python souce code header") .
+                                    ["template.py" autoinsert-yas-expand]))
+
+  (add-to-list 'auto-insert-alist '(("\\.\\([Hh]\\|hh\\|hpp\\)\\'" . "C / C++ header") .
+                                    ["template.h" autoinsert-yas-expand]))
+
+  (add-to-list 'auto-insert-alist '(("\\.\\([Cc]\\|cc\\|cpp\\)\\'" . "C / C++ program") .
+                                    ["template.c" autoinsert-yas-expand]))
+
+  (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") .
+                                    ["template.go" autoinsert-yas-expand])))
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
