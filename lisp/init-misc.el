@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -90,7 +90,9 @@
                                 :type (:@type "proxyTypeSocks5"))
                               )))
 
-(use-package password-store)
+(use-package password-store
+  :if (executable-find "pass")
+  :config (use-package pass))
 
 (use-package autoinsert
   :ensure nil
