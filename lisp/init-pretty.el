@@ -135,9 +135,6 @@
                                     ("yield"  . (#x21d4 (Br . Bl) #x2004))  ;; ⇔ x
                                     ("pure"   . (#x21f0 (Br . Bl)))))))          ;; ⇰ x
 
-         ;; https://github.com/tonsky/FiraCode/issues/211  #issuecomment-239058632
-         ;; https://gist.github.com/DeLaGuardo/fe1f3d9397d6ef7468460d54d5601156
-
          (python-mode . (lambda ()
                           (mapc (lambda (pair) (push pair prettify-symbols-alist))
                                 '(;; Syntax
