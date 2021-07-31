@@ -204,6 +204,10 @@
     "mit"                       'org-agenda-set-tags
     "msr"                       'org-agenda-refile)
 
+  ;; Add graphical view of agenda
+  (use-package org-timeline
+    :hook (org-agenda-finalize . org-timeline-insert-timeline))
+
   (use-package appt
     :ensure nil
     :config
