@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 66
+;;     Update #: 69
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,51 +47,27 @@
 ;;; Code:
 
 ;; Speed up startup
-(defvar better-gc-cons-threshold (* 128 1024 1024) ;;8m
-  "The default value to use for `gc-cons-threshold'.
-If you experience freezing, decrease this. If you experience stuttering, increase this.")
+(setq auto-mode-case-fold nil)
 
-(setq gc-cons-percentage 0.8)
-
-(defvar startup/file-name-handler-alist file-name-handler-alist)
-(setq file-name-handler-alist nil)
-
-(defun startup/revert-file-name-handler-alist ()
-  (setq file-name-handler-alist startup/file-name-handler-alist))
-
-(defun startup/reset-gc ()
-  (setq gc-cons-threshold better-gc-cons-threshold
-	gc-cons-percentage 0.1))
-
-(add-hook 'emacs-startup-hook 'startup/revert-file-name-handler-alist)
-(add-hook 'emacs-startup-hook 'startup/reset-gc)
-
-(defun gc-minibuffer-setup-hook ()
-  (setq gc-cons-threshold (* better-gc-cons-threshold 2)))
-
-(defun gc-minibuffer-exit-hook ()
-  (garbage-collect)
-  (setq gc-cons-threshold better-gc-cons-threshold))
-
-(add-hook 'minibuffer-setup-hook #'gc-minibuffer-setup-hook)
-(add-hook 'minibuffer-exit-hook #'gc-minibuffer-exit-hook)
+(unless (or (daemonp) noninteractive)
+  (let ((old-file-name-handler-alist file-name-handler-alist))
+    ;; If `file-name-handler-alist' is nil, no 256 colors in TUI
+    ;; @see https://emacs-china.org/t/spacemacs-centaur-emacs/3802/839
+    (setq file-name-handler-alist
+          (unless (display-graphic-p)
+            '(("\\(?:\\.tzst\\|\\.zst\\|\\.dz\\|\\.txz\\|\\.xz\\|\\.lzma\\|\\.lz\\|\\.g?z\\|\\.\\(?:tgz\\|svgz\\|sifz\\)\\|\\.tbz2?\\|\\.bz2\\|\\.Z\\)\\(?:~\\|\\.~[-[:alnum:]:#@^._]+\\(?:~[[:digit:]]+\\)?~\\)?\\'" . jka-compr-handler))))
+    (add-hook 'emacs-startup-hook
+              (lambda ()
+                "Recover file name handlers."
+                (setq file-name-handler-alist
+                      (delete-dups (append file-name-handler-alist
+                                           old-file-name-handler-alist)))))))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (if (boundp 'after-focus-change-function)
-                (add-function :after after-focus-change-function
-                              (lambda ()
-                                (unless (frame-focus-state)
-                                  (garbage-collect))))
-(add-hook 'after-focus-change-function 'garbage-collect))))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (message "Emacs ready in %s with %d garbage collections."
-                     (format "%.2f seconds"
-                             (float-time
-                              (time-subtract after-init-time before-init-time)))
-                     gcs-done)))
+            "Recover GC values after startup."
+            (setq gc-cons-threshold 800000
+                  gc-cons-percentage 0.1)))
 
 ;; Load path
 ;; Optimize: Force "lisp"" and "site-lisp" at the head to reduce the startup time.
