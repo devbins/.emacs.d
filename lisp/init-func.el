@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 48
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -223,6 +223,13 @@ Same as `replace-string C-q C-m RET RET'."
   (run-hooks 'after-load-theme-hook))
 (advice-add #'load-theme :after #'run-after-load-theme-hook)
 
+(defun childframe-workable-p ()
+  "Test whether childframe is workable."
+  (and emacs/>=26p
+      ;; (eq -completion-style 'childframe)
+       (not (or noninteractive
+                emacs-basic-display
+                (not (display-graphic-p))))))
 
 (defun proxy-http-enable ()
   "Enable HTTP/HTTPS proxy."
