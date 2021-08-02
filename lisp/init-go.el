@@ -48,7 +48,8 @@
 
 ;; Golang
 (use-package go-mode
-  :functions (go-packages-gopkgs go-update-tools)
+  :functions go-update-tools
+  :commands godoc-gogetdoc
   :bind (:map go-mode-map
          ([remap xref-find-definitions] . godef-jump)
          ("C-c R" . go-remove-unused-imports)
