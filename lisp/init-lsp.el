@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 48
+;;     Update #: 61
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -223,17 +223,15 @@
       (push 'lsp-treemacs-symbols-mode aw-ignored-buffers)
       (push 'lsp-treemacs-java-deps-mode aw-ignored-buffers))))
 
-;; Python: pyright
-(use-package lsp-pyright
+(use-package lsp-jedi
   :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (add-hook 'after-save-hook #'lsp-pyright-format-buffer t t)))
+                         (require 'lsp-jedi)
+                         (add-hook 'after-save-hook #'lsp-python-format-buffer t t)))
   :init
   (when (executable-find "python3")
-    (setq lsp-pyright-python-executable-cmd "python3"))
-
+    (setq lsp-jedi-executable-cmd "python3"))
   ;; Use yapf to format
-  (defun lsp-pyright-format-buffer ()
+  (defun lsp-python-format-buffer ()
     (interactive)
     (when (and (executable-find "yapf") buffer-file-name)
       (call-process "yapf" nil nil nil "-i" buffer-file-name))))
