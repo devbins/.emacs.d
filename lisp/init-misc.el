@@ -102,6 +102,7 @@
   :config
   (defun autoinsert-yas-expand ()
     "Replace text in yasnippet template."
+    (evil-insert 0)
     (yas-expand-snippet (buffer-string) (point-min) (point-max)))
   (add-to-list 'auto-insert-alist '(("\\.py\\'" . "Python souce code header") .
                                     ["template.py" autoinsert-yas-expand]))
