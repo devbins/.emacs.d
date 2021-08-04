@@ -1,7 +1,7 @@
 /*
  * File:    `(buffer-name)`
  * Author:  `user-full-name` <`user-mail-address`>
- * Brief:   ${0:brief}
+ * Brief:   ${1:brief}
  *
  * Copyright (c) `user-full-name`
  *
@@ -27,3 +27,5 @@
  * ================================================================
  * `(format-time-string "%Y-%m-%d %H:%M"(current-time))` `user-full-name` <`user-mail-address`> created.
  */
+
+$0
