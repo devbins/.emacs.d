@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 172
+;;     Update #: 174
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -92,14 +92,12 @@
 
 ;; Mode-line
 (use-package doom-modeline
-  :custom
-  (doom-modeline-icon (display-graphic-p))
-  (doom-modeline-minor-modes t)
   :hook (after-init . doom-modeline-mode)
   :init
+  (setq doom-modeline-icon (display-graphic-p)
+        doom-modeline-minor-modes t)
   ;; prevent flash of unstyled modeline at startup
   (unless after-init-time
-    (setq doom-modeline--old-format mode-line-format)
     (setq-default mode-line-format nil)))
 
 ;; A minor-mode menu for mode-line
