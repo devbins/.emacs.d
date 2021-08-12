@@ -260,6 +260,9 @@ prepended to the element after the #+HEADER: tag."
         org-src-fontify-natively t
         org-src-tab-acts-natively t)
 
+  (setq org-babel-C-compiler "gcc -std=c++17"
+        org-babel-C++-compiler "g++ -std=c++17")
+
   (defvar load-language-list '((emacs-lisp . t)
                                (perl . t)
                                (python . t)
