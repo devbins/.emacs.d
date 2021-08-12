@@ -168,6 +168,7 @@ prepended to the element after the #+HEADER: tag."
               org-export-use-babel nil ;; 导出的时候不执行代码，会导致设置的 header-arg 无效 do not evaluate again during export.
               org-export-with-toc nil
               org-export-with-section-numbers nil
+              org-export-with-entities t ;; 导出时是否进行转义
               org-use-sub-superscripts                      '{}
 
               org-catch-invisible-edits 'smart
