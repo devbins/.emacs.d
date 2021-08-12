@@ -751,6 +751,8 @@ same directory as the org-buffer and insert a link to this file."
          :map org-mode-map
          (("C-c n i" . org-roam-insert)))
   :config
+  (unless (file-exists-p org-roam-directory)
+      (make-directory org-roam-directory))
   (add-to-list 'org-modules 'org-roam-protocol)
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
