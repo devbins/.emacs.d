@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,12 +53,13 @@
   :diminish (pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
   :defines pdf-annot-activate-created-annotations
   :functions (my-pdf-view-set-midnight-colors my-pdf-view-set-dark-theme)
-  :commands pdf-view-midnight-minor-mode
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :bind (:map pdf-view-mode-map
          ("C-s" . isearch-forward))
-  :init (setq pdf-annot-activate-created-annotations t)
+  :init (setq pdf-view-use-scaling t
+              pdf-view-use-imagemagick nil
+              pdf-annot-activate-created-annotations t)
   :config
   ;; Build pdfinfo if needed
   (advice-add #'pdf-view-decrypt-document :before #'pdf-tools-install)
@@ -81,49 +82,18 @@
   (add-hook 'after-load-theme-hook #'my-pdf-view-set-dark-theme)
 
   (with-no-warnings
-    ;; FIXME: Support retina
-    ;; @see https://emacs-china.org/t/pdf-tools-mac-retina-display/10243/
-    ;; and https://github.com/politza/pdf-tools/pull/501/
-    (setq pdf-view-use-scaling t
-          pdf-view-use-imagemagick nil)
-
-    (defun my-pdf-view-use-scaling-p ()
-      "Return t if scaling should be used."
-      (and (or (and (eq system-type 'ns) (>= emacs-major-version 27))
-            (memq (pdf-view-image-type) '(imagemagick image-io)))
-         pdf-view-use-scaling))
-    (advice-add #'pdf-view-use-scaling-p :override #'my-pdf-view-use-scaling-p)
-
-    (defun my-pdf-view-create-page (page &optional window)
-      "Create an image of PAGE for display on WINDOW."
-      (let* ((size (pdf-view-desired-image-size page window))
-             (width (if (not (pdf-view-use-scaling-p))
-                        (car size)
-                      (* 2 (car size))))
-             (data (pdf-cache-renderpage
-                    page width width))
-             (hotspots (pdf-view-apply-hotspot-functions
-                        window page size)))
-        (pdf-view-create-image data
-          :width width
-          :scale (if (pdf-view-use-scaling-p) 0.5 1)
-          :map hotspots
-          :pointer 'arrow)))
-    (advice-add #'pdf-view-create-page :override #'my-pdf-view-create-page)
-
-    (defun my-pdf-util-frame-scale-factor ()
-      "Return the frame scale factor depending on the image type used for display."
-      (if (and pdf-view-use-scaling
-             (memq (pdf-view-image-type) '(imagemagick image-io))
-             (fboundp 'frame-monitor-attributes))
-          (or (cdr (assq 'backing-scale-factor (frame-monitor-attributes)))
-             (if (>= (pdf-util-frame-ppi) 180)
-                 2
-               1))
-        (if (and pdf-view-use-scaling (eq (framep-on-display) 'ns))
-            2
-          1)))
-    (advice-add #'pdf-util-frame-scale-factor :override #'my-pdf-util-frame-scale-factor)
+    ;; Build pdfinfo if needed, locking until it's complete
+      (defun my-pdf-tools-install ()
+        (unless (file-executable-p pdf-info-epdfinfo-program)
+          (let ((wconf (current-window-configuration)))
+            (pdf-tools-install t)
+            (message "Building epdfinfo. Please wait for a moment...")
+            (while compilation-in-progress
+              ;; Block until `pdf-tools-install' is done
+              (sleep-for 1))
+            (when (file-executable-p pdf-info-epdfinfo-program)
+              (set-window-configuration wconf)))))
+      (advice-add #'pdf-view-decrypt-document :before #'my-pdf-tools-install)
 
     (defun my-pdf-isearch-hl-matches (current matches &optional occur-hack-p)
       "Highlighting edges CURRENT and MATCHES."
@@ -158,7 +128,7 @@
                                  (remove current matches))))))))
     (advice-add #'pdf-isearch-hl-matches :override #'my-pdf-isearch-hl-matches)
 
-    (defun pdf-annot-show-annotation (a &optional highlight-p window)
+    (defun my-pdf-annot-show-annotation (a &optional highlight-p window)
       "Make annotation A visible."
       (save-selected-window
         (when window (select-window window))
