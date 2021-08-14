@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 90
+;;     Update #: 94
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -257,7 +257,7 @@
   (use-package epc :defer t)
   (use-package ctable :defer t)
   (use-package deferred :defer t)
-  :commands (eaf-open-browser eaf-open)
+  :commands (eaf-open eaf-open-browser eaf-open-browser-with-history)
   :preface
   (defun eaf-proxy-enable ()
     "Enable proxy in eaf"
@@ -273,7 +273,7 @@
           eaf-proxy-port ""))
   :custom
   (eaf-find-alternate-file-in-dired t)
-  (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
+  (browse-url-browser-function #'eaf-open-browser) ;; Make EAF Browser my default browser
   (eaf-browser-continue-where-left-off t)
   :config
   (defalias 'browse-web #'eaf-open-browser)
@@ -295,8 +295,10 @@
   (eaf-bind-key zoom_out "C--" eaf-pdf-viewer-keybinding)
   (eaf-bind-key take_photo "p" eaf-camera-keybinding)
   (eaf-bind-key eaf-send-key-sequence "M-]" eaf-terminal-keybinding)
-  (eaf-setq eaf-browser-enable-adblocker "true")
-  (eaf-setq eaf-browser-enable-autofill "true"))
+  (setq eaf-browser-enable-adblocker "true"
+        eaf-browser-enable-autofill "true"
+        eaf-browser-dark-mode nil
+        eaf-paf-dark-mode nil))
 
 (use-package eww
   :ensure nil
