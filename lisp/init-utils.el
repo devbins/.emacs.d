@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 94
+;;     Update #: 101
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -199,8 +199,6 @@
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
 
 (use-package netease-cloud-music
-  :quelpa (netease-cloud-music :fetcher github :repo "SpringHan/netease-cloud-music.el")
-  :defer t
   :commands (netease-cloud-music))
 
 ;; IRC
