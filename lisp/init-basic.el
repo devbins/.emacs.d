@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,7 +80,7 @@
                ([(super z)] . undo))))
 
   ;; Increase how much is read from processes in a single chunk (default is 4kb)
-  (setq read-process-output-max #x10000)  ; 64kb
+  (setq read-process-output-max #x1000000)  ; 64kb
 
   ;; Don't ping things that look like domain names.
   (setq ffap-machine-p-known 'reject)
