@@ -252,11 +252,7 @@
 
 ;; Emacs-appcliation-framework
 (use-package eaf
-  :quelpa (eaf :fetcher github :repo "manateelazycat/emacs-application-framework" :files ("*"))
-  :init
-  (use-package epc :defer t)
-  (use-package ctable :defer t)
-  (use-package deferred :defer t)
+  :quelpa (eaf :fetcher github :repo "emacs-eaf/emacs-application-framework" :files ("*"))
   :commands (eaf-open eaf-open-browser eaf-open-browser-with-history)
   :preface
   (defun eaf-proxy-enable ()
