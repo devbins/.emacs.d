@@ -260,7 +260,7 @@
     (interactive)
     (setq eaf-proxy-type "socks5"
           eaf-proxy-host socks-proxy
-          eaf-proxy-port socks-port))
+          eaf-proxy-port (format "%s" socks-port)))
   (defun eaf-proxy-disable ()
     "Disable proxy in eaf"
     (interactive)
