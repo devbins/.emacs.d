@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 387
+;;     Update #: 403
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -125,12 +125,17 @@ prepended to the element after the #+HEADER: tag."
                               (setq show-paren-mode nil))))
   :init (setq org-todo-keywords
               '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")
-                (sequence "⚑(T)" "🏴(I)" "❓(H)" "|" "✔(D)" "✘(C)"))
+                (sequence "❍(t)" "⥁(d)" "❓(h)" "|" "✔(o)" "✘(a)" "⤽(r)" "♱(c)"))
               org-todo-keyword-faces '(("TODO")
                                        ("DOING" . "orange")
                                        ("DONE" . "green")
                                        ("ABORT" . "grey")
-                                       ("❓" . warning))
+                                       ("❓" . warning)
+                                       ("❍" . (:foreground "yellow" :weight bold))
+                                       ("⥁" . (:foreground "cyan" :weight bold))
+                                       ("✓" . (:foreground "green" :weight bold))
+                                       ("⤽" . (:foreground "orange" :weight bold))
+                                       ("♱" . (:foreground "red" :weight bold)))
               org-priority-faces '((?A . error)
                                    (?B . warning)
                                    (?C . success))
