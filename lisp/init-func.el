@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 48
+;;     Update #: 58
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,10 +48,10 @@
 
 ;; Suppress warnings
 (defvar package-archives-alist)
-(defvar http-proxy)
+(defvar http-proxy "127.0.0.1:1080")
 (defvar socks-noproxy)
-(defvar socks-proxy)
-(defvar socks-port)
+(defvar socks-proxy "127.0.0.1")
+(defvar socks-port 1080)
 
 (declare-function async-inject-variables 'async)
 (declare-function chart-bar-quickie 'chart)
@@ -281,6 +281,15 @@ Same as `replace-string C-q C-m RET RET'."
       (proxy-socks-disable)
     (proxy-socks-enable)))
 
+(defun proxy-git-enable ()
+  "Enable Git proxy"
+  (interactive)
+  (shell-command (format "git config --global http.proxy 'socks5://%s:%d'; git config --global https.proxy 'socks5://%s:%d'" socks-proxy socks-port socks-proxy socks-port)))
+
+(defun proxy-git-disable ()
+  "Disable Git proxy"
+  (interactive)
+  (shell-command "git config --global --unset http.proxy; git config --global --unset https.proxy"))
 
 (defun open-in-external-app (file-path)
   "Open `file-path' in external application."
