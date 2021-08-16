@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 101
+;;     Update #: 104
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -270,6 +270,7 @@
   (eaf-start-python-process-when-require t)
   (browse-url-browser-function #'eaf-open-browser) ;; Make EAF Browser my default browser
   (eaf-browser-continue-where-left-off t)
+  (eaf-python-command (executable-find "python3"))
   :config
   (require 'eaf-file-manager nil t)
   (require 'eaf-music-player nil t)
