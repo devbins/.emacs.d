@@ -121,6 +121,11 @@
    #+begin_src sh
    sudo pacman -S libvterm
    #+end_src
+** ctags
+*** mac
+    #+begin_src sh
+    brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+    #+end_src
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
