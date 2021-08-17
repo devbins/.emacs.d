@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -114,7 +114,10 @@
                                     ["template.c" autoinsert-yas-expand]))
 
   (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") .
-                                    ["template.go" autoinsert-yas-expand])))
+                                    ["template.go" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") .
+                                    ["template.cmake" autoinsert-yas-expand]))
+  )
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
