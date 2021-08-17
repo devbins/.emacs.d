@@ -102,9 +102,14 @@
     #+end_src
 *** Python
 **** Server 安装
-    #+begin_src sh
-    npm install -g pyright
-    #+end_src
+***** jedi
+      #+begin_src sh
+      pip install -U jedi-language-server
+      #+end_src
+***** pyright
+      #+begin_src sh
+      npm install -g pyright
+      #+end_src
 **** debug
      #+begin_src sh
      pip install debugpy
