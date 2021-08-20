@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 404
+;;     Update #: 405
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -131,11 +131,11 @@ prepended to the element after the #+HEADER: tag."
                                        ("DONE" . "green")
                                        ("ABORT" . "grey")
                                        ("❓" . warning)
-                                       ("❍" . (:foreground "yellow" :weight bold))
-                                       ("⥁" . (:foreground "cyan" :weight bold))
-                                       ("✓" . (:foreground "green" :weight bold))
-                                       ("⤽" . (:foreground "orange" :weight bold))
-                                       ("♱" . (:foreground "red" :weight bold)))
+                                       ("❍" . (:foreground "yellow" :height 2.0 :weight bold))
+                                       ("⥁" . (:foreground "cyan" :height 2.0 :weight bold))
+                                       ("✓" . (:foreground "green" :height 2.0 :weight bold))
+                                       ("⤽" . (:foreground "orange" :height 2.0 :weight bold))
+                                       ("♱" . (:foreground "red" :height 2.0 :weight bold)))
               org-priority-faces '((?A . error)
                                    (?B . warning)
                                    (?C . success))
