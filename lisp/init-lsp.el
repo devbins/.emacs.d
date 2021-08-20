@@ -270,10 +270,10 @@
                   projectile-project-root-files-top-down-recurring))))
 
 ;; Swift/C/C++/Objective-C
-(when sys/macp
-  (use-package lsp-sourcekit
-    :init (setq lsp-sourcekit-executable
-                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp")))
+(use-package lsp-sourcekit
+  :if sys/macp
+  :init (setq lsp-sourcekit-executable
+              "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
 
 ;; Java support
 (use-package lsp-java
