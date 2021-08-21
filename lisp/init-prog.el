@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 60
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,7 +113,10 @@
    ;; use gdb-many-windows by default when `M-x gdb'
    gdb-many-windows t
    ;; Non-nil means display source file containing the main routine at startup
-   gdb-show-main t))
+   gdb-show-main t
+   gdb-use-colon-colon-notation t
+   gdb-show-changed-values t
+   gdb-restore-window-configuration-after-quit t))
 
 (use-package realgud)
 (use-package realgud-lldb)
