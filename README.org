@@ -186,6 +186,10 @@
     #+begin_src sh
     sudo pacman -S emacs-git
     #+end_src
+** 最小启动配置
+   #+begin_src sh
+   emacs -Q -l init-mini.el
+   #+end_src
 ** FAQ
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
