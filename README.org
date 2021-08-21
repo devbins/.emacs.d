@@ -127,9 +127,29 @@
    sudo pacman -S libvterm
    #+end_src
 ** ctags
-*** mac
+*** Mac
     #+begin_src sh
     brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+    #+end_src
+** rtags
+*** Mac
+    #+begin_src sh
+    brew install llvm
+    export PATH=/usr/local/opt/llvm/bin:$PATH
+    git clone --recursive https://github.com/Andersbakken/rtags.git
+    cd rtags
+    mkdir build && cd build
+    CC=clang CXX=clang++ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=on ..
+    #+end_src
+*** Linux(Manjaro)
+    #+begin_src sh
+    git clone --recursive https://github.com/Andersbakken/rtags.git
+    cd rtags
+    mkdir build && cd build
+    export GCC_VERSION=11.1.0 # 需要根据你的版本修改，可以使用 g++ --version 查看
+    export CXXFLAGS="-include /usr/include/c++/${GCC_VERSION}/limits"
+    cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=on ..
+
     #+end_src
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
