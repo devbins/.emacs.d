@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 63
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -279,6 +279,11 @@
   (rime-show-candidate 'minibuffer)
   (rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                            (sys/linuxp nil))))
+
+;; The selected region of text can be deleted
+(use-package delsel
+  :ensure nil
+  :hook (after-init . delete-selection-mode))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
