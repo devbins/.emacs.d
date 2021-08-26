@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 64
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,45 +105,64 @@
 
 (use-package lsp-ui
   :custom-face
-  (lsp-ui-doc-background ((t (:background ,(face-background 'tooltip)))))
   (lsp-ui-sideline-code-action ((t (:inherit warning))))
   :pretty-hydra
-  ((:title (pretty-hydra-title "LSP UI" 'faicon "rocket")
+  ((:title (pretty-hydra-title "LSP UI" 'faicon "rocket" :face 'all-the-icons-green)
     :color amaranth :quit-key "q")
    ("Doc"
-    (("d e" (lsp-ui-doc-enable (not lsp-ui-doc-mode))
-      "enable" :toggle lsp-ui-doc-mode)
-     ("d s" (setq lsp-ui-doc-include-signature (not lsp-ui-doc-include-signature))
-      "signature" :toggle lsp-ui-doc-include-signature)
-     ("d t" (setq lsp-ui-doc-position 'top)
-      "top" :toggle (eq lsp-ui-doc-position 'top))
-     ("d b" (setq lsp-ui-doc-position 'bottom)
-      "bottom" :toggle (eq lsp-ui-doc-position 'bottom))
-     ("d p" (setq lsp-ui-doc-position 'at-point)
-      "at point" :toggle (eq lsp-ui-doc-position 'at-point))
-     ("d h" (setq lsp-ui-doc-header (not lsp-ui-doc-header))
-      "header" :toggle lsp-ui-doc-header)
-     ("d f" (setq lsp-ui-doc-alignment 'frame)
-      "align frame" :toggle (eq lsp-ui-doc-alignment 'frame))
-     ("d w" (setq lsp-ui-doc-alignment 'window)
-      "align window" :toggle (eq lsp-ui-doc-alignment 'window)))
-    "Sideline"
-    (("s e" (lsp-ui-sideline-enable (not lsp-ui-sideline-mode))
-      "enable" :toggle lsp-ui-sideline-mode)
-     ("s h" (setq lsp-ui-sideline-show-hover (not lsp-ui-sideline-show-hover))
-      "hover" :toggle lsp-ui-sideline-show-hover)
-     ("s d" (setq lsp-ui-sideline-show-diagnostics (not lsp-ui-sideline-show-diagnostics))
-      "diagnostics" :toggle lsp-ui-sideline-show-diagnostics)
-     ("s s" (setq lsp-ui-sideline-show-symbol (not lsp-ui-sideline-show-symbol))
-      "symbol" :toggle lsp-ui-sideline-show-symbol)
-     ("s c" (setq lsp-ui-sideline-show-code-actions (not lsp-ui-sideline-show-code-actions))
-      "code actions" :toggle lsp-ui-sideline-show-code-actions)
-     ("s i" (setq lsp-ui-sideline-ignore-duplicate (not lsp-ui-sideline-ignore-duplicate))
-      "ignore duplicate" :toggle lsp-ui-sideline-ignore-duplicate))))
+         (("d e" (progn
+                   (lsp-ui-doc-enable (not lsp-ui-doc-mode))
+                   (setq lsp-ui-doc-enable (not lsp-ui-doc-enable)))
+           "enable" :toggle lsp-ui-doc-mode)
+          ("d s" (setq lsp-ui-doc-include-signature (not lsp-ui-doc-include-signature))
+           "signature" :toggle lsp-ui-doc-include-signature)
+          ("d t" (setq lsp-ui-doc-position 'top)
+           "top" :toggle (eq lsp-ui-doc-position 'top))
+          ("d b" (setq lsp-ui-doc-position 'bottom)
+           "bottom" :toggle (eq lsp-ui-doc-position 'bottom))
+          ("d p" (setq lsp-ui-doc-position 'at-point)
+           "at point" :toggle (eq lsp-ui-doc-position 'at-point))
+          ("d h" (setq lsp-ui-doc-header (not lsp-ui-doc-header))
+           "header" :toggle lsp-ui-doc-header)
+          ("d f" (setq lsp-ui-doc-alignment 'frame)
+           "align frame" :toggle (eq lsp-ui-doc-alignment 'frame))
+          ("d w" (setq lsp-ui-doc-alignment 'window)
+           "align window" :toggle (eq lsp-ui-doc-alignment 'window)))
+         "Sideline"
+         (("s e" (progn
+                   (lsp-ui-sideline-enable (not lsp-ui-sideline-mode))
+                   (setq lsp-ui-sideline-enable (not lsp-ui-sideline-enable)))
+           "enable" :toggle lsp-ui-sideline-mode)
+          ("s h" (setq lsp-ui-sideline-show-hover (not lsp-ui-sideline-show-hover))
+           "hover" :toggle lsp-ui-sideline-show-hover)
+          ("s d" (setq lsp-ui-sideline-show-diagnostics (not lsp-ui-sideline-show-diagnostics))
+           "diagnostics" :toggle lsp-ui-sideline-show-diagnostics)
+          ("s s" (setq lsp-ui-sideline-show-symbol (not lsp-ui-sideline-show-symbol))
+           "symbol" :toggle lsp-ui-sideline-show-symbol)
+          ("s c" (setq lsp-ui-sideline-show-code-actions (not lsp-ui-sideline-show-code-actions))
+           "code actions" :toggle lsp-ui-sideline-show-code-actions)
+          ("s i" (setq lsp-ui-sideline-ignore-duplicate (not lsp-ui-sideline-ignore-duplicate))
+           "ignore duplicate" :toggle lsp-ui-sideline-ignore-duplicate))
+         "Action"
+         (("h" backward-char "←")
+          ("j" next-line "↓")
+          ("k" previous-line "↑")
+          ("l" forward-char "→")
+          ("C-a" mwim-beginning-of-code-or-line nil)
+          ("C-e" mwim-end-of-code-or-line nil)
+          ("C-b" backward-char nil)
+          ("C-n" next-line nil)
+          ("C-p" previous-line nil)
+          ("C-f" forward-char nil)
+          ("M-b" backward-word nil)
+          ("M-f" forward-word nil)
+          ("c" lsp-ui-sideline-apply-code-actions "apply code actions"))))
   :bind (("C-c u" . lsp-ui-imenu)
          :map lsp-ui-mode-map
          ("M-<f6>" . lsp-ui-hydra/body)
-         ("M-RET" . lsp-ui-sideline-apply-code-actions))
+         ("M-RET" . lsp-ui-sideline-apply-code-actions)
+         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+         ([remap xref-find-references] . lsp-ui-peek-find-references))
   :hook (lsp-mode . lsp-ui-mode)
   :init (setq lsp-ui-doc-enable t
               lsp-ui-doc-header t
@@ -169,7 +188,30 @@
                                     ,(face-foreground 'font-lock-constant-face)
                                     ,(face-foreground 'font-lock-variable-name-face)))
   :config
-  (add-to-list 'lsp-ui-doc-frame-parameters '(right-fringe . 8))
+  (with-no-warnings
+         (defun my-lsp-ui-doc--handle-hr-lines nil
+           (let (bolp next before after)
+             (goto-char 1)
+             (while (setq next (next-single-property-change (or next 1) 'markdown-hr))
+               (when (get-text-property next 'markdown-hr)
+                 (goto-char next)
+                 (setq bolp (bolp)
+                       before (char-before))
+                 (delete-region (point) (save-excursion (forward-visible-line 1) (point)))
+                 (setq after (char-after (1+ (point))))
+                 (insert
+                  (concat
+                   (and bolp (not (equal before ?\n)) (propertize "\n" 'face '(:height 0.5)))
+                   (propertize "\n" 'face '(:height 0.5))
+                   (propertize " "
+                               ;; :align-to is added with lsp-ui-doc--fix-hr-props
+                               'display '(space :height (1))
+                               'lsp-ui-doc--replace-hr t
+                               'face `(:background ,(face-foreground 'font-lock-comment-face)))
+                   ;; :align-to is added here too
+                   (propertize " " 'display '(space :height (1)))
+                   (and (not (equal after ?\n)) (propertize " \n" 'face '(:height 0.5)))))))))
+         (advice-add #'lsp-ui-doc--handle-hr-lines :override #'my-lsp-ui-doc--handle-hr-lines))
 
   ;; `C-g'to close doc
   (advice-add #'keyboard-quit :before #'lsp-ui-doc-hide)
@@ -177,9 +219,8 @@
   ;; Reset `lsp-ui-doc-background' after loading theme
   (add-hook 'after-load-theme-hook
             (lambda ()
-              (setq lsp-ui-doc-border (face-foreground 'default))
-              (set-face-background 'lsp-ui-doc-background
-                                   (face-background 'tooltip)))))
+              (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face nil t))
+              (set-face-background 'lsp-ui-doc-background (face-background 'tooltip nil t)))))
 
 ;; Ivy integration
 (use-package lsp-ivy
@@ -194,10 +235,9 @@
   :bind (:map lsp-mode-map
          ("<f5>" . dap-debug)
          ("M-<f5>" . dap-hydra))
-  :hook ((after-init . dap-mode)
-         (dap-mode . dap-ui-mode)
-         (dap-session-created . (lambda (_args) (dap-hydra)))
+  :hook ((after-init . dap-auto-configure-mode)
          (dap-stopped . (lambda (_args) (dap-hydra)))
+         (dap-terminated . (lambda (_args) (dap-hydra/nil)))
 
          (python-mode . (lambda () (require 'dap-python)))
          (ruby-mode . (lambda () (require 'dap-ruby)))
