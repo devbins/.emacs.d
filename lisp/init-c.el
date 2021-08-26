@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,6 +95,23 @@
                      (inlambda              . 0) ;; better indentation for lambda
                      (innamespace           . -) ;; no indentation after namespace
                      (arglist-cont-nonempty . +))))
+
+;; Highlight "#if 0" as comments
+(use-package hideif
+  :ensure nil
+  :hook ((c-mode c++-mode) . hide-ifdef-mode)
+  :config
+  (when sys/linuxp
+    (add-to-list 'hide-ifdef-env '(__linux__ . 1))
+    (add-to-list 'hide-ifdef-env '(__GNUC__ . 11)))
+  (when sys/macp
+    (add-to-list 'hide-ifdef-env '(__APPLE__ . 1))
+    (add-to-list 'hide-ifdef-env '(__clang__ . 1))
+    (add-to-list 'hide-ifdef-env '(__llvm__ . 1)))
+  :custom
+  (hide-ifdef-initially t)
+  (hide-ifdef-shadow t))
+
 
 (use-package cpp-auto-include
   :config
