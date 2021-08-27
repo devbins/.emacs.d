@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -199,6 +199,7 @@
       make-backup-files nil             ; Forbide to make backup files
       auto-save-default nil             ; Disable auto save
       split-width-threshold 120
+      vc-follow-symlinks t              ; Don't ask for confirmation when opening symlinked file
 
       uniquify-buffer-name-style 'post-forward-angle-brackets ; Show path if names are same
       adaptive-fill-regexp "[ t]+|[ t]*([0-9]+.|*+)[ t]*"
