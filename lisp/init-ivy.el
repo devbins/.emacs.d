@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -374,15 +374,7 @@
     (ivy-add-actions
      'counsel-fzf
      '(("f" my-ivy-switch-to-counsel-find-file "find file")
-       ("g" my-ivy-switch-to-counsel-git "git")))
-
-    ;; Integration with `projectile'
-    (with-eval-after-load 'projectile
-      (setq projectile-completion-system 'ivy))
-
-    ;; Integration with `magit'
-    (with-eval-after-load 'magit
-      (setq magit-completing-read-function 'ivy-completing-read)))
+       ("g" my-ivy-switch-to-counsel-git "git"))))
 
   ;; Enhance M-x
   (use-package amx
