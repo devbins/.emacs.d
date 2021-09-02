@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,12 +51,14 @@
   :functions go-update-tools
   :commands godoc-gogetdoc
   :bind (:map go-mode-map
-         ([remap xref-find-definitions] . godef-jump)
          ("C-c R" . go-remove-unused-imports)
          ("<f1>" . godoc-at-point))
+  :init (setq godoc-at-point-function #'godoc-gogetdoc)
   :config
   ;; Install or update tools
-  (defvar go--tools '("golang.org/x/tools/cmd/goimports"
+  (defvar go--tools '("golang.org/x/tools/gopls"
+                      "golang.org/x/tools/cmd/goimports"
+                      "honnef.co/go/tools/cmd/staticcheck"
                       "github.com/go-delve/delve/cmd/dlv"
                       "github.com/zmb3/gogetdoc"
                       "github.com/josharian/impl"
@@ -64,11 +66,6 @@
                       "github.com/fatih/gomodifytags"
                       "github.com/davidrjenni/reftools/cmd/fillstruct")
     "All necessary go tools.")
-
-  ;; Do not use the -u flag for gopls, as it will update the dependencies to incompatible versions
-  ;; https://github.com/golang/tools/tree/master/gopls/#installation
-  (defvar go--tools-no-update '("golang.org/x/tools/gopls@latest")
-    "All necessary go tools without update the dependencies.")
 
   (defun go-update-tools ()
     "Install or update go tools."
@@ -78,25 +75,14 @@
 
     (message "Installing go tools...")
 
-;; https://github.com/golang/tools/tree/master/gopls#installation
-    (async-shell-command
-     "GO111MODULE=on go get golang.org/x/tools/gopls@latest")
-
-    ;; https://staticcheck.io/docs/install
-    (async-shell-command
-     "go install honnef.co/go/tools/cmd/staticcheck@latest")
-
-    (let ((proc-name "go-tools")
-          (proc-buffer "*Go Tools*"))
-
-      (dolist (pkg go--tools)
-        (set-process-sentinel
-         (start-process proc-name proc-buffer "go" "get" "-u" "-v" pkg)
-         (lambda (proc _)
-           (let ((status (process-exit-status proc)))
-             (if (= 0 status)
-                 (message "Installed %s" pkg)
-               (message "Failed to install %s: %d" pkg status))))))))
+    (dolist (pkg go--tools)
+      (set-process-sentinel
+       (start-process "go-tools" "*Go Tools*" "go" "install" "-v" "-x" (concat pkg "@latest"))
+       (lambda (proc _)
+         (let ((status (process-exit-status proc)))
+           (if (= 0 status)
+               (message "Installed %s" pkg)
+             (message "Failed to install %s: %d" pkg status)))))))
 
   ;; Try to install go tools if `gopls' is not found
   (unless (executable-find "gopls")
