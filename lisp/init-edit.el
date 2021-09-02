@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 64
+;;     Update #: 65
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -276,7 +276,7 @@
                             rime-predicate-current-uppercase-letter-p))
   (rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g"))
   (default-input-method "rime")
-  (rime-show-candidate 'minibuffer)
+  (rime-show-candidate 'posframe)
   (rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                            (sys/linuxp nil))))
 
