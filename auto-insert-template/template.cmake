@@ -10,11 +10,18 @@ if(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 
-if(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -g")
-        set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+if(CMAKE_COMPILER_IS_GNUCXX OR "\${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        set(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS_DEBUG} -Wall -Wextra -g")
+        set(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS_RELEASE} -O2")
 endif()
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+# Add headers
+include_directories("\${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-add_executable($1 ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+# Add sources
+file(GLOB SOURCES
+    "\${PROJECT_SOURCE_DIR}/main.cpp"
+    "\${PROJECT_SOURCE_DIR}/src/*.cpp"
+)
+
+add_executable($1 \${SOURCES})
