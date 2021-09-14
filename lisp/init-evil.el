@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 150
+;;     Update #: 151
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -180,6 +180,7 @@
     "0"   'treemacs-select-window
 
     "atl" 'global-command-log-mode
+    "alt" 'clm/toggle-command-log-buffer
     "ayl" 'ein:notebooklist-login
     "ayo" 'ein:notebooklist-open
     "ayr" 'ein:run
