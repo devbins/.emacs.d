@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,6 +58,7 @@
   :init
   ;; Disable readline based native completion
   (setq python-shell-completion-native-enable nil
+        python-indent-guess-indent-offset-verbose nil
         python-indent-offset 4)
   :config
   ;; Default to Python 3. Prefer the versioned Python binaries since some
