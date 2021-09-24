@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 174
+;;     Update #: 175
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -268,20 +268,6 @@ If FRAME is nil, it defaults to the selected frame."
 (use-package mixed-pitch
   :diminish)
 
-(use-package zone
-  :ensure nil
-  :defer 5
-  :config
-  (zone-when-idle 600) ; in seconds
-  (defun zone-choose (pgm)
-    "Choose a PGM to run for `zone'."
-    (interactive
-     (list
-      (completing-read
-       "Program: "
-       (mapcar 'symbol-name zone-programs))))
-    (let ((zone-programs (list (intern pgm))))
-      (zone))))
 ;; Child frame
 (when (childframe-workable-p)
   (use-package posframe
