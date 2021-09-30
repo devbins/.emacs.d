@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 74
+;;     Update #: 75
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -282,7 +282,6 @@
   :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
   :config
   (setq ccls-sem-highlight-method 'font-lock)
-  (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
   (ccls-use-default-rainbow-sem-highlight)
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
   (setq ccls-initialization-options
