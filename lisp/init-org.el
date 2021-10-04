@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 419
+;;     Update #: 422
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -181,6 +181,7 @@ prepended to the element after the #+HEADER: tag."
               org-ditaa-jar-path (concat user-emacs-directory "ditaa.jar")
               ;; org-startup-indented t
               ;; org-startup-folded    'content
+              org-adapt-indentation t
               org-startup-truncated nil
               org-ellipsis (if (char-displayable-p ?⤵) "  ⤵" "  ▼")
               org-tag-alist (quote ((:startgroup)
