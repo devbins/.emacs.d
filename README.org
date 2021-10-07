@@ -99,6 +99,7 @@
     rustup component add rls --toolchain stable
     rustup component add rust-analysis --toolchain stable
     rustup component add rust-src --toolchain stable
+    brew install rust-analyzer
     #+end_src
 *** Python
 **** Server 安装
