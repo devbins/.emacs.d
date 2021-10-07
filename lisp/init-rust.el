@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 16
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,17 +47,17 @@
 ;;; Code:
 
 ;; Rust
-(use-package rust-mode
-  :init (setq rust-format-on-save t)
+(use-package rustic
   :config
+  (setq rustic-format-on-save t)
   (use-package cargo
     :diminish cargo-minor-mode
-    :hook (rust-mode . cargo-minor-mode)
+    :hook (rustic-mode . cargo-minor-mode)
     :config
     ;; To render buttons correctly, keep it at the last
     (setq compilation-filter-hook
           (append compilation-filter-hook '(cargo-process--add-errno-buttons)))
-    (evil-leader/set-key-for-mode 'rust-mode
+    (evil-leader/set-key-for-mode 'rustic-mode
       "mrr" 'cargo-process-run
       "mrb" 'cargo-process-run-bin
       "mre" 'cargo-process-run-example
