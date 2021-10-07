@@ -93,6 +93,8 @@
   (setq lsp-clients-python-library-directories '("~/anaconda3/bin/" "/usr/local/" "/usr/"))
   (when (executable-find "rust-analyzer")
     (setq lsp-rust-server 'rust-analyzer))
+  (setq lsp-rust-analyzer-cargo-watch-command "clippy"
+        lsp-rust-analyzer-server-display-inlay-hints t)
   :config
   ;; Configure LSP clients
   (with-no-warnings
