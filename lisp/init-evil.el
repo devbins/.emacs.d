@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 151
+;;     Update #: 154
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -278,6 +278,8 @@
     "PR"  'password-store-rename
     "Pi"  'password-store-insert
     "Pu"  'password-store-url
+
+    "rn"  'cargo-process-new
 
     "sa"  'mark-whole-buffer
     "sp"  'projectile-ripgrep
