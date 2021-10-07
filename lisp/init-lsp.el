@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 75
+;;     Update #: 77
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,8 +71,7 @@
          ([remap xref-find-definitions] . lsp-find-definition)
          ([remap xref-find-references] . lsp-find-references))
   :init
-  (setq lsp-auto-guess-root t        ; Detect project root
-        read-process-output-max (* 1024 1024)
+  (setq read-process-output-max (* 1024 1024)
         lsp-keep-workspace-alive nil ; Auto-kill LSP server
         lsp-prefer-capf t
         lsp-signature-auto-activate nil
