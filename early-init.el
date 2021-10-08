@@ -47,7 +47,8 @@
 ;;; Code:
 (if (and (fboundp 'native-comp-available-p) (native-comp-available-p) (fboundp 'json-serialize))
     (setq comp-deferred-compilation t
-          comp-speed 2)
+          comp-speed 2
+          warning-minimum-level :error)
      (message "Not support native-comp"))
 
 ;; Defer garbage collection further back in the startup process
