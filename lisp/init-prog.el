@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 64
+;;     Update #: 65
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -91,6 +91,10 @@
 (use-package scala-mode)
 (use-package swift-mode)
 (use-package vimrc-mode)
+
+(use-package subword
+  :ensure nil
+  :hook (after-init . global-subword-mode))
 
 (use-package nxml-mode
   :ensure nil
