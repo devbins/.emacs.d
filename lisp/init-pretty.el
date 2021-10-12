@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 44
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,7 +95,6 @@
                                     ("int"    . #x2124)  ;; 𝕫xxx
                                     ("String" . (#x1d54a (Br . Bl) #x2006))  ;; 𝕊 xxxxxx
                                     ("string" . (#x1d564 (Br . Bl) #x2006))  ;; 𝕤 xxxxxx
-                                    ("str"    . (#x1d564 (Br . Bl) #x2006))  ;; 𝕤 xxxx
                                     ("Char"   . #x2102)   ;; ℂx
                                     ("char"   . (#x1d554 (Br . Bl) #x2006))  ;; 𝕔 x
 
