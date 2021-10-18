@@ -187,6 +187,8 @@
 *** ArchLinux
     #+begin_src sh
     sudo pacman -S emacs-git
+    # gcc emacs
+    sudo pacman -S emacs-native-comp-git
     #+end_src
 ** 最小启动配置
    #+begin_src sh
