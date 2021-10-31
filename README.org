@@ -204,6 +204,11 @@
     cd ~/.emacs.d/elpa
     find org*/*.elc -print0 | xargs -0 rm
     #+end_src
+*** Failed to verify signature memory-usage-0.2.el.sig
+    执行以下两条指令
+    =M-: (setq package-check-signature nil) RET=
+    =M-x package-install memory-usage RET=
+    
 
 ** Thanks
    - [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]]  A Fancy and Fast Emacs Configuration
