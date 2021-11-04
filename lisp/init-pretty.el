@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -272,6 +272,7 @@
      :logic :sets :arithmetic-double :arithmetic-triple)))
 
 ;; https://github.com/tonsky/FiraCode/wiki/Emacs-instructions
+;; https://github.com/tonsky/FiraCode/files/412440/FiraCode-Regular-Symbol.zip
 ;; This works when using emacs --daemon + emacsclient
 (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 ;; This works when using emacs without server/client
