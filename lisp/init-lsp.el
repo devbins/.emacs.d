@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 77
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -94,7 +94,8 @@
   (when (executable-find "rust-analyzer")
     (setq lsp-rust-server 'rust-analyzer))
   (setq lsp-rust-analyzer-cargo-watch-command "clippy"
-        lsp-rust-analyzer-server-display-inlay-hints t)
+        lsp-rust-analyzer-server-display-inlay-hints t
+        lsp-rust-analyzer-proc-macro-enable t)
   :config
   ;; Configure LSP clients
   (with-no-warnings
