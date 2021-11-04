@@ -194,6 +194,11 @@
    #+begin_src sh
    emacs -Q -l init-mini.el
    #+end_src
+** sbcl
+*** Mac
+    #+begin_src sh
+    brew install sbcl
+    #+end_src
 ** FAQ
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
