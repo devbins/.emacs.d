@@ -79,6 +79,14 @@
      #+begin_src sh
      sudo pacman -S ccls
      #+end_src
+***** Mac
+      #+begin_src sh
+      brew install cmake llvm
+      git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+      cd ccls
+      cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/local/Cellar/llvm/10.0.1/lib/cmake -DUSE_SYSTEM_RAPIDJSON=off
+      cmake --build Release --target install
+      #+end_src
 **** debug
      #+begin_src sh
      sudo pacman -S node unzip gdb lldb
