@@ -76,9 +76,6 @@
 ** lsp
 *** C/C++
 **** Server 安装
-     #+begin_src sh
-     sudo pacman -S ccls
-     #+end_src
 ***** Mac
       #+begin_src sh
       brew install cmake llvm
@@ -86,6 +83,21 @@
       cd ccls
       cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/local/Cellar/llvm/10.0.1/lib/cmake -DUSE_SYSTEM_RAPIDJSON=off
       cmake --build Release --target install
+      #+end_src
+***** Arch
+      #+begin_src sh
+      sudo pacman -S ccls
+      #+end_src
+***** Ubuntu 20.04LTS
+      #+begin_src sh
+      sudo apt install cmake zlib1g-dev libncurses-dev clang libclang-dev
+      git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+      cd ccls
+      cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH=/usr/lib/llvm-7 \
+            -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include \
+            -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-7/
+      cmake --build Release
       #+end_src
 **** debug
      #+begin_src sh
