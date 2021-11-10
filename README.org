@@ -210,6 +210,10 @@
     # gcc emacs
     sudo pacman -S emacs-native-comp-git
     #+end_src
+*** Ubuntu
+    #+begin_src sh
+    sudo snap install emacs --edge --classic
+    #+end_src
 ** 最小启动配置
    #+begin_src sh
    emacs -Q -l init-mini.el
