@@ -777,12 +777,17 @@ same directory as the org-buffer and insert a link to this file."
     "mri" 'org-roam-insert
     "mrg" 'org-roam-graph)
 
+(use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t)))
+
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
     :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
-
-  (use-package org-roam-server
-    :commands (org-roam-server-mode)))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
