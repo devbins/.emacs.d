@@ -756,30 +756,19 @@ same directory as the org-buffer and insert a link to this file."
 ;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
   :custom ((org-roam-directory (expand-file-name "~/.org"))
-           (org-roam-mute-cache-build t))
-  :bind (:map org-roam-mode-map
-         (("C-c n l" . org-roam)
-          ("C-c n f" . org-roam-find-file)
-          ("C-c n g" . org-roam-show-graph))
-         :map org-mode-map
-         (("C-c n i" . org-roam-insert)))
+           (org-roam-mute-cache-build t)
+           (org-roam-v2-ack t))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n g" . org-roam-graph)
+           ("C-c n i" . org-roam-node-insert)
+           ("C-c n c" . org-roam-capture)
+           ("C-c n j" . org-roam-dailies-capture-today)
+           ("C-c n I" . org-roam-insert-immediate))
   :config
   (unless (file-exists-p org-roam-directory)
       (make-directory org-roam-directory))
   (add-to-list 'org-modules 'org-roam-protocol)
-  (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam-capture--get-point)
-           "%?"
-           :file-name "%<%Y%m%d>-${slug}"
-           :head "#+title: ${title}\n#+roam_alias: \n#+roam_tags: \n"
-           :unnarrowed t)))
-  (add-to-list 'org-roam-capture-ref-templates
-               '("a" "Annotation" plain (function org-roam-capture--get-point)
-                 "%U ${body}\n"
-                 :file-name "${slug}"
-                 :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-                 :immediate-finish t
-                 :unnarrowed t))
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
@@ -788,12 +777,17 @@ same directory as the org-buffer and insert a link to this file."
     "mri" 'org-roam-insert
     "mrg" 'org-roam-graph)
 
+(use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t)))
+
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
     :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
-
-  (use-package org-roam-server
-    :commands (org-roam-server-mode)))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
