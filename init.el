@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 69
+;;     Update #: 72
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -140,6 +140,7 @@
 (require 'init-flycheck)
 (require 'init-projectile)
 (require 'init-lsp)
+(require 'init-ctags)
 
 (require 'init-leetcode)
 (require 'init-prog)
