@@ -353,11 +353,11 @@
              (intern-pre (intern (format "lsp--%s" (symbol-name edit-pre)))))
         `(progn
            (defun ,intern-pre (info)
-             (let ((file-name (->> info caddr (alist-get :file))))
-               (unless file-name
-                 (user-error "LSP:: specify `:file' property to enable"))
-
-               (setq buffer-file-name file-name)
+             (setq buffer-file-name (or (->> info caddr (alist-get :file))
+                                       "org-src-babel.tmp"))
+             (when (fboundp 'lsp-deferred)
+               ;; Avoid headerline conflicts
+               (setq-local lsp-headerline-breadcrumb-enable nil)
                (lsp-deferred)))
            (put ',intern-pre 'function-documentation
                 (format "Enable lsp in the buffer of org source block (%s)." (upcase ,lang)))
