@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 78
+;;     Update #: 85
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,7 +103,31 @@
       "Not enabling lsp in `git-timemachine-mode'."
       (unless (bound-and-true-p git-timemachine-mode)
         (apply func args)))
-    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)))
+    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)
+    ;; Enable `lsp-mode' in sh/bash/zsh
+    (defun my-lsp-bash-check-sh-shell (&rest _)
+      (and (eq major-mode 'sh-mode)
+         (memq sh-shell '(sh bash zsh))))
+    (advice-add #'lsp-bash-check-sh-shell :override #'my-lsp-bash-check-sh-shell)
+
+    ;; Only display icons in GUI
+    (defun my-lsp-icons-get-symbol-kind (fn &rest args)
+      (when (display-graphic-p)
+        (apply fn args)))
+    (advice-add #'lsp-icons-get-by-symbol-kind :around #'my-lsp-icons-get-symbol-kind)
+
+    (defun my-lsp-icons-get-by-file-ext (fn &rest args)
+      (when (display-graphic-p)
+        (apply fn args)))
+    (advice-add #'lsp-icons-get-by-file-ext :around #'my-lsp-icons-get-by-file-ext)
+
+    (defun my-lsp-icons-all-the-icons-material-icon (ico-name face fallback &optional feature)
+      (if (and (display-graphic-p)
+             (functionp 'all-the-icons-material)
+             (lsp-icons--enabled-for-feature feature))
+          (all-the-icons-material icon-name :face face)
+        (propertize fallback 'face face)))
+    (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon)))
 
 (use-package lsp-ui
   :custom-face
@@ -329,11 +353,11 @@
              (intern-pre (intern (format "lsp--%s" (symbol-name edit-pre)))))
         `(progn
            (defun ,intern-pre (info)
-             (let ((file-name (->> info caddr (alist-get :file))))
-               (unless file-name
-                 (user-error "LSP:: specify `:file' property to enable"))
-
-               (setq buffer-file-name file-name)
+             (setq buffer-file-name (or (->> info caddr (alist-get :file))
+                                       "org-src-babel.tmp"))
+             (when (fboundp 'lsp-deferred)
+               ;; Avoid headerline conflicts
+               (setq-local lsp-headerline-breadcrumb-enable nil)
                (lsp-deferred)))
            (put ',intern-pre 'function-documentation
                 (format "Enable lsp in the buffer of org source block (%s)." (upcase ,lang)))
@@ -348,7 +372,7 @@
                             (upcase ,lang))))))))
 
 (defvar org-babel-lang-list
-  '("go" "python" "ipython" "ruby" "js" "css" "sass" "C" "rust" "java"))
+  '("go" "python" "ipython" "ruby" "js" "css" "sass" "C" "c" "cpp" "c++" "rust" "java"))
 (add-to-list 'org-babel-lang-list (if emacs/>=26p "shell" "sh"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
