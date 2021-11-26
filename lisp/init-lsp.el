@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 78
+;;     Update #: 85
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -372,7 +372,7 @@
                             (upcase ,lang))))))))
 
 (defvar org-babel-lang-list
-  '("go" "python" "ipython" "ruby" "js" "css" "sass" "C" "rust" "java"))
+  '("go" "python" "ipython" "ruby" "js" "css" "sass" "C" "c" "cpp" "c++" "rust" "java"))
 (add-to-list 'org-babel-lang-list (if emacs/>=26p "shell" "sh"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
