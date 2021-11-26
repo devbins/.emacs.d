@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 104
+;;     Update #: 108
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,8 +138,6 @@
   :bind (:map rg-global-map
          ("c" . rg-dwim-current-dir)
          ("f" . rg-dwim-current-file)
-         ("m" . rg-menu)
-         :map rg-mode-map
          ("m" . rg-menu))
   :init (setq rg-group-result t
               rg-show-columns t)
@@ -147,14 +145,8 @@
   (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases)
 
   (with-eval-after-load 'projectile
-    (defalias 'projectile-ripgrep #'rg-project)
-    (bind-key "s R" #'rg-project projectile-command-map))
+    (bind-key "s R" #'rg-project projectile-command-map)))
 
-  (with-eval-after-load 'counsel
-    (bind-keys
-     :map rg-global-map
-     ("R" . counsel-rg)
-     ("F" . counsel-fzf))))
 
 ;; Docker
 (use-package docker
