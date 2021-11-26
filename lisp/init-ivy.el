@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -435,13 +435,6 @@ This is for use in `ivy-re-builders-alist'."
     :commands ivy-yasnippet--preview
     :bind ("C-c C-y" . ivy-yasnippet)
     :config (advice-add #'ivy-yasnippet--preview :override #'ignore))
-
-  ;; Select from xref candidates with Ivy
-  (use-package ivy-xref
-    :init
-    (when (boundp 'xref-show-definitions-function)
-      (setq xref-show-definitions-function #'ivy-xref-show-defs))
-    (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
   ;; Correcting words with flyspell via Ivy
   (use-package flyspell-correct-ivy
