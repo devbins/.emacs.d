@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -202,6 +202,16 @@
     (advice-add #'git-messenger:popup-close :override #'ignore)
     (advice-add #'git-messenger:popup-message :override #'my-git-messenger:popup-message)))
 
+(use-package blamer
+  :custom
+  (blamer-idle-time 0.5)
+  (blamer-min-offset 70)
+  :custom-face
+  (blamer-face ((t :foreground "#7a88cf"
+                   :background nil
+                   :height 140
+                   :italic t)))
+
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
   :ensure nil
@@ -251,9 +261,7 @@
          ("B" . browse-at-remote)))
 
 ;; Git related modes
-(use-package gitattributes-mode)
-(use-package gitconfig-mode)
-(use-package gitignore-mode)
+(use-package git-modes)
 
 (provide 'init-vcs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
