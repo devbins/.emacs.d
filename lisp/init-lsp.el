@@ -103,7 +103,12 @@
       "Not enabling lsp in `git-timemachine-mode'."
       (unless (bound-and-true-p git-timemachine-mode)
         (apply func args)))
-    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)))
+    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)
+    ;; Enable `lsp-mode' in sh/bash/zsh
+    (defun my-lsp-bash-check-sh-shell (&rest _)
+      (and (eq major-mode 'sh-mode)
+         (memq sh-shell '(sh bash zsh))))
+    (advice-add #'lsp-bash-check-sh-shell :override #'my-lsp-bash-check-sh-shell)
 
 (use-package lsp-ui
   :custom-face
