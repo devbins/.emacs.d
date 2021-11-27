@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 13
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,9 +50,12 @@
 (use-package pdf-view
   :if (display-graphic-p)
   :ensure pdf-tools
-  :diminish (pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
+  :diminish (pdf-view-themed-minor-mode pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
   :defines pdf-annot-activate-created-annotations
   :functions (my-pdf-view-set-midnight-colors my-pdf-view-set-dark-theme)
+  :hook ((pdf-tools-enabled . pdf-view-themed-minor-mode)
+         (pdf-tools-enabled . pdf-view-auto-slice-minor-mode)
+         (pdf-tools-enabled . pdf-isearch-minor-mode))
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :bind (:map pdf-view-mode-map
@@ -61,40 +64,10 @@
               pdf-view-use-imagemagick nil
               pdf-annot-activate-created-annotations t)
   :config
-  ;; Build pdfinfo if needed
-  (advice-add #'pdf-view-decrypt-document :before #'pdf-tools-install)
-
-  ;; Set dark theme
-  (defun my-pdf-view-set-midnight-colors ()
-    "Set pdf-view midnight colors."
-    (setq pdf-view-midnight-colors
-          `(,(face-foreground 'default) . ,(face-background 'default))))
-
-  (defun my-pdf-view-set-dark-theme ()
-    "Set pdf-view midnight theme as color theme."
-    (my-pdf-view-set-midnight-colors)
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (when (eq major-mode 'pdf-view-mode)
-          (pdf-view-midnight-minor-mode (if pdf-view-midnight-minor-mode 1 -1))))))
-
-  (my-pdf-view-set-midnight-colors)
-  (add-hook 'after-load-theme-hook #'my-pdf-view-set-dark-theme)
+  ;; Activate the package
+  (pdf-tools-install t nil t nil)
 
   (with-no-warnings
-    ;; Build pdfinfo if needed, locking until it's complete
-      (defun my-pdf-tools-install ()
-        (unless (file-executable-p pdf-info-epdfinfo-program)
-          (let ((wconf (current-window-configuration)))
-            (pdf-tools-install t)
-            (message "Building epdfinfo. Please wait for a moment...")
-            (while compilation-in-progress
-              ;; Block until `pdf-tools-install' is done
-              (sleep-for 1))
-            (when (file-executable-p pdf-info-epdfinfo-program)
-              (set-window-configuration wconf)))))
-      (advice-add #'pdf-view-decrypt-document :before #'my-pdf-tools-install)
-
     (defun my-pdf-isearch-hl-matches (current matches &optional occur-hack-p)
       "Highlighting edges CURRENT and MATCHES."
       (cl-destructuring-bind (fg1 bg1 fg2 bg2)
@@ -150,7 +123,6 @@
             (pdf-util-scroll-to-edges
              (pdf-util-scale-relative-to-pixel (car edges)))))))
     (advice-add #'pdf-annot-show-annotation :override #'my-pdf-annot-show-annotation))
-
 
   ;; Recover last viewed position
   (use-package saveplace-pdf-view
