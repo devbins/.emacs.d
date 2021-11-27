@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 422
+;;     Update #: 431
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -163,8 +163,9 @@ prepended to the element after the #+HEADER: tag."
               ;; #+CAPTION: 设定图片宽度为100
               ;; #+ATTR_HTML: :width 100
               ;; file:data/2013/pict/test.png
-              ;; org-image-actual-width (/ (display-pixel-width) 3)
+              org-image-actual-width (/ (display-pixel-width) 3)
               org-startup-with-inline-images t
+              org-display-remote-inline-images 'cache
 
               org-hide-emphasis-markers t
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
@@ -674,7 +675,6 @@ prepended to the element after the #+HEADER: tag."
                                    :empty-lines 1))))
 
   (use-package org-journal
-    :defer t
     :commands (org-journal-new-entry org-journal-search-forever)
     :config
     (setq org-journal-dir "~/.org/journal/"
