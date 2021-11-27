@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 58
+;;     Update #: 62
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -213,6 +213,7 @@ Same as `replace-string C-q C-m RET RET'."
   "Address blank screen issue with child-frame in fullscreen."
   (and sys/mac-cocoa-p
        emacs/>=26p
+       (not emacs/>=28p)
        (setq ns-use-native-fullscreen nil)))
 
 ;; UI
