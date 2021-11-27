@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 67
+;;     Update #: 68
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -63,7 +63,7 @@
         :init
         (when emacs/>=27p
           (setq xref-show-definitions-function #'ivy-xref-show-defs))
-        (setq xref-show-definitions-function #'ivy-xref-show-xrefs)))))
+        (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))))
 
 ;; Jump to definition
 (use-package dumb-jump
