@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 33
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -104,20 +104,12 @@
     "Replace text in yasnippet template."
     (evil-insert 0)
     (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-  (add-to-list 'auto-insert-alist '(("\\.py\\'" . "Python souce code header") .
-                                    ["template.py" autoinsert-yas-expand]))
-
-  (add-to-list 'auto-insert-alist '(("\\.\\([Hh]\\|hh\\|hpp\\)\\'" . "C / C++ header") .
-                                    ["template.h" autoinsert-yas-expand]))
-
-  (add-to-list 'auto-insert-alist '(("\\.\\([Cc]\\|cc\\|cpp\\)\\'" . "C / C++ program") .
-                                    ["template.c" autoinsert-yas-expand]))
-
-  (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") .
-                                    ["template.go" autoinsert-yas-expand]))
-  (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") .
-                                    ["template.cmake" autoinsert-yas-expand]))
-  )
+  (add-to-list 'auto-insert-alist '(("\\.py\\'" . "Python souce code header") . ["template.py" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("\\.\\([Hh]\\|hh\\|hpp\\)\\'" . "C / C++ header") . ["template.h" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("\\.\\([Cc]\\|cc\\|cpp\\)\\'" . "C / C++ program") . ["template.c" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") . ["template.go" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("\\.sh\\'" . "shell program") . ["template.sh" autoinsert-yas-expand]))
+  (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") . ["template.cmake" autoinsert-yas-expand])))
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
