@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,7 +103,7 @@
      ("0" (text-scale-increase 0) "reset"))
     "Appearance"
     (("F" set-frame-font "font")
-     ("T" centaur-load-theme "theme"))))
+     ("T" load-theme "theme"))))
   :custom-face
   (aw-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 2.0))))
   (aw-minibuffer-leading-char-face ((t (:inherit font-lock-keyword-face :bold t :height 1.0))))
