@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 30
+;;     Update #: 31
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -210,7 +210,7 @@
   (blamer-face ((t :foreground "#7a88cf"
                    :background nil
                    :height 140
-                   :italic t)))
+                   :italic t))))
 
 ;; Resolve diff3 conflicts
 (use-package smerge-mode
