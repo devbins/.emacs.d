@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 85
+;;     Update #: 86
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -121,7 +121,7 @@
         (apply fn args)))
     (advice-add #'lsp-icons-get-by-file-ext :around #'my-lsp-icons-get-by-file-ext)
 
-    (defun my-lsp-icons-all-the-icons-material-icon (ico-name face fallback &optional feature)
+    (defun my-lsp-icons-all-the-icons-material-icon (icon-name face fallback &optional feature)
       (if (and (display-graphic-p)
              (functionp 'all-the-icons-material)
              (lsp-icons--enabled-for-feature feature))
