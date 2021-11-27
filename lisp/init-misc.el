@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -87,8 +87,8 @@
   :init (setq telega-use-images (if (display-graphic-p) t nil)
               telega-proxies (list
                               '(:server "127.0.0.1" :port 1086 :enable t
-                                :type (:@type "proxyTypeSocks5"))
-                              )))
+                                :type (:@type "proxyTypeSocks5")))))
+
 
 (use-package password-store
   :if (executable-find "pass")
