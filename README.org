@@ -155,7 +155,7 @@
     git clone https://github.com/universal-ctags/ctags.git
     cd ctags
     ./autogen.sh
-    ./configure --prefix=/where/you/want # defaults to /usr/local
+    ./configure --prefix=/usr/local # defaults to /usr/local
     make
     make install # may require extra privileges depending on where to install
     #+end_src
@@ -168,6 +168,7 @@
     cd rtags
     mkdir build && cd build
     CC=clang CXX=clang++ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=on ..
+    make
     #+end_src
 *** Linux(Manjaro)
     #+begin_src sh
@@ -177,7 +178,7 @@
     export GCC_VERSION=11.1.0 # 需要根据你的版本修改，可以使用 g++ --version 查看
     export CXXFLAGS="-include /usr/include/c++/${GCC_VERSION}/limits"
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=on ..
-
+    make
     #+end_src
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
