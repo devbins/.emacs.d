@@ -116,9 +116,6 @@
 *** Rust
     安装好 =Rust= 之后，需要安装 RLS(Rust Language Server)
     #+begin_src sh
-    rustup component add rls --toolchain stable
-    rustup component add rust-analysis --toolchain stable
-    rustup component add rust-src --toolchain stable
     brew install rust-analyzer
     cargo install rust-script
     #+end_src
