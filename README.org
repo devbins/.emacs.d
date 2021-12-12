@@ -195,9 +195,15 @@
          socks-port 1086)
    #+end_src
 ** 安装字体 
-   #+begin_src sh
-   sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
-   #+end_src
+*** Mac
+    #+begin_src sh
+    brew tap homebrew/cask-fonts
+    brew install --cask font-jetbrains-mono
+    #+end_src
+*** Manjaro
+    #+begin_src sh
+    sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
+    #+end_src
 ** native-comp 支持
 *** Mac
     #+begin_src sh
