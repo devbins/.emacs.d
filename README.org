@@ -107,7 +107,7 @@
 *** Go
 **** Server 安装
      #+begin_src sh
-     go get golang.org/x/tools/gopls@latest
+     go install golang.org/x/tools/gopls@latest
      #+end_src
 **** debug
      #+begin_src sh
