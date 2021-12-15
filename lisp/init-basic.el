@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -190,6 +190,7 @@
               line-spacing 2
               tab-width 4
               word-wrap nil
+              word-wrap-by-category t
               indent-tabs-mode nil
               truncate-lines nil)     ; Permanently indent with spaces, never with TABs
 
@@ -206,6 +207,9 @@
       adaptive-fill-first-line-regexp "^* *$"
       sentence-end "\\([。！？]\\|……\\|[.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
       sentence-end-double-space nil)
+
+(if (boundp 'pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode t))
 
 ;; So Long mitigates slowness due to extremely long lines.
 ;; Currently available in Emacs master branch *only*!
