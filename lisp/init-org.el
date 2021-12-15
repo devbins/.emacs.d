@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 431
+;;     Update #: 438
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -304,9 +304,9 @@ prepended to the element after the #+HEADER: tag."
                                load-language-list)
   ;; Org babel extensions
   ;; HTTP client
-  ;; usage: BEGIN_SRC http :pretty
-  (use-package ob-http
-    :init (cl-pushnew '(http . t) load-language-list))
+  ;; usage: BEGIN_SRC restclient
+  (use-package ob-restclient
+    :init (cl-pushnew '(restclient . t) load-language-list))
 
   ;; Async src_block execution
   ;; usage: begin_src sh :async
