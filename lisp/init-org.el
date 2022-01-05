@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 442
+;;     Update #: 444
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -237,9 +237,17 @@ prepended to the element after the #+HEADER: tag."
     (bind-key [remap org-set-tags-command] #'counsel-org-tag org-mode-map))
 
   ;; Prettify UI
-  (use-package org-bars
-    :quelpa (org-bars :fetcher github :repo "tonyaldon/org-bars")
-    :hook (org-mode . org-bars-mode))
+  (use-package org-superstar
+    :defer t
+    :hook (org-mode . org-superstar-mode)
+    :init
+    (setq org-superstar-special-todo-items t
+          org-superstar-headline-bullets-list
+          '("◉" "○" "✸" "✿" "☯" "☭" "♥" "✜" "♠" "☢" "❀" "★")
+          org-superstar-item-bullet-alist
+          '((?* . ?◈)
+            (?+ . ?✚)
+            (?- . ?▶))))
 
   (use-package org-fancy-priorities
     :diminish
