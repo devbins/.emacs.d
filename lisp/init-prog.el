@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 68
+;;     Update #: 69
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -143,6 +143,8 @@
 
 (use-package realgud)
 (use-package realgud-lldb)
+
+(use-package demangle-mode)
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
