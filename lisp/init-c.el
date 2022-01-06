@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,6 +145,32 @@
       (rtags-set-periodic-reparse-timeout 2.0))  ;; Run flycheck 2 seconds after being idle.
     (add-hook 'c-mode-hook #'setup-flycheck-rtags)
     (add-hook 'c++-mode-hook #'setup-flycheck-rtags)))
+
+(use-package irony
+  :ensure t
+  :hook ((c++-mode . irony-mode)
+         (c-mode . irony-mode))
+  :config
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (use-package company-irony-c-headers
+    :ensure t)
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list (make-local-variable 'company-backends)
+                 '(company-irony company-irony-c-headers)))
+  (use-package flycheck-irony
+    :ensure t
+    :config
+    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  (use-package irony-eldoc
+    :ensure t
+    :config
+    (add-hook 'irony-mode-hook #'irony-eldoc)))
+
+(use-package cmake-ide
+  :config
+  (cmake-ide-setup))
 
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
