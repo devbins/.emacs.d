@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 449
+;;     Update #: 454
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -204,6 +204,22 @@ prepended to the element after the #+HEADER: tag."
                                     ("FLAGGED" . ??))))
   :config
   (add-to-list 'org-modules 'org-protocol)
+  (defface org-bold
+    '((t :foreground "#d2268b"
+         :background nil
+         :weight bold
+         :underline t
+         :overline t))
+    "Face for org-mode bold."
+    :group 'org-faces)
+
+  (setq org-emphasis-alist
+        '(("*" org-bold)
+          ("/" italic)
+          ("_" underline)
+          ("=" org-verbatim verbatim)
+          ("~" org-code verbatim)
+          ("+" (:strike-through t))))
   (set-face-attribute 'org-level-1 nil :height 2.2 :bold t)
   (set-face-attribute 'org-level-2 nil :height 1.8 :bold t)
   (set-face-attribute 'org-level-3 nil :height 1.4 :bold t)
