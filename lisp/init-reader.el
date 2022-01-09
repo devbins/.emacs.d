@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -263,7 +263,7 @@
 (use-package olivetti
   :diminish
   :bind ("<f7>" . olivetti-mode)
-  :init (setq olivetti-body-width 120))
+  :init (setq olivetti-body-width .67))
 
 (provide 'init-reader)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
