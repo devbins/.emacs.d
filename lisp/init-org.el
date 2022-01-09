@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 454
+;;     Update #: 456
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -276,6 +276,10 @@ prepended to the element after the #+HEADER: tag."
   (use-package valign
     :quelpa (valign :fetcher github :repo "casouri/valign")
     :hook (org-mode . valign-mode))
+
+  ;; Show hidden emphasis markers
+  (use-package org-appear
+    :hook (org-mode . org-appear-mode))
 
   ;; Babel
   (setq org-confirm-babel-evaluate nil
