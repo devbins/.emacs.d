@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -224,6 +224,29 @@
     :hook ((org-agenda-finalize . org-agenda-to-appt)
            (after-init . appt-activate))))
 
+(use-package org-super-agenda
+  :after org-agenda
+  :config
+  (setq org-super-agenda-groups
+        '((:name "Log "
+           :log t)
+          (:name "Schedule "
+           :time-grid t)
+          (:name "Today "
+           :scheduled today)
+          (:name "Important"
+           :priority "A")
+          (:name "Habits "
+           :habit t)
+          (:name "Due today "
+           :deadline today)
+          (:name "Overdue "
+           :deadline past)
+          (:name "Due soon "
+           :deadline future)
+          (:name "Scheduled earlier "
+           :scheduled past)))
+  (org-super-agenda-mode))
 
 (provide 'init-agenda)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
