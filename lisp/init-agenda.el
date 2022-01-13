@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -225,13 +225,15 @@
            (after-init . appt-activate))))
 
 (use-package org-super-agenda
-  :after org-agenda
+  :hook (org-agenda-mode . org-super-agenda-mode)
   :config
   (setq org-super-agenda-groups
         '((:name "Log "
            :log t)
           (:name "Schedule "
-           :time-grid t)
+           :time-grid t
+           :todo "DOING"
+           :todo "⥁")
           (:name "Today "
            :scheduled today)
           (:name "Important"
@@ -245,8 +247,7 @@
           (:name "Due soon "
            :deadline future)
           (:name "Scheduled earlier "
-           :scheduled past)))
-  (org-super-agenda-mode))
+           :scheduled past))))
 
 (provide 'init-agenda)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
