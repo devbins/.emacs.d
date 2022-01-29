@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 69
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,6 +145,12 @@
 (use-package realgud-lldb)
 
 (use-package demangle-mode)
+
+(use-package separedit
+  :bind (:map prog-mode-map ("C-c '" . separedit))
+  :init
+  (setq separedit-default-mode 'org-mode
+        separedit-remove-trailing-spaces-in-comment t))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
