@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -166,7 +166,10 @@
 (use-package atomic-chrome
   :hook ((emacs-startup . atomic-chrome-start-server)
          (atomic-chrome-edit-mode . delete-other-windows))
-  :init (setq atomic-chrome-buffer-open-style 'frame)
+  :init (setq atomic-chrome-buffer-open-style 'frame
+              atomic-chrome-buffer-frame-width 80
+              atomic-chrome-buffer-frame-height 25
+              atomic-chrome-default-major-mode 'org-mode)
   :config
   (if (fboundp 'gfm-mode)
       (setq atomic-chrome-url-major-mode-alist
