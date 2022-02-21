@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 108
+;;     Update #: 111
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -260,7 +260,6 @@
   :custom
   (eaf-find-alternate-file-in-dired t)
   (eaf-start-python-process-when-require t)
-  (browse-url-browser-function #'eaf-open-browser) ;; Make EAF Browser my default browser
   (eaf-browser-continue-where-left-off t)
   (eaf-python-command (executable-find "python3"))
   :config
