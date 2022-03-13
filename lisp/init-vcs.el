@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 31
+;;     Update #: 32
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -83,8 +83,9 @@
            :map magit-todos-item-section-map
            ("j" . nil))
     :config
-    (transient-append-suffix 'magit-status-jump '(0 0 -1)
-        '("T " "Todos" magit-todos-jump-to-todos)))
+    (with-eval-after-load 'magit-status
+        (transient-append-suffix 'magit-status-jump '(0 0 -1)
+          '("t " "Todos" magit-todos-jump-to-todos))))
 
 
   ;; Git Flow
