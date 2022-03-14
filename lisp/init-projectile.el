@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,7 @@
 (use-package projectile
   :diminish
   :bind (:map projectile-mode-map
-         ("s-t" . projectile-find-file) ; `cmd-t' or `super-t'
+         ("s-t" . projectile-find-file-dwim) ; `cmd-t' or `super-t'
          ("C-c p" . projectile-command-map))
   :hook (after-init . projectile-mode)
   :init
