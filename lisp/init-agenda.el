@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 51
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -230,10 +230,6 @@
   (setq org-super-agenda-groups
         '((:name "Log "
            :log t)
-          (:name "Schedule "
-           :time-grid t
-           :todo "DOING"
-           :todo "⥁")
           (:name "Today "
            :scheduled today)
           (:name "Important"
