@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 456
+;;     Update #: 467
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -397,6 +397,9 @@ prepended to the element after the #+HEADER: tag."
           org-reveal-mathjax t
           org-reveal-klipsify-src t
           org-reveal-history nil))
+
+  (use-package ox-pandoc
+    :after org)
 
   ;; Presentation
   (use-package org-tree-slide
