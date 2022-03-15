@@ -420,7 +420,7 @@ prepended to the element after the #+HEADER: tag."
                                     (read-only-mode -1))))
     :config
     (org-tree-slide-simple-profile)
-    (setq org-tree-slide-skip-outline-level 2))
+    (setq org-tree-slide-skip-outline-level 5))
 
 
   (evil-leader/set-key-for-mode 'org-mode
