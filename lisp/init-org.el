@@ -378,6 +378,7 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-preview-html
     :diminish)
 
+  ;; 在网址后面加上 ?print-pdf 可以生成pdf格式
   (use-package ox-reveal
     :hook (org-mode . (lambda() (require 'ox-reveal)))
     :config
@@ -394,6 +395,7 @@ prepended to the element after the #+HEADER: tag."
           org-reveal-center t
           org-reveal-progress t
           org-reveal-mathjax t
+          org-reveal-klipsify-src t
           org-reveal-history nil))
 
   ;; Presentation
