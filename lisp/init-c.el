@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -175,6 +175,10 @@
 (use-package cmake-ide
   :config
   (cmake-ide-setup))
+
+(use-package srefactor
+  :config
+  (semantic-mode 1))
 
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
