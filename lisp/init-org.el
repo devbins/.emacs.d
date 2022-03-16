@@ -803,12 +803,12 @@ same directory as the org-buffer and insert a link to this file."
     "mrg" 'org-roam-graph)
 
 (use-package org-roam-ui
-    :after org-roam
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t)))
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t)))
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
