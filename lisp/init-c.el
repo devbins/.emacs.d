@@ -50,7 +50,11 @@
 (use-package cc-mode
   :ensure nil
   :bind (:map c-mode-base-map
-         ("C-c c" . compile))
+         ("C-c c" . compile)
+         (:map c-mode-map
+	      ("M-RET" . srefactor-refactor-at-point))
+         (:map c++-mode-map
+	       ("M-RET" . srefactor-refactor-at-point)))
   :hook (c-mode-common . (lambda () (c-set-style "bsd")
                            (setq c-basic-offset 4
                                  tab-width 4)))
