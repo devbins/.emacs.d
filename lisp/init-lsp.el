@@ -196,7 +196,6 @@
               lsp-ui-doc-use-webkit nil
               lsp-ui-doc-delay 0.5
               lsp-ui-doc-include-signature t
-              lsp-ui-doc-position 'at-point
               ;;lsp-ui-doc-border (face-foreground 'default)
               lsp-ui-doc-border "violet"
               lsp-eldoc-enable-hover nil ; Disable eldoc displays in minibuffer
@@ -239,9 +238,6 @@
                    (propertize " " 'display '(space :height (1)))
                    (and (not (equal after ?\n)) (propertize " \n" 'face '(:height 0.5)))))))))
          (advice-add #'lsp-ui-doc--handle-hr-lines :override #'my-lsp-ui-doc--handle-hr-lines))
-
-  ;; `C-g'to close doc
-  (advice-add #'keyboard-quit :before #'lsp-ui-doc-hide)
 
   ;; Reset `lsp-ui-doc-background' after loading theme
   (add-hook 'after-load-theme-hook
