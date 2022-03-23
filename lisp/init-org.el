@@ -737,6 +737,7 @@ prepended to the element after the #+HEADER: tag."
   :init (setq deft-directory "~/Nextcloud/"
               deft-extensions '("md" "org" "txt")
               deft-recursive t
+              deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n"
               deft-use-filename-as-title t))
 
 (defun org-screenshot ()
