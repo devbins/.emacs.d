@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 154
+;;     Update #: 157
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,12 +153,7 @@
     :custom (evil-collection-setup-minibuffer t)
     :init
     ;; The list of supported modes is configured by evil-collection-mode=list
-    (evil-collection-init 'dired)
-    (evil-collection-init 'view)
-    (evil-collection-init 'magit)
-    (evil-collection-init 'custom)
-    (evil-collection-init 'ibuffer)
-    (evil-collection-init 'calendar)))
+    (evil-collection-init '(dired view magit magit-todos ibuffer custom calendar pdf))))
 
 (use-package evil-leader
   :init
