@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,8 +52,7 @@
   :ensure pdf-tools
   :diminish (pdf-view-themed-minor-mode pdf-view-midnight-minor-mode pdf-view-printer-minor-mode)
   :defines pdf-annot-activate-created-annotations
-  :hook ((pdf-tools-enabled . pdf-view-themed-minor-mode)
-         (pdf-tools-enabled . pdf-view-auto-slice-minor-mode)
+  :hook ((pdf-tools-enabled . pdf-view-auto-slice-minor-mode)
          (pdf-tools-enabled . pdf-isearch-minor-mode))
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
