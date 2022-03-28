@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 467
+;;     Update #: 468
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -661,7 +661,7 @@ prepended to the element after the #+HEADER: tag."
     (setq org-capture-templates '(("i" "inbox" entry (file+headline org-agenda-file-inbox "inbox")
                                    "* %?\n  %i\n %U"
                                    :empty-lines 1)
-                                  ("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
+                                  ("t" "Todo" entry (file+headline org-agenda-file-inbox "Workspace")
                                    "* TODO [#B] %?\n  %i\n"
                                    :empty-lines 1)
                                   ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
