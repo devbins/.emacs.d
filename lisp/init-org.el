@@ -595,10 +595,18 @@ prepended to the element after the #+HEADER: tag."
                org-download-screenshot)
     :hook (org-mode . org-download-enable)
     :config
+    (defun my-org-download-method (link)
+      (let ((filename
+             (file-name-nondirectory
+              (car (url-path-and-query
+                    (url-generic-parse-url link)))))
+            (dirname (concat "imgs/" (file-name-sans-extension (buffer-name)))))
+        (unless (file-exists-p dirname)
+          (make-directory dirname))
+        (expand-file-name filename dirname)))
+    (setq org-download-method 'my-org-download-method)
     (setq org-download-display-inline-images 'posframe
-          org-download-image-attr-list '("#+ATTR_HTML: :width 80% :align center")
-          org-download-method 'directory
-          org-download-image-dir "images/")
+          org-download-image-attr-list '("#+ATTR_HTML: :width 80% :align center"))
     (when (eq system-type 'windows-nt)
       (setq org-download-screenshot-method "convert clipboard: %s")))
 
