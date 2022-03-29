@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 468
+;;     Update #: 478
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -769,7 +769,7 @@ same directory as the org-buffer and insert a link to this file."
       (call-process "import" nil nil nil filename))
   ;; insert into file if correctly taken
   (if (file-exists-p filename)
-      (insert (concat "[[file:./imgs/" (file-name-nondirectory filename) "]]")))
+      (insert (concat "[[file:./imgs/" (file-name-sans-extension (file-relative-name (buffer-file-name))) "/" (file-name-nondirectory filename) "]]")))
   (org-display-inline-images))
 
 ;; https://github.com/jjasghar/alfred-org-capture
