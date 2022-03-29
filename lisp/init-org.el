@@ -757,7 +757,7 @@ same directory as the org-buffer and insert a link to this file."
         (concat
          (make-temp-name
           (concat (file-name-directory (buffer-file-name))
-                  "imgs/" (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
+                  "imgs/" (file-name-sans-extension (buffer-name)) "/" (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
   (unless (file-exists-p (file-name-directory filename))
     (make-directory (file-name-directory filename)))
   ;; take screenshot
