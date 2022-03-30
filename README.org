@@ -194,6 +194,13 @@
          socks-proxy "127.0.0.1"
          socks-port 1086)
    #+end_src
+
+** PDF
+   | 快捷键 | 描述                   | 对应函数                        |
+   |--------+------------------------+---------------------------------|
+   | C-w    | 复制选中的内容到剪切板 | =pdf-view-kill-ring-save=         |
+   | j      | 往下滚动               | =pdf-view-next-line-or-next-page= |
+   | k      | 往上滚动               | =pdf-view-previous-line-or-previous-page=                   |
 ** 安装字体 
 *** Mac
     #+begin_src sh
