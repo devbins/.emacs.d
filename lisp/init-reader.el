@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 31
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,7 +57,12 @@
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :bind (:map pdf-view-mode-map
-         ("C-s" . isearch-forward))
+         ("C-s" . isearch-forward)
+         ("j" . pdf-view-next-line-or-next-page)
+         ("k" . pdf-view-previous-line-or-previous-page)
+         ("J" . pdf-view-next-page)
+         ("K" . pdf-view-previous-page)
+         ("G" . pdf-view-last-page))
   :init (setq pdf-view-use-scaling t
               pdf-view-use-imagemagick nil
               pdf-annot-activate-created-annotations t)
