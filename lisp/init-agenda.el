@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 51
+;;     Update #: 52
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,6 +105,9 @@
               (overlay-put ov 'line-spacing (1- line-height))))))))
 
   :hook (org-agenda-finalize . org-agenda-time-grid-spacing)
+  :bind (:map org-agenda-mode-map
+         ("j" . org-agenda-next-line)
+         ("k" . org-agenda-previous-line))
   :init
   (setq org-agenda-restore-windows-after-quit t
         org-agenda-window-setup 'current-window
