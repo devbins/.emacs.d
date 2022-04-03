@@ -227,27 +227,6 @@
     :hook ((org-agenda-finalize . org-agenda-to-appt)
            (after-init . appt-activate))))
 
-(use-package org-super-agenda
-  :hook (org-agenda-mode . org-super-agenda-mode)
-  :config
-  (setq org-super-agenda-groups
-        '((:name "Log "
-           :log t)
-          (:name "Today "
-           :scheduled today)
-          (:name "Important"
-           :priority "A")
-          (:name "Habits "
-           :habit t)
-          (:name "Due today "
-           :deadline today)
-          (:name "Overdue "
-           :deadline past)
-          (:name "Due soon "
-           :deadline future)
-          (:name "Scheduled earlier "
-           :scheduled past))))
-
 (provide 'init-agenda)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-agenda.el ends here
