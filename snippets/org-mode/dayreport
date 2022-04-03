@@ -2,5 +2,5 @@
 # name: dayreport
 # key: dayreport
 # --
-#+BEGIN: clocktable :maxlevel 5 :scope agenda-with-archives :block `(format-time-string "%Y-%m-%d")` :fileskip0 t :indent t :link t :timestamp t
+#+BEGIN: clocktable :maxlevel 5 :scope agenda-with-archives :block `(format-time-string "%Y-%m-%d")` :fileskip0 t :indent t :link t :timestamp t :tags t
 #+END:
