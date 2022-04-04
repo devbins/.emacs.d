@@ -133,7 +133,7 @@
 
         org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
         org-agenda-files (list org-agenda-dir)
-
+        org-agenda-file-regexp "\\`[^.].*\\.org\\(_archive\\)?\\'"
         org-agenda-time-leading-zero t
         org-agenda-include-diary t
         org-agenda-show-log t
