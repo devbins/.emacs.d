@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: plan
+# key: plan
+# --
+#+BEGIN: clocktable :maxlevel 5 :scope agenda-with-archives :block `(format-time-string "%Y-%m-%d")` :fileskip0 t :indent t :link t :tags t :properties("TODO" "PRIORITY" "SCHEDULED" "DEADLINE" "EFFORT")
+#+END:
