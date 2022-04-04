@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 52
+;;     Update #: 105
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,15 +153,41 @@
         org-habit-following-days 2
         ;; 恢复默认日历行为
         org-habit-show-habits-only-for-today nil)
-  (add-to-list 'org-agenda-custom-commands
-               '("r" "Daily Agenda Review"
-                 ((agenda "" ((org-agenda-overriding-header "今日记录")
-                              (org-agenda-span 'day)
-                              (org-agenda-show-log 'clockcheck)
-                              (org-agenda-start-with-log-mode nil)
-                              (org-agenda-log-mode-items '(closed clock))
-                              (org-agenda-clockreport-mode t)
-                              )))))
+
+  (setq org-agenda-custom-commands
+        '(("r" "Daily Agenda Review"
+           ((agenda "" ((org-agenda-overriding-header "今日记录")
+                        (org-agenda-span 'day)
+                        (org-agenda-show-log 'clockcheck)
+                        (org-agenda-start-with-log-mode nil)
+                        (org-agenda-log-mode-items '(closed clock))
+                        (org-agenda-clockreport-mode t)))))
+          ("p" "Plan"
+           ((agenda "" ((org-agenda-overriding-header "今日计划")
+                        (org-agenda-span 'day)
+                        (org-agenda-show-log t)
+                        (org-scheduled-past-days 0)
+                        (org-deadline-past-days 0)
+                        (org-deadline-warning-days 0)
+                        (org-agenda-skip-if nil '(scheduled deadline))
+                        (org-agenda-log-mode-items '(clock))))))
+          ("w" "All Todo Items"
+           ((alltodo "" ((org-agenda-overriding-header "所有代办")
+                         (org-super-agenda-groups
+                          '((:name "Log "
+                             :log t)
+                            (:name "Today "
+                             :scheduled today)
+                            (:name "Important"
+                             :priority "A")
+                            (:name "Due today "
+                             :deadline today)
+                            (:name "Overdue "
+                             :deadline past)
+                            (:name "Due soon "
+                             :deadline future)
+                            (:name "Scheduled earlier "
+                             :scheduled past)))))))))
 
   (evil-define-key 'normal org-agenda-mode-map
     (kbd "RET")    'org-agenda-switch-to
