@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 478
+;;     Update #: 483
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,6 +153,7 @@ prepended to the element after the #+HEADER: tag."
               org-clock-into-drawer t
               org-clock-idle-time 30
               org-clock-out-when-done t
+              org-clock-out-remove-zero-time-clocks t
               org-clock-in-switch-to-state "⥁"
               org-columns-default-format "%50ITEM(Task) %8PRIORITY(Priority) %6TODO(Status) %6Effort(Effort){:} %8CLOCKSUM %16SCHEDULED %16DEADLINE"
               org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
@@ -169,13 +170,13 @@ prepended to the element after the #+HEADER: tag."
 
               org-hide-emphasis-markers t
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
-              org-export-with-broken-links                  'mark
-              org-export-with-sub-superscripts              '{}
+              org-export-with-broken-links 'mark
+              org-export-with-sub-superscripts '{}
               org-export-use-babel nil ;; 导出的时候不执行代码，会导致设置的 header-arg 无效 do not evaluate again during export.
               org-export-with-toc nil
               org-export-with-section-numbers nil
               org-export-with-entities t ;; 导出时是否进行转义
-              org-use-sub-superscripts                      '{}
+              org-use-sub-superscripts '{}
 
               org-catch-invisible-edits 'smart
 
