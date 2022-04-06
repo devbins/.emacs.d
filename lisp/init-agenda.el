@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 105
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -169,25 +169,9 @@
                         (org-scheduled-past-days 0)
                         (org-deadline-past-days 0)
                         (org-deadline-warning-days 0)
+                        (org-agenda-log-mode)
                         (org-agenda-skip-if nil '(scheduled deadline))
-                        (org-agenda-log-mode-items '(clock))))))
-          ("w" "All Todo Items"
-           ((alltodo "" ((org-agenda-overriding-header "所有代办")
-                         (org-super-agenda-groups
-                          '((:name "Log "
-                             :log t)
-                            (:name "Today "
-                             :scheduled today)
-                            (:name "Important"
-                             :priority "A")
-                            (:name "Due today "
-                             :deadline today)
-                            (:name "Overdue "
-                             :deadline past)
-                            (:name "Due soon "
-                             :deadline future)
-                            (:name "Scheduled earlier "
-                             :scheduled past)))))))))
+                        (org-agenda-log-mode-items '(clock))))))))
 
   (evil-define-key 'normal org-agenda-mode-map
     (kbd "RET")    'org-agenda-switch-to
