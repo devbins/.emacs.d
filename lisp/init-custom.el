@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,11 +113,11 @@
     ("#+CREATOR:" . ?💁)
     ("#+DATE:" . ?📆)
     ("#+DESCRIPTION:" . ?⸙)
-    ("#+EMAIL:" . ?🖂)
+    ("#+EMAIL:" . ?📧)
     ("#+OPTIONS:" . ?⛭)
     ("#+SETUPFILE:" . ?⛮)
     ("#+TAGS:" . ?🏷)
-    ("#+TITLE:" . ?🕮)
+    ("#+TITLE:" . ?📓)
 
     ("#+BEGIN_SRC" . ?✎)
     ("#+END_SRC" . ?□)
