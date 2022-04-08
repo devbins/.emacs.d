@@ -276,7 +276,8 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package valign
     :quelpa (valign :fetcher github :repo "casouri/valign")
-    :hook (org-mode . valign-mode))
+    :hook (org-mode . valign-mode)
+    :init (setq valign-fancy-bar t))
 
   ;; Show hidden emphasis markers
   (use-package org-appear
