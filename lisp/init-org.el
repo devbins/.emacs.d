@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 483
+;;     Update #: 488
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -259,8 +259,12 @@ prepended to the element after the #+HEADER: tag."
     :hook (org-mode . org-superstar-mode)
     :init
     (setq org-superstar-special-todo-items t
-          org-superstar-headline-bullets-list
-          '("◉" "○" "✸" "✿" "☯" "☭" "♥" "✜" "♠" "☢" "❀" "★")
+          org-superstar-headline-bullets-list'("🐂" "🐃" "🐄" "🐅" "🐆" "🐇" "🐈" "🐉" "🐊" "🐋"
+                                               "🐌" "🐍" "🐎" "🐏" "🐐" "🐑" "🐒" "🐓" "🐔" "🐕" "🐖"
+                                               "🐘" "🐙" "🐚" "🐝" "🐞" "🐟" "🐠" "🐡" "🐢" "🐣"
+                                               "🐤" "🐥" "🐦" "🐧" "🐨" "🐩" "🐫" "🐬" "🐭" "🐮" "🐯"
+                                               "🐰" "🐱" "🐲" "🐳" "🐴" "🐵" "🐶" "🐷" "🐸" "🐹" "🐺" "🐻"
+                                               "🐼")
           org-superstar-item-bullet-alist
           '((?* . ?◈)
             (?+ . ?✚)
