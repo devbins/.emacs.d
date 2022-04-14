@@ -144,7 +144,9 @@ prepended to the element after the #+HEADER: tag."
               org-refile-targets '((org-agenda-files :maxlevel . 3))
               org-refile-use-outline-path 'file
               org-outline-path-complete-in-steps nil
-              org-tags-column -80
+              org-auto-align-tags nil
+              org-tags-column 0
+              org-catch-invisible-edits 'show-and-error
               org-log-done 'notevery
               org-html-checkbox-type 'unicode
 
@@ -177,8 +179,6 @@ prepended to the element after the #+HEADER: tag."
               org-export-with-section-numbers nil
               org-export-with-entities t ;; 导出时是否进行转义
               org-use-sub-superscripts '{}
-
-              org-catch-invisible-edits 'smart
 
               org-ditaa-jar-path (concat user-emacs-directory "ditaa.jar")
               ;; org-startup-indented t
