@@ -221,6 +221,12 @@ prepended to the element after the #+HEADER: tag."
           ("=" org-verbatim verbatim)
           ("~" org-code verbatim)
           ("+" (:strike-through t))))
+  ;; Because spacemacs had different ideas about the verbatim background
+  (set-face-background 'org-bold "#fefefe")
+  (set-face-background 'org-verbatim "#fefefe")
+
+  ;; 完成任务时, 将其划线勾掉
+  (set-face-attribute 'org-headline-done nil :strike-through t)
   (set-face-attribute 'org-level-1 nil :height 2.2 :bold t)
   (set-face-attribute 'org-level-2 nil :height 1.8 :bold t)
   (set-face-attribute 'org-level-3 nil :height 1.4 :bold t)
@@ -259,12 +265,7 @@ prepended to the element after the #+HEADER: tag."
     :hook (org-mode . org-superstar-mode)
     :init
     (setq org-superstar-special-todo-items t
-          org-superstar-headline-bullets-list'("🐂" "🐃" "🐄" "🐅" "🐆" "🐇" "🐈" "🐉" "🐊" "🐋"
-                                               "🐌" "🐍" "🐎" "🐏" "🐐" "🐑" "🐒" "🐓" "🐔" "🐕" "🐖"
-                                               "🐘" "🐙" "🐚" "🐝" "🐞" "🐟" "🐠" "🐡" "🐢" "🐣"
-                                               "🐤" "🐥" "🐦" "🐧" "🐨" "🐩" "🐫" "🐬" "🐭" "🐮" "🐯"
-                                               "🐰" "🐱" "🐲" "🐳" "🐴" "🐵" "🐶" "🐷" "🐸" "🐹" "🐺" "🐻"
-                                               "🐼")
+          org-superstar-headline-bullets-list '("◉" "○" "✸" "☢" "❀" "✿" "☯" "☭" "♥" "✜" "♠" "★")
           org-superstar-item-bullet-alist
           '((?* . ?◈)
             (?+ . ?✚)
