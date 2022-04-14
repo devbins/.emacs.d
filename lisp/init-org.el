@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 488
+;;     Update #: 501
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -380,6 +380,12 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package org-ref
     :after org)
+
+  (when emacs/>=27p
+    ;; Auto-toggle Org LaTeX fragments
+    (use-package org-fragtog
+      :diminish
+      :hook (org-mode . org-fragtog-mode)))
 
   ;; Preview
   (use-package org-preview-html
