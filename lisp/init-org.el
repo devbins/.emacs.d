@@ -221,9 +221,6 @@ prepended to the element after the #+HEADER: tag."
           ("=" org-verbatim verbatim)
           ("~" org-code verbatim)
           ("+" (:strike-through t))))
-  ;; Because spacemacs had different ideas about the verbatim background
-  (set-face-background 'org-bold "#fefefe")
-  (set-face-background 'org-verbatim "#fefefe")
 
   ;; 完成任务时, 将其划线勾掉
   (set-face-attribute 'org-headline-done nil :strike-through t)
