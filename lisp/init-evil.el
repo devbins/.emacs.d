@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 160
+;;     Update #: 169
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -93,7 +93,6 @@
   (evil-set-initial-state 'calc-mode 'normal)
   (evil-set-initial-state 'easy-hugo-mode 'emacs)
   (evil-set-initial-state 'shell-mode 'emacs)
-  (evil-set-initial-state 'vterm-mode 'emacs)
   (evil-set-initial-state 'calendar-mode 'emacs)
   (evil-set-initial-state 'esup-mode 'emacs)
   (evil-set-initial-state 'diff-mode 'normal)
@@ -154,7 +153,7 @@
     :custom (evil-collection-setup-minibuffer t)
     :init
     ;; The list of supported modes is configured by evil-collection-mode=list
-    (evil-collection-init '(dired view magit magit-todos ibuffer custom calendar pdf docker))))
+    (evil-collection-init '(dired view magit magit-todos ibuffer custom calendar pdf docker vterm eshell))))
 
 (use-package evil-leader
   :init
