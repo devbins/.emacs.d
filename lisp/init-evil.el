@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 169
+;;     Update #: 170
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -118,6 +118,7 @@
   (evil-set-initial-state 'elfeed-search-mode 'emacs)
   (evil-set-initial-state 'elfeed-dashboard-mode 'emacs)
   (evil-set-initial-state 'calibredb-search-mode 'emacs)
+  (evil-set-initial-state 'calibredb-show-mode 'emacs)
   (evil-set-initial-state 'pass-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
