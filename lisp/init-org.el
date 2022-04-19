@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 501
+;;     Update #: 503
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -799,9 +799,10 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
-  :custom ((org-roam-directory (expand-file-name "~/.org"))
-           (org-roam-mute-cache-build t)
-           (org-roam-v2-ack t))
+  :custom
+  (org-roam-database-connector 'sqlite-builtin)
+  (org-roam-directory (expand-file-name "~/.org"))
+  (org-roam-mute-cache-build t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n g" . org-roam-graph)
