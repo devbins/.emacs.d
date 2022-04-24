@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 65
+;;     Update #: 87
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -262,23 +262,28 @@
 
 ;; https://github.com/DogLooksGood/emacs-rime
 (use-package rime
+  :init
+  (setq rime-disable-predicates '(rime-predicate-prog-in-code-p
+                                  rime-predicate-after-alphabet-char-p)
+        rime-inline-predicates '(rime-predicate-space-after-cc-p
+                                 rime-predicate-current-uppercase-letter-p)
+        rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>")
+        rime-posframe-properties (list :font "STKaiti"
+                                       :internal-border-width 10)
+        default-input-method "rime"
+        rime-cursor "|"
+        rime-user-data-dir "~/Library/Rime"
+        rime-show-candidate 'posframe
+        rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
+                                (sys/linuxp nil)))
+  (set-face-attribute 'rime-default-face nil :foreground "#81a1c1" :background "#3d424d")
   :bind
   (:map rime-active-mode-map
    ("<tab>" . 'rime-inline-ascii)
    :map rime-mode-map
    ("C-`" . 'rime-send-keybinding)
    ("M-j" . 'rime-force-enable)
-   ("C-SPC" . 'toggle-input-method))
-  :custom
-  (rime-disable-predicates '(rime-predicate-prog-in-code-p
-                             rime-predicate-after-alphabet-char-p))
-  (rime-inline-predicates '(rime-predicate-space-after-cc-p
-                            rime-predicate-current-uppercase-letter-p))
-  (rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g"))
-  (default-input-method "rime")
-  (rime-show-candidate 'posframe)
-  (rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
-                           (sys/linuxp nil))))
+   ("C-SPC" . 'toggle-input-method)))
 
 ;; The selected region of text can be deleted
 (use-package delsel
