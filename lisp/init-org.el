@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 503
+;;     Update #: 507
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -191,8 +191,6 @@ prepended to the element after the #+HEADER: tag."
                                     ("@office" . ?o)
                                     ("@home" . ?H)
                                     (:endgroup)
-                                    ("WAITING" . ?w)
-                                    ("HOLD" . ?h)
                                     ("READING" . ?r)
                                     ("PERSONAL" . ?P)
                                     ("WORK" . ?W)
