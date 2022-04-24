@@ -265,9 +265,6 @@ If FRAME is nil, it defaults to the selected frame."
 (use-package default-text-scale
   :hook (after-init . default-text-scale-mode))
 
-(use-package mixed-pitch
-  :diminish)
-
 ;; Child frame
 (when (childframe-workable-p)
   (use-package posframe
