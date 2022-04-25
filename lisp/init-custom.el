@@ -100,7 +100,7 @@
                               name)))
                     package-archives-alist)))
 
-(setq devbins-package-archives 'tuna)
+(setq devbins-package-archives 'melpa)
 
 
 (defcustom prettify-org-symbols-alist
