@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 87
+;;     Update #: 91
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -272,12 +272,13 @@
                                        :internal-border-width 10)
         default-input-method "rime"
         rime-cursor "|"
-        rime-user-data-dir "~/Library/Rime"
         rime-show-candidate 'posframe
         rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                                 (sys/linuxp nil)))
+  (if sys/macp
+      (setq rime-user-data-dir "~/Library/Rime"))
   :config
-  (set-face-attribute 'rime-default-face nil :foreground "#81a1c1" :background "#3d424d")
+  (set-face-attribute 'rime-default-face nil :foreground "#FFFFFF" :background "#3d424d")
   :bind
   (:map rime-active-mode-map
    ("<tab>" . 'rime-inline-ascii)
