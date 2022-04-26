@@ -624,7 +624,7 @@ prepended to the element after the #+HEADER: tag."
     :ensure nil
     :demand
     :init
-    ;; 设置要加密的 tag 標籤為 secret
+    ;; 设置要加密的 tag 标记为 secret
     (setq org-crypt-tag-matcher "crypt"
           ;; 避免 secret 这个 tag 被子項目继承造成重复加密
           org-tags-exclude-from-inheritance (quote ("crypt"))
