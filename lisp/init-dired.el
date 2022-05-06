@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -176,9 +176,10 @@
   ;; List directories that has over 10000 files asynchronously
   ;; This feature is disabled by default
   ;; (dirvish-async-listing-threshold 10000)
-  :config
   ;; Place this line under :init to ensure the overriding at startup, see #22
+  (dirvish-side-follow-buffer-file nil)
   (dirvish-override-dired-mode)
+  :config
   (dirvish-peek-mode)
   ;; In case you want the details at startup like `dired'
   ;; :hook
