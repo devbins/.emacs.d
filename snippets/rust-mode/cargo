@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cargo
+# key: cargo
+# --
+//!
+//! ```cargo
+//! [dependencies]
+//! $1 = "$2"
+//! ```
