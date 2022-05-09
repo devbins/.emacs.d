@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,6 @@
 ;; Rust
 (use-package rustic
   :config
-  (setq rustic-format-on-save t)
   (use-package cargo
     :diminish cargo-minor-mode
     :hook (rustic-mode . cargo-minor-mode)
