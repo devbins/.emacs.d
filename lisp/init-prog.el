@@ -152,6 +152,7 @@
   (setq separedit-default-mode 'org-mode
         separedit-remove-trailing-spaces-in-comment t))
 
+(use-package yaml)
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-prog.el ends here
