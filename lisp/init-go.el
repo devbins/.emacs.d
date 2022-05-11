@@ -110,6 +110,7 @@
                                                           go-errcheck))
                        (flycheck-golangci-lint-setup))))
 
+  ;; go install github.com/fatih/gomodifytags@latest
   (use-package go-tag
     :bind (:map go-mode-map
            ("C-c t t" . go-tag-add)
@@ -142,7 +143,6 @@
     "mer" 'go-play-region
     "mga" 'ff-find-other-file
     "mgc" 'go-coverage
-    "mhh" 'godoc-at-point
     "mrf" 'go-tag-add
     "mrF" 'go-tag-remove
     "mrN" 'go-rename
@@ -154,7 +154,10 @@
     "mrt" 'godoctor-toggle
     "m="  'gofmt
     "mxx" 'go-run-main
-    "mhd" 'godef-describe))
+    "mtt" 'go-test-current-test
+    "mtf" 'go-test-current-file
+    "mhh" 'godoc-at-point
+    "mhd" 'godef-describe)
 
 ;; Local Golang playground for short snippets
 (use-package go-playground
