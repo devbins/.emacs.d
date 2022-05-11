@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -158,6 +158,14 @@
     "mtf" 'go-test-current-file
     "mhh" 'godoc-at-point
     "mhd" 'godef-describe)
+  (which-key-add-major-mode-key-based-replacements 'go-mode
+    "SPC m i" "import"
+    "SPC m e" "playground"
+    "SPC m g" "coverage"
+    "SPC m h" "doc"
+    "SPC m r" "refactor"
+    "SPC m t" "test"
+    "SPC m x" "run"))
 
 ;; Local Golang playground for short snippets
 (use-package go-playground
