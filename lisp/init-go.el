@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -156,6 +156,7 @@
     "mxx" 'go-run-main
     "mtt" 'go-test-current-test
     "mtf" 'go-test-current-file
+    "mtp" 'go-test-current-project
     "mhh" 'godoc-at-point
     "mhd" 'godef-describe)
   (which-key-add-major-mode-key-based-replacements 'go-mode
