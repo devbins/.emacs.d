@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 106
+;;     Update #: 109
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,189 +46,12 @@
 ;;
 ;;; Code:
 
-;; Emacs client for the Language Server Protocol
-;; https://github.com/emacs-lsp/lsp-mode#supported-languages
-(use-package lsp-mode
-  :defines (lsp-clients-python-library-directories
-            lsp-rust-server)
-  :commands (lsp-enable-which-key-integration
-             lsp-format-buffer
-             lsp-organize-imports)
-  :diminish
-  :hook ((prog-mode . (lambda ()
-                        (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
-                          (lsp-deferred))))
-         (lsp-mode . (lambda ()
-                       ;; Integrate `which-key'
-                       (lsp-enable-which-key-integration)
-
-                       ;; Format and organize imports
-                       (unless (apply #'derived-mode-p '(c-mode c++-mode))
-                         (add-hook 'before-save-hook #'lsp-format-buffer t t)
-                         (add-hook 'before-save-hook #'lsp-organize-imports t t))))
-         (lsp-completion-mode . my/lsp-mode-setup-completion))
-  :bind (:map lsp-mode-map
-         ("C-c C-d" . lsp-describe-thing-at-point)
-         ([remap xref-find-definitions] . lsp-find-definition)
-         ([remap xref-find-references] . lsp-find-references))
-  :custom
-  (lsp-completion-provider :none) ;; we use Corfu!
-  :init
-  (defun my/orderless-dispatch-flex-first (_pattern index _total)
-    (and (eq index 0) 'orderless-flex))
-
-  (defun my/lsp-mode-setup-completion ()
-    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-          '(orderless)))
-
-  ;; Optionally configure the first word as flex filtered.
-  (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
-
-  ;; Optionally configure the cape-capf-buster.
-  (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
-  (setq read-process-output-max (* 1024 1024)
-        lsp-keep-workspace-alive nil ; Auto-kill LSP server
-        lsp-prefer-capf t
-        lsp-signature-auto-activate nil
-        lsp-modeline-code-actions-enable nil
-
-        lsp-enable-file-watchers nil
-        lsp-log-io nil
-        lsp-eldoc-render-all nil
-        lsp-completion-provider t
-        lsp-signature-render-documentation nil
-        lsp-enable-folding nil
-        lsp-enable-semantic-highlighting nil
-        lsp-enable-symbol-highlighting nil
-        lsp-enable-text-document-color nil
-        lsp-keymap-prefix "C-c l"
-        lsp-enable-indentation nil
-        lsp-enable-on-type-formatting nil)
-
-  (setq lsp-clients-python-library-directories '("~/anaconda3/bin/" "/usr/local/" "/usr/"))
-  (when (executable-find "rust-analyzer")
-    (setq lsp-rust-server 'rust-analyzer))
-  (setq lsp-rust-analyzer-cargo-watch-command "clippy"
-        lsp-rust-analyzer-server-display-inlay-hints t
-        lsp-rust-analyzer-proc-macro-enable t)
+(use-package lsp-bridge
+  :quelpa (eaf :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
+  :commands (lsp-bridge-mode)
   :config
-  ;; Configure LSP clients
-  (with-no-warnings
-    (defun my-lsp--init-if-visible (func &rest args)
-      "Not enabling lsp in `git-timemachine-mode'."
-      (unless (bound-and-true-p git-timemachine-mode)
-        (apply func args)))
-    (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)
-
-    ;; Enable `lsp-mode' in sh/bash/zsh
-    (defun my-lsp-bash-check-sh-shell (&rest _)
-      (and (eq major-mode 'sh-mode)
-         (memq sh-shell '(sh bash zsh))))
-    (advice-add #'lsp-bash-check-sh-shell :override #'my-lsp-bash-check-sh-shell)
-
-    ;; Only display icons in GUI
-    (defun my-lsp-icons-get-symbol-kind (fn &rest args)
-      (when (display-graphic-p)
-        (apply fn args)))
-    (advice-add #'lsp-icons-get-by-symbol-kind :around #'my-lsp-icons-get-symbol-kind)
-
-    (defun my-lsp-icons-get-by-file-ext (fn &rest args)
-      (when (display-graphic-p)
-        (apply fn args)))
-    (advice-add #'lsp-icons-get-by-file-ext :around #'my-lsp-icons-get-by-file-ext)
-
-    (defun my-lsp-icons-all-the-icons-material-icon (icon-name face fallback &optional feature)
-      (if (and (display-graphic-p)
-             (functionp 'all-the-icons-material)
-             (lsp-icons--enabled-for-feature feature))
-          (all-the-icons-material icon-name :face face)
-        (propertize fallback 'face face)))
-    (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon)))
-
-(use-package lsp-ui
-  :custom-face
-  (lsp-ui-sideline-code-action ((t (:inherit warning))))
-  :pretty-hydra
-  ((:title (pretty-hydra-title "LSP UI" 'faicon "rocket" :face 'all-the-icons-green)
-    :color amaranth :quit-key "q")
-   ("Doc"
-         (("d e" (progn
-                   (lsp-ui-doc-enable (not lsp-ui-doc-mode))
-                   (setq lsp-ui-doc-enable (not lsp-ui-doc-enable)))
-           "enable" :toggle lsp-ui-doc-mode)
-          ("d s" (setq lsp-ui-doc-include-signature (not lsp-ui-doc-include-signature))
-           "signature" :toggle lsp-ui-doc-include-signature)
-          ("d t" (setq lsp-ui-doc-position 'top)
-           "top" :toggle (eq lsp-ui-doc-position 'top))
-          ("d b" (setq lsp-ui-doc-position 'bottom)
-           "bottom" :toggle (eq lsp-ui-doc-position 'bottom))
-          ("d p" (setq lsp-ui-doc-position 'at-point)
-           "at point" :toggle (eq lsp-ui-doc-position 'at-point))
-          ("d h" (setq lsp-ui-doc-header (not lsp-ui-doc-header))
-           "header" :toggle lsp-ui-doc-header)
-          ("d f" (setq lsp-ui-doc-alignment 'frame)
-           "align frame" :toggle (eq lsp-ui-doc-alignment 'frame))
-          ("d w" (setq lsp-ui-doc-alignment 'window)
-           "align window" :toggle (eq lsp-ui-doc-alignment 'window)))
-         "Sideline"
-         (("s e" (progn
-                   (lsp-ui-sideline-enable (not lsp-ui-sideline-mode))
-                   (setq lsp-ui-sideline-enable (not lsp-ui-sideline-enable)))
-           "enable" :toggle lsp-ui-sideline-mode)
-          ("s h" (setq lsp-ui-sideline-show-hover (not lsp-ui-sideline-show-hover))
-           "hover" :toggle lsp-ui-sideline-show-hover)
-          ("s d" (setq lsp-ui-sideline-show-diagnostics (not lsp-ui-sideline-show-diagnostics))
-           "diagnostics" :toggle lsp-ui-sideline-show-diagnostics)
-          ("s s" (setq lsp-ui-sideline-show-symbol (not lsp-ui-sideline-show-symbol))
-           "symbol" :toggle lsp-ui-sideline-show-symbol)
-          ("s c" (setq lsp-ui-sideline-show-code-actions (not lsp-ui-sideline-show-code-actions))
-           "code actions" :toggle lsp-ui-sideline-show-code-actions)
-          ("s i" (setq lsp-ui-sideline-ignore-duplicate (not lsp-ui-sideline-ignore-duplicate))
-           "ignore duplicate" :toggle lsp-ui-sideline-ignore-duplicate))
-         "Action"
-         (("h" backward-char "←")
-          ("j" next-line "↓")
-          ("k" previous-line "↑")
-          ("l" forward-char "→")
-          ("C-a" mwim-beginning-of-code-or-line nil)
-          ("C-e" mwim-end-of-code-or-line nil)
-          ("C-b" backward-char nil)
-          ("C-n" next-line nil)
-          ("C-p" previous-line nil)
-          ("C-f" forward-char nil)
-          ("M-b" backward-word nil)
-          ("M-f" forward-word nil)
-          ("c" lsp-ui-sideline-apply-code-actions "apply code actions"))))
-  :bind (("C-c u" . lsp-ui-imenu)
-         :map lsp-ui-mode-map
-         ("M-<f6>" . lsp-ui-hydra/body)
-         ("s-<return>" . lsp-ui-sideline-apply-code-actions)
-         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-         ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :hook (lsp-mode . lsp-ui-mode)
-  :init (setq lsp-ui-doc-enable t
-              lsp-ui-doc-header t
-              lsp-ui-doc-use-webkit nil
-              lsp-ui-doc-delay 0.5
-              lsp-ui-doc-include-signature t
-              ;;lsp-ui-doc-border (face-foreground 'default)
-              lsp-ui-doc-border "violet"
-              lsp-eldoc-enable-hover nil ; Disable eldoc displays in minibuffer
-
-              lsp-ui-flycheck-enable t
-              lsp-ui-peek-always-show t
-              lsp-ui-sideline-enable t
-              lsp-ui-sideline-show-hover nil
-              lsp-ui-sideline-show-diagnostics nil
-              lsp-ui-sideline-ignore-duplicate t
-              lsp-ui-sideline-show-code-actions nil
-
-              lsp-ui-imenu-enable t
-              lsp-ui-imenu-colors `(,(face-foreground 'font-lock-keyword-face)
-                                    ,(face-foreground 'font-lock-string-face)
-                                    ,(face-foreground 'font-lock-constant-face)
-                                    ,(face-foreground 'font-lock-variable-name-face)))
-  :config
+  (require 'lsp-bridge-orderless)
+           (require 'lsp-bridge-icon)
   (dolist (hook (list
                'c-mode-hook
                'c++-mode-hook
