@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 72
+;;     Update #: 85
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,10 +72,9 @@
 
 (use-package orderless
   :init
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(orderless partial-completion basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles . (partial-completion))))))
-
 
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
@@ -190,110 +189,52 @@
 (use-package embark
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
-         ("C-h B" . embark-bindings))
-  :config
-  (defun embark-which-key-indicator ()
-    "An embark indicator that displays keymaps using which-key.
-The which-key help message will show the type and value of the
-current target followed by an ellipsis if there are further
-targets."
-    (lambda (&optional keymap targets prefix)
-      (if (null keymap)
-          (which-key--hide-popup-ignore-command)
-        (which-key--show-keymap
-         (if (eq (plist-get (car targets) :type) 'embark-become)
-             "Become"
-           (format "Act on %s '%s'%s"
-                   (plist-get (car targets) :type)
-                   (embark--truncate-target (plist-get (car targets) :target))
-                   (if (cdr targets) "…" "")))
-         (if prefix
-             (pcase (lookup-key keymap prefix 'accept-default)
-               ((and (pred keymapp) km) km)
-               (_ (key-binding prefix 'accept-default)))
-           keymap)
-         nil nil t (lambda (binding)
-                     (not (string-suffix-p "-argument" (cdr binding))))))))
-
-  (setq embark-indicators
-        '(embark-which-key-indicator
-          embark-highlight-indicator
-          embark-isearch-highlight-indicator))
-
-  (defun embark-hide-which-key-indicator (fn &rest args)
-    "Hide the which-key indicator immediately when using the completing-read prompter."
-    (when-let ((win (get-buffer-window which-key--buffer
-                                       'visible)))
-      (quit-window 'kill-buffer win)
-      (let ((embark-indicators (delq #'embark-which-key-indicator embark-indicators)))
-        (apply fn args))))
-
-  (advice-add #'embark-completing-read-prompter
-              :around #'embark-hide-which-key-indicator)
-
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+         ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
   :after (embark consult)
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
-;; Display completion in child frame
-(when (childframe-workable-p)
-  (use-package ivy-posframe
-    :custom-face
-    (ivy-posframe ((t (:inherit tooltip))))
-    (ivy-posframe-border ((t (:inherit posframe-border))))
-    :hook (ivy-mode . ivy-posframe-mode)
-    :init
-    (setq ivy-height 15
-          ivy-posframe-border-width 3
-          ivy-posframe-parameters '((left-fringe . 8)
-                                    (right-fringe . 8)))
-    :config
-    (with-no-warnings
-      ;; HACK: hide minibuffer with same colors
-      (defun my-ivy-posframe--minibuffer-setup (fn &rest args)
-        "Advice function of FN, `ivy--minibuffer-setup' with ARGS."
-        (if (not (display-graphic-p))
-            (apply fn args)
-          (let ((ivy-fixed-height-minibuffer nil))
-            (apply fn args))
-          (when (and ivy-posframe-hide-minibuffer
-                     (posframe-workable-p)
-                     (string-match-p "^ivy-posframe" (symbol-name ivy--display-function)))
-            (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
-              (overlay-put ov 'window (selected-window))
-              (overlay-put ov 'ivy-posframe t)
-              (overlay-put ov 'face
-                           (let* ((face (if (facep 'solaire-default-face)
-                                            'solaire-default-face
-                                          'default))
-                                  (bg-color (face-background face nil t)))
-                             `(:background ,bg-color :foreground ,bg-color
-                               :box nil :underline nil
-                               :overline nil :strike-through nil)))
-              (setq-local cursor-type nil)))))
-      (advice-add #'ivy-posframe--minibuffer-setup :override #'my-ivy-posframe--minibuffer-setup)
+(use-package corfu
+  :bind
+  (:map corfu-map
+   ("C-j" . corfu-next)
+   ("C-k" . corfu-previous)
+   ("C-f" . corfu-insert)
+   ("C-d" . corfu-info-documentation)
+   ("M-." . corfu-info-location))
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
+  (corfu-max-width 110)
+  (corfu-auto-delay 0.0)
+  (corfu-auto-prefix 1)
+  (corfu-preview-current nil)
+  (corfu-echo-documentation t)
+  :config
+  (global-corfu-mode))
 
-      ;; Prettify the buffer
-      (defun my-ivy-posframe--prettify-buffer (&rest _)
-        "Add top and bottom margin to the prompt."
-        (with-current-buffer ivy-posframe-buffer
-          (goto-char (point-min))
-          (insert (propertize "\n" 'face '(:height 0.3)))
-          (goto-char (point-max))
-          (insert (propertize "\n" 'face '(:height 0.3)))))
-      (advice-add #'ivy-posframe--display :after #'my-ivy-posframe--prettify-buffer)
+(use-package kind-icon
+  :ensure t
+  :commands (kind-icon-preview-all)
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-      ;; Adjust the postion
-      (defun ivy-posframe-display-at-frame-center-near-bottom (str)
-        (ivy-posframe--display str #'posframe-poshandler-frame-center-near-bottom))
-      (setf (alist-get t ivy-posframe-display-functions-alist)
-            #'ivy-posframe-display-at-frame-center-near-bottom))))
+(use-package cape
+  :bind (("C-c p p" . completion-at-point)
+         ("C-c p t" . complete-tag)
+         ("C-c p d" . cape-dabbrev)
+         ("C-c p f" . cape-file)
+         ("C-c p s" . cape-symbol)
+         ("C-c p a" . cape-abbrev)
+         ("C-c p i" . cape-ispell)
+         ("C-c p l" . cape-line)
+         ("C-c p w" . cape-dict))
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-file))
 
 (provide 'init-ivy)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
