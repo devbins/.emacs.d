@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 61
+;;     Update #: 72
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,121 +46,36 @@
 ;;
 ;;; Code:
 
-(use-package orderless
-  :config
-  (defvar +orderless-dispatch-alist
-    '((?% . char-fold-to-regexp)
-      (?! . orderless-without-literal)
-      (?`. orderless-initialism)
-      (?= . orderless-literal)
-      (?~ . orderless-flex)))
-
-  ;; Recognizes the following patterns:
-  ;; * ~flex flex~
-  ;; * =literal literal=
-  ;; * %char-fold char-fold%
-  ;; * `initialism initialism`
-  ;; * !without-literal without-literal!
-  ;; * .ext (file extension)
-  ;; * regexp$ (regexp matching at end)
-  (defun +orderless-dispatch (pattern index _total)
-    (cond
-     ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
-     ((string-suffix-p "$" pattern)
-      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
-     ;; File extensions
-     ((and
-       ;; Completing filename or eshell
-       (or minibuffer-completing-file-name
-           (derived-mode-p 'eshell-mode))
-       ;; File extension
-       (string-match-p "\\`\\.." pattern))
-      `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
-     ;; Ignore single !
-     ((string= "!" pattern) `(orderless-literal . ""))
-     ;; Prefix and suffix
-     ((if-let (x (assq (aref pattern 0) +orderless-dispatch-alist))
-          (cons (cdr x) (substring pattern 1))
-        (when-let (x (assq (aref pattern (1- (length pattern))) +orderless-dispatch-alist))
-          (cons (cdr x) (substring pattern 0 -1)))))))
-
-  ;; Define orderless style with initialism by default
-  (orderless-define-completion-style +orderless-with-initialism
-                                     (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
-
-  ;; You may want to combine the `orderless` style with `substring` and/or `basic`.
-  ;; There are many details to consider, but the following configurations all work well.
-  ;; Personally I (@minad) use option 3 currently. Also note that you may want to configure
-  ;; special styles for special completion categories, e.g., partial-completion for files.
-  ;;
-  ;; 1. (setq completion-styles '(orderless))
-  ;; This configuration results in a very coherent completion experience,
-  ;; since orderless is used always and exclusively. But it may not work
-  ;; in all scenarios. Prefix expansion with TAB is not possible.
-  ;;
-  ;; 2. (setq completion-styles '(substring orderless))
-  ;; By trying substring before orderless, TAB expansion is possible.
-  ;; The downside is that you can observe the switch from substring to orderless
-  ;; during completion, less coherent.
-  ;;
-  ;; 3. (setq completion-styles '(orderless basic))
-  ;; Certain dynamic completion tables (completion-table-dynamic)
-  ;; do not work properly with orderless. One can add basic as a fallback.
-  ;; Basic will only be used when orderless fails, which happens only for
-  ;; these special tables.
-  ;;
-  ;; 4. (setq completion-styles '(substring orderless basic))
-  ;; Combine substring, orderless and basic.
-  ;;
-  (setq completion-styles '(orderless partial-completion)
-        completion-category-defaults nil
-;;; Enable partial-completion for files.
-;;; Either give orderless precedence or partial-completion.
-;;; Note that completion-category-overrides is not really an override,
-;;; but rather prepended to the default completion-styles.
-        ;; completion-category-overrides '((file (styles orderless partial-completion))) ;; orderless is tried first
-        completion-category-overrides '((file (styles partial-completion)) ;; partial-completion is tried first
-                                        ;; enable initialism by default for symbols
-                                        (command (styles +orderless-with-initialism))
-                                        (variable (styles +orderless-with-initialism))
-                                        (symbol (styles +orderless-with-initialism)))
-        orderless-component-separator #'orderless-escapable-split-on-space ;; allow escaping space with backslash!
-        orderless-style-dispatchers '(+orderless-dispatch)))
-
-  ;; (defmacro dispatch: (regexp style)
-  ;;   (cl-flet ((symcat (a b) (intern (concat a (symbol-name b)))))
-  ;;     `(defun ,(symcat "dispatch:" style) (pattern _index _total)
-  ;;        (when (string-match ,regexp pattern)
-  ;;          (cons ',(symcat "orderless-" style) (match-string 1 pattern))))))
-  ;; (cl-flet ((pre/post (str) (format "^%s\\(.*\\)$\\|^\\(?1:.*\\)%s$" str str)))
-  ;;   (dispatch: (pre/post "=") literal)
-  ;;   (dispatch: (pre/post "`") regexp)
-  ;;   (dispatch: (pre/post (if (or minibuffer-completing-file-name
-  ;;                                (derived-mode-p 'eshell-mode))
-  ;;                            "%" "[%.]"))
-  ;;              initialism))
-  ;; (dispatch: "^{\\(.*\\)}$" flex)
-  ;; (dispatch: "^\\([^][^\\+*]*[./-][^][\\+*$]*\\)$" prefixes)
-  ;; (dispatch: "^!\\(.+\\)$" without-literal)
-  ;; :custom
-  ;; (orderless-matching-styles 'orderless-regexp)
-  ;; (orderless-style-dispatchers
-  ;;  '(dispatch:literal dispatch:regexp dispatch:without-literal
-  ;;                     dispatch:initialism dispatch:flex dispatch:prefixes))
-  ;; (orderless-component-separator #'orderless-escapable-split-on-space))
-
 (use-package vertico
   :hook (after-init . vertico-mode)
   :config
   (setq vertico-resize nil
         vertico-count 17
         vertico-cycle t)
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
-  (define-key vertico-map (kbd "C-j") 'vertico-next)
-  (define-key vertico-map (kbd "C-k") 'vertico-previous)
-  (define-key vertico-map [backspace] #'vertico-directory-delete-char)
-  (define-key vertico-map (kbd "s-SPC") #'+vertico/embark-preview))
+  :hook (minibuffer-setup . vertico-repeat-save)
+  :bind
+  (:map vertico-map
+   ("C-j" . vertico-next)
+   ("C-k" . vertico-previous)
+   ("C-f" . vertico-exit)))
+
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :bind
+  (:map vertico-map
+   ("RET"   . 'vertico-directory-enter)
+   ("/"     . 'vertico-directory-enter)
+   ("DEL"   . 'vertico-directory-delete-char)
+   ("M-DEL" . 'vertico-directory-delete-word)))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion))))))
+
 
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
