@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 170
+;;     Update #: 183
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -162,8 +162,7 @@
   :config
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-    "SPC" 'counsel-M-x
-
+    "SPC" 'execute-extended-command
     "1"   'winum-select-window-1
     "2"   'winum-select-window-2
     "3"   'winum-select-window-3
@@ -192,7 +191,7 @@
     "aojt" 'org-journal-new-scheduled-entry
     "aojv" 'org-journal-schedule-view
 
-    "bb"  'ivy-switch-buffer
+    "bb"  'consult-buffer
     "bd"  'kill-this-buffer
     "bm"  'bookmark-set
     "bj"  'bookmark-jump
@@ -204,7 +203,6 @@
 
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
-    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
     "cc" 'evilnc-copy-and-comment-lines
     "cp" 'evilnc-comment-or-uncomment-paragraphs
     "cr" 'comment-or-uncomment-region
@@ -212,7 +210,7 @@
     "."  'evilnc-copy-and-comment-operator
     "\\" 'evilnc-comment-operator ; if you prefer backslash key
 
-    "ff"  'counsel-find-file
+    "ff"  'find-file
     "fj"  'dired-jump
     "fCd" 'unix2dos
     "fCu" 'dos2unix
@@ -221,7 +219,7 @@
     "fl"  'format-all-buffer
     "ft"  'treemacs
     "fo"  'open-file-or-directory-in-external-app
-    "fr"  'counsel-recentf
+    "fr"  'consult-recent-file
     "fR"  'rename-this-file
     "fs"  'save-buffer
     "fa"  'save-some-buffers
@@ -241,9 +239,9 @@
     "gb"  'magit-blame
     "gp"  'git-messenger:popup-message
 
-    "hf"  'describe-function
-    "hk"  'describe-key
-    "hv"  'describe-variable
+    "hf"  'find-function-at-point
+    "hk"  'find-function-on-key
+    "hv"  'find-variable
     "hp"  'describe-package
 
     "nf"  'narrow-to-defun
@@ -279,7 +277,7 @@
 
     "sa"  'mark-whole-buffer
     "sp"  'projectile-ripgrep
-    "ss"  'swiper
+    "ss"  'consult-line
     "sn"  'snails
 
     "te"  'toggle-company-english-helper
