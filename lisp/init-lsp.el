@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 100
+;;     Update #: 105
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,12 +65,27 @@
                        ;; Format and organize imports
                        (unless (apply #'derived-mode-p '(c-mode c++-mode))
                          (add-hook 'before-save-hook #'lsp-format-buffer t t)
-                         (add-hook 'before-save-hook #'lsp-organize-imports t t)))))
+                         (add-hook 'before-save-hook #'lsp-organize-imports t t))))
+         (lsp-completion-mode . my/lsp-mode-setup-completion))
   :bind (:map lsp-mode-map
          ("C-c C-d" . lsp-describe-thing-at-point)
          ([remap xref-find-definitions] . lsp-find-definition)
          ([remap xref-find-references] . lsp-find-references))
+  :custom
+  (lsp-completion-provider :none) ;; we use Corfu!
   :init
+  (defun my/orderless-dispatch-flex-first (_pattern index _total)
+    (and (eq index 0) 'orderless-flex))
+
+  (defun my/lsp-mode-setup-completion ()
+    (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+          '(orderless)))
+
+  ;; Optionally configure the first word as flex filtered.
+  (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
+
+  ;; Optionally configure the cape-capf-buster.
+  (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
   (setq read-process-output-max (* 1024 1024)
         lsp-keep-workspace-alive nil ; Auto-kill LSP server
         lsp-prefer-capf t
@@ -244,13 +259,6 @@
             (lambda ()
               (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face nil t))
               (set-face-background 'lsp-ui-doc-background (face-background 'tooltip nil t)))))
-
-;; Ivy integration
-(use-package lsp-ivy
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-         ([remap xref-find-apropos] . lsp-ivy-workspace-symbol)
-         ("C-s-." . lsp-ivy-global-workspace-symbol)))
 
 ;; Debug
 (use-package dap-mode
