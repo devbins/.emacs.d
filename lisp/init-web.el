@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -150,6 +150,7 @@
 
   (with-eval-after-load 'company
     (use-package company-restclient
+      :disabled
       :defines company-backends
       :init (add-to-list 'company-backends 'company-restclient)))
 

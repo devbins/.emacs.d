@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 30
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,7 @@
 
   (use-package cmake-mode
     :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
-  (use-package company-c-headers :defer t)
+  (use-package company-c-headers :defer t :disabled)
   (use-package clang-format
     :commands (clang-format
                clang-format-region
@@ -129,6 +129,7 @@
                 rtags-autostart-diagnostics t))
 
 (use-package company-rtags
+  :disabled
   :ensure t
   :config
   (progn
@@ -157,8 +158,10 @@
   :config
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (use-package company-irony-c-headers
-    :ensure t)
+    :ensure t
+    :disabled)
   (use-package company-irony
+    :disabled
     :ensure t
     :config
     (add-to-list (make-local-variable 'company-backends)

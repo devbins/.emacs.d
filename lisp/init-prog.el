@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 74
+;;     Update #: 77
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,14 +56,7 @@
   (with-no-warnings
     (if emacs/>=28p
         (setq xref-show-xrefs-function #'xref-show-definitions-completing-read
-              xref-show-definitions-function #'xref-show-definitions-completing-read)
-      ;; Select from xref candidates with Ivy
-      (use-package ivy-xref
-        :after ivy
-        :init
-        (when emacs/>=27p
-          (setq xref-show-definitions-function #'ivy-xref-show-defs))
-        (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))))
+              xref-show-definitions-function #'xref-show-definitions-completing-read))))
 
 ;; Jump to definition
 (use-package dumb-jump
@@ -154,6 +147,11 @@
 
 (use-package yaml)
 (use-package protobuf-mode)
+
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :hook ((prog-mode org-mode) . yas-global-mode)
+  :config (use-package yasnippet-snippets))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
