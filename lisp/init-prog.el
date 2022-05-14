@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 70
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,6 +153,8 @@
         separedit-remove-trailing-spaces-in-comment t))
 
 (use-package yaml)
+(use-package protobuf-mode)
+
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-prog.el ends here
