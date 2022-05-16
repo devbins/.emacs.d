@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 33
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -110,6 +110,9 @@
   (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") . ["template.go" autoinsert-yas-expand]))
   (add-to-list 'auto-insert-alist '(("\\.sh\\'" . "shell program") . ["template.sh" autoinsert-yas-expand]))
   (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") . ["template.cmake" autoinsert-yas-expand])))
+
+(use-package restart-emacs
+  :commands restart-emacs)
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
