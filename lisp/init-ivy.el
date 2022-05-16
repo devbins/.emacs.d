@@ -183,6 +183,10 @@
            (outline-on-heading-p))
       (outline-show-entry)))))
 
+(use-package consult-yasnippet
+  :after (consult yasnippet)
+  :bind ("M-s y" . consult-yasnippet))
+
 (use-package marginalia
    :hook (after-init . marginalia-mode))
 
