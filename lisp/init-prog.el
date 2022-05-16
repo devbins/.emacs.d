@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 77
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -150,7 +150,7 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook ((prog-mode org-mode) . yas-global-mode)
+  :hook ((prog-mode org-mode) . yas-minor-mode)
   :config (use-package yasnippet-snippets))
 
 (provide 'init-prog)
