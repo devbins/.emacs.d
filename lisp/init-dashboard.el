@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 13
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,8 @@
 
 ;; Dashboard
 (use-package dashboard
-  :diminish (dashboard-mode page-break-lines-mode)
+  :after all-the-icons
+  :diminish dashboard-mode
   :functions (all-the-icons-material
               winner-undo
               widget-forward)
@@ -142,7 +143,7 @@
         `(((,(when (display-graphic-p)
                (all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0))
             "Homepage" "Browse homepage"
-            (lambda (&rest _) (message "Home")))
+            (lambda (&rest _) (browse-url "https://github.com/devbins/.emacs.d")))
            (,(when (display-graphic-p)
                (all-the-icons-material "restore" :height 1.35 :v-adjust -0.24))
             "Restore" "Restore previous session"
