@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -195,6 +195,10 @@
     (dired-rainbow-define vc          "#0074d9" ("git" "gitignore" "gitattributes" "gitmodules"))
     (dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")))
 
+(use-package dired-posframe
+  :hook (dired-mode . dired-posframe-mode)
+  :bind (:map dired-mode-map
+         ("p" . dired-posframe-show)))
 (use-package dired-async
   :ensure async
   :diminish dired-async-mode
