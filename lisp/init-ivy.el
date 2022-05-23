@@ -190,6 +190,12 @@
 (use-package marginalia
    :hook (after-init . marginalia-mode))
 
+(use-package all-the-icons-completion
+  :after marginalia
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :config
+  (all-the-icons-completion-mode))
+
 (use-package embark
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
