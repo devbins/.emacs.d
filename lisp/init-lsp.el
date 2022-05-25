@@ -46,159 +46,410 @@
 ;;
 ;;; Code:
 
-(use-package lsp-bridge
-  :quelpa (eaf :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
-  :commands (lsp-bridge-mode)
-  :config
-  (require 'lsp-bridge-orderless)
-           (require 'lsp-bridge-icon)
-  (dolist (hook (list
-               'c-mode-hook
-               'c++-mode-hook
-               'python-mode-hook
-               'rust-mode-hook
-               'go-mode-hook
-               'dart-mode-hook
-               'typescript-mode-hook
-               'js2-mode-hook
-               'js-mode-hook))
-    (add-hook hook (lambda ()
-                     (lsp-bridge-enable)))))
+(pcase my-lsp
+  ('lsp-bridge
+   (use-package lsp-bridge
+     :commands (lsp-bridge-enable lsp-bridge-monitor-window-buffer-change)
+     :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
+     :config
+     ;; 让corfu适应高分屏
+     (when (> (frame-pixel-width) 3000) (custom-set-faces '(corfu-default ((t (:height 1.3))))))
+     (setq lsp-bridge-completion-provider 'corfu)
+     (require 'corfu)
+     (require 'corfu-info)
+     (require 'corfu-history)
+     (require 'lsp-bridge-orderless)
+     (require 'lsp-bridge-icon)
+     (require 'lsp-bridge-jdtls)
+     ;; 通过Cape融合不同的补全后端，比如lsp-bridge、 tabnine、 file、 dabbrev.
+     (defun lsp-bridge-mix-multi-backends ()
+       (setq-local completion-category-defaults nil)
+       (setq-local completion-at-point-functions
+                   (list
+                    (cape-capf-buster
+                     (cape-super-capf
+                      #'lsp-bridge-capf
 
-;; Debug
-(use-package dap-mode
-  :diminish
-  :bind (:map lsp-mode-map
-         ("<f5>" . dap-debug)
-         ("M-<f5>" . dap-hydra))
-  :hook ((after-init . dap-auto-configure-mode)
-         (dap-stopped . (lambda (_args) (dap-hydra)))
-         (dap-terminated . (lambda (_args) (dap-hydra/nil)))
+                 ;; 我嫌弃TabNine太占用我的CPU了， 需要的同学注释下面这一行就好了
+                 ;; #'tabnine-completion-at-point
 
-         (python-mode . (lambda () (require 'dap-python)))
-         (ruby-mode . (lambda () (require 'dap-ruby)))
-         (go-mode . (lambda () (require 'dap-go)))
-         (java-mode . (lambda () (require 'dap-java)))
-         ((c-mode c++-mode objc-mode swift-mode) . (lambda ()
-                                                     (require 'dap-gdb-lldb)
-                                                     (setq dap-lldb-debug-program '("/usr/local/opt/llvm/bin/lldb-vscode"))))
-         (php-mode . (lambda () (require 'dap-php)))
-         ((js-mode js2-mode) . (lambda () (require 'dap-chrome)))
-         (powershell-mode . (lambda () (require 'dap-pwsh)))))
+                 ;; #'cape-file
+                 ;; #'cape-dabbrev
+                      )
+                     'equal)
+                    )))
+     (dolist (hook lsp-bridge-default-mode-hooks)
+       (add-hook hook (lambda ()
+                        (setq-local corfu-auto nil) ; 编程文件关闭Corfu自动补全， 由lsp-bridge来手动触发补全
+                        (lsp-bridge-mode 1)             ; 开启lsp-bridge
+                        (lsp-bridge-mix-multi-backends) ; 通过Cape融合多个补全后端
+                        )))
+     ;; For Xref support
+     (add-hook 'lsp-bridge-mode-hook (lambda ()
+                                       (add-hook 'xref-backend-functions #'lsp-bridge-xref-backend nil t)))
+     ))
+  ('eglot
+   (use-package eglot
+     :commands (+eglot-organize-imports +eglot-help-at-point)
+     :config
+     (setq eglot-sync-connect 1
+           eglot-connect-timeout 10
+           eglot-autoshutdown t
+           eglot-send-changes-idle-time 0.5
+           eglot-events-buffer-size 0
+           ;; NOTE We disable eglot-auto-display-help-buffer because :select t in
+           ;;      its popup rule causes eglot to steal focus too often.
+           eglot-auto-display-help-buffer nil)
+     (setq eldoc-echo-area-use-multiline-p nil)
+     (setq eglot-stay-out-of '(flymake))
+     (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :foldingRangeProvider :colorProvider :codeLensProvider :documentOnTypeFormattingProvider :executeCommandProvider))
+     (defun +eglot-organize-imports() (call-interactively 'eglot-code-action-organize-imports))
+     (add-to-list 'eglot-server-programs '((latex-mode Tex-latex-mode texmode context-mode texinfo-mode bibtex-mode) "texlab"))
 
-;; `lsp-mode' and `treemacs' integration
-(use-package lsp-treemacs
-  :after lsp-mode
-  :bind (:map lsp-mode-map
-         ("C-<f8>" . lsp-treemacs-errors-list)
-         ("M-<f8>" . lsp-treemacs-symbols)
-         ("s-<f8>" . lsp-treemacs-java-deps-list))
-  :config
-  (with-eval-after-load 'ace-window
-    (when (boundp 'aw-ignored-buffers)
-      (push 'lsp-treemacs-symbols-mode aw-ignored-buffers)
-      (push 'lsp-treemacs-java-deps-mode aw-ignored-buffers))))
+     ;; HACK Eglot removed `eglot-help-at-point' in joaotavora/eglot@a044dec for a
+     ;;      more problematic approach of deferred to eldoc. Here, I've restored it.
+     ;;      Doom's lookup handlers try to open documentation in a separate window
+     ;;      (so they can be copied or kept open), but doing so with an eldoc buffer
+     ;;      is difficult because a) its contents are generated asynchronously,
+     ;;      making them tough to scrape, and b) their contents change frequently
+     ;;      (every time you move your cursor).
+     (defvar +eglot--help-buffer nil)
+     (defun +eglot-lookup-documentation (_identifier)
+       "Request documentation for the thing at point."
+       (eglot--dbind ((Hover) contents range)
+                     (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover
+                                      (eglot--TextDocumentPositionParams))
+                     (let ((blurb (and (not (seq-empty-p contents))
+                                       (eglot--hover-info contents range)))
+                           (hint (thing-at-point 'symbol)))
+                       (if blurb
+                           (with-current-buffer
+                               (or (and (buffer-live-p +eglot--help-buffer)
+                                        +eglot--help-buffer)
+                                   (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
+                             (with-help-window (current-buffer)
+                               (rename-buffer (format "*eglot-help for %s*" hint))
+                               (with-current-buffer standard-output (insert blurb))
+                               (setq-local nobreak-char-display nil)))
+                         (display-local-help))))
+       'deferred)
 
-;; Python: pyright
-(use-package lsp-pyright
-  :preface
-  ;; Use yapf to format
-  (defun lsp-pyright-format-buffer ()
-    (interactive)
-    (when (and (executable-find "yapf") buffer-file-name)
-      (call-process "yapf" nil nil nil "-i" buffer-file-name)))
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (add-hook 'after-save-hook #'lsp-pyright-format-buffer t t)))
-  :init (when (executable-find "python3")
-          (setq lsp-pyright-python-executable-cmd "python3"))
-  :config
-  (defun expand-absolute-name (name)
-    (if (file-name-absolute-p name)
-        (tramp-file-local-name
-         (expand-file-name
-          (concat (file-remote-p default-directory) name)))
-      name))
+     (defun +eglot-help-at-point()
+       (interactive)
+       (+eglot-lookup-documentation nil))))
+  ('lsp-mode
+   ;; Emacs client for the Language Server Protocol
+   ;; https://github.com/emacs-lsp/lsp-mode#supported-languages
+   (use-package lsp-mode
+     :defines (lsp-clients-python-library-directories)
+     :commands (lsp-enable-which-key-integration
+                lsp-format-buffer
+                lsp-organize-imports)
+     :diminish
+     :hook ((prog-mode . (lambda ()
+                           (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode)
+                             (lsp-deferred))))
+            (lsp-mode . (lambda ()
+                          ;; Integrate `which-key'
+                          (lsp-enable-which-key-integration)
 
-   (lsp-register-custom-settings
-   `(("python.analysis.stubPath" (lambda () (expand-absolute-name lsp-pyright-stub-path)))
-     ("python.venvPath" (lambda () (if lsp-pyright-venv-path
-                                  (expand-absolute-name lsp-pyright-venv-path) "")))))
+                          ;; Format and organize imports
+                          (unless (apply #'derived-mode-p '(c-mode c++-mode))
+                            (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                            (add-hook 'before-save-hook #'lsp-organize-imports t t))))
+            (lsp-completion-mode . my/lsp-mode-setup-completion))
+     :bind (:map lsp-mode-map
+            ("C-c C-d" . lsp-describe-thing-at-point)
+            ([remap xref-find-definitions] . lsp-find-definition)
+            ([remap xref-find-references] . lsp-find-references))
+     :custom
+     (lsp-completion-provider :none) ;; we use Corfu!
+     :init
+     (defun my/orderless-dispatch-flex-first (_pattern index _total)
+       (and (eq index 0) 'orderless-flex))
 
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection (lambda ()
-                                                            (cons "pyright-langserver"
-                                                                  lsp-pyright-langserver-command-args)))
-                    :major-modes '(python-mode)
-                    :remote? t
-                    :server-id 'pyright-remote
-                    :multi-root lsp-pyright-multi-root
-                    :initialization-options (lambda () (ht-merge (lsp-configuration-section "pyright")
-                                                            (lsp-configuration-section "python")))
-                    :initialized-fn (lambda (workspace)
-                                      (with-lsp-workspace workspace
-                                        (lsp--set-configuration
-                                         (make-hash-table :test 'equal))))
-                    :download-server-fn (lambda (_client callback error-callback _update?)
-                                          (lsp-package-ensure 'pyright callback error-callback))
-                    :notification-handlers (lsp-ht ("pyright/beginProgress" 'lsp-pyright--begin-progress-callback)
-                                                   ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
-                                                   ("pyright/endProgress" 'lsp-pyright--end-progress-callback)))))
+     (defun my/lsp-mode-setup-completion ()
+       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+             '(orderless)))
 
-;; C/C++/Objective-C support
-(use-package ccls
-  :defines projectile-project-root-files-top-down-recurring
-  :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
-  :config
-  (setq ccls-sem-highlight-method 'font-lock)
-  (ccls-use-default-rainbow-sem-highlight)
-  ;; https://github.com/maskray/ccls/blob/master/src/config.h
-  (setq ccls-initialization-options
-        `(:clang
-          (:excludeArgs
-           ;; Linux's gcc options. See ccls/wiki
-           ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
-            "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
-            "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-           :extraArgs []
-           :pathMappings [])
-          :completion
-          (:include
-           (:blacklist
-            ["^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
-             "^/usr/(local/)?include/c\\+\\+/v1/"
-             ]))
-          :index (:initialBlacklist [] :parametersInDeclarations :json-false :trackDependency 1)))
-  (with-eval-after-load 'projectile
-    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-    (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
-    (setq projectile-project-root-files-top-down-recurring
-          (append '("compile_commands.json"
-                    ".ccls")
-                  projectile-project-root-files-top-down-recurring)))
-  (with-no-warnings
-         ;; FIXME: fail to call ccls.xref
-         ;; @see https://github.com/emacs-lsp/emacs-ccls/issues/109
-         (cl-defmethod my-lsp-execute-command
-           ((_server (eql ccls)) (command (eql ccls.xref)) arguments)
-           (when-let ((xrefs (lsp--locations-to-xref-items
-                              (lsp--send-execute-command (symbol-name command) arguments))))
-             (xref--show-xrefs xrefs nil)))
-         (advice-add #'lsp-execute-command :override #'my-lsp-execute-command)))
+     ;; Optionally configure the first word as flex filtered.
+     (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
 
-;; Swift/C/C++/Objective-C
-(use-package lsp-sourcekit
-  :if sys/macp
-  :init (setq lsp-sourcekit-executable
-              "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
+     ;; Optionally configure the cape-capf-buster.
+     (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
+     (setq read-process-output-max (* 1024 1024)
+           lsp-keep-workspace-alive nil ; Auto-kill LSP server
+           lsp-prefer-capf t
+           lsp-signature-auto-activate nil
+           lsp-modeline-code-actions-enable nil
 
-;; Java support
-(use-package lsp-java
-  :hook (java-mode . (lambda () (require 'lsp-java))))
+           lsp-enable-file-watchers nil
+           lsp-log-io nil
+           lsp-eldoc-render-all nil
+           lsp-completion-provider t
+           lsp-signature-render-documentation nil
+           lsp-enable-folding nil
+           lsp-enable-semantic-highlighting nil
+           lsp-enable-symbol-highlighting nil
+           lsp-enable-text-document-color nil
+           lsp-keymap-prefix "C-c l"
+           lsp-enable-indentation nil
+           lsp-enable-on-type-formatting nil)
 
-;; Enable LSP in org babel
-;; https://github.com/emacs-lsp/lsp-mode/issues/377
-(cl-defmacro lsp-org-babel-enable (lang)
+     (setq lsp-clients-python-library-directories '("~/anaconda3/bin/" "/usr/local/" "/usr/"))
+     (setq lsp-rust-analyzer-cargo-watch-command "clippy"
+           lsp-rust-analyzer-server-display-inlay-hints t
+           lsp-rust-analyzer-proc-macro-enable t)
+     :config
+     ;; Configure LSP clients
+     (with-no-warnings
+       (defun my-lsp--init-if-visible (func &rest args)
+         "Not enabling lsp in `git-timemachine-mode'."
+         (unless (bound-and-true-p git-timemachine-mode)
+           (apply func args)))
+       (advice-add #'lsp--init-if-visible :around #'my-lsp--init-if-visible)
+
+       ;; Enable `lsp-mode' in sh/bash/zsh
+       (defun my-lsp-bash-check-sh-shell (&rest _)
+         (and (eq major-mode 'sh-mode)
+            (memq sh-shell '(sh bash zsh))))
+       (advice-add #'lsp-bash-check-sh-shell :override #'my-lsp-bash-check-sh-shell)
+
+       ;; Only display icons in GUI
+       (defun my-lsp-icons-get-symbol-kind (fn &rest args)
+         (when (display-graphic-p)
+           (apply fn args)))
+       (advice-add #'lsp-icons-get-by-symbol-kind :around #'my-lsp-icons-get-symbol-kind)
+
+       (defun my-lsp-icons-get-by-file-ext (fn &rest args)
+         (when (display-graphic-p)
+           (apply fn args)))
+       (advice-add #'lsp-icons-get-by-file-ext :around #'my-lsp-icons-get-by-file-ext)
+
+       (defun my-lsp-icons-all-the-icons-material-icon (icon-name face fallback &optional feature)
+         (if (and (display-graphic-p)
+                (functionp 'all-the-icons-material)
+                (lsp-icons--enabled-for-feature feature))
+             (all-the-icons-material icon-name :face face)
+           (propertize fallback 'face face)))
+       (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon)))
+
+   (use-package lsp-ui
+     :custom-face
+     (lsp-ui-sideline-code-action ((t (:inherit warning))))
+     :pretty-hydra
+     ((:title (pretty-hydra-title "LSP UI" 'faicon "rocket" :face 'all-the-icons-green)
+       :color amaranth :quit-key "q")
+      ("Doc"
+       (("d e" (progn
+                 (lsp-ui-doc-enable (not lsp-ui-doc-mode))
+                 (setq lsp-ui-doc-enable (not lsp-ui-doc-enable)))
+         "enable" :toggle lsp-ui-doc-mode)
+        ("d s" (setq lsp-ui-doc-include-signature (not lsp-ui-doc-include-signature))
+         "signature" :toggle lsp-ui-doc-include-signature)
+        ("d t" (setq lsp-ui-doc-position 'top)
+         "top" :toggle (eq lsp-ui-doc-position 'top))
+        ("d b" (setq lsp-ui-doc-position 'bottom)
+         "bottom" :toggle (eq lsp-ui-doc-position 'bottom))
+        ("d p" (setq lsp-ui-doc-position 'at-point)
+         "at point" :toggle (eq lsp-ui-doc-position 'at-point))
+        ("d h" (setq lsp-ui-doc-header (not lsp-ui-doc-header))
+         "header" :toggle lsp-ui-doc-header)
+        ("d f" (setq lsp-ui-doc-alignment 'frame)
+         "align frame" :toggle (eq lsp-ui-doc-alignment 'frame))
+        ("d w" (setq lsp-ui-doc-alignment 'window)
+         "align window" :toggle (eq lsp-ui-doc-alignment 'window)))
+       "Sideline"
+       (("s e" (progn
+                 (lsp-ui-sideline-enable (not lsp-ui-sideline-mode))
+                 (setq lsp-ui-sideline-enable (not lsp-ui-sideline-enable)))
+         "enable" :toggle lsp-ui-sideline-mode)
+        ("s h" (setq lsp-ui-sideline-show-hover (not lsp-ui-sideline-show-hover))
+         "hover" :toggle lsp-ui-sideline-show-hover)
+        ("s d" (setq lsp-ui-sideline-show-diagnostics (not lsp-ui-sideline-show-diagnostics))
+         "diagnostics" :toggle lsp-ui-sideline-show-diagnostics)
+        ("s s" (setq lsp-ui-sideline-show-symbol (not lsp-ui-sideline-show-symbol))
+         "symbol" :toggle lsp-ui-sideline-show-symbol)
+        ("s c" (setq lsp-ui-sideline-show-code-actions (not lsp-ui-sideline-show-code-actions))
+         "code actions" :toggle lsp-ui-sideline-show-code-actions)
+        ("s i" (setq lsp-ui-sideline-ignore-duplicate (not lsp-ui-sideline-ignore-duplicate))
+         "ignore duplicate" :toggle lsp-ui-sideline-ignore-duplicate))
+       "Action"
+       (("h" backward-char "←")
+        ("j" next-line "↓")
+        ("k" previous-line "↑")
+        ("l" forward-char "→")
+        ("C-a" mwim-beginning-of-code-or-line nil)
+        ("C-e" mwim-end-of-code-or-line nil)
+        ("C-b" backward-char nil)
+        ("C-n" next-line nil)
+        ("C-p" previous-line nil)
+        ("C-f" forward-char nil)
+        ("M-b" backward-word nil)
+        ("M-f" forward-word nil)
+        ("c" lsp-ui-sideline-apply-code-actions "apply code actions"))))
+     :bind (("C-c u" . lsp-ui-imenu)
+            :map lsp-ui-mode-map
+            ("M-<f6>" . lsp-ui-hydra/body)
+            ("s-<return>" . lsp-ui-sideline-apply-code-actions)
+            ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+            ([remap xref-find-references] . lsp-ui-peek-find-references))
+     :hook (lsp-mode . lsp-ui-mode)
+     :init (setq lsp-ui-doc-enable t
+                 lsp-ui-doc-header t
+                 lsp-ui-doc-use-webkit nil
+                 lsp-ui-doc-delay 0.5
+                 lsp-ui-doc-include-signature t
+                 ;;lsp-ui-doc-border (face-foreground 'default)
+                 lsp-ui-doc-border "violet"
+                 lsp-eldoc-enable-hover nil ; Disable eldoc displays in minibuffer
+
+                 lsp-ui-flycheck-enable t
+                 lsp-ui-peek-always-show t
+                 lsp-ui-sideline-enable t
+                 lsp-ui-sideline-show-hover nil
+                 lsp-ui-sideline-show-diagnostics nil
+                 lsp-ui-sideline-ignore-duplicate t
+                 lsp-ui-sideline-show-code-actions nil
+
+                 lsp-ui-imenu-enable t
+                 lsp-ui-imenu-colors `(,(face-foreground 'font-lock-keyword-face)
+                                       ,(face-foreground 'font-lock-string-face)
+                                       ,(face-foreground 'font-lock-constant-face)
+                                       ,(face-foreground 'font-lock-variable-name-face))))
+
+   ;; Debug
+   (use-package dap-mode
+     :diminish
+     :bind (:map lsp-mode-map
+            ("<f5>" . dap-debug)
+            ("M-<f5>" . dap-hydra))
+     :hook ((after-init . dap-auto-configure-mode)
+            (dap-stopped . (lambda (_args) (dap-hydra)))
+            (dap-terminated . (lambda (_args) (dap-hydra/nil)))
+
+            (python-mode . (lambda () (require 'dap-python)))
+            (ruby-mode . (lambda () (require 'dap-ruby)))
+            (go-mode . (lambda () (require 'dap-go)))
+            (java-mode . (lambda () (require 'dap-java)))
+            ((c-mode c++-mode objc-mode swift-mode) . (lambda ()
+                                                        (require 'dap-gdb-lldb)
+                                                        (setq dap-lldb-debug-program '("/usr/local/opt/llvm/bin/lldb-vscode"))))
+            (php-mode . (lambda () (require 'dap-php)))
+            ((js-mode js2-mode) . (lambda () (require 'dap-chrome)))
+            (powershell-mode . (lambda () (require 'dap-pwsh)))))
+
+   ;; `lsp-mode' and `treemacs' integration
+   (use-package lsp-treemacs
+     :after lsp-mode
+     :bind (:map lsp-mode-map
+            ("C-<f8>" . lsp-treemacs-errors-list)
+            ("M-<f8>" . lsp-treemacs-symbols)
+            ("s-<f8>" . lsp-treemacs-java-deps-list))
+     :config
+     (with-eval-after-load 'ace-window
+       (when (boundp 'aw-ignored-buffers)
+         (push 'lsp-treemacs-symbols-mode aw-ignored-buffers)
+        (push 'lsp-treemacs-java-deps-mode aw-ignored-buffers))))
+
+   ;; Python: pyright
+   (use-package lsp-pyright
+     :preface
+     ;; Use yapf to format
+     (defun lsp-pyright-format-buffer ()
+       (interactive)
+       (when (and (executable-find "yapf") buffer-file-name)
+         (call-process "yapf" nil nil nil "-i" buffer-file-name)))
+     :hook (python-mode . (lambda ()
+                            (require 'lsp-pyright)
+                            (add-hook 'after-save-hook #'lsp-pyright-format-buffer t t)))
+     :init (when (executable-find "python3")
+             (setq lsp-pyright-python-executable-cmd "python3"))
+     :config
+     (defun expand-absolute-name (name)
+       (if (file-name-absolute-p name)
+           (tramp-file-local-name
+            (expand-file-name
+             (concat (file-remote-p default-directory) name)))
+         name))
+
+     (lsp-register-custom-settings
+      `(("python.analysis.stubPath" (lambda () (expand-absolute-name lsp-pyright-stub-path)))
+        ("python.venvPath" (lambda () (if lsp-pyright-venv-path
+                                     (expand-absolute-name lsp-pyright-venv-path) "")))))
+
+     (lsp-register-client
+      (make-lsp-client :new-connection (lsp-tramp-connection (lambda ()
+                                                               (cons "pyright-langserver"
+                                                                     lsp-pyright-langserver-command-args)))
+                       :major-modes '(python-mode)
+                       :remote? t
+                       :server-id 'pyright-remote
+                       :multi-root lsp-pyright-multi-root
+                       :initialization-options (lambda () (ht-merge (lsp-configuration-section "pyright")
+                                                               (lsp-configuration-section "python")))
+                       :initialized-fn (lambda (workspace)
+                                         (with-lsp-workspace workspace
+                                           (lsp--set-configuration
+                                            (make-hash-table :test 'equal))))
+                       :download-server-fn (lambda (_client callback error-callback _update?)
+                                             (lsp-package-ensure 'pyright callback error-callback))
+                       :notification-handlers (lsp-ht ("pyright/beginProgress" 'lsp-pyright--begin-progress-callback)
+                                                      ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
+                                                      ("pyright/endProgress" 'lsp-pyright--end-progress-callback)))))
+   )
+
+  ;; C/C++/Objective-C support
+  (use-package ccls
+    :defines projectile-project-root-files-top-down-recurring
+    :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
+    :config
+    (setq ccls-sem-highlight-method 'font-lock)
+    (ccls-use-default-rainbow-sem-highlight)
+    ;; https://github.com/maskray/ccls/blob/master/src/config.h
+    (setq ccls-initialization-options
+          `(:clang
+            (:excludeArgs
+             ;; Linux's gcc options. See ccls/wiki
+             ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
+              "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
+              "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
+             :extraArgs []
+             :pathMappings [])
+            :completion
+            (:include
+             (:blacklist
+              ["^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
+               "^/usr/(local/)?include/c\\+\\+/v1/"
+               ]))
+            :index (:initialBlacklist [] :parametersInDeclarations :json-false :trackDependency 1)))
+    (with-eval-after-load 'projectile
+      (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+      (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
+      (setq projectile-project-root-files-top-down-recurring
+            (append '("compile_commands.json"
+                      ".ccls")
+                    projectile-project-root-files-top-down-recurring)))
+    (with-no-warnings
+      ;; FIXME: fail to call ccls.xref
+      ;; @see https://github.com/emacs-lsp/emacs-ccls/issues/109
+      (cl-defmethod my-lsp-execute-command
+        ((_server (eql ccls)) (command (eql ccls.xref)) arguments)
+        (when-let ((xrefs (lsp--locations-to-xref-items
+                           (lsp--send-execute-command (symbol-name command) arguments))))
+          (xref--show-xrefs xrefs nil)))
+      (advice-add #'lsp-execute-command :override #'my-lsp-execute-command)))
+
+  ;; Swift/C/C++/Objective-C
+  (use-package lsp-sourcekit
+    :if sys/macp
+    :init (setq lsp-sourcekit-executable
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp")))
+
+(when (memq my-lsp '(lsp-mode eglot lsp-bridge))
+    ;; Enable LSP in org babel
+    ;; https://github.com/emacs-lsp/lsp-mode/issues/377
+    (cl-defmacro lsp-org-babel-enable (lang)
       "Support LANG in org source code block."
       (cl-check-type lang stringp)
       (let* ((edit-pre (intern (format "org-babel-edit-prep:%s" lang)))
