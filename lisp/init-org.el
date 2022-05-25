@@ -250,9 +250,6 @@ prepended to the element after the #+HEADER: tag."
   (advice-add 'org-todo :after 'org-save-all-org-buffers)
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
-  (with-eval-after-load 'counsel
-    (bind-key [remap org-set-tags-command] #'counsel-org-tag org-mode-map))
-
   ;; Prettify UI
   (use-package org-superstar
     :defer t
