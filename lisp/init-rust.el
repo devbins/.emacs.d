@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,6 +49,8 @@
 ;; Rust
 (use-package rustic
   :config
+  (setq rustic-lsp-format t
+        rustic-lsp-client 'eglot)
   (use-package cargo
     :diminish cargo-minor-mode
     :hook (rustic-mode . cargo-minor-mode)
