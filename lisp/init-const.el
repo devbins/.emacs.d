@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -108,8 +108,8 @@
   (>= emacs-major-version 29)
   "Emacs is 29 or above.")
 
-(defconst my-lsp 'eglot
-  "Which language server to use, eglot or lsp-mode")
+(defconst my-lsp 'lsp-bridge
+  "Which language server to use, eglot or lsp-mode or lsp-bridge")
 
 (provide 'init-const)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
