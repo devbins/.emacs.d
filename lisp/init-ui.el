@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 175
+;;     Update #: 194
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,6 +89,8 @@
   :init (load-theme 'doom-one)
   :config
   (doom-themes-treemacs-config))
+
+(use-package flucui-themes)
 
 ;; Mode-line
 (use-package doom-modeline
