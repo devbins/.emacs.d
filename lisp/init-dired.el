@@ -199,10 +199,11 @@
   :hook (dired-mode . dired-posframe-mode)
   :bind (:map dired-mode-map
          ("p" . dired-posframe-show)))
+
 (use-package dired-async
   :ensure async
   :diminish dired-async-mode
-  :hook (dired-mode-hook . dired-async-mode))
+  :hook (dired-mode . dired-async-mode))
 
 ;; `find-dired' alternative using `fd'
 (when (executable-find "fd")
