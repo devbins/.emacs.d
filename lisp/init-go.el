@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -143,8 +143,7 @@
     "mer" 'go-play-region
     "mga" 'ff-find-other-file
     "mgc" 'go-coverage
-    "mrf" 'go-tag-add
-    "mrF" 'go-tag-remove
+    "mgd" 'go-gen-test-dwim
     "mrN" 'go-rename
     "mri" 'go-impl
     "mrs" 'go-fill-struct
@@ -154,6 +153,8 @@
     "mrt" 'godoctor-toggle
     "m="  'gofmt
     "mxx" 'go-run-main
+    "mta" 'go-tag-add
+    "mtr" 'go-tag-remove
     "mtt" 'go-test-current-test
     "mtf" 'go-test-current-file
     "mtp" 'go-test-current-project
@@ -162,7 +163,7 @@
   (which-key-add-major-mode-key-based-replacements 'go-mode
     "SPC m i" "import"
     "SPC m e" "playground"
-    "SPC m g" "coverage"
+    "SPC m g" "coverage/gen"
     "SPC m h" "doc"
     "SPC m r" "refactor"
     "SPC m t" "test"
