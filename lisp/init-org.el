@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 516
+;;     Update #: 530
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -310,9 +310,6 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package ob-go
     :init (cl-pushnew '(go . t) load-language-list))
-
-  (use-package ob-rust
-    :init (cl-pushnew '(rust . t) load-language-list))
 
   (use-package ob-ipython
     :if (executable-find "jupyter")     ; DO NOT remove
