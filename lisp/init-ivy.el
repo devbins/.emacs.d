@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 85
+;;     Update #: 132
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,6 +69,14 @@
    ("/"     . 'vertico-directory-enter)
    ("DEL"   . 'vertico-directory-delete-char)
    ("M-DEL" . 'vertico-directory-delete-word)))
+
+(use-package vertico-posframe
+  :after vertico
+  :hook (vertico-mode . vertico-posframe-mode)
+  :config
+  (setq vertico-posframe-parameters '((left-fringe . 8)
+                                      (right-fringe . 8)
+                                      (weight . 50))))
 
 (use-package orderless
   :init
@@ -151,7 +159,6 @@
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
-
   (consult-customize
    consult-theme
    :preview-key '(:debounce 0.2 any)
