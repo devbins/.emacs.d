@@ -196,7 +196,6 @@
     (dired-rainbow-define-chmod executable-unix "#38c172" "-.*x.*")))
 
 (use-package dired-posframe
-  :hook (dired-mode . dired-posframe-mode)
   :bind (:map dired-mode-map
          ("p" . dired-posframe-show)))
 
