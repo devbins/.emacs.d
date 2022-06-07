@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,6 +62,7 @@
                       "github.com/go-delve/delve/cmd/dlv"
                       "github.com/zmb3/gogetdoc"
                       "github.com/josharian/impl"
+                      "golang.org/x/tools/cmd/godoc"
                       "github.com/cweill/gotests/..."
                       "github.com/fatih/gomodifytags"
                       "github.com/davidrjenni/reftools/cmd/fillstruct")
@@ -143,7 +144,6 @@
     "mer" 'go-play-region
     "mga" 'ff-find-other-file
     "mgc" 'go-coverage
-    "mgd" 'go-gen-test-dwim
     "mrN" 'go-rename
     "mri" 'go-impl
     "mrs" 'go-fill-struct
@@ -154,6 +154,7 @@
     "m="  'gofmt
     "mxx" 'go-run-main
     "mta" 'go-tag-add
+    "mtd" 'go-gen-test-dwim
     "mtr" 'go-tag-remove
     "mtt" 'go-test-current-test
     "mtf" 'go-test-current-file
