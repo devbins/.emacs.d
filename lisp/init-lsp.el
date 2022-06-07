@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 163
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,91 +52,13 @@
      :commands (lsp-bridge-enable lsp-bridge-monitor-window-buffer-change)
      :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
      :config
-     ;; 让corfu适应高分屏
-     (when (> (frame-pixel-width) 3000) (custom-set-faces '(corfu-default ((t (:height 1.3))))))
-     (setq lsp-bridge-completion-provider 'corfu)
-     (require 'corfu)
-     (require 'corfu-info)
-     (require 'corfu-history)
-     (require 'lsp-bridge-orderless)
-     (require 'lsp-bridge-icon)
-     (require 'lsp-bridge-jdtls)
-     ;; 通过Cape融合不同的补全后端，比如lsp-bridge、 tabnine、 file、 dabbrev.
-     (defun lsp-bridge-mix-multi-backends ()
-       (setq-local completion-category-defaults nil)
-       (setq-local completion-at-point-functions
-                   (list
-                    (cape-capf-buster
-                     (cape-super-capf
-                      #'lsp-bridge-capf
-
-                 ;; 我嫌弃TabNine太占用我的CPU了， 需要的同学注释下面这一行就好了
-                 ;; #'tabnine-completion-at-point
-
-                 ;; #'cape-file
-                 ;; #'cape-dabbrev
-                      )
-                     'equal)
-                    )))
-     (dolist (hook lsp-bridge-default-mode-hooks)
-       (add-hook hook (lambda ()
-                        (setq-local corfu-auto nil) ; 编程文件关闭Corfu自动补全， 由lsp-bridge来手动触发补全
-                        (lsp-bridge-mode 1)             ; 开启lsp-bridge
-                        (lsp-bridge-mix-multi-backends) ; 通过Cape融合多个补全后端
-                        )))
-     ;; For Xref support
-     (add-hook 'lsp-bridge-mode-hook (lambda ()
-                                       (add-hook 'xref-backend-functions #'lsp-bridge-xref-backend nil t)))
-     ))
+     (require 'lsp-bridge-jdtls)))
   ('eglot
    (use-package eglot
-     :commands (+eglot-organize-imports +eglot-help-at-point)
-     :config
-     (setq eglot-sync-connect 1
-           eglot-connect-timeout 10
-           eglot-autoshutdown t
-           eglot-send-changes-idle-time 0.5
-           eglot-events-buffer-size 0
-           ;; NOTE We disable eglot-auto-display-help-buffer because :select t in
-           ;;      its popup rule causes eglot to steal focus too often.
-           eglot-auto-display-help-buffer nil)
-     (setq eldoc-echo-area-use-multiline-p nil)
-     (setq eglot-stay-out-of '(flymake))
-     (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :foldingRangeProvider :colorProvider :codeLensProvider :documentOnTypeFormattingProvider :executeCommandProvider))
-     (defun +eglot-organize-imports() (call-interactively 'eglot-code-action-organize-imports))
-     (add-to-list 'eglot-server-programs '((latex-mode Tex-latex-mode texmode context-mode texinfo-mode bibtex-mode) "texlab"))
-
-     ;; HACK Eglot removed `eglot-help-at-point' in joaotavora/eglot@a044dec for a
-     ;;      more problematic approach of deferred to eldoc. Here, I've restored it.
-     ;;      Doom's lookup handlers try to open documentation in a separate window
-     ;;      (so they can be copied or kept open), but doing so with an eldoc buffer
-     ;;      is difficult because a) its contents are generated asynchronously,
-     ;;      making them tough to scrape, and b) their contents change frequently
-     ;;      (every time you move your cursor).
-     (defvar +eglot--help-buffer nil)
-     (defun +eglot-lookup-documentation (_identifier)
-       "Request documentation for the thing at point."
-       (eglot--dbind ((Hover) contents range)
-                     (jsonrpc-request (eglot--current-server-or-lose) :textDocument/hover
-                                      (eglot--TextDocumentPositionParams))
-                     (let ((blurb (and (not (seq-empty-p contents))
-                                       (eglot--hover-info contents range)))
-                           (hint (thing-at-point 'symbol)))
-                       (if blurb
-                           (with-current-buffer
-                               (or (and (buffer-live-p +eglot--help-buffer)
-                                        +eglot--help-buffer)
-                                   (setq +eglot--help-buffer (generate-new-buffer "*eglot-help*")))
-                             (with-help-window (current-buffer)
-                               (rename-buffer (format "*eglot-help for %s*" hint))
-                               (with-current-buffer standard-output (insert blurb))
-                               (setq-local nobreak-char-display nil)))
-                         (display-local-help))))
-       'deferred)
-
-     (defun +eglot-help-at-point()
-       (interactive)
-       (+eglot-lookup-documentation nil))))
+       :hook ((prog-mode . (lambda ()
+                             (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode 'makefile-mode)
+                               (eglot-ensure))))
+              (markdown-mode . lsp-deferred))))
   ('lsp-mode
    ;; Emacs client for the Language Server Protocol
    ;; https://github.com/emacs-lsp/lsp-mode#supported-languages
@@ -457,13 +379,24 @@
         `(progn
            (defun ,intern-pre (info)
              (setq buffer-file-name (or (->> info caddr (alist-get :file))
-                                       "org-src-babel.tmp"))
-             (when (fboundp 'lsp-deferred)
-               ;; Avoid headerline conflicts
-               (setq-local lsp-headerline-breadcrumb-enable nil)
-               (lsp-deferred)))
+                                        "org-src-babel.tmp"))
+             (pcase my-lsp
+               ('eglot
+                (when (fboundp 'eglot-ensure)
+                  (eglot-ensure)))
+               ('lsp-mode
+                (when (fboundp 'lsp-deferred)
+                  ;; Avoid headerline conflicts
+                  (setq-local lsp-headerline-breadcrumb-enable nil)
+                  (lsp-deferred)))
+               ('lsp-bridge
+                (when (fboundp 'lsp-bridge-enable)
+                  (lsp-bridge-enable)))
+               (_
+                (user-error "LSP:: invalid `my-lsp' type"))))
            (put ',intern-pre 'function-documentation
-                (format "Enable lsp in the buffer of org source block (%s)." (upcase ,lang)))
+                (format "Enable `%s' in the buffer of org source block (%s)."
+                        my-lsp (upcase ,lang)))
 
            (if (fboundp ',edit-pre)
                (advice-add ',edit-pre :after ',intern-pre)
@@ -474,11 +407,11 @@
                     (format "Prepare local buffer environment for org source block (%s)."
                             (upcase ,lang))))))))
 
-(defvar org-babel-lang-list
-  '("go" "python" "ipython" "ruby" "js" "css" "sass" "C" "c" "cpp" "c++" "rust" "java"))
-(add-to-list 'org-babel-lang-list (if emacs/>=26p "shell" "sh"))
-(dolist (lang org-babel-lang-list)
-  (eval `(lsp-org-babel-enable ,lang)))
+    (defvar org-babel-lang-list
+      '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++"))
+    (add-to-list 'org-babel-lang-list (if emacs/>=26p "shell" "sh"))
+    (dolist (lang org-babel-lang-list)
+      (eval `(lsp-org-babel-enable ,lang))))
 
 (provide 'init-lsp)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
