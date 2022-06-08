@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 183
+;;     Update #: 185
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -274,9 +274,10 @@
     "Pu"  'password-store-url
 
     "rn"  'cargo-process-new
+    "rs"  'restart-emacs
 
     "sa"  'mark-whole-buffer
-    "sp"  'projectile-ripgrep
+    "sp"  'consult-ripgrep
     "ss"  'consult-line
     "sn"  'snails
 
