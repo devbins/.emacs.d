@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,7 +55,9 @@
   :config
   (evil-define-key 'normal dired-mode-map
     "gg" 'evil-goto-first-line
-    "G" 'evil-goto-line)
+    "G" 'evil-goto-line
+    "e" 'wdired-change-to-wdired-mode
+    "p" 'dired-posframe-show)
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always)
