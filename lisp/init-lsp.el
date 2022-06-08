@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 163
+;;     Update #: 169
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,10 +49,12 @@
 (pcase my-lsp
   ('lsp-bridge
    (use-package lsp-bridge
-     :commands (lsp-bridge-enable lsp-bridge-monitor-window-buffer-change)
      :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
+     :hook (prog-mode . lsp-bridge-mode)
      :config
-     (require 'lsp-bridge-jdtls)))
+     (require 'lsp-bridge-jdtls)
+     (setq lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++"))
+     ))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
@@ -368,7 +370,7 @@
     :init (setq lsp-sourcekit-executable
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp")))
 
-(when (memq my-lsp '(lsp-mode eglot lsp-bridge))
+(when (memq my-lsp '(lsp-mode eglot))
     ;; Enable LSP in org babel
     ;; https://github.com/emacs-lsp/lsp-mode/issues/377
     (cl-defmacro lsp-org-babel-enable (lang)
@@ -389,9 +391,6 @@
                   ;; Avoid headerline conflicts
                   (setq-local lsp-headerline-breadcrumb-enable nil)
                   (lsp-deferred)))
-               ('lsp-bridge
-                (when (fboundp 'lsp-bridge-enable)
-                  (lsp-bridge-enable)))
                (_
                 (user-error "LSP:: invalid `my-lsp' type"))))
            (put ',intern-pre 'function-documentation
