@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 132
+;;     Update #: 133
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -368,9 +368,7 @@ function to the relevant margin-formatters list."
   (defun my-tab ()
     (interactive)
     (or (copilot-accept-completion)
-        (corfu-complete)))
-
-  :hook (prog-mode . copilot-mode))
+        (corfu-complete))))
 
 (provide 'init-ivy)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
