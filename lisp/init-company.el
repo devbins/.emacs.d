@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 60
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -97,7 +97,6 @@ candidates will be from company-tabnine, others keeping their own origin order."
     (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
 
 (use-package insert-translated-name
-  :disabled
   :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name")
   :bind ("C-c t t" . 'insert-translated-name-insert)
   :commands (insert-translated-name-insert)
@@ -106,12 +105,11 @@ candidates will be from company-tabnine, others keeping their own origin order."
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
 
-(use-package company-english-helper
-  :disabled
-  :quelpa (company-english-helper :fetcher github :repo "manateelazycat/company-english-helper")
-  :after company
-  :commands (toggle-company-english-helper)
-  :bind ("C-c t e" . 'toggle-company-english-helper))
+(use-package corfu-english-helper
+  :quelpa (corfu-english-helper :fetcher github :repo "manateelazycat/corfu-english-helper")
+  :after corfu
+  :commands (toggle-corfu-english-helper corfu-english-helper-search)
+  :bind ("C-c t e" . 'toggle-corfu-english-helper))
 
 
 (provide 'init-company)
