@@ -141,6 +141,15 @@
     #+begin_src sh
     npm i -g vscode-json-languageserver
     #+end_src
+** go
+   #+begin_src sh
+   go install honnef.co/go/tools/cmd/staticcheck@latest
+   go install github.com/zmb3/gogetdoc@latest
+   go install github.com/josharian/impl@latest
+   go install github.com/cweill/gotests/...@latest
+   go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
+   go install github.com/fatih/gomodifytags@latest
+   #+end_src
 ** vterm
    #+begin_src sh
    sudo pacman -S libvterm
