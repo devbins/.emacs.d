@@ -268,8 +268,6 @@
         rime-show-candidate 'posframe
         rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                                 (sys/linuxp nil)))
-  (if sys/macp
-      (setq rime-user-data-dir "~/Library/Rime"))
   :config
   (set-face-attribute 'rime-default-face nil :foreground "#FFFFFF" :background "#3d424d")
   :bind

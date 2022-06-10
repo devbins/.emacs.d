@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,7 @@
 (use-package rustic
   :config
   (setq rustic-lsp-format t
-        rustic-lsp-client 'eglot)
+        rustic-lsp-client nil)
   (use-package cargo
     :diminish cargo-minor-mode
     :hook (rustic-mode . cargo-minor-mode)
