@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 530
+;;     Update #: 532
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -167,7 +167,7 @@ prepended to the element after the #+HEADER: tag."
               ;; file:data/2013/pict/test.png
               org-image-actual-width (/ (display-pixel-width) 3)
               org-startup-with-inline-images t
-              org-display-remote-inline-images 'cache
+              org-display-remote-inline-images 'download
 
               org-hide-emphasis-markers t
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
