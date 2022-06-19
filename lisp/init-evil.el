@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 185
+;;     Update #: 188
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -320,7 +320,7 @@
 
     "qq"  'save-buffers-kill-terminal
 
-    "     '" 'shell-pop
+    "'"   'shell-pop-posframe-toggle
     "TAB" 'switch-to-prev-buffer))
 
 
