@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 188
+;;     Update #: 189
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -281,7 +281,7 @@
     "ss"  'consult-line
     "sn"  'snails
 
-    "te"  'toggle-company-english-helper
+    "te"  'toggle-corfu-english-helper
     "tg"  'go-translate
     "tp"  'go-translate-popup
     "tt"  'insert-translated-name-insert
