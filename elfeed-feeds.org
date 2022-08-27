@@ -71,3 +71,4 @@
 *** [[http://gityuan.com/feed.xml][gityuan]]
 *** [[http://weishu.me/atom.xml][Weishus Note]]
 *** [[http://kaedea.com/atom.xml][中二病也要开发Android]]
+*** [[https://androidweekly.zhubai.love/][Android Weekly]]
