@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 169
+;;     Update #: 170
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -368,7 +368,10 @@
   (use-package lsp-sourcekit
     :if sys/macp
     :init (setq lsp-sourcekit-executable
-                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp")))
+                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
+  ;; Java
+   (use-package lsp-java
+     :hook (java-mode . (lambda () (require 'lsp-java)))))
 
 (when (memq my-lsp '(lsp-mode eglot))
     ;; Enable LSP in org babel
