@@ -64,10 +64,7 @@
   (when (and pretty-magit--use-commit-prompt?
              pretty-magit--prompt)
     (setq pretty-magit--use-commit-prompt? nil)
-    (insert (ivy-read "Commit Type " pretty-magit--prompt
-                      :require-match t
-                      :sort t
-                      :preselect "Add: "))
+    (insert (completing-read "Commit Type " (completion-table-dynamic (lambda (str) pretty-magit--prompt)) nil t))
     (pretty-magit--add-magit-faces)
     (evil-insert 1)))
 
