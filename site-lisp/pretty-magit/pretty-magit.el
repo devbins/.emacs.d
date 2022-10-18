@@ -12,8 +12,6 @@
 (require 'dash-functional)
 (require 'magit)
 
-(require 'ivy)  ; If using commit prompts
-
 ;;;; Configuration
 
 (defvar pretty-magit--alist nil
