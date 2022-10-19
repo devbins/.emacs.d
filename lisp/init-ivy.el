@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 133
+;;     Update #: 134
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,9 +80,9 @@
 
 (use-package orderless
   :init
-  (setq completion-styles '(orderless partial-completion basic)
+  (setq completion-styles '(orderless basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
+        completion-category-overrides nil))
 
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
