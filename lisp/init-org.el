@@ -346,6 +346,8 @@ prepended to the element after the #+HEADER: tag."
     :if (executable-find "mmdc")
     :init (cl-pushnew '(mermaid . t) load-language-list))
 
+  (use-package ob-dart
+    :init (cl-pushnew '(dart . t) load-language-list))
 
   ;; Rich text clipboard
   (use-package org-rich-yank
