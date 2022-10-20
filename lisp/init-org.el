@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 532
+;;     Update #: 536
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -283,6 +283,7 @@ prepended to the element after the #+HEADER: tag."
   (setq org-confirm-babel-evaluate nil
         org-edit-src-content-indentation 0
         org-src-fontify-natively t
+        org-src-window-setup 'other-window
         org-src-tab-acts-natively t)
 
   (setq org-babel-C-compiler "gcc -std=c++17"
