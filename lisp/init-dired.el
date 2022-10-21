@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -60,7 +60,8 @@
     "p" 'dired-posframe-show)
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
-        dired-recursive-copies 'always)
+        dired-recursive-copies 'always
+        dired-dwim-target t)
   (put 'dired-find-alternate-file 'disabled nil)  ;; 只有一个buffer
   (when sys/macp
     ;; Suppress the warning: `ls does not support --dired'.
