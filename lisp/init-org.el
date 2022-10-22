@@ -252,6 +252,16 @@ prepended to the element after the #+HEADER: tag."
   (advice-add 'org-todo :after 'org-save-all-org-buffers)
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+
+  ;; Thank https://emacs-china.org/t/org-link-echo-area-link/19927/2
+  (defun org-show-link-when-idle()
+    ;; 在echo area中显示链接详情
+    (require 'help-at-pt)
+    (setq help-at-pt-display-when-idle t) ;; 不会立即生效
+    (setq help-at-pt-timer-delay 0.5)
+    (help-at-pt-set-timer)) ;; 调用才会生效
+  (add-hook 'org-mode-hook #'org-show-link-when-idle)
+
   ;; Prettify UI
   (use-package org-superstar
     :defer t
