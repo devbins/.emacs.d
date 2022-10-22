@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 563
+;;     Update #: 564
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -273,14 +273,6 @@ prepended to the element after the #+HEADER: tag."
           '((?* . ?◈)
             (?+ . ?✚)
             (?- . ?▶))))
-
-  (use-package org-fancy-priorities
-    :diminish
-    :hook (org-mode . org-fancy-priorities-mode)
-    :init (setq org-fancy-priorities-list
-                (if (display-graphic-p)
-                    '("⚡" "⬆" "⬇" "☕")
-                  '("HIGH" "MEDIUM" "LOW" "OPTIONAL"))))
 
   (use-package svg-tag-mode
     :init
