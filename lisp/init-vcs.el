@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 32
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -87,14 +87,12 @@
         (transient-append-suffix 'magit-status-jump '(0 0 -1)
           '("t " "Todos" magit-todos-jump-to-todos))))
 
-
   ;; Git Flow
   (use-package magit-gitflow
     :defer t
     :hook(magit-mode . turn-on-magit-gitflow)
     :config
     (define-key magit-mode-map "%" 'magit-gitflow-popup)))
-
 
 
 ;; Walk through git revisions of a file
