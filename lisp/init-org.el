@@ -271,6 +271,17 @@ prepended to the element after the #+HEADER: tag."
                 (if (display-graphic-p)
                     '("⚡" "⬆" "⬇" "☕")
                   '("HIGH" "MEDIUM" "LOW" "OPTIONAL"))))
+  (use-package org-pretty-tags
+    :config
+    (setq org-pretty-tags-surrogate-strings
+          (quote
+           (("TOPIC" . "☆")
+            ("PROJEKT" . "💡")
+            ("SERVICE" . "✍")
+            ("Blog" . "✍")
+            ("music" . "♬")
+            ("security" . "🔥"))))
+    (org-pretty-tags-global-mode))
 
   (use-package valign
     :quelpa (valign :fetcher github :repo "casouri/valign")
