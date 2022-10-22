@@ -94,6 +94,7 @@
     :config
     (define-key magit-mode-map "%" 'magit-gitflow-popup)))
 
+(use-package git-link :defer t)
 
 ;; Walk through git revisions of a file
 (use-package git-timemachine
