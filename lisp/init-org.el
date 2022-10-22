@@ -473,6 +473,14 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package htmlize)
 
+  (use-package ox-html
+    :ensure nil
+    :config
+    ;; Org export code style
+    (setq org-html-htmlize-output-type 'css)
+    (setq-default org-html-doctype "html5")
+    (setq-default org-html-html5-fancy t))
+
   (use-package org-ref
     :after org)
 
