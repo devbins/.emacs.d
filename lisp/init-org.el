@@ -415,6 +415,7 @@ prepended to the element after the #+HEADER: tag."
   (use-package gnuplot
     :init (cl-pushnew '(gnuplot . t) load-language-list))
 
+  ;;brew install mermaid-cli
   (use-package mermaid-mode
     :if (executable-find "mmdc"))
   (use-package ob-mermaid
@@ -422,6 +423,7 @@ prepended to the element after the #+HEADER: tag."
     :init (cl-pushnew '(mermaid . t) load-language-list))
 
   (use-package ob-dart
+    :if (executable-find "dart")
     :init (cl-pushnew '(dart . t) load-language-list))
 
   ;; Rich text clipboard
