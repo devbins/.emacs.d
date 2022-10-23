@@ -177,9 +177,8 @@ prepended to the element after the #+HEADER: tag."
               org-startup-truncated nil
               org-ellipsis (if (char-displayable-p ?⤵) "  ⤵" "  ▼")
               org-tag-alist (quote ((:startgroup)
-                                    ("@errand" . ?e)
-                                    ("@office" . ?o)
-                                    ("@home" . ?H)
+                                    ("@OFFICE" . ?o)
+                                    ("@HOME" . ?h)
                                     (:endgroup)
                                     ("READING" . ?r)
                                     ("PERSONAL" . ?P)
@@ -187,8 +186,9 @@ prepended to the element after the #+HEADER: tag."
                                     ("ORG" . ?O)
                                     ("BLOG" . ?b)
                                     ("THOUGHT". ?T)
-                                    ("crypt" . ?E)
+                                    ("crypt" . ?e)
                                     ("NOTE" . ?n)
+                                    ("MUSIC" . ?m)
                                     ("CANCELLED" . ?c)
                                     ("FLAGGED" . ??))))
   :config
