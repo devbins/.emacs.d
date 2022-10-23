@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 564
+;;     Update #: 654
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -122,18 +122,8 @@ prepended to the element after the #+HEADER: tag."
                               (make-variable-buffer-local 'show-paren-mode)
                               (setq show-paren-mode nil))))
   :init (setq org-todo-keywords
-              '((sequence "TODO(!)" "DOING(!)" "|" "DONE(!)" "ABORT(@/!)")
-                (sequence "❍(t!)" "⥁(d!)" "❓(h!)" "⤽(r!)" "|" "✔(o!)" "✘(a@/!)" "♱(c@/!)"))
-              org-todo-keyword-faces '(("TODO")
-                                       ("DOING" . "orange")
-                                       ("DONE" . "green")
-                                       ("ABORT" . "grey")
-                                       ("❓" . warning)
-                                       ("❍" . (:foreground "yellow" :height 2.0 :weight bold))
-                                       ("⥁" . (:foreground "cyan" :height 2.0 :weight bold))
-                                       ("✓" . (:foreground "green" :height 2.0 :weight bold))
-                                       ("⤽" . (:foreground "orange" :height 2.0 :weight bold))
-                                       ("♱" . (:foreground "red" :height 2.0 :weight bold)))
+              '((sequence "TODO(t!)" "DOING(d!)" "|" "DONE(o!)" "ABORT(a@/!)")
+                (sequence "❍(!)" "⥁(!)" "❓(!)" "⤽(!)" "|" "✔(!)" "✘(@/!)" "♱(@/!)"))
               org-priority-faces '((?A . error)
                                    (?B . warning)
                                    (?C . success))
@@ -154,7 +144,7 @@ prepended to the element after the #+HEADER: tag."
               org-clock-idle-time 30
               org-clock-out-when-done t
               org-clock-out-remove-zero-time-clocks t
-              org-clock-in-switch-to-state "⥁"
+              org-clock-in-switch-to-state "DOING"
               org-duration-format '((special . h:mm))
               org-columns-default-format "%50ITEM(Task) %8PRIORITY(Priority) %6TODO(Status) %6Effort(Effort){:} %8CLOCKSUM %16SCHEDULED %16DEADLINE"
               org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
