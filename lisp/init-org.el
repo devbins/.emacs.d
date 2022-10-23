@@ -264,6 +264,7 @@ prepended to the element after the #+HEADER: tag."
             (?- . ?▶))))
 
   (use-package svg-tag-mode
+    :hook (org-mode . svg-tag-mode)
     :init
     (defconst date-re "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
     (defconst time-re "[0-9]\\{2\\}:[0-9]\\{2\\}")
@@ -273,7 +274,7 @@ prepended to the element after the #+HEADER: tag."
     (defun svg-progress-percent (value)
       (svg-image (svg-lib-concat
                   (svg-lib-progress-bar (/ (string-to-number value) 100.0)
-                                        nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                                        nil :margin 0 :stroke 2 :radius 5 :padding 2 :width 5)
                   (svg-lib-tag (concat value "%")
                                nil :stroke 0 :margin 0)) :ascent 'center))
 
@@ -283,7 +284,7 @@ prepended to the element after the #+HEADER: tag."
              (total (float (cadr seq))))
         (svg-image (svg-lib-concat
                     (svg-lib-progress-bar (/ count total) nil
-                                          :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                                          :margin 0 :stroke 2 :radius 5 :padding 2 :width 5)
                     (svg-lib-tag value nil
                                  :stroke 0 :margin 0)) :ascent 'center)))
 
@@ -294,7 +295,7 @@ prepended to the element after the #+HEADER: tag."
             (":\\([A-Za-z0-9]+[ \-]\\)" . ((lambda (tag) tag)))
 
             ;; Task priority
-            ("\\[#[A-Z]\\]" . ( (lambda (tag)
+            ("\\[#[D-Z]\\]" . ( (lambda (tag)
                                   (svg-tag-make tag :face 'org-priority
                                                 :beg 2 :end -1 :margin 0))))
 
@@ -305,8 +306,9 @@ prepended to the element after the #+HEADER: tag."
                                               (svg-progress-count (substring tag 1 -1)))))
 
             ;; TODO / DONE
-            ("TODO" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-todo :inverse t :margin 0))))
-            ("DONE" . ((lambda (tag) (svg-tag-make "DONE" :face 'org-done :margin 0))))
+            ("TODO" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-todo :inverse t :margin 0 :radius 15))))
+            ("DOING" . ((lambda (tag) (svg-tag-make "DOING" :face 'org-doing :inverse t :margin 0 :radius 15))))
+            ("DONE" . ((lambda (tag) (svg-tag-make "DONE" :face 'org-done :margin 0 :radius 15))))
 
 
             ;; Citation of the form [cite:@Knuth:1984]
@@ -342,7 +344,20 @@ prepended to the element after the #+HEADER: tag."
             (,(format "\\[%s \\(%s\\]\\)" date-re day-time-re) .
              ((lambda (tag)
                 (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date))))))
-    :hook (org-mode . svg-tag-mode))
+
+    (defun org-agenda-show-svg ()
+      (let* ((case-fold-search nil)
+             (keywords (mapcar #'svg-tag--build-keywords svg-tag--active-tags))
+             (keyword (car keywords)))
+        (while keyword
+          (save-excursion
+            (while (re-search-forward (nth 0 keyword) nil t)
+              (overlay-put (make-overlay
+                            (match-beginning 0) (match-end 0))
+                           'display  (nth 3 (eval (nth 2 keyword)))) ))
+          (pop keywords)
+          (setq keyword (car keywords)))))
+    (add-hook 'org-agenda-finalize-hook #'org-agenda-show-svg))
 
   (use-package valign
     :quelpa (valign :fetcher github :repo "casouri/valign")
