@@ -48,7 +48,6 @@
 
 (use-package org
   :ensure nil
-  :custom-face (org-ellipsis ((t (:foreground nil))))
   :preface
   (defun hot-expand (str &optional mod)
     "Expand org template.
