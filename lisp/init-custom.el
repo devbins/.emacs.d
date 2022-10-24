@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -129,12 +129,7 @@
     ("#+RESULTS:" . ?💻)
     ("[#A]" . ?🅐)
     ("[#B]" . ?🅑)
-    ("[#C]" . ?🅒)
-    ;; tag symbols
-    (":MUSIC:" . ?♬)
-    (":READING:" . ?📓)
-    (":@HOME:" . ?🏠)
-    (":@OFFICE:" . ?🏢))
+    ("[#C]" . ?🅒))
   "Alist of symbol prettifications for `org-mode'."
   :group 'devbins
   :type '(alist :key-type string :value-type (choice character sexp)))
