@@ -237,11 +237,13 @@ prepended to the element after the #+HEADER: tag."
           org-file-apps))
 
   ;; Add gfm/md backends
-  (use-package ox-gfm)
-  (use-package ox-hugo)
-  (add-to-list 'org-export-backends 'md)
-  (add-to-list 'org-export-backends 'gfm)
-  (add-to-list 'org-export-backends 'hugo)
+  (use-package ox-gfm
+    :config
+    (add-to-list 'org-export-backends 'md)
+    (add-to-list 'org-export-backends 'gfm))
+  (use-package ox-hugo
+    :config
+    (add-to-list 'org-export-backends 'hugo))
 
   (advice-add 'org-todo :after 'org-save-all-org-buffers)
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
