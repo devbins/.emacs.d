@@ -255,8 +255,7 @@ prepended to the element after the #+HEADER: tag."
     :defer t
     :hook (org-mode . org-superstar-mode)
     :init
-    (setq org-superstar-special-todo-items t
-          org-superstar-headline-bullets-list '("◉" "○" "✸" "☢" "❀" "✿" "☯" "☭" "♥" "✜" "♠" "★")
+    (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "☢" "❀" "✿" "☯" "☭" "♥" "✜" "♠" "★")
           org-superstar-item-bullet-alist
           '((?* . ?◈)
             (?+ . ?✚)
