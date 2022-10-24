@@ -49,8 +49,7 @@
 (use-package vertico
   :hook (after-init . vertico-mode)
   :config
-  (setq vertico-resize nil
-        vertico-count 17
+  (setq vertico-count 20
         vertico-cycle t)
   :hook (minibuffer-setup . vertico-repeat-save)
   :bind
