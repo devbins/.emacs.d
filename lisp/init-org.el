@@ -183,16 +183,13 @@ prepended to the element after the #+HEADER: tag."
                                     ("@HOME" . ?h)
                                     (:endgroup)
                                     ("READING" . ?r)
-                                    ("PERSONAL" . ?P)
                                     ("WORK" . ?W)
-                                    ("ORG" . ?O)
                                     ("BLOG" . ?b)
                                     ("THOUGHT". ?T)
                                     ("crypt" . ?e)
                                     ("NOTE" . ?n)
                                     ("MUSIC" . ?m)
-                                    ("CANCELLED" . ?c)
-                                    ("FLAGGED" . ??))))
+                                    ("MOVIE" . ?f))))
   :config
   (add-to-list 'org-modules 'org-protocol)
   (defface org-bold
@@ -264,6 +261,22 @@ prepended to the element after the #+HEADER: tag."
           '((?* . ?◈)
             (?+ . ?✚)
             (?- . ?▶))))
+
+  (use-package org-pretty-tags
+    :hook (org-mode . org-pretty-tags-mode)
+    :config
+    (setq org-pretty-tags-surrogate-strings
+          (quote
+           (("@HOME" . "🏠")
+            ("@OFFICE" . "🏢")
+            ("READING" . "📚")
+            ("WORK" . "💼")
+            ("BLOG" . "✍️")
+            ("THOUGHT". "💡")
+            ("crypt" . "🔐")
+            ("MUSIC" . "♬")
+            ("NOTE" . "📝")
+            ("MOVIE" . "🎬")))))
 
   (use-package svg-tag-mode
     :hook (org-mode . svg-tag-mode)
