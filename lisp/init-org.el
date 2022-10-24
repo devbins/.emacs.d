@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 654
+;;     Update #: 677
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -198,6 +198,12 @@ prepended to the element after the #+HEADER: tag."
          :weight bold
          :underline t
          :overline t))
+    "Face for org-mode bold."
+    :group 'org-faces)
+
+  (defface org-doing
+    '((t :foreground "red"
+         :background "white"))
     "Face for org-mode bold."
     :group 'org-faces)
 
