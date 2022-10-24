@@ -306,8 +306,8 @@ prepended to the element after the #+HEADER: tag."
     (setq svg-tag-tags
           `(
             ;; Org tags
-            (":\\([A-Za-z0-9]+\\)" . ((lambda (tag) (svg-tag-make tag))))
-            (":\\([A-Za-z0-9]+[ \-]\\)" . ((lambda (tag) tag)))
+            ;; (":\\([A-Za-z0-9]+\\)" . ((lambda (tag) (svg-tag-make tag))))
+            ;; (":\\([A-Za-z0-9]+[ \-]\\)" . ((lambda (tag) tag)))
 
             ;; Task priority
             ("\\[#[D-Z]\\]" . ( (lambda (tag)
