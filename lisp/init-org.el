@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 677
+;;     Update #: 685
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -562,134 +562,136 @@ prepended to the element after the #+HEADER: tag."
 
     ;; Clock
     ;; These keybindings should match those under the "aoC" prefix (below)
-    "mCc"                       'org-clock-cancel
-    "mCd"                       'org-clock-display
-    "mCe"                       'org-evaluate-time-range
-    "mCg"                       'org-clock-goto
-    "mCi"                       'org-clock-in
-    "mCI"                       'org-clock-in-last
-    "mCo"                       'org-clock-out
-    "mCp"                       'org-pomodoro
-    "mCR"                       'org-clock-report
-    "mCr"                       'org-resolve-clocks
+    "mCc"                     'org-clock-cancel
+    "mCd"                     'org-clock-display
+    "mCe"                     'org-evaluate-time-range
+    "mCg"                     'org-clock-goto
+    "mCi"                     'org-clock-in
+    "mCI"                     'org-clock-in-last
+    "mCo"                     'org-clock-out
+    "mCp"                     'org-pomodoro
+    "mCR"                     'org-clock-report
+    "mCr"                     'org-resolve-clocks
 
-    "mdd"                       'org-deadline
-    "mds"                       'org-schedule
-    "mdt"                       'org-time-stamp
-    "mdT"                       'org-time-stamp-inactive
-    "mee"                       'org-export-dispatch
-    "mfi"                       'org-feed-goto-inbox
-    "mfu"                       'org-feed-update-all
+    "mdd"                     'org-deadline
+    "mds"                     'org-schedule
+    "mdt"                     'org-time-stamp
+    "mdT"                     'org-time-stamp-inactive
+    "mee"                     'org-export-dispatch
+    "mfi"                     'org-feed-goto-inbox
+    "mfu"                     'org-feed-update-all
 
-    "ma"                        'org-agenda
+    "ma"                      'org-agenda
 
-    "mp"                        'org-priority
+    "mp"                      'org-priority
 
-    "mTc"                       'org-toggle-checkbox
-    "mTe"                       'org-toggle-pretty-entities
-    "mTi"                       'org-toggle-inline-images
-    "mTl"                       'org-toggle-link-display
-    "mTt"                       'org-show-todo-tree
-    "mTT"                       'org-todo
-    "mTx"                       'org-toggle-latex-fragment
+    "mTc"                     'org-toggle-checkbox
+    "mTe"                     'org-toggle-pretty-entities
+    "mTi"                     'org-toggle-inline-images
+    "mTl"                     'org-toggle-link-display
+    "mTt"                     'org-show-todo-tree
+    "mTT"                     'org-todo
+    "mTx"                     'org-toggle-latex-fragment
 
     ;; More cycling options (timestamps, headlines, items, properties)
-    "mL"                        'org-shiftright
-    "mH"                        'org-shiftleft
-    "mJ"                        'org-shiftdown
-    "mK"                        'org-shiftup
+    "mL"                      'org-shiftright
+    "mH"                      'org-shiftleft
+    "mJ"                      'org-shiftdown
+    "mK"                      'org-shiftup
 
     ;; Change between TODO sets
-    "mC-S-l"                    'org-shiftcontrolright
-    "mC-S-h"                    'org-shiftcontrolleft
-    "mC-S-j"                    'org-shiftcontroldown
-    "mC-S-k"                    'org-shiftcontrolup
+    "mC-S-l"                  'org-shiftcontrolright
+    "mC-S-h"                  'org-shiftcontrolleft
+    "mC-S-j"                  'org-shiftcontroldown
+    "mC-S-k"                  'org-shiftcontrolup
 
     ;; Subtree editing
-    "msa"                       'org-toggle-archive-tag
-    "msA"                       'org-archive-subtree
-    "msb"                       'org-tree-to-indirect-buffer
-    "msd"                       'org-cut-subtree
-    "msh"                       'org-promote-subtree
-    "msj"                       'org-move-subtree-down
-    "msk"                       'org-move-subtree-up
-    "msl"                       'org-demote-subtree
-    "msn"                       'org-narrow-to-subtree
-    "msN"                       'widen
-    "msr"                       'org-refile
-    "mss"                       'org-sparse-tree
-    "msS"                       'org-sort
+    "msa"                     'org-toggle-archive-tag
+    "msA"                     'org-archive-subtree
+    "msb"                     'org-tree-to-indirect-buffer
+    "msd"                     'org-cut-subtree
+    "msh"                     'org-promote-subtree
+    "msj"                     'org-move-subtree-down
+    "msk"                     'org-move-subtree-up
+    "msl"                     'org-demote-subtree
+    "msn"                     'org-narrow-to-subtree
+    "msN"                     'widen
+    "msr"                     'org-refile
+    "mss"                     'org-sparse-tree
+    "msS"                     'org-sort
 
     ;; tables
-    "mta"                       'org-table-align
-    "mtb"                       'org-table-blank-field
-    "mtc"                       'org-table-convert
-    "mtdc"                      'org-table-delete-column
-    "mtdr"                      'org-table-kill-row
-    "mte"                       'org-table-eval-formula
-    "mtE"                       'org-table-export
-    "mth"                       'org-table-previous-field
-    "mtH"                       'org-table-move-column-left
-    "mtic"                      'org-table-insert-column
-    "mtih"                      'org-table-insert-hline
-    "mtiH"                      'org-table-hline-and-move
-    "mtir"                      'org-table-insert-row
-    "mtI"                       'org-table-import
-    "mtj"                       'org-table-next-row
-    "mtJ"                       'org-table-move-row-down
-    "mtK"                       'org-table-move-row-up
-    "mtl"                       'org-table-next-field
-    "mtL"                       'org-table-move-column-right
-    "mtn"                       'org-table-create
-    "mtN"                       'org-table-create-with-table.el
-    "mtr"                       'org-table-recalculate
-    "mts"                       'org-table-sort-lines
-    "mttf"                      'org-table-toggle-formula-debugger
-    "mtto"                      'org-table-toggle-coordinate-overlays
-    "mtw"                       'org-table-wrap-region
+    "mta"                     'org-table-align
+    "mtb"                     'org-table-blank-field
+    "mtc"                     'org-table-convert
+    "mtdc"                    'org-table-delete-column
+    "mtdr"                    'org-table-kill-row
+    "mte"                     'org-table-eval-formula
+    "mtE"                     'org-table-export
+    "mth"                     'org-table-previous-field
+    "mtH"                     'org-table-move-column-left
+    "mtic"                    'org-table-insert-column
+    "mtih"                    'org-table-insert-hline
+    "mtiH"                    'org-table-hline-and-move
+    "mtir"                    'org-table-insert-row
+    "mtI"                     'org-table-import
+    "mtj"                     'org-table-next-row
+    "mtJ"                     'org-table-move-row-down
+    "mtK"                     'org-table-move-row-up
+    "mtl"                     'org-table-next-field
+    "mtL"                     'org-table-move-column-right
+    "mtn"                     'org-table-create
+    "mtN"                     'org-table-create-with-table.el
+    "mtr"                     'org-table-recalculate
+    "mts"                     'org-table-sort-lines
+    "mttf"                    'org-table-toggle-formula-debugger
+    "mtto"                    'org-table-toggle-coordinate-overlays
+    "mtw"                     'org-table-wrap-region
 
     ;; Source blocks / org-babel
-    "mbp"                       'org-babel-previous-src-block
-    "mbn"                       'org-babel-next-src-block
-    "mbe"                       'org-babel-execute-maybe
-    "mbo"                       'org-babel-open-src-block-result
-    "mbv"                       'org-babel-expand-src-block
-    "mbu"                       'org-babel-goto-src-block-head
-    "mbg"                       'org-babel-goto-named-src-block
-    "mbr"                       'org-babel-goto-named-result
-    "mbb"                       'org-babel-execute-buffer
-    "mbs"                       'org-babel-execute-subtree
-    "mbd"                       'org-babel-demarcate-block
-    "mbt"                       'org-babel-tangle
-    "mbf"                       'org-babel-tangle-file
-    "mbc"                       'org-babel-check-src-block
-    "mbj"                       'org-babel-insert-header-arg
-    "mbl"                       'org-babel-load-in-session
-    "mbi"                       'org-babel-lob-ingest
-    "mbI"                       'org-babel-view-src-block-info
-    "mbz"                       'org-babel-switch-to-session
-    "mbZ"                       'org-babel-switch-to-session-with-code
-    "mba"                       'org-babel-sha1-hash
-    "mbx"                       'org-babel-do-key-sequence-in-edit-buffer
+    "mbp"                     'org-babel-previous-src-block
+    "mbn"                     'org-babel-next-src-block
+    "mbe"                     'org-babel-execute-maybe
+    "mbo"                     'org-babel-open-src-block-result
+    "mbv"                     'org-babel-expand-src-block
+    "mbu"                     'org-babel-goto-src-block-head
+    "mbg"                     'org-babel-goto-named-src-block
+    "mbr"                     'org-babel-goto-named-result
+    "mbb"                     'org-babel-execute-buffer
+    "mbs"                     'org-babel-execute-subtree
+    "mbd"                     'org-babel-demarcate-block
+    "mbt"                     'org-babel-tangle
+    "mbf"                     'org-babel-tangle-file
+    "mbc"                     'org-babel-check-src-block
+    "mbj"                     'org-babel-insert-header-arg
+    "mbl"                     'org-babel-load-in-session
+    "mbi"                     'org-babel-lob-ingest
+    "mbI"                     'org-babel-view-src-block-info
+    "mbz"                     'org-babel-switch-to-session
+    "mbZ"                     'org-babel-switch-to-session-with-code
+    "mba"                     'org-babel-sha1-hash
+    "mbx"                     'org-babel-do-key-sequence-in-edit-buffer
     ;; Multi-purpose keys
-    "m*"                        'org-ctrl-c-star
-    "m-"                        'org-ctrl-c-minus
-    "m#"                        'org-update-statistics-cookies
+    "m*"                      'org-ctrl-c-star
+    "m-"                      'org-ctrl-c-minus
+    "m#"                      'org-update-statistics-cookies
     ;; attachments
-    "mA"                        'org-attach
+    "mA"                      'org-attach
     ;; insertion
-    "mib"                       'org-insert-structure-template
-    "mid"                       'org-insert-drawer
-    "mie"                       'org-set-effort
-    "mif"                       'org-footnote-new
-    "mih"                       'org-insert-heading
-    "miH"                       'org-insert-heading-after-current
-    "mii"                       'org-insert-item
-    "mil"                       'org-insert-link
-    "min"                       'org-add-note
-    "mip"                       'org-set-property
-    "mis"                       'org-insert-subheading
-    "mit"                       'org-set-tags-command)
+    "mib"                     'org-insert-structure-template
+    "mic"                     'org-id-get-create
+    "mid"                     'org-insert-drawer
+    "mie"                     'org-set-effort
+    "mif"                     'org-footnote-new
+    "mih"                     'org-insert-heading
+    "miH"                     'org-insert-heading-after-current
+    "mii"                     'org-insert-item
+    "mil"                     'org-insert-link
+    "min"                     'org-add-note
+    "mip"                     'org-set-property
+    "mis"                     'org-insert-subheading
+    "mit"                     'org-set-tags-command)
+
   (which-key-add-major-mode-key-based-replacements 'org-mode
     "SPC m C" "clock"
     "SPC m t" "table"
