@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 66
+;;     Update #: 79
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,8 +46,16 @@
 ;;
 ;;; Code:
 
+;; install dependences
+;; brew install deno
+;; sudo pacman -S deno
+(use-package deno-bridge
+  :disabled
+  :quelpa (deno-bridge :fetcher github :repo "manateelazycat/deno-bridge"))
+
 (use-package insert-translated-name
-  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name")
+  :disabled
+  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name" :files ("*"))
   :bind ("C-c t t" . 'insert-translated-name-insert)
   :commands (insert-translated-name-insert)
   :init (setq insert-translated-name-translate-engine 'youdao)
