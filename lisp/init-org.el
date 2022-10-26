@@ -966,12 +966,6 @@ same directory as the org-buffer and insert a link to this file."
   (setq calibredb-root-dir "~/Calibre Library")
   (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
 
-(use-package org-media-note
-  :quelpa (org-media-note :fetcher github :repo "yuchen-lea/org-media-note")
-  :hook (org-mode .  org-media-note-mode)
-  :bind (("H-v" . org-media-note-hydra/body))  ;; Main entrance
-  :config
-  (setq org-media-note-screenshot-image-dir "~/notes/imgs/"))
 
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
