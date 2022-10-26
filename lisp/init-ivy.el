@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 153
+;;     Update #: 156
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -179,19 +179,19 @@
   :hook (embark-collect . consult-preview-at-point-mode))
 
 (use-package corfu
-  :bind
-  (:map corfu-map
-   ("C-j" . corfu-next)
-   ("C-k" . corfu-previous)
-   ("C-f" . corfu-insert)
-   ("C-d" . corfu-info-documentation)
-   ("M-." . corfu-info-location))
+  :bind (:map corfu-map
+         ("C-j" . corfu-next)
+         ("C-k" . corfu-previous)
+         ("C-f" . corfu-insert)
+         ("C-d" . corfu-info-documentation)
+         ("M-." . corfu-info-location))
   :init
   (setq corfu-auto t
         corfu-cycle t
         corfu-separator ?\s ;; orderless field separator
-        corfu-auto-delay 0.0
+        corfu-auto-delay 0.2
         corfu-auto-prefix 1
+        corfu-preview-current nil
         corfu-on-exact-match nil))
 
 (use-package corfu-doc
