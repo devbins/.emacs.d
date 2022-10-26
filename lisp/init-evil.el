@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 190
+;;     Update #: 191
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -276,6 +276,8 @@
 
     "rn"  'cargo-process-new
     "rs"  'restart-emacs
+    "rf"  'org-roam-node-find
+    "ri"  'org-roam-node-insert
 
     "sa"  'mark-whole-buffer
     "sp"  'consult-ripgrep
