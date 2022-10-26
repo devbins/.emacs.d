@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -133,9 +133,7 @@
 ;; Install: npm -g install prettier
 (use-package prettier-js
   :diminish
-  :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode)
-         .
-         prettier-js-mode))
+  :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode) . prettier-js-mode))
 
 (use-package haml-mode)
 (use-package php-mode)
