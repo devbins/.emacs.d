@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 685
+;;     Update #: 688
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -679,13 +679,12 @@ prepended to the element after the #+HEADER: tag."
     "mA"                      'org-attach
     ;; insertion
     "mib"                     'org-insert-structure-template
-    "mic"                     'org-id-get-create
     "mid"                     'org-insert-drawer
     "mie"                     'org-set-effort
     "mif"                     'org-footnote-new
     "mih"                     'org-insert-heading
     "miH"                     'org-insert-heading-after-current
-    "mii"                     'org-insert-item
+    "mii"                     'org-id-get-create
     "mil"                     'org-insert-link
     "min"                     'org-add-note
     "mip"                     'org-set-property
