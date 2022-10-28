@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 191
+;;     Update #: 194
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -194,6 +194,7 @@
 
     "bb"  'consult-buffer
     "bd"  'kill-this-buffer
+    "bi"  'consult-imenu
     "bm"  'bookmark-set
     "bj"  'bookmark-jump
     "bI"  'ibuffer
