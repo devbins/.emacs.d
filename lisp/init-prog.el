@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 79
+;;     Update #: 80
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -195,7 +195,7 @@ Install the doc if it's not installed."
   (setq separedit-default-mode 'org-mode
         separedit-remove-trailing-spaces-in-comment t))
 
-(use-package yaml)
+(use-package yaml-mode)
 (use-package protobuf-mode)
 
 (use-package yasnippet
