@@ -238,11 +238,11 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Add gfm/md backends
   (use-package ox-gfm
-    :config
+    :init
     (add-to-list 'org-export-backends 'md)
     (add-to-list 'org-export-backends 'gfm))
   (use-package ox-hugo
-    :config
+    :init
     (add-to-list 'org-export-backends 'hugo))
 
   (advice-add 'org-todo :after 'org-save-all-org-buffers)
