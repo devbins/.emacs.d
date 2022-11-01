@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 125
+;;     Update #: 126
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -160,6 +160,7 @@
 
 ;; Persistent the scratch buffer
 (use-package persistent-scratch
+  :if (memq my-lsp '(lsp-mode eglot))
   :diminish
   :hook ((after-init . persistent-scratch-autosave-mode)
          (lisp-interaction-mode . persistent-scratch-mode)))
