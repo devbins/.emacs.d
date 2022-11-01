@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 156
+;;     Update #: 157
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -191,6 +191,7 @@
         corfu-separator ?\s ;; orderless field separator
         corfu-auto-delay 0.2
         corfu-auto-prefix 1
+        corfu-quit-at-boundary t
         corfu-preview-current nil
         corfu-on-exact-match nil))
 
