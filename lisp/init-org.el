@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 688
+;;     Update #: 693
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -767,11 +767,8 @@ prepended to the element after the #+HEADER: tag."
   ;; http://elpa.gnu.org/packages/pinentry.html
   ;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
   (use-package pinentry
-    :defer t
     :if sys/macp
-    :config
-    (with-eval-after-load 'org
-      (pinentry-start)))
+    :hook (org-mode . pinentry-start))
 
   (use-package orgit
     :disabled)
