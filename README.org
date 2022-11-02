@@ -141,6 +141,24 @@
     #+begin_src sh
     npm i -g vscode-json-languageserver
     #+end_src
+*** Kotlin
+    格式化工具
+    #+begin_src sh
+    brew install ktlint
+    #+end_src
+*** Web
+**** Javascript/Typescript
+     #+begin_src sh
+     brew install deno
+     #+end_src
+**** html/css
+     #+begin_src sh
+     npm install -g vscode-langservers-extracted
+     #+end_src
+*** YAML
+    #+begin_src sh
+    npm install -g yaml-language-server
+    #+end_src
 ** go
    #+begin_src sh
    go install honnef.co/go/tools/cmd/staticcheck@latest
