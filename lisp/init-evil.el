@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 194
+;;     Update #: 195
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -279,6 +279,7 @@
     "rs"  'restart-emacs
     "rf"  'org-roam-node-find
     "ri"  'org-roam-node-insert
+    "ra"  'org-roam-db-autosync-mode
 
     "sa"  'mark-whole-buffer
     "sp"  'consult-ripgrep
