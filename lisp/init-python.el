@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -128,7 +128,7 @@
   (interactive)
   (let ((name (file-relative-name (buffer-file-name))))
     (shell-command
-     (format "pyuic5 %s -o %s.py" name (file-name-sans-extension name)))))
+     (format "pyuic6 %s -o %s.py" name (file-name-sans-extension name)))))
 
 (defun uic()
   "use uic convert .ui file to .h"
