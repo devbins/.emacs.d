@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -124,11 +124,11 @@
       "gk" 'ein:worksheet-goto-prev-input)))
 
 (defun pyuic()
-  "use pyuic5 convert .ui file to .py"
+  "use pyuic convert .ui file to .py"
   (interactive)
   (let ((name (file-relative-name (buffer-file-name))))
     (shell-command
-     (format "pyuic6 %s -o %s.py" name (file-name-sans-extension name)))))
+     (format "%s %s -o %s.py" (or (executable-find "pyuic6") (executable-find "pyuic5")) name (file-name-sans-extension name)))))
 
 (defun uic()
   "use uic convert .ui file to .h"
