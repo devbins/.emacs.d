@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 195
+;;     Update #: 196
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -280,6 +280,7 @@
     "rf"  'org-roam-node-find
     "ri"  'org-roam-node-insert
     "ra"  'org-roam-db-autosync-mode
+    "rl"  'org-roam-alias-add
 
     "sa"  'mark-whole-buffer
     "sp"  'consult-ripgrep
