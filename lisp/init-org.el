@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 694
+;;     Update #: 695
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -690,6 +690,10 @@ prepended to the element after the #+HEADER: tag."
     :hook (org-mode . (lambda ()
                         (evil-org-mode)
                         (evil-normalize-keymaps))))
+
+  (use-package pangu-spacing
+    :hook (org-mode . pangu-spacing-mode)
+    :init (setq pangu-spacing-real-insert-separtor t))
 
   (use-package org-capture
     :ensure nil
