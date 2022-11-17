@@ -52,6 +52,10 @@
 (use-package deno-bridge
   :disabled
   :quelpa (deno-bridge :fetcher github :repo "manateelazycat/deno-bridge"))
+  (with-eval-after-load 'company
+    (use-package company-restclient
+      :defines company-backends
+      :init (add-to-list 'company-backends 'company-restclient))))
 
 (use-package insert-translated-name
   :disabled

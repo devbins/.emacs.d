@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,12 +145,6 @@
   (use-package restclient-test
     :diminish
     :hook (restclient-mode . restclient-test-mode))
-
-  (with-eval-after-load 'company
-    (use-package company-restclient
-      :disabled
-      :defines company-backends
-      :init (add-to-list 'company-backends 'company-restclient)))
 
   (evil-leader/set-key-for-mode 'restclient-mode
     "mn" 'restclient-jump-next
