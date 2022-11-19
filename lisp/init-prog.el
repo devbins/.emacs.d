@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 80
+;;     Update #: 81
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,7 +56,13 @@
   (with-no-warnings
     (if emacs/>=28p
         (setq xref-show-xrefs-function #'xref-show-definitions-completing-read
-              xref-show-definitions-function #'xref-show-definitions-completing-read))))
+              xref-show-definitions-function #'xref-show-definitions-completing-read)
+      (use-package ivy-xref
+        :after ivy
+        :init
+        (when emacs/>=27p
+          (setq xref-show-definitions-function #'ivy-xref-show-defs))
+        (setq xref-show-xrefs-function #'ivy-xref-show-xrefs)))))
 
 ;; Jump to definition
 (use-package dumb-jump
