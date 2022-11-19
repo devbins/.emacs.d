@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 170
+;;     Update #: 179
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,40 +80,39 @@
                           ;; Format and organize imports
                           (unless (apply #'derived-mode-p '(c-mode c++-mode))
                             (add-hook 'before-save-hook #'lsp-format-buffer t t)
-                            (add-hook 'before-save-hook #'lsp-organize-imports t t))))
-            (lsp-completion-mode . my/lsp-mode-setup-completion))
+                            (add-hook 'before-save-hook #'lsp-organize-imports t t)))))
      :bind (:map lsp-mode-map
             ("C-c C-d" . lsp-describe-thing-at-point)
             ([remap xref-find-definitions] . lsp-find-definition)
             ([remap xref-find-references] . lsp-find-references))
-     :custom
-     (lsp-completion-provider :none) ;; we use Corfu!
+     ;; :custom
+     ;; (lsp-completion-provider :none) ;; we use Corfu!
      :init
-     (defun my/orderless-dispatch-flex-first (_pattern index _total)
-       (and (eq index 0) 'orderless-flex))
+     ;; (defun my/orderless-dispatch-flex-first (_pattern index _total)
+     ;;   (and (eq index 0) 'orderless-flex))
 
-     (defun my/lsp-mode-setup-completion ()
-       (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-             '(orderless)))
+     ;; (defun my/lsp-mode-setup-completion ()
+     ;;   (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+     ;;         '(orderless)))
 
-     ;; Optionally configure the first word as flex filtered.
-     (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
+     ;; ;; Optionally configure the first word as flex filtered.
+     ;; (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
 
-     ;; Optionally configure the cape-capf-buster.
-     (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
+     ;; ;; Optionally configure the cape-capf-buster.
+     ;; (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
      (setq read-process-output-max (* 1024 1024)
            lsp-keep-workspace-alive nil ; Auto-kill LSP server
-           lsp-prefer-capf t
+           ;; lsp-prefer-capf t
            lsp-signature-auto-activate nil
            lsp-modeline-code-actions-enable nil
+
+           lsp-semantic-tokens-enable t
+           lsp-progress-spinner-type 'progress-bar-filled
 
            lsp-enable-file-watchers nil
            lsp-log-io nil
            lsp-eldoc-render-all nil
-           lsp-completion-provider t
-           lsp-signature-render-documentation nil
            lsp-enable-folding nil
-           lsp-enable-semantic-highlighting nil
            lsp-enable-symbol-highlighting nil
            lsp-enable-text-document-color nil
            lsp-keymap-prefix "C-c l"
