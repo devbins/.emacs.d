@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 16
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -129,7 +129,6 @@
                                   (registers . "database"))
 
         dashboard-set-footer t
-        dashboard-footer (format "Powered by devbins(1.01^365=37.8), %s" (format-time-string "%Y"))
         dashboard-footer-icon (cond ((display-graphic-p)
                                      (all-the-icons-faicon "heart"
                                                            :height 1.1
@@ -182,19 +181,17 @@
         (insert-image spec)
         (insert "\n\n")
         (when title
-          (dashboard-center-line title)
-          (insert (format "%s\n\n" (propertize title 'face 'dashboard-banner-logo-title)))))))
+          (dashboard-insert-center (format "%s\n\n" (propertize title 'face 'dashboard-banner-logo-title)))))))
   (advice-add #'dashboard-insert-image-banner :override #'my-dashboard-insert-image-banner)
 
   ;; FIXME: Insert copyright
   ;; @see https://github.com/emacs-dashboard/emacs-dashboard/issues/219
   (defun my-dashboard-insert-copyright ()
     "Insert copyright in the footer."
-    (when dashboard-footer
+    (when dashboard-set-footer
       (insert "\n  ")
-      (dashboard-center-line dashboard-footer)
-      (insert (propertize dashboard-footer 'face 'font-lock-comment-face))
-      (insert "\n")))
+      (dashboard-insert-center (propertize (format "\nPowered by devbins(1.01^365=37.8), %s\n" (format-time-string "%Y"))
+                                           'face 'font-lock-comment-face))))
   (advice-add #'dashboard-insert-footer :after #'my-dashboard-insert-copyright)
 
   (defvar dashboard-recover-layout-p nil
