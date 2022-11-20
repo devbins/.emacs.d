@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 196
+;;     Update #: 197
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,8 +81,6 @@
   (evil-set-initial-state 'vc-svn-log-view-mode 'normal)
   (evil-set-initial-state 'org-agenda-mode 'normal)
   (evil-set-initial-state 'minibuffer-inactive-mode 'emacs)
-  (evil-set-initial-state 'ivy-occur-mode 'normal)
-  (evil-set-initial-state 'ivy-occur-grep-mode 'normal)
   (evil-set-initial-state 'pdf-view-mode 'normal)
   (evil-set-initial-state 'pdf-outline-buffer-mode 'emacs)
   (evil-set-initial-state 'pdf-outline-minor-mode 'emacs)

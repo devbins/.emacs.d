@@ -1,6 +1,6 @@
-;;; init-ivy.el --- -*- lexical-binding: t -*-
+;;; init-vertico.el --- -*- lexical-binding: t -*-
 ;;
-;; Filename: init-ivy.el
+;; Filename: init-vertico.el
 ;; Description:
 ;; Author: devbins
 ;; Maintainer:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 162
+;;     Update #: 165
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -241,4 +241,4 @@
 
 (provide 'init-vertico)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-ivy.el ends here
+;;; init-vertico.el ends here

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,18 +73,7 @@
                                     (name 18 18 :left :elide)
                                     " " (size 9 -1 :right)
                                     " " (mode 16 16 :left :elide) " " filename-and-process)
-                              (mark " " (name 16 -1) " " filename))))
-
-    (with-eval-after-load 'counsel
-      (defun my-ibuffer-find-file ()
-        (interactive)
-        (let ((default-directory (let ((buf (ibuffer-current-buffer)))
-                                   (if (buffer-live-p buf)
-                                       (with-current-buffer buf
-                                         default-directory)
-                                     default-directory))))
-          (counsel-find-file default-directory)))
-      (advice-add #'ibuffer-find-file :override #'my-ibuffer-find-file)))
+                              (mark " " (name 16 -1) " " filename)))))
 
   ;; Group ibuffer's list by project root
   (use-package ibuffer-projectile

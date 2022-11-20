@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -255,8 +255,6 @@ Lisp function does not specify a special indentation."
 
 ;; A better *Help* buffer
 (use-package helpful
-  :defines (counsel-describe-function-function
-            counsel-describe-variable-function)
   :commands helpful--buffer
   :bind (([remap describe-key] . helpful-key)
          ([remap describe-symbol] . helpful-symbol)
@@ -265,10 +263,6 @@ Lisp function does not specify a special indentation."
          ("r" . remove-hook-at-point))
   :hook (helpful-mode . cursor-sensor-mode) ; for remove-advice button
   :init
-  (with-eval-after-load 'counsel
-    (setq counsel-describe-function-function #'helpful-callable
-          counsel-describe-variable-function #'helpful-variable))
-
   (with-eval-after-load 'apropos
     ;; patch apropos buttons to call helpful instead of help
     (dolist (fun-bt '(apropos-function apropos-macro apropos-command))

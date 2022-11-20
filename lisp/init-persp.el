@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 ;; Windows/buffers sets shared among frames + save/load.
 (use-package persp-mode
   :diminish
-  :defines (recentf-exclude ivy-ignore-buffers)
+  :defines (recentf-exclude)
   :functions persp--frame-parameter
   :commands (get-current-persp persp-contain-buffer-p)
   :hook ((after-init . persp-mode)
@@ -146,16 +146,6 @@
   ;; Don't save persp configs in `recentf'
   (with-eval-after-load 'recentf
     (push persp-save-dir recentf-exclude))
-
-  ;; Ivy Integraticon
-  (with-eval-after-load 'ivy
-    (add-to-list 'ivy-ignore-buffers
-                 #'(lambda (b)
-                     (when persp-mode
-                       (let ((persp (get-current-persp)))
-                         (if persp
-                             (not (persp-contain-buffer-p b persp))
-                           nil))))))
 
   ;; Eshell integration
   (persp-def-buffer-save/load
