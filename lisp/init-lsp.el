@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 179
+;;     Update #: 181
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -155,7 +155,7 @@
                 (lsp-icons--enabled-for-feature feature))
              (all-the-icons-material icon-name :face face)
            (propertize fallback 'face face)))
-       (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon)))
+       (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon))
 
    (use-package lsp-ui
      :custom-face
@@ -320,7 +320,6 @@
                        :notification-handlers (lsp-ht ("pyright/beginProgress" 'lsp-pyright--begin-progress-callback)
                                                       ("pyright/reportProgress" 'lsp-pyright--report-progress-callback)
                                                       ("pyright/endProgress" 'lsp-pyright--end-progress-callback)))))
-   )
 
   ;; C/C++/Objective-C support
   (use-package ccls
@@ -370,7 +369,7 @@
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
   ;; Java
    (use-package lsp-java
-     :hook (java-mode . (lambda () (require 'lsp-java)))))
+     :hook (java-mode . (lambda () (require 'lsp-java)))))))
 
 (when (memq my-lsp '(lsp-mode eglot))
     ;; Enable LSP in org babel
