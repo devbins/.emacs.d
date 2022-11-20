@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 113
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -348,52 +348,51 @@
       :init (add-to-list 'company-backends 'company-restclient))))
 
 (use-package company-tabnine
-  :after company
-  :config
-  (defun tabnine//merge-company-tabnine-to-company-lsp ()
-    (when (memq 'company-lsp company-backends)
-      (setq-local company-backends (remove 'company-lsp company-backends))
-      (add-to-list 'company-backends '(company-lsp :with company-tabnine :separate))))
-
-  (defun tabnine//company-box-icons--tabnine (candidate)
-    (when (eq (get-text-property 0 'company-backend candidate)
-              'company-tabnine)
-      'Reference))
-
-  (defun tabnine//sort-by-tabnine (candidates)
-    "The first two candidates will be from company-lsp, the following two
-candidates will be from company-tabnine, others keeping their own origin order."
+  :custom
+  (company-tabnine-max-num-results 9)
+  :init
+  (defun company//sort-by-tabnine (candidates)
+    "Integrate company-tabnine with lsp-mode"
     (if (or (functionp company-backend)
-           (not (and (listp company-backend) (memq 'company-tabnine company-backend))))
+            (not (and (listp company-backend) (memq 'company-tabnine company-backends))))
         candidates
       (let ((candidates-table (make-hash-table :test #'equal))
-            candidates-1
-            candidates-2)
+            candidates-lsp
+            candidates-tabnine)
         (dolist (candidate candidates)
           (if (eq (get-text-property 0 'company-backend candidate)
                   'company-tabnine)
               (unless (gethash candidate candidates-table)
-                (push candidate candidates-2))
-            (push candidate candidates-1)
+                (push candidate candidates-tabnine))
+            (push candidate candidates-lsp)
             (puthash candidate t candidates-table)))
-        (setq candidates-1 (nreverse candidates-1))
-        (setq candidates-2 (nreverse candidates-2))
-        (nconc (seq-take candidates-1 2)
-               (seq-take candidates-2 2)
-               (seq-drop candidates-1 2)
-               (seq-drop candidates-2 2)))))
-
-  (add-to-list 'company-backends #'company-tabnine)
-
-  (defadvice company-echo-show (around disable-tabnine-upgrade-message activate)
-    (let ((company-message-func (ad-get-arg 0)))
-      (when (and company-message-func
-               (stringp (funcall company-message-func)))
-        (unless (string-match "The free version of TabNine only indexes up to" (funcall company-message-func))
-          ad-do-it))))
-
-  (with-eval-after-load 'lsp-mode
-    (advice-add 'lsp :after #'tabnine//merge-company-tabnine-to-company-lsp)))
+        (setq candidates-lsp (nreverse candidates-lsp))
+        (setq candidates-tabnine (nreverse candidates-tabnine))
+        (nconc (seq-take candidates-tabnine 3)
+               (seq-take candidates-lsp 6)))))
+  (defun lsp-after-open-tabnine ()
+    "Hook to attach to `lsp-after-open'."
+    (setq-local company-tabnine-max-num-results 3)
+    (add-to-list 'company-transformers 'company//sort-by-tabnine t)
+    (add-to-list 'company-backends '(company-capf :with company-tabnine :separate)))
+  (defun company-tabnine-toggle (&optional enable)
+    "Enable/Disable TabNine. If ENABLE is non-nil, definitely enable it."
+    (interactive)
+    (if (or enable (not (memq 'company-tabnine company-backends)))
+        (progn
+          (add-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+          (add-to-list 'company-backends #'company-tabnine)
+          (when (bound-and-true-p lsp-mode) (lsp-after-open-tabnine))
+          (message "TabNine enabled."))
+      (setq company-backends (delete 'company-tabnine company-backends))
+      (setq company-backends (delete '(company-capf :with company-tabnine :separate) company-backends))
+      (remove-hook 'lsp-after-open-hook #'lsp-after-open-tabnine)
+      (company-tabnine-kill-process)
+      (message "TabNine disabled.")))
+  :hook
+  (kill-emacs . company-tabnine-kill-process)
+  :config
+  (company-tabnine-toggle t))
 
 (use-package insert-translated-name
   :if sys/macp
