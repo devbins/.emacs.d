@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 158
+;;     Update #: 162
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -239,24 +239,6 @@
   :custom
   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
-(use-package kind-icon
-  :ensure t
-  :after corfu
-  :custom
-  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-  :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-(use-package copilot
-  :quelpa (copilot :fetcher github :repo "zerolfx/copilot.el"
-                   :files ("*.el" "dist"))
-  :init
-  ;; accept completion from copilot and fallback to company
-  (defun my-tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-        (corfu-complete))))
-
-(provide 'init-ivy)
+(provide 'init-vertico)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-ivy.el ends here
