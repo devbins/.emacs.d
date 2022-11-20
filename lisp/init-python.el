@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 16
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,13 +82,14 @@
     :hook (python-mode . yapf-mode)))
 
 (use-package conda
+  :if (executable-find "conda")
   :config
   (setq conda-anaconda-home (expand-file-name "/usr/local/anaconda3/")
         conda-env-home-directory (expand-file-name "/usr/local/anaconda3/")
-        conda-env-subdirectory "envs"))
+        conda-env-subdirectory "envs")
 
-(unless (getenv "CONDA_DEFAULT_ENV")
-  (conda-env-activate "base"))
+  (unless (getenv "CONDA_DEFAULT_ENV")
+    (conda-env-activate "base")))
 
 (use-package ein
   :defer t
