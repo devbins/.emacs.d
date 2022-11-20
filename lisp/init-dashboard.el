@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -184,7 +184,7 @@
           (dashboard-insert-center (format "%s\n\n" (propertize title 'face 'dashboard-banner-logo-title)))))))
   (advice-add #'dashboard-insert-image-banner :override #'my-dashboard-insert-image-banner)
 
-  ;; FIXME: Insert copyright
+  ;; Insert copyright
   ;; @see https://github.com/emacs-dashboard/emacs-dashboard/issues/219
   (defun my-dashboard-insert-copyright ()
     "Insert copyright in the footer."
@@ -225,43 +225,45 @@
     "Quit dashboard window."
     (interactive)
     (quit-window t)
-    (when (and dashboard-recover-layout-p
-             (bound-and-true-p winner-mode))
-      (winner-undo)
-      (setq dashboard-recover-layout-p nil)))
+    (and dashboard-recover-layout-p
+            (and (bound-and-true-p winner-mode) (winner-undo))
+            (setq dashboard-recover-layout-p nil)))
 
-  (defun restore-previous-session ()
-    "Restore the previous session."
-    (interactive)
-    (when (bound-and-true-p persp-mode)
-      (restore-session persp-auto-save-fname)))
+    (defun restore-previous-session ()
+      "Restore the previous session."
+      (interactive)
+      (when (bound-and-true-p persp-mode)
+        (restore-session persp-auto-save-fname)))
 
-  (defun restore-session (fname)
-    "Restore the specified session."
-    (interactive (list (read-file-name "Load perspectives from a file: "
-                                       persp-save-dir)))
-    (when (bound-and-true-p persp-mode)
-      (message "Restoring session...")
-      (quit-window t)
-      (condition-case-unless-debug err
-          (persp-load-state-from-file fname)
-        (error "Error: Unable to restore session -- %s" err))
-      (message "Done")))
+    (defun restore-session (fname)
+      "Restore the specified session."
+      (interactive (list (read-file-name "Load perspectives from a file: "
+                                         persp-save-dir)))
+      (when (bound-and-true-p persp-mode)
+        (message "Restoring session...")
+        (quit-window t)
+        (condition-case-unless-debug err
+            (persp-load-state-from-file fname)
+          (error "Error: Unable to restore session -- %s" err))
+        (message "Restoring session...done")))
 
-  (defun dashboard-goto-recent-files ()
-    "Go to recent files."
-    (interactive)
-    (funcall (local-key-binding "r")))
+    (defun dashboard-goto-recent-files ()
+      "Go to recent files."
+      (interactive)
+      (let ((func (local-key-binding "r")))
+        (and func (funcall func))))
 
-  (defun dashboard-goto-projects ()
-    "Go to projects."
-    (interactive)
-    (funcall (local-key-binding "p")))
+    (defun dashboard-goto-projects ()
+      "Go to projects."
+      (interactive)
+      (let ((func (local-key-binding "p")))
+        (and func (funcall func))))
 
-  (defun dashboard-goto-bookmarks ()
-    "Go to bookmarks."
-    (interactive)
-    (funcall (local-key-binding "m"))))
+    (defun dashboard-goto-bookmarks ()
+      "Go to bookmarks."
+      (interactive)
+      (let ((func (local-key-binding "m")))
+        (and func (funcall func)))))
 
 (provide 'init-dashboard)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
