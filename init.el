@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 72
+;;     Update #: 86
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -108,8 +108,8 @@
 
 (require 'init-ui)
 (require 'init-edit)
-(require 'init-ivy)
-(require 'init-company)
+(require 'init-vertico)
+(require 'init-corfu)
 
 (require 'init-calendar)
 (require 'init-dashboard)
