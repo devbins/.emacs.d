@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -157,7 +157,6 @@
     "mp" 'restclient-jump-prev
     "ms" 'restclient-http-send-current-stay-in-window
     "mS" 'restclient-http-send-current
-    "mr" 'spacemacs/restclient-http-send-current-raw-stay-in-window
     "mR" 'restclient-http-send-current-raw
     "my" 'restclient-copy-curl-command))
 
