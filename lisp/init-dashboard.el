@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 43
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,10 +49,8 @@
 
 ;; Dashboard
 (use-package dashboard
-  :after all-the-icons
   :diminish dashboard-mode
-  :functions (all-the-icons-material
-              winner-undo
+  :functions (winner-undo
               widget-forward)
   :custom-face (dashboard-heading ((t (:inherit (font-lock-string-face bold)))))
   :pretty-hydra
@@ -110,8 +108,7 @@
                    "繁花落尽，我心中仍留有花落的声音，一朵、一朵，在无人的山间轻轻飘落。——慕容熙"
                    "纸上得来终觉浅，绝知此事要躬行。——陆游"
                    "矮人看戏何曾见，都是随人说长短。——赵翼"
-                   "如同明月将死那样生活，如同永远不死那样求知。——甘地"))
-  (setq dashboard-banner-logo-title (nth (random (length welcomes)) welcomes)
+                   "如同明月将死那样生活，如同永远不死那样求知。——甘地")
         dashboard-startup-banner 'official
         dashboard-center-content t
         dashboard-show-shortcuts nil
@@ -129,70 +126,57 @@
                                   (registers . "database"))
 
         dashboard-set-footer t
-        dashboard-footer-icon (cond ((display-graphic-p)
-                                     (all-the-icons-faicon "heart"
-                                                           :height 1.1
-                                                           :v-adjust -0.05
-                                                           :face 'error))
-                                    ((char-displayable-p ?🧡) "🧡 ")
+        dashboard-footer-icon (cond ((char-displayable-p ?🧡) "🧡 ")
                                     (t (propertize ">" 'face 'dashboard-footer)))
 
-        dashboard-set-navigator t
-        dashboard-navigator-buttons
-        `(((,(when (display-graphic-p)
-               (all-the-icons-octicon "mark-github" :height 1.1 :v-adjust 0.0))
-            "Homepage" "Browse homepage"
-            (lambda (&rest _) (browse-url "https://github.com/devbins/.emacs.d")))
-           (,(when (display-graphic-p)
-               (all-the-icons-material "restore" :height 1.35 :v-adjust -0.24))
-            "Restore" "Restore previous session"
-            (lambda (&rest _) (restore-previous-session)))
-           (,(when (display-graphic-p)
-               (all-the-icons-octicon "tools" :height 1.0 :v-adjust 0.0))
-            "Settings" "Open init file"
-            (lambda (&rest _) (find-file (expand-file-name "init.el" user-emacs-directory))))
-           (,(if (display-graphic-p)
-                 (all-the-icons-faicon "question" :height 1.2 :v-adjust -0.1)
-               "?")
-            "" "Help (?/h)"
-            (lambda (&rest _) (dashboard-hydra/body))
-            font-lock-string-face))))
+        dashboard-set-navigator t)
 
   (dashboard-setup-startup-hook)
   :config
-  (defun my-banner-path (&rest _)
-    "Return the full path to banner."
-    (expand-file-name "banner.txt" user-emacs-directory))
-  (advice-add #'dashboard-get-banner-path :override #'my-banner-path)
-
-  ;; WORKAROUND: fix differnct background color of the banner image.
-  ;; @see https://github.com/emacs-dashboard/emacs-dashboard/issues/203
-  (defun my-dashboard-insert-image-banner (banner)
-    "Display an image BANNER."
-    (when (file-exists-p banner)
-      (let* ((title dashboard-banner-logo-title)
-             (spec (create-image banner))
-             (size (image-size spec))
-             (width (car size))
-             (left-margin (max 0 (floor (- dashboard-banner-length width) 2))))
-        (goto-char (point-min))
-        (insert "\n")
-        (insert (make-string left-margin ?\ ))
-        (insert-image spec)
-        (insert "\n\n")
-        (when title
-          (dashboard-insert-center (format "%s\n\n" (propertize title 'face 'dashboard-banner-logo-title)))))))
-  (advice-add #'dashboard-insert-image-banner :override #'my-dashboard-insert-image-banner)
-
   ;; Insert copyright
   ;; @see https://github.com/emacs-dashboard/emacs-dashboard/issues/219
   (defun my-dashboard-insert-copyright ()
     "Insert copyright in the footer."
     (when dashboard-set-footer
-      (insert "\n  ")
       (dashboard-insert-center (propertize (format "\nPowered by devbins(1.01^365=37.8), %s\n" (format-time-string "%Y"))
                                            'face 'font-lock-comment-face))))
   (advice-add #'dashboard-insert-footer :after #'my-dashboard-insert-copyright)
+
+  (defun restore-previous-session ()
+    "Restore the previous session."
+    (interactive)
+    (when (bound-and-true-p persp-mode)
+      (restore-session persp-auto-save-fname)))
+
+  (defun restore-session (fname)
+    "Restore the specified session."
+    (interactive (list (read-file-name "Load perspectives from a file: "
+                                       persp-save-dir)))
+    (when (bound-and-true-p persp-mode)
+      (message "Restoring session...")
+      (quit-window t)
+      (condition-case-unless-debug err
+          (persp-load-state-from-file fname)
+        (error "Error: Unable to restore session -- %s" err))
+      (message "Restoring session...done")))
+
+  (defun dashboard-goto-recent-files ()
+    "Go to recent files."
+    (interactive)
+    (let ((func (local-key-binding "r")))
+      (and func (funcall func))))
+
+  (defun dashboard-goto-projects ()
+    "Go to projects."
+    (interactive)
+    (let ((func (local-key-binding "p")))
+      (and func (funcall func))))
+
+  (defun dashboard-goto-bookmarks ()
+    "Go to bookmarks."
+    (interactive)
+    (let ((func (local-key-binding "m")))
+      (and func (funcall func))))
 
   (defvar dashboard-recover-layout-p nil
     "Wether recovers the layout.")
@@ -211,14 +195,9 @@
 
     (delete-other-windows)
 
-    ;; Refresh dashboard buffer
-    (if (get-buffer dashboard-buffer-name)
-        (kill-buffer dashboard-buffer-name))
-    (dashboard-insert-startupify-lists)
-    (switch-to-buffer dashboard-buffer-name)
+    ; Refresh dashboard buffer
+    (dashboard-refresh-buffer)
 
-    ;; Jump to the first section
-    (goto-char (point-min))
     (dashboard-goto-recent-files))
 
   (defun quit-dashboard ()
@@ -227,43 +206,7 @@
     (quit-window t)
     (and dashboard-recover-layout-p
             (and (bound-and-true-p winner-mode) (winner-undo))
-            (setq dashboard-recover-layout-p nil)))
-
-    (defun restore-previous-session ()
-      "Restore the previous session."
-      (interactive)
-      (when (bound-and-true-p persp-mode)
-        (restore-session persp-auto-save-fname)))
-
-    (defun restore-session (fname)
-      "Restore the specified session."
-      (interactive (list (read-file-name "Load perspectives from a file: "
-                                         persp-save-dir)))
-      (when (bound-and-true-p persp-mode)
-        (message "Restoring session...")
-        (quit-window t)
-        (condition-case-unless-debug err
-            (persp-load-state-from-file fname)
-          (error "Error: Unable to restore session -- %s" err))
-        (message "Restoring session...done")))
-
-    (defun dashboard-goto-recent-files ()
-      "Go to recent files."
-      (interactive)
-      (let ((func (local-key-binding "r")))
-        (and func (funcall func))))
-
-    (defun dashboard-goto-projects ()
-      "Go to projects."
-      (interactive)
-      (let ((func (local-key-binding "p")))
-        (and func (funcall func))))
-
-    (defun dashboard-goto-bookmarks ()
-      "Go to bookmarks."
-      (interactive)
-      (let ((func (local-key-binding "m")))
-        (and func (funcall func)))))
+            (setq dashboard-recover-layout-p nil))))
 
 (provide 'init-dashboard)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
