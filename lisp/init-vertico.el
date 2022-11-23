@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 170
+;;     Update #: 171
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,7 +56,9 @@
   (:map vertico-map
    ("C-j" . vertico-next)
    ("C-k" . vertico-previous)
-   ("C-f" . vertico-exit)))
+   ("C-f" . vertico-exit)
+   ("<escape>" . minibuffer-keyboard-quit)
+   ("?" . minibuffer-completion-help)))
 
 (use-package vertico-directory
   :after vertico
