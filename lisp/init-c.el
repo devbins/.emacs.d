@@ -73,11 +73,6 @@
     :commands (clang-format
                clang-format-region
                clang-format-buffer))
-
-  (use-package flycheck-clang-analyzer
-    :after flycheck cc-mode
-    :config (flycheck-clang-analyzer-setup))
-
   :custom
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
@@ -122,63 +117,7 @@
   (evil-leader/set-key-for-mode 'cc-mode
     "m o i" 'cpp-auto-include))
 
-(use-package rtags
-  :ensure t
-  :hook (c++-mode . rtags-start-process-unless-running)
-  :config (setq rtags-completions-enabled t
-                rtags-autostart-diagnostics t))
-
-(use-package company-rtags
-  :disabled
-  :ensure t
-  :config
-  (progn
-    (push 'company-rtags company-backends)
-    (define-key c-mode-base-map (kbd "<C-tab>") (function company-complete))))
-
 ;;Live code checking.
-(use-package flycheck-rtags
-  :ensure t
-  :config
-  (progn
-    ;; ensure that we use only rtags checking
-    ;; https://github.com/Andersbakken/rtags#optional-1
-    (defun setup-flycheck-rtags ()
-      (flycheck-select-checker 'rtags)
-      (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-      (setq-local flycheck-check-syntax-automatically nil)
-      (rtags-set-periodic-reparse-timeout 2.0))  ;; Run flycheck 2 seconds after being idle.
-    (add-hook 'c-mode-hook #'setup-flycheck-rtags)
-    (add-hook 'c++-mode-hook #'setup-flycheck-rtags)))
-
-(use-package irony
-  :ensure t
-  :hook ((c++-mode . irony-mode)
-         (c-mode . irony-mode))
-  :config
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  (use-package company-irony-c-headers
-    :ensure t
-    :disabled)
-  (use-package company-irony
-    :disabled
-    :ensure t
-    :config
-    (add-to-list (make-local-variable 'company-backends)
-                 '(company-irony company-irony-c-headers)))
-  (use-package flycheck-irony
-    :ensure t
-    :config
-    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-  (use-package irony-eldoc
-    :ensure t
-    :config
-    (add-hook 'irony-mode-hook #'irony-eldoc)))
-
-(use-package cmake-ide
-  :config
-  (cmake-ide-setup))
-
 (use-package srefactor
   :config
   (semantic-mode 1))
