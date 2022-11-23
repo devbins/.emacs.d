@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -59,6 +59,9 @@
                            (setq c-basic-offset 4
                                  tab-width 4)))
   :config
+  (evil-leader/set-key-for-mode 'cc-mode
+    "m f o" 'ff-find-other-file
+    "m f O" 'ff-find-other-file-other-window)
   (use-package modern-cpp-font-lock
     :diminish
     :init (modern-c++-font-lock-global-mode t))
