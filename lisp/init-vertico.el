@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 166
+;;     Update #: 170
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -156,14 +156,17 @@
         xref-show-definitions-function #'consult-xref)
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :config
-  (consult-customize
-   consult-theme :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
-   consult--source-recent-file consult--source-project-recent-file
-   ;; :preview-key (kbd "M-.")
-   :preview-key '(:debounce 1 any)))
+  (setq consult-preview-key (kbd "M-."))
+  (defvar-local consult-toggle-preview-orig nil)
+  (defun consult-toggle-preview ()
+    "Command to enable/disable preview."
+    (interactive)
+    (if consult-toggle-preview-orig
+        (setq consult--preview-function consult-toggle-preview-orig
+              consult-toggle-preview-orig nil)
+      (setq consult-toggle-preview-orig consult--preview-function
+            consult--preview-function #'ignore)))
+  (define-key vertico-map (kbd "M-P") #'consult-toggle-preview))
 
 (use-package consult-yasnippet
   :after (consult yasnippet)
