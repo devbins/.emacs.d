@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 16
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,46 +82,46 @@
     :hook (python-mode . yapf-mode)))
 
 (use-package conda
+  :if (executable-find "conda")
   :config
   (setq conda-anaconda-home (expand-file-name "/usr/local/anaconda3/")
         conda-env-home-directory (expand-file-name "/usr/local/anaconda3/")
-        conda-env-subdirectory "envs"))
+        conda-env-subdirectory "envs")
 
-(unless (getenv "CONDA_DEFAULT_ENV")
-  (conda-env-activate "base"))
+  (unless (getenv "CONDA_DEFAULT_ENV")
+    (conda-env-activate "base")))
 
 (use-package ein
   :defer t
   :commands (ein:notebooklist-open ein:notebooklist-login ein:run ein:stop)
   :config
-  (progn
-    (defun devbins/ein:worksheet-merge-cell-next ()
-      (interactive)
-      (ein:worksheet-merge-cell (ein:worksheet--get-ws-or-error) (ein:worksheet-get-current-cell) t t))
+  (defun devbins/ein:worksheet-merge-cell-next ()
+    (interactive)
+    (ein:worksheet-merge-cell (ein:worksheet--get-ws-or-error) (ein:worksheet-get-current-cell) t t))
 
-    ;; keybindings for ipython notebook traceback mode
-    (evil-leader/set-key-for-mode 'ein:traceback-mode
-      "RET" 'ein:tb-jump-to-source-at-point-command
-      "mn" 'ein:tb-next-item
-      "mp" 'ein:tb-prev-item
-      "mq" 'bury-buffer)
+  ;; keybindings for ipython notebook traceback mode
+  (evil-leader/set-key-for-mode 'ein:traceback-mode
+    "RET" 'ein:tb-jump-to-source-at-point-command
+    "mn" 'ein:tb-next-item
+    "mp" 'ein:tb-prev-item
+    "mq" 'bury-buffer)
 
+  ;; keybindings mirror ipython web interface behavior
+  (evil-define-key 'insert ein:notebook-multilang-mode-map
+    (kbd "<C-return>") 'ein:worksheet-execute-cell
+    (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next)
+
+  ;; keybindings mirror ipython web interface behavior
+  (evil-define-key 'hybrid ein:notebook-multilang-mode-map
+    (kbd "<C-return>") 'ein:worksheet-execute-cell
+    (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next)
+
+  (evil-define-key 'normal ein:notebook-multilang-mode-map
     ;; keybindings mirror ipython web interface behavior
-    (evil-define-key 'insert ein:notebook-multilang-mode-map
-      (kbd "<C-return>") 'ein:worksheet-execute-cell
-      (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next)
-
-    ;; keybindings mirror ipython web interface behavior
-    (evil-define-key 'hybrid ein:notebook-multilang-mode-map
-      (kbd "<C-return>") 'ein:worksheet-execute-cell
-      (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next)
-
-    (evil-define-key 'normal ein:notebook-multilang-mode-map
-      ;; keybindings mirror ipython web interface behavior
-      (kbd "<C-return>") 'ein:worksheet-execute-cell
-      (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
-      "gj" 'ein:worksheet-goto-next-input
-      "gk" 'ein:worksheet-goto-prev-input)))
+    (kbd "<C-return>") 'ein:worksheet-execute-cell
+    (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
+    "gj" 'ein:worksheet-goto-next-input
+    "gk" 'ein:worksheet-goto-prev-input))
 
 (defun pyuic()
   "use pyuic convert .ui file to .py"
