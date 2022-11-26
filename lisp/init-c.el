@@ -120,8 +120,8 @@
 
 (use-package cpp-auto-include
   :config
-  (evil-leader/set-key-for-mode 'cc-mode
-    "m o i" 'cpp-auto-include))
+  (evil-leader/set-key-for-mode 'c++-mode
+    "moi" 'cpp-auto-include))
 
 ;;Live code checking.
 (use-package srefactor
