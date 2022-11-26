@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 197
+;;     Update #: 198
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -293,6 +293,7 @@
     "tw"  'toggle-frame-maximized
     "tf"  'toggle-frame-fullscreen
     "th"  'english-teacher-follow-mode
+    "tt"  'toggle-transparency
 
     "ww"  'other-window
     "wm"  'toggle-maximize-buffer
