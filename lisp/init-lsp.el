@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 172
+;;     Update #: 174
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,6 +113,7 @@
            lsp-completion-provider t
            lsp-signature-render-documentation nil
            lsp-enable-folding nil
+           lsp-lens-enable nil
            lsp-enable-semantic-highlighting nil
            lsp-enable-symbol-highlighting nil
            lsp-enable-text-document-color nil
