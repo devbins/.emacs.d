@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 175
+;;     Update #: 176
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,7 +53,8 @@
      :hook (prog-mode . lsp-bridge-mode)
      :config
      (require 'lsp-bridge-jdtls)
-     (setq lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++"))))
+     (setq lsp-bridge-c-lsp-server "ccls"
+           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++"))))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
