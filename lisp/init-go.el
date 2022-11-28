@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -146,7 +146,7 @@
     "mgc" 'go-coverage
     "mrN" 'go-rename
     "mri" 'go-impl
-    "mrs" 'go-fill-struct
+    "mrf" 'go-fill-struct
     "mrd" 'godoctor-godoc
     "mre" 'godoctor-extract
     "mrn" 'godoctor-rename
