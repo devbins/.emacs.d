@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 695
+;;     Update #: 696
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -612,12 +612,10 @@ prepended to the element after the #+HEADER: tag."
       (notify title msg))
     :bind (:map org-agenda-mode-map
            ("P" . org-pomodoro))
-    :hook ((org-pomodoro-started . (lambda ()(when sys/macp (do-applescript "tell application \"JustFocus\"\n    launch\n    start pomodoro\nend tell"))))
-           (org-pomodoro-finished . (lambda () (pomodoro-notify "Pomodoro Completed!" "Time for a break.")))
+    :hook ((org-pomodoro-finished . (lambda () (pomodoro-notify "Pomodoro Completed!" "Time for a break.")))
            (org-pomodoro-break-finished . (lambda () (pomodoro-notify "Pomodoro Short Break Finished" "Ready for Another?")))
            (org-pomodoro-long-break-finished . (lambda () (pomodoro-notify "Pomodoro Long Break Finished" "Ready for Another?")))
-           (org-pomodoro-killed . (lambda () (progn (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")
-                                               (when sys/macp (do-applescript "tell application \"JustFocus\"\n    stop\nend tell")))))))
+           (org-pomodoro-killed . (lambda () (pomodoro-notify "Pomodoro Killed" "One does not simply kill a pomodoro!")))))
 
   ;;change download dir -*- mode: Org; org-download-image-dir: "images"; -*-
   (use-package org-download
