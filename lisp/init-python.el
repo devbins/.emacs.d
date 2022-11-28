@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -78,6 +78,7 @@
   ;; Format using YAPF
   ;; Install: pip install yapf
   (use-package yapfify
+    :if (executable-find "yapf")
     :diminish yapf-mode
     :hook (python-mode . yapf-mode)))
 
