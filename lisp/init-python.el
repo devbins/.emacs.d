@@ -124,12 +124,22 @@
     "gj" 'ein:worksheet-goto-next-input
     "gk" 'ein:worksheet-goto-prev-input))
 
-(defun pyuic()
+(defun pyuic(file)
   "use pyuic convert .ui file to .py"
+  (interactive "fchoose .ui extension file: ")
+  (let* ((command (or (executable-find "pyuic6") (executable-find "pyuic5")))
+         (output (file-name-sans-extension (expand-file-name file)))
+         (ext (file-name-extension file)))
+    (if command
+        (if (string= ext "ui")
+            (shell-command (format "%s %s -o %s.py" command file output))
+          (message "not .ui file, require .ui type file"))
+      (message "can not found pyuic, please install PyQt6-tools"))))
+
+(defun pyuic-current-buffer()
+  "convert current .ui file to .py"
   (interactive)
-  (let ((name (file-relative-name (buffer-file-name))))
-    (shell-command
-     (format "%s %s -o %s.py" (or (executable-find "pyuic6") (executable-find "pyuic5")) name (file-name-sans-extension name)))))
+  (pyuic (buffer-file-name)))
 
 (defun uic()
   "use uic convert .ui file to .h"
