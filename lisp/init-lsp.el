@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 176
+;;     Update #: 185
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -375,7 +375,7 @@
    (use-package lsp-java
      :hook (java-mode . (lambda () (require 'lsp-java))))))
 
-(when (memq my-lsp '(lsp-mode eglot))
+(unless (eq my-lsp 'lsp-bridge)
     ;; Enable LSP in org babel
     ;; https://github.com/emacs-lsp/lsp-mode/issues/377
     (cl-defmacro lsp-org-babel-enable (lang)
