@@ -160,7 +160,7 @@
 
 ;; Persistent the scratch buffer
 (use-package persistent-scratch
-  :if (memq my-lsp '(lsp-mode eglot))
+  :if (not (eq my-lsp 'lsp-bridge))
   :diminish
   :hook ((after-init . persistent-scratch-autosave-mode)
          (lisp-interaction-mode . persistent-scratch-mode)))
