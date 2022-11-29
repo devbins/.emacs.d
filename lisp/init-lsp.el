@@ -51,6 +51,8 @@
    (use-package lsp-bridge
      :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
      :hook (after-init . global-lsp-bridge-mode)
+     :bind (:map lsp-bridge-mode-map
+            ("C-c C-t" . lsp-bridge-toggle-sdcv-helper))
      :init
      (setq lsp-bridge-enable-mode-line nil)
      :config
