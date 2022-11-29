@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -111,34 +111,6 @@
   :after corfu
   :commands (toggle-corfu-english-helper corfu-english-helper-search)
   :bind ("C-c t e" . 'toggle-corfu-english-helper))
-
-(use-package copilot
-  :quelpa (copilot :fetcher github :repo "zerolfx/copilot.el"
-                   :files ("*.el" "dist"))
-  :init
-  ;; accept completion from copilot and fallback to company
-  (defun my-tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-        (corfu-complete))))
-
-
-;; install dependences
-;; brew install deno
-;; sudo pacman -S deno
-(use-package deno-bridge
-  :disabled
-  :quelpa (deno-bridge :fetcher github :repo "manateelazycat/deno-bridge"))
-
-(use-package insert-translated-name
-  :disabled
-  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name" :files ("*"))
-  :bind ("C-c t t" . 'insert-translated-name-insert)
-  :commands (insert-translated-name-insert)
-  :init (setq insert-translated-name-translate-engine 'youdao)
-  :config
-  (defvar insert-translated-name-camel-style-mode-list
-    '(go-mode)))
 
 (provide 'init-corfu)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
