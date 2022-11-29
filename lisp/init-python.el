@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 35
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -141,14 +141,22 @@
   (interactive)
   (pyuic (buffer-file-name)))
 
-(defun uic()
+(defun uic(file)
   "use uic convert .ui file to .h"
+  (interactive "fchoose .ui extension file: ")
+  (let* ((command (executable-find "uic"))
+         (output (file-name-sans-extension (expand-file-name file)))
+         (ext (file-name-extension file)))
+    (if command
+        (if (string= ext "ui")
+            (shell-command (format "%s %s -o %s.h" command file output))
+          (message "not .ui file, require .ui type file"))
+      (message "can not found pyuic, please install Qt"))))
+
+(defun uic-current-buffer()
+  "convert current .ui file to .h"
   (interactive)
-  (if (executable-find "uic")
-      (let ((name (file-relative-name (buffer-file-name))))
-        (shell-command
-         (format "uic %s -o %s.h" name (file-name-sans-extension name))))
-    (message "can not find uic")))
+  (uic (buffer-file-name)))
 
 (provide 'init-python)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
