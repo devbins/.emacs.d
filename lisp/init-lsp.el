@@ -50,7 +50,9 @@
   ('lsp-bridge
    (use-package lsp-bridge
      :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
-     :hook (prog-mode . lsp-bridge-mode)
+     :hook (after-init . global-lsp-bridge-mode)
+     :init
+     (setq lsp-bridge-enable-mode-line nil)
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
