@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 187
+;;     Update #: 188
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -60,11 +60,10 @@
      (setq lsp-bridge-c-lsp-server "ccls"
            lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++")))
    (use-package tree-sitter
-     :init
-     (use-package tree-sitter-langs)
+     :hook (prog-mode . tree-sitter-hl-mode)
      :config
-     (global-tree-sitter-mode)
-     (add-hook 'prog-mode-hook #'tree-sitter-hl-mode)))
+     (use-package tree-sitter-langs)
+     (global-tree-sitter-mode)))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
