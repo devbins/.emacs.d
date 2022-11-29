@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 86
+;;     Update #: 91
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -109,7 +109,8 @@
 (require 'init-ui)
 (require 'init-edit)
 (require 'init-vertico)
-(require 'init-corfu)
+(unless (eq my-lsp 'lsp-bridge)
+  (require 'init-corfu))
 
 (require 'init-calendar)
 (require 'init-dashboard)
