@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 188
+;;     Update #: 189
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,7 +58,7 @@
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
-           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++")))
+           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh")))
    (use-package tree-sitter
      :hook (prog-mode . tree-sitter-hl-mode)
      :config
