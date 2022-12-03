@@ -58,12 +58,7 @@
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
-           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh")))
-   (use-package tree-sitter
-     :hook (prog-mode . tree-sitter-hl-mode)
-     :config
-     (use-package tree-sitter-langs)
-     (global-tree-sitter-mode)))
+           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh"))))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
