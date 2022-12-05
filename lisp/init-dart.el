@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,6 +52,7 @@
   :init (setq dart-format-on-save t)
   :config
   (use-package lsp-dart
+    :if (eq my-lsp 'lsp-mode)
     :init (setq lsp-dart-sdk-dir "~/flutter/bin/cache/dart-sdk")
     :hook (dart-mode . lsp))
   (evil-leader/set-key-for-mode 'dart-mode
