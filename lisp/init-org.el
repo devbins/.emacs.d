@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 696
+;;     Update #: 703
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -914,6 +914,7 @@ same directory as the org-buffer and insert a link to this file."
 
 ;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
+  :commands (org-roam-alias-add)
   :custom
   (org-roam-v2-ack t)
   (org-roam-directory (expand-file-name "~/.org"))
