@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,10 +51,10 @@
   :defines (projectile-project-root-files-bottom-up)
   :init (setq dart-format-on-save t)
   :config
-  (use-package lsp-dart
-    :if (eq my-lsp 'lsp-mode)
-    :init (setq lsp-dart-sdk-dir "~/flutter/bin/cache/dart-sdk")
-    :hook (dart-mode . lsp))
+  (when (eq my-lsp 'lsp-mode)
+    (use-package lsp-dart
+      :init (setq lsp-dart-sdk-dir "~/flutter/bin/cache/dart-sdk")
+      :hook (dart-mode . lsp)))
   (evil-leader/set-key-for-mode 'dart-mode
     "mxx" 'flutter-run-or-hot-reload)
 
