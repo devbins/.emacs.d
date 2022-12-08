@@ -49,9 +49,10 @@
 ;; Python Mode
 ;; Install:
 ;;   pip install pyflakes
-;;   pip install autopep8
+;;   pip install autoflake
 (use-package python
   :ensure nil
+  :bind(:map python-mode-map ("C-c c" . compile))
   :hook (inferior-python-mode . (lambda ()
                                   (process-query-on-exit-flag
                                    (get-process "Python"))))
