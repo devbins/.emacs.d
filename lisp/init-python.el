@@ -82,7 +82,12 @@
   (use-package yapfify
     :if (executable-find "yapf")
     :diminish yapf-mode
-    :hook (python-mode . yapf-mode)))
+    :hook (python-mode . yapf-mode))
+
+  ;; Google docstring style
+  (use-package python-insert-docstring
+    :bind (:map python-mode-map
+           ("C-c i" . python-insert-docstring-with-google-style-at-point)))
 
 (use-package conda
   :if (executable-find "conda")
