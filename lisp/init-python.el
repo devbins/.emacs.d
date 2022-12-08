@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,6 +88,10 @@
   (use-package python-insert-docstring
     :bind (:map python-mode-map
            ("C-c i" . python-insert-docstring-with-google-style-at-point)))
+
+  ;; sort python import
+  (use-package py-isort
+    :hook (before-save . py-isort-before-save)))
 
 (use-package conda
   :if (executable-find "conda")
