@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -109,7 +109,9 @@
                                                           go-build
                                                           go-test
                                                           go-errcheck))
-                       (flycheck-golangci-lint-setup))))
+                       (flycheck-golangci-lint-setup)))
+    :config
+    (setq flycheck-golangci-lint-disable-linters '("unused")))
 
   ;; go install github.com/fatih/gomodifytags@latest
   (use-package go-tag
