@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 198
+;;     Update #: 199
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -357,6 +357,10 @@
 ;; evil NERD commenter, commenting awesomeness!
 (use-package evil-nerd-commenter
   :config (evilnc-default-hotkeys))
+
+(use-package evil-matchit
+  :after evil
+  :hook ((prog-mode org-mode) . turn-on-evil-matchit-mode))
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
