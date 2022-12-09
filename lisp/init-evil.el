@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 199
+;;     Update #: 202
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -264,6 +264,8 @@
     "pv"  'projectile-vc
     "px"  'projectile-remove-known-project
     "pz"  'projectile-cache-current-file
+
+    "po"  'poetry                       ;; Python poetry
 
     "Pc"  'password-store-copy
     "Pg"  'password-store-generate
