@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,6 +103,7 @@
   (unless (getenv "CONDA_DEFAULT_ENV")
     (conda-env-activate "base")))
 
+(use-package poetry)
 (use-package ein
   :defer t
   :commands (ein:notebooklist-open ein:notebooklist-login ein:run ein:stop)
