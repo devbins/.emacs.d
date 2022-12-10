@@ -358,7 +358,7 @@
 
 ;; evil NERD commenter, commenting awesomeness!
 (use-package evil-nerd-commenter
-  :config (evilnc-default-hotkeys))
+  :init (evilnc-default-hotkeys))
 
 (use-package evil-matchit
   :after evil
