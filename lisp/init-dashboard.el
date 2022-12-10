@@ -110,6 +110,7 @@
                    "矮人看戏何曾见，都是随人说长短。——赵翼"
                    "如同明月将死那样生活，如同永远不死那样求知。——甘地")
         dashboard-startup-banner 'official
+        dashboard-startup-banner (expand-file-name (if (display-graphic-p) (format "logo/logo%d.png" (random 8)) "banner.txt") user-emacs-directory)
         dashboard-center-content t
         dashboard-show-shortcuts nil
         dashboard-items '((recents  . 10)
