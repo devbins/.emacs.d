@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 202
+;;     Update #: 204
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -362,6 +362,7 @@
 
 (use-package evil-matchit
   :after evil
+  :commands evilmi--region-to-select-or-delete
   :hook ((prog-mode org-mode) . turn-on-evil-matchit-mode))
 
 ;; esc quits
