@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -59,6 +59,7 @@
   (defvar go--tools '("golang.org/x/tools/gopls"
                       "golang.org/x/tools/cmd/goimports"
                       "honnef.co/go/tools/cmd/staticcheck"
+                      "github.com/godoctor/godoctor"
                       "github.com/go-delve/delve/cmd/dlv"
                       "github.com/zmb3/gogetdoc"
                       "github.com/josharian/impl"
@@ -90,10 +91,9 @@
     (go-update-tools))
 
   ;; Misc
-  (use-package go-dlv)
+  (use-package go-dlv) ;; debug go
   (use-package go-fill-struct)
   (use-package go-impl)
-  (use-package go-rename)
   (use-package godoctor)
 
   ;; Install: See https://github.com/golangci/golangci-lint#install
@@ -146,13 +146,11 @@
     "mer" 'go-play-region
     "mga" 'ff-find-other-file
     "mgc" 'go-coverage
-    "mrN" 'go-rename
     "mri" 'go-impl
     "mrf" 'go-fill-struct
     "mrd" 'godoctor-godoc
     "mre" 'godoctor-extract
     "mrn" 'godoctor-rename
-    "mrt" 'godoctor-toggle
     "m="  'gofmt
     "mxx" 'go-run-main
     "mta" 'go-tag-add
