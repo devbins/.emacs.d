@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 93
+;;     Update #: 95
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -282,6 +282,10 @@
 (use-package delsel
   :ensure nil
   :hook (after-init . delete-selection-mode))
+
+(use-package docstr
+  :init (setq docstr-key-support t)
+  :hook (prog-mode . docstr-mode))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
