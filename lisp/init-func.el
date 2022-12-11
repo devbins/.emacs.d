@@ -303,8 +303,8 @@ Same as `replace-string C-q C-m RET RET'."
 
 (defun open-file-or-directory-in-external-app (arg)
   "Open current file in external application.
-If the universal prefix argument is used then open the folder
-containing the current file by the default explorer."
+   If the universal prefix argument is used then open the folder
+   containing the current file by the default explorer."
   (interactive "P")
   (if arg
       (open-in-external-app (expand-file-name default-directory))
