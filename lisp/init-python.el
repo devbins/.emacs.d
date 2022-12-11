@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 48
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,6 +88,10 @@
   (use-package python-insert-docstring
     :bind (:map python-mode-map
            ("C-c i" . python-insert-docstring-with-google-style-at-point)))
+
+  ;; sphinx doc style
+  (use-package sphinx-doc
+    :hook (python-mode . sphinx-doc-mode))
 
   ;; sort python import
   (use-package py-isort
