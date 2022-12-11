@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 62
+;;     Update #: 73
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -341,6 +341,12 @@ Same as `replace-string C-q C-m RET RET'."
   (cond (sys/macp (notify-osx title msg))
         (sys/linuxp (notify-linux title msg))
         (sys/win32p (notify-windows title msg))))
+
+(defun shortcut-ocr()
+  "Use OCR shortcut https://emacs-china.org/t/emacs-macos-ocr/23071"
+  (interactive)
+  (shell-command "shortcuts run \"OCR Selected Area\"")
+  (do-applescript "tell application id \"org.gnu.Emacs\" to activate"))
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
