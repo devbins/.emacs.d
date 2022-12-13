@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 36
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -218,7 +218,7 @@
   :diminish
   :pretty-hydra
   ((:title (pretty-hydra-title "Smerge" 'octicon "diff")
-    :color pink :quit-key "q" "C-g")
+           :color pink :quit-key ("q" "C-g"))
    ("Move"
     (("n" smerge-next "next")
      ("p" smerge-prev "previous"))
