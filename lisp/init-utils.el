@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 143
+;;     Update #: 144
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -360,13 +360,6 @@
   :config
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
-
-(use-package org-excalidraw
-  :quelpa (org-excalidraw :fetcher github :repo "wdavew/org-excalidraw")
-  :hook (org-mode . (lambda ()
-                       (org-excalidraw-initialize)))
-  :config
-  (setq org-excalidraw-directory "~/.org/excalidraw"))
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
