@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 144
+;;     Update #: 154
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -244,7 +244,8 @@
 ;; Emacs-appcliation-framework
 (use-package eaf
   :quelpa (eaf :fetcher github :repo "emacs-eaf/emacs-application-framework" :files ("*"))
-  :commands (eaf-open eaf-open-browser eaf-open-browser-with-history)
+  :commands (eaf-open eaf-open-browser eaf-open-browser-with-history eaf-monitor-window-buffer-change)
+  :hook (eaf-mode . (lambda () (vertico-posframe-mode -1)))
   :preface
   (defun eaf-proxy-enable ()
     "Enable proxy in eaf"
@@ -264,27 +265,14 @@
   (eaf-browser-continue-where-left-off t)
   (eaf-python-command (executable-find "python3"))
   :config
-  (require 'eaf-file-manager nil t)
-  (require 'eaf-music-player nil t)
-  (require 'eaf-image-viewer nil t)
-  (require 'eaf-camera nil t)
+  (require 'eaf-evil nil t)
   (require 'eaf-js-video-player nil t)
-  (require 'eaf-demo nil t)
-  (require 'eaf-airshare nil t)
-  (require 'eaf-terminal nil t)
   (require 'eaf-markdown-previewer nil t)
-  (require 'eaf-video-player nil t)
-  (require 'eaf-vue-demo nil t)
-  (require 'eaf-file-sender nil t)
-  (require 'eaf-pdf-viewer nil t)
   (require 'eaf-mindmap nil t)
-  (require 'eaf-netease-cloud-music nil t)
   (require 'eaf-jupyter nil t)
   (require 'eaf-org-previewer nil t)
-  (require 'eaf-system-monitor nil t)
-  (require 'eaf-file-browser nil t)
   (require 'eaf-browser nil t)
-  (require 'eaf-org)
+  (require 'eaf-org nil t)
   (when (display-graphic-p)
     (require 'eaf-all-the-icons))
   (defalias 'browse-web #'eaf-open-browser)
@@ -292,24 +280,12 @@
   (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
   (eaf-bind-key open_devtools "M-i" eaf-browser-keybinding)
   (eaf-bind-key insert_or_recover_prev_close_page "X" eaf-browser-keybinding)
-  (eaf-bind-key scroll_up "RET" eaf-pdf-viewer-keybinding)
   (eaf-bind-key clear_cookies "C-M-q" eaf-browser-keybinding)
   (eaf-bind-key clear_history "C-M-p" eaf-browser-keybinding)
-  (eaf-bind-key scroll_down_page "DEL" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key scroll_down_page "u" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key scroll_up_page "d" eaf-pdf-viewer-keybinding)
   (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
-  (eaf-bind-key scroll_to_end "M->" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key scroll_to_begin "M-<" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key quit-window "q" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key zoom_in "C-=" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key zoom_out "C--" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key take_photo "p" eaf-camera-keybinding)
-  (eaf-bind-key eaf-send-key-sequence "M-]" eaf-terminal-keybinding)
   (setq eaf-browser-enable-adblocker "true"
         eaf-browser-enable-autofill "true"
-        eaf-browser-dark-mode nil
-        eaf-paf-dark-mode nil))
+        eaf-browser-dark-mode nil))
 
 (use-package eww
   :ensure nil
