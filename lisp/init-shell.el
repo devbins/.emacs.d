@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -169,7 +169,7 @@
                    :min-width width
                    :min-height height
                    :internal-border-width 3
-                   :internal-border-color (face-foreground 'font-lock-comment-face nil t)
+                   :internal-border-color (face-foreground 'font-lock-comment-face unspecified t)
                    :background-color (face-background 'tooltip nil t)
                    :override-parameters '((cursor-type . t))
                    :accept-focus t))
