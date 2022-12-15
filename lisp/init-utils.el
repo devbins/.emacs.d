@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 154
+;;     Update #: 158
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -244,7 +244,7 @@
 ;; Emacs-appcliation-framework
 (use-package eaf
   :quelpa (eaf :fetcher github :repo "emacs-eaf/emacs-application-framework" :files ("*"))
-  :commands (eaf-open eaf-open-browser eaf-open-browser-with-history eaf-monitor-window-buffer-change)
+  :commands (eaf-open eaf-open-browser eaf-open-browser-with-history)
   :hook (eaf-mode . (lambda () (vertico-posframe-mode -1)))
   :preface
   (defun eaf-proxy-enable ()
@@ -275,8 +275,6 @@
   (require 'eaf-org nil t)
   (when (display-graphic-p)
     (require 'eaf-all-the-icons))
-  (defalias 'browse-web #'eaf-open-browser)
-  (eaf-bind-key nil "M-q" eaf-browser-keybinding)
   (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
   (eaf-bind-key open_devtools "M-i" eaf-browser-keybinding)
   (eaf-bind-key insert_or_recover_prev_close_page "X" eaf-browser-keybinding)
