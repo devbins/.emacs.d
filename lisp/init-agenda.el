@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 110
+;;     Update #: 111
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -84,9 +84,9 @@
     "Set different line spacing based on clock time duration."
     (save-excursion
       (let* ((colors (cl-case (alist-get 'background-mode (frame-parameters))
-		               ('light
+		               (light
 		                (list "#F6B1C3" "#FFFF9D" "#BEEB9F" "#ADD5F7"))
-		               ('dark
+		               (dark
 		                (list "#1ABC9C" "#2ECC71" "#3498D8" "#9966ff"))))
              pos
              duration)
