@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -108,14 +108,18 @@
     ("[X]" . ?☑)
     ("[-]" . ?⛝)
 
+    (":PROPERTIES:"   . ?)
+    (":ID:"           . ?🪪)
+    (":END:"          . ?🔚)
+
     ("#+ARCHIVE:" . ?📦)
     ("#+AUTHOR:" . ?👤)
     ("#+CREATOR:" . ?💁)
     ("#+DATE:" . ?📆)
     ("#+DESCRIPTION:" . ?⸙)
     ("#+EMAIL:" . ?📧)
-    ("#+OPTIONS:" . ?⛭)
-    ("#+SETUPFILE:" . ?⛮)
+    ("#+OPTIONS:" . ?⚙)
+    ("#+SETUPFILE:" . ?⚒)
     ("#+TAGS:" . ?🏷)
     ("#+TITLE:" . ?📓)
 
