@@ -194,7 +194,7 @@ prepended to the element after the #+HEADER: tag."
   (add-to-list 'org-modules 'org-protocol)
   (defface org-bold
     '((t :foreground "#d2268b"
-         :background nil
+         :background unspecified
          :weight bold
          :underline t
          :overline t))
