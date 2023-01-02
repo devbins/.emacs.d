@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 64
+;;     Update #: 65
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -79,8 +79,6 @@
      ("Q" quit-dashboard "quit" :exit t))))
   :bind (("<f2>" . open-dashboard)
          :map dashboard-mode-map
-         ("<mouse-1>" . widget-button-click)
-         ("<mouse-2>" . widget-button-click)
          ("H" . browse-homepage)
          ("R" . restore-previous-session)
          ("L" . restore-session)
