@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -207,6 +207,9 @@ FACE defaults to inheriting from default and highlight."
 ;; Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package rainbow-identifiers
+  :hook (prog-mode . rainbow-identifiers-mode))
 
 ;; Highlight TODO and similar keywords in comments and strings
 (use-package hl-todo
