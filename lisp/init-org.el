@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 705
+;;     Update #: 708
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -276,6 +276,7 @@ prepended to the element after the #+HEADER: tag."
           (quote
            (("@HOME" . "🏠")
             ("@OFFICE" . "🏢")
+            ("ARCHIVE". "📦")
             ("READING" . "📚")
             ("WORK" . "💼")
             ("BLOG" . "✍️")
