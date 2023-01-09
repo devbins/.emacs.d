@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 190
+;;     Update #: 191
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,7 +58,8 @@
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
-           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh"))))
+           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh")
+           lsp-bridge-use-ds-pinyin-in-org-mode t)))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
