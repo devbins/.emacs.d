@@ -293,7 +293,13 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Show hidden emphasis markers
   (use-package org-appear
-    :hook (org-mode . org-appear-mode))
+    :hook (org-mode . org-appear-mode)
+    :config
+    (setq org-appear-autolinks t
+          org-appear-autosubmarkers t
+          org-appear-autoentities t
+          org-appear-autokeywords t
+          org-appear-inside-latex t))
 
   ;; Babel
   (setq org-confirm-babel-evaluate nil
