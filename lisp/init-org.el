@@ -414,7 +414,11 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-preview-html
     :diminish)
 
-  (use-package org-inline-pdf)
+  ;; brew install pdf2svg
+  (use-package org-inline-pdf
+    :hook (org-mode . org-inline-pdf-mode))
+  (use-package org-inline-anim
+    :hook (org-mode . org-inline-anim-mode))
   ;; 在网址后面加上 ?print-pdf 可以生成pdf格式
   (use-package ox-reveal
     :hook (org-mode . (lambda() (require 'ox-reveal)))
