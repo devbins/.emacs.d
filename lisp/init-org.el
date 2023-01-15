@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 708
+;;     Update #: 720
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -939,6 +939,9 @@ same directory as the org-buffer and insert a link to this file."
   (org-roam-v2-ack t)
   (org-roam-directory (expand-file-name "~/.org"))
   (org-roam-mute-cache-build t)
+  (org-roam-graph-viewer (if (featurep 'xwidget-internal)
+                             #'xwidget-webkit-browse-url
+                           #'browse-url))
   :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n g" . org-roam-graph)
@@ -961,17 +964,19 @@ same directory as the org-buffer and insert a link to this file."
     "mri" 'org-roam-insert
     "mrg" 'org-roam-graph)
 
-(use-package org-roam-ui
-  :after org-roam
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t)))
+  (use-package org-roam-ui
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t)
+    (when (featurep 'xwidget-internal)
+      (setq org-roam-ui-browser-function #'xwidget-webkit-browse-url)))
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
-    :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
+    :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
