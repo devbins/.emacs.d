@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -74,6 +74,7 @@
   ;; Show TODOs in magit
   (use-package magit-todos
     :init
+    (setq magit-todos-scanner #'magit-todos--scan-with-git-grep)
     (setq magit-todos-nice (if (executable-find "nice") t nil)
           magit-todos-exclude-globs '("*.map"))
     (let ((inhibit-message t))
