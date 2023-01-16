@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -59,6 +59,10 @@
 ;; loaded, but after `early-init-file'. We handle package
 ;; initialization, so we must prevent Emacs from doing it early!
 (setq package-enable-at-startup nil)
+
+;; `use-package' is builtin since 29.
+;; It must be set before loading `use-package'.
+(setq use-package-enable-imenu-support t)
 
 ;; Inhibit resizing frame
 (setq frame-inhibit-implied-resize t)
