@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 171
+;;     Update #: 172
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -157,7 +157,7 @@
         xref-show-definitions-function #'consult-xref)
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :config
-  (setq consult-preview-key (kbd "M-."))
+  (setq consult-preview-key "M-.")
   (defvar-local consult-toggle-preview-orig nil)
   (defun consult-toggle-preview ()
     "Command to enable/disable preview."
