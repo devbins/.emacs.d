@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 158
+;;     Update #: 163
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -155,8 +155,10 @@
   :init (setq docker-image-run-arguments '("-i" "-t" "--rm")
               docker-container-shell-file-name "/bin/bash"))
 
-;; Docker tramp
-(use-package docker-tramp)
+;; `tramp-container' is builtin since 29
+(unless emacs/>=29p
+  (use-package docker-tramp))
+
 
 ;; Persistent the scratch buffer
 (use-package persistent-scratch
