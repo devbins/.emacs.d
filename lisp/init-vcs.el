@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 40
+;;     Update #: 43
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,11 +68,25 @@
       "-p" '("-t" "Fetch all tags" ("-t" "--tags"))))
 
   ;; Access Git forges from Magit
-  (when (executable-find "cc")
-    (use-package forge))
+  (use-package forge
+    :defines (forge-database-connector forge-topic-list-columns)
+    :custom-face
+    (forge-topic-label ((t (:inherit variable-pitch :height 0.9 :width condensed :weight regular :underline nil))))
+    :init
+    (setq forge-database-connector (if (and (require 'emacsql-sqlite-builtin nil t)
+                                            (functionp 'emacsql-sqlite-builtin)
+                                            (functionp 'sqlite-open))
+                                       'sqlite-builtin
+                                     'sqlite)
+          forge-topic-list-columns
+          '(("#" 5 forge-topic-list-sort-by-number (:right-align t) number nil)
+            ("Title" 60 t nil title  nil)
+            ("State" 6 t nil state nil)
+            ("Updated" 10 t nil updated nil))))
 
   ;; Show TODOs in magit
   (use-package magit-todos
+    :commands magit-todos--scan-with-git-grep
     :init
     (setq magit-todos-scanner #'magit-todos--scan-with-git-grep)
     (setq magit-todos-nice (if (executable-find "nice") t nil)
