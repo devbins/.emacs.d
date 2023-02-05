@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,15 +45,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
-(if (and (fboundp 'native-comp-available-p) (native-comp-available-p) (fboundp 'json-serialize))
-    (setq comp-deferred-compilation t
-          comp-speed 2
-          warning-minimum-level :error)
-     (message "Not support native-comp"))
 
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.5)
+
+;; Prevent unwanted runtime compilation for gccemacs (native-comp) users;
+;; packages are compiled ahead-of-time when they are installed and site files
+;; are compiled when gccemacs is installed.
+(setq native-comp-deferred-compilation nil)
 
 ;; Package initialize occurs automatically, before `user-init-file' is
 ;; loaded, but after `early-init-file'. We handle package
@@ -64,6 +64,11 @@
 ;; It must be set before loading `use-package'.
 (setq use-package-enable-imenu-support t)
 
+;; In noninteractive sessions, prioritize non-byte-compiled source files to
+;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
+;; to skip the mtime checks on every *.elc file.
+(setq load-prefer-newer noninteractive)
+
 ;; Inhibit resizing frame
 (setq frame-inhibit-implied-resize t)
 
@@ -73,6 +78,7 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 (when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))
+(setq-default mode-line-format nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; early-init.el ends here
