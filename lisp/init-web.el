@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -176,7 +176,7 @@
 ;; https://manateelazycat.github.io/emacs/2018/09/17/indium.html
 (use-package indium
   :defer t
-  :hook(js2-mode . indium-interaction))
+  :hook(js2-mode . indium-interaction-mode))
 
 (use-package ebuku)
 
