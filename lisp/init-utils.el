@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 163
+;;     Update #: 164
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -267,13 +267,13 @@
   (eaf-browser-continue-where-left-off t)
   (eaf-python-command (executable-find "python3"))
   :config
+  (require 'eaf-browser nil t)
   (require 'eaf-evil nil t)
   (require 'eaf-js-video-player nil t)
   (require 'eaf-markdown-previewer nil t)
   (require 'eaf-mindmap nil t)
   (require 'eaf-jupyter nil t)
   (require 'eaf-org-previewer nil t)
-  (require 'eaf-browser nil t)
   (require 'eaf-org nil t)
   (when (display-graphic-p)
     (require 'eaf-all-the-icons))
