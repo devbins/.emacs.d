@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -182,7 +182,7 @@
     (add-hook 'process-menu-mode-hook
               (lambda ()
                 (setq tabulated-list-format
-                      (vconcat `(("" ,(if (icon-displayable-p) 2 0)))
+                      (vconcat `(("" ,(if (icons-displayable-p) 2 0)))
                                tabulated-list-format))))
 
     (defun my-list-processes--prettify ()
@@ -191,7 +191,7 @@
         (setq tabulated-list-entries nil)
         (dolist (p (process-list))
           (when-let* ((val (cadr (assoc p entries)))
-                      (icon (if (icon-displayable-p)
+                      (icon (if (icons-displayable-p)
                                 (concat
                                  " "
                                  (all-the-icons-faicon "bolt"
