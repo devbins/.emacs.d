@@ -140,9 +140,11 @@
 
         org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
         org-agenda-files (list org-agenda-dir)
+        org-agenda-diary-file (expand-file-name "diary.org" org-agenda-dir)
         org-agenda-file-regexp "\\`[^.].*\\.org\\(_archive\\)?\\'"
         org-agenda-time-leading-zero t
         org-agenda-include-diary t
+        org-agenda-insert-diary-extract-time t
         org-agenda-show-log t
         org-agenda-log-mode-items '(clock)
         org-agenda-compact-blocks t
