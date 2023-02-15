@@ -122,6 +122,10 @@
                                      "......" "----------------")
         org-agenda-current-time-string "⭠ now ─────────────────────────────────────────────────"
 
+          ;; 计划中的任务不提醒截止时间
+        org-agenda-skip-deadline-prewarning-if-scheduled 1
+        org-agenda-skip-scheduled-if-deadline-is-shown t
+        org-agenda-skip-timestamp-if-deadline-is-shown t
 
         org-agenda-align-tags-to-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
         org-agenda-tags-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
