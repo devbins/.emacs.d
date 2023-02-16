@@ -114,7 +114,7 @@
         org-agenda-inhibit-startup t   ;; ~50x speedup
         org-agenda-use-tag-inheritance nil ;; 3-4x speedup
         ;;https://sachachua.com/blog/2015/06/adding-calculations-based-on-time-to-the-org-agenda-clock-report/
-        org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80))
+        org-agenda-clockreport-parameter-plist '(:link t :maxlevel 5 :fileskip0 t :compact t :narrow 80)
         org-agenda-use-time-grid t
         org-agenda-block-separator ?─
         org-agenda-time-grid '((daily today require-timed)
