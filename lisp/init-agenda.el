@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 111
+;;     Update #: 121
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -154,15 +154,6 @@
                                       (todo priority-down category-keep)
                                       (tags priority-down category-keep)))
   :config
-  (require 'org-habit)
-  (setq org-habit-show-done-always-green t
-        ;; 减少显示天数，使其可以放在任务条的左边
-        org-habit-graph-column 1
-        org-habit-preceding-days 10
-        org-habit-following-days 2
-        ;; 恢复默认日历行为
-        org-habit-show-habits-only-for-today nil)
-
   (setq org-agenda-custom-commands
         '(("r" "Daily Agenda Review"
            ((agenda "" ((org-agenda-overriding-header "今日记录")
@@ -225,6 +216,17 @@
     "mie"                       'org-agenda-set-effort
     "mit"                       'org-agenda-set-tags
     "msr"                       'org-agenda-refile)
+
+
+  (use-package org-habit
+    :ensure nil
+    :init
+    (setq org-habit-show-done-always-green t
+          ;; 减少显示天数，使其可以放在任务条的左边
+          org-habit-graph-column 70
+          org-habit-preceding-days 10
+          org-habit-following-days 2
+          org-habit-show-habits-only-for-today nil))
 
   ;; Add graphical view of agenda
   (use-package org-timeline
