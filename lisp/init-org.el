@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 722
+;;     Update #: 725
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -155,9 +155,11 @@ prepended to the element after the #+HEADER: tag."
               ;; #+CAPTION: 设定图片宽度为100
               ;; #+ATTR_HTML: :width 100
               ;; file:data/2013/pict/test.png
-              org-image-actual-width (/ (display-pixel-width) 3)
+              org-image-actual-width 300
               org-startup-with-inline-images t
               org-display-remote-inline-images 'download
+              original-image-width-before-del "300" ; 设置图片的默认宽度为400
+              original-caption-before-del ""        ; 设置默认的图示文本为空
 
               org-hide-leading-stars t
               org-fontify-whole-heading-line t
