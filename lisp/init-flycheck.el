@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -67,8 +67,6 @@
     :hook (flycheck-mode . flycheck-posframe-mode)
     :init
     (setq flycheck-posframe-border-width 1)
-    (add-hook 'flycheck-posframe-inhibit-functions
-              (lambda (&rest _) (bound-and-true-p company-backend)))
     :config
     (with-no-warnings
       ;; FIXME: Prettify the child frame.
