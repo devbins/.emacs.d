@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 194
+;;     Update #: 204
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -272,6 +272,11 @@ If FRAME is nil, it defaults to the selected frame."
   (use-package posframe
     :hook (after-load-theme . posframe-delete-all)
     :init
+    (defface posframe-border
+      `((t (:inherit region)))
+      "Face used by the `posframe' border."
+      :group 'posframe)
+
     (with-eval-after-load 'persp-mode
       (add-hook 'persp-load-buffer-functions
                 (lambda (&rest _)
@@ -286,7 +291,8 @@ If FRAME is nil, it defaults to the selected frame."
         (cons (/ (- (plist-get info :parent-frame-width)
                     (plist-get info :posframe-width))
                  2)
-              (/ (plist-get info :parent-frame-height)
+              (/ (+ (plist-get info :parent-frame-height)
+                    (* 2 (plist-get info :font-height)))
                  2))))))
 
 (use-package shrface
