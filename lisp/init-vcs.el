@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 43
+;;     Update #: 44
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -93,10 +93,6 @@
           magit-todos-exclude-globs '("*.map"))
     (let ((inhibit-message t))
         (magit-todos-mode 1))
-    :bind (:map magit-todos-section-map
-           ("j" . nil)
-           :map magit-todos-item-section-map
-           ("j" . nil))
     :config
     (with-eval-after-load 'magit-status
         (transient-append-suffix 'magit-status-jump '(0 0 -1)
