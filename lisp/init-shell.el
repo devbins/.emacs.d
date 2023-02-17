@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -122,28 +122,83 @@
                      (interactive)
                      (and (fboundp 'shell-pop-toggle)
                         (shell-pop-toggle)))))
-    :init (setq vterm-always-compile-module t)))
+    :init (setq vterm-always-compile-module t))
+
+  (use-package multi-vterm
+    :bind ("C-<f9>" . multi-vterm)
+    :custom (multi-vterm-buffer-name "vterm")
+    :config
+    (with-no-warnings
+      ;; Use `pop-to-buffer' instead of `switch-to-buffer'
+      (defun my-multi-vterm ()
+        "Create new vterm buffer."
+        (interactive)
+        (let ((vterm-buffer (multi-vterm-get-buffer)))
+          (setq multi-vterm-buffer-list
+                (nconc multi-vterm-buffer-list (list vterm-buffer)))
+          (set-buffer vterm-buffer)
+          (multi-vterm-internal)
+          (pop-to-buffer vterm-buffer)))
+      (advice-add #'multi-vterm :override #'my-multi-vterm)
+
+      ;; FIXME: `project-root' is introduced in 27+.
+      (defun my-multi-vterm-project-root ()
+        "Get `default-directory' for project using projectile or project.el."
+        (unless (boundp 'multi-vterm-projectile-installed-p)
+          (setq multi-vterm-projectile-installed-p (require 'projectile nil t)))
+        (if multi-vterm-projectile-installed-p
+            (projectile-project-root)
+          (let ((project (or (project-current) `(transient . ,default-directory))))
+            (if (fboundp 'project-root)
+                (project-root project)
+              (cdr project)))))
+      (advice-add #'multi-vterm-project-root :override #'my-multi-vterm-project-root))))
 
 ;; Shell Pop: leverage `popper'
 (with-no-warnings
   (defvar shell-pop--frame nil)
+  (defvar shell-pop--window nil)
+
+  (defun shell-pop--shell (&optional arg)
+    "Run shell and return the buffer."
+    (cond ((fboundp 'vterm) (vterm arg))
+          ((fboundp 'powershell) (powershell arg))
+          (sys/win32p (eshell arg))
+          (t (shell))))
+
+  (defun shell-pop--hide-frame ()
+    "Hide child frame and refocus in parent frame."
+    (when (and (childframe-workable-p)
+               (frame-live-p shell-pop--frame)
+               (frame-visible-p shell-pop--frame))
+      (make-frame-invisible shell-pop--frame)
+      (select-frame-set-input-focus (frame-parent shell-pop--frame))
+      (setq shell-pop--frame nil)))
+
+  (defun shell-pop-toggle ()
+    "Toggle shell."
+    (interactive)
+    (shell-pop--hide-frame)
+    (if (window-live-p shell-pop--window)
+        (progn
+          (delete-window shell-pop--window)
+          (setq shell-pop--window nil))
+      (setq shell-pop--window
+            (get-buffer-window (shell-pop--shell)))))
+  (bind-keys ([f9]  . shell-pop-toggle)
+             ("C-`" . shell-pop-toggle))
+
   (when (childframe-workable-p)
     (defun shell-pop-posframe-hidehandler (_)
       "Hidehandler used by `shell-pop-posframe-toggle'."
-      (not (eq (selected-frame) posframe--frame)))
-
-    (defun shell-pop--shell (&optional arg)
-      "Get shell buffer."
-      (cond ((fboundp 'vterm) (vterm arg))
-            (sys/win32p (eshell arg))
-            (t (shell))))
+      (not (eq (selected-frame) shell-pop--frame)))
 
     (defun shell-pop-posframe-toggle ()
       "Toggle shell in child frame."
       (interactive)
-      (let* ((buffer (shell-pop--shell 100))
+      (let* ((buffer (shell-pop--shell))
              (window (get-buffer-window buffer)))
-        ;; Hide window
+        ;; Hide window: for `popper'
         (when (window-live-p window)
           (delete-window window))
 
@@ -154,8 +209,8 @@
               (make-frame-invisible shell-pop--frame)
               (select-frame-set-input-focus (frame-parent shell-pop--frame))
               (setq shell-pop--frame nil))
-          (let ((width  (max 80 (floor (* (frame-width) 0.5))))
-                (height (floor (* (frame-height) 0.5))))
+          (let ((width  (max 100 (round (* (frame-width) 0.62))))
+                (height (round (* (frame-height) 0.62))))
             ;; Shell pop in child frame
             (setq shell-pop--frame
                   (posframe-show
@@ -169,9 +224,10 @@
                    :min-width width
                    :min-height height
                    :internal-border-width 3
-                   :internal-border-color (face-foreground 'font-lock-comment-face nil t)
+                   :internal-border-color (face-background 'posframe-border nil t)
                    :background-color (face-background 'tooltip nil t)
                    :override-parameters '((cursor-type . t))
+                   :respect-mode-line t
                    :accept-focus t))
 
             ;; Focus in child frame
@@ -182,26 +238,16 @@
               (goto-char (point-max))
               (when (fboundp 'vterm-reset-cursor-point)
                 (vterm-reset-cursor-point)))))))
-    (bind-key "C-`" #'shell-pop-posframe-toggle))
+    (bind-key "C-`" #'shell-pop-posframe-toggle)))
 
-  (defvar shell-pop--window nil)
-  (defun shell-pop-toggle ()
-    "Toggle shell."
-    (interactive)
-    ;; Hide child frame
-    (unless (and (frame-live-p shell-pop--frame)
-                 (frame-visible-p shell-pop--frame))
-      (if (window-live-p shell-pop--window)
-          (progn
-            (delete-window shell-pop--window)
-            (setq shell-pop--window nil))
-        (setq shell-pop--window
-              (get-buffer-window (shell-pop--shell))))))
-  (bind-key [f9] #'shell-pop-toggle))
 
 (use-package aweshell
   :quelpa (aweshell :fetcher github :repo "manateelazycat/aweshell")
   :commands (aweshell-new aweshell-dedicated-open)
+  :config
+  ;; 在Emacs里输入vi，直接在buffer里打开文件
+  (defalias 'eshell/vi 'find-file)
+  (defalias 'eshell/vim 'find-file)
   :bind
   (("M-#" . aweshell-dedicated-open)
    (:map eshell-mode-map ("M-#" . aweshell-dedicated-close))))
