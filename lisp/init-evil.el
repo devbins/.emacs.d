@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 206
+;;     Update #: 207
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,7 +153,7 @@
     :custom (evil-collection-setup-minibuffer t)
     :init
     ;; The list of supported modes is configured by evil-collection-mode=list
-    (evil-collection-init '(dired view magit magit-todos ibuffer custom calendar pdf docker vterm eshell xwidget))))
+    (evil-collection-init '(dired view magit magit-todos magit-section ibuffer custom calendar pdf docker vterm eshell xwidget))))
 
 (use-package evil-leader
   :init
