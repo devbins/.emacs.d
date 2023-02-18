@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 207
+;;     Update #: 208
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -339,7 +339,7 @@
   (evil-lisp-state-leader "SPC k"))
 
 ;; 对齐
-;; https://github.com/edkolev/evil-lion/tree/6b03593f5dd6e7c9ca02207f9a73615cf94c93ab
+;; https://github.com/edkolev/evil-lion
 (use-package evil-lion
   :hook (after-init . evil-lion-mode))
 
