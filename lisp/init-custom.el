@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 56
+;;     Update #: 58
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -131,6 +131,11 @@
     ("#+END_QUOTE" . ?«)
     ("#+HEADERS" . ?☰)
     ("#+RESULTS:" . ?💻)
+    ("#+attr_latex:"    . "🄛")
+	("#+attr_html:"     . "🄗")
+	("#+attr_org:"      . "🄞")
+	("#+name:"          . "🄝")
+	("#+caption:"       . "🄒")
     ("[#A]" . ?🅐)
     ("[#B]" . ?🅑)
     ("[#C]" . ?🅒))
