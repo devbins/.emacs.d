@@ -839,6 +839,176 @@ prepended to the element after the #+HEADER: tag."
       "mm" 'org-journal-search-calendar-month
       "my" 'org-journal-search-calendar-year)))
 
+(use-package org-src
+  :ensure nil
+  :after org
+  :config
+  ;; ==================================
+  ;; 如果出现代码运行结果为乱码，可以参考：
+  ;; https://github.com/nnicandro/emacs-jupyter/issues/366
+  ;; ==================================
+  (defun display-ansi-colors ()
+    (ansi-color-apply-on-region (point-min) (point-max)))
+  (add-hook 'org-babel-after-execute-hook #'display-ansi-colors)
+
+  ;; =================================================
+  ;; 自动给结果的图片加上相关属性
+  ;; =================================================
+  (setq original-image-width-before-del "400") ; 设置图片的默认宽度为400
+  (setq original-caption-before-del "")        ; 设置默认的图示文本为空
+
+  (defun insert-attr-decls ()
+    "insert string before babel execution results"
+    (insert (concat "\n#+CAPTION:"
+                    original-caption-before-del
+                    "\n#+ATTR_ORG: :width "
+                    original-image-width-before-del
+                    "\n#+ATTR_LATEX: :width "
+                    (if (>= (/ (string-to-number original-image-width-before-del) 800.0) 1)
+                        "1.0"
+                      (number-to-string (/ (string-to-number original-image-width-before-del) 800.0)))
+                    "\\linewidth :float nil"
+                    "\n#+ATTR_HTML: :width "
+                    original-image-width-before-del
+                    )))
+
+  (defun insert-attr-decls-at (s)
+    "insert string right after specific string"
+    (let ((case-fold-search t))
+      (if (search-forward s nil t)
+          (progn
+            ;; (search-backward s nil t)
+            (insert-attr-decls)))))
+
+  (defun insert-attr-decls-at-results (orig-fun &optional arg info param)
+    "insert extra image attributes after babel execution"
+    (interactive)
+    (progn
+      (when (member (car (org-babel-get-src-block-info)) '("mermaid" "ditaa" "dot" "lilypond" "plantuml" "gnuplot" "d2"))
+        (setq original-image-width-before-del (number-to-string (if-let* ((babel-width (alist-get :width (nth 2 (org-babel-get-src-block-info))))) babel-width (string-to-number original-image-width-before-del))))
+        (save-excursion
+          ;; `#+begin_results' for :wrap results, `#+RESULTS:' for non :wrap results
+          (insert-attr-decls-at "#+begin_results")))
+      (org-redisplay-inline-images)))
+  (advice-add 'org-babel-execute-src-block :after #'insert-attr-decls-at-results)
+
+  ;; 再次执行时需要将旧的图片相关参数行删除，并从中头参数中获得宽度参数，参考
+  ;; https://emacs.stackexchange.com/questions/57710/how-to-set-image-size-in-result-of-src-block-in-org-mode
+  (defun get-attributes-from-src-block-result (&rest args)
+    "get information via last babel execution"
+    (let ((location (org-babel-where-is-src-block-result))
+          ;; 主要获取的是图示文字和宽度信息，下面这个正则就是为了捕获这两个信息
+          (attr-regexp "[:blank:]*#\\+\\(ATTR_ORG: :width \\([0-9]\\{3\\}\\)\\|CAPTION:\\(.*\\)\\)"))
+      (setq original-caption-before-del "") ; 重置为空
+      (when location
+        (save-excursion
+          (goto-char location)
+          (when (looking-at (concat org-babel-result-regexp ".*$"))
+            (next-line 2)               ; 因为有个begin_result的抽屉，所以往下2行
+            ;; 通过正则表达式来捕获需要的信息
+            (while (looking-at attr-regexp)
+              (when (match-string 2)
+                (setq original-image-width-before-del (match-string 2)))
+              (when (match-string 3)
+                (setq original-caption-before-del (match-string 3)))
+              (next-line)               ; 因为设置了:wrap，所以这里不需要删除这一行
+              )
+            )))))
+  (advice-add 'org-babel-execute-src-block :before #'get-attributes-from-src-block-result)
+
+
+  ;; 代码块语法高亮
+  (setq org-src-fontify-natively t
+        ;; 使用编程语言的TAB绑定设置
+        org-src-tab-acts-natively t
+        ;; 代码块编辑窗口的打开方式：当前窗口+代码块编辑窗口
+        org-src-window-setup 'reorganize-frame
+        ;; 执行前是否需要确认
+        org-confirm-babel-evaluate nil
+        ;; 代码块默认前置多少空格
+        org-edit-src-content-indentation 0
+        org-babel-C-compiler "gcc -std=c++17"
+        org-babel-C++-compiler "g++ -std=c++17")
+
+  (defvar load-language-list '((emacs-lisp . t)
+                               (perl       . t)
+                               (python     . t)
+                               (sql        . t)
+                               (ruby       . t)
+                               (js         . t)
+                               (css        . t)
+                               (sass       . t)
+                               (C          . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
+                               (calc       . t)
+                               (java       . t)
+                               (dot        . t)
+                               (ditaa      . t)
+                               (calc       . t)
+                               (eshell     . t)
+                               (shell      . t)
+                               (plantuml   . t)))
+
+  ;; 代码块的语言模式设置，设置之后才能正确语法高亮
+  (setq org-src-lang-modes '(("C"      . c)
+                             ("C++"    . c++)
+                             ("bash"   . sh)
+                             ("cpp"    . c++)
+                             ("elisp"  . emacs-lisp)
+                             ("shell"  . sh)
+                             ("mysql"  . sql)))
+
+  ;; ob-sh renamed to ob-shell since 26.1.
+  (if emacs/>=26p
+      (cl-pushnew '(shell . t) load-language-list)
+    (cl-pushnew '(sh . t) load-language-list))
+
+  (use-package ob-go
+    :init (cl-pushnew '(go . t) load-language-list))
+
+  (use-package ob-ipython
+    :if (executable-find "jupyter")     ; DO NOT remove
+    :init (cl-pushnew '(ipython . t) load-language-list))
+
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               load-language-list)
+
+  ;; REST
+  ;; Org babel extensions
+  ;; HTTP client
+  ;; usage: BEGIN_SRC restclient
+  (use-package verb
+    :init (cl-pushnew '(verb . t) load-language-list))
+
+  ;; Async src_block execution
+  ;; usage: begin_src sh :async
+  (use-package ob-async
+    :config (setq ob-async-no-async-languages-alist
+                  '("ipython"
+                    "jupyter-python"
+                    "jupyter-julia"
+                    "jupyter-R"
+                    "jupyter-javascript")))
+
+
+  (use-package ob-kotlin
+    :init (cl-pushnew '(kotlin . t) load-language-list))
+
+  (use-package gnuplot
+    :init (cl-pushnew '(gnuplot . t) load-language-list))
+
+  ;;brew install mermaid-cli
+  (use-package mermaid-mode
+    :if (executable-find "mmdc"))
+  (use-package ob-mermaid
+    :if (executable-find "mmdc")
+    :init (cl-pushnew '(mermaid . t) load-language-list))
+
+  (use-package ob-dart
+    :if (executable-find "dart")
+    :init (cl-pushnew '(dart . t) load-language-list))
+  )
+
+
 (use-package svg-tag-mode
   :hook ((org-mode org-agenda-mode) . svg-tag-mode)
   :init
