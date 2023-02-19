@@ -138,6 +138,7 @@ prepended to the element after the #+HEADER: tag."
               org-log-done 'notevery
               org-html-checkbox-type 'unicode
 
+              prettify-symbols-unprettify-at-point t
               org-log-into-drawer t
               org-drawers (quote ("PROPERTIES" "LOGBOOK"))
               org-clock-into-drawer t
