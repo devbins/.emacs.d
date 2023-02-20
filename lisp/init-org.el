@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 725
+;;     Update #: 781
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -230,6 +230,20 @@ prepended to the element after the #+HEADER: tag."
                   (and (eq buf (current-buffer)) (quit-window))
                   (pop-to-buffer buf)))))
           org-file-apps))
+
+  (use-package ox
+    :ensure nil
+    :init (setq org-export-with-broken-links 'mark
+                org-export-with-sub-superscripts '{}
+                org-export-use-babel nil ;; 导出的时候不执行代码，会导致设置的 header-arg 无效 do not evaluate again during export.
+                org-export-with-toc t
+                org-export-with-section-numbers t
+                org-export-with-entities t ;; 导出时是否进行转义
+                org-export-with-smart-quotes t
+                org-export-coding-system 'utf-8
+                org-export-with-footnotes t
+                org-export-with-priority t
+                org-export-with-drawers nil))
 
   ;; Add gfm/md backends
   (use-package ox-gfm
@@ -911,9 +925,6 @@ prepended to the element after the #+HEADER: tag."
   (use-package ob-ipython
     :if (executable-find "jupyter")     ; DO NOT remove
     :init (cl-pushnew '(ipython . t) load-language-list))
-
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               load-language-list)
 
   ;; REST
   ;; Org babel extensions
