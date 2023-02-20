@@ -327,7 +327,9 @@ prepended to the element after the #+HEADER: tag."
            ("C-c M-o" . org-mime-org-buffer-htmlize)))
 
 
-  (use-package htmlize)
+  (use-package htmlize
+    :init (setq htmlize-pre-style t
+                htmlize-output-type 'inline-css))
 
   (use-package ox-html
     :ensure nil
