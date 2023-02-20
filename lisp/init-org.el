@@ -333,9 +333,31 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package ox-html
     :ensure nil
+    :init
+    (defun org-audio-link-export (path desc backend)
+      (let ((ext (file-name-extension path)))
+        (cond
+         ((memq backend '(html gfm md hugo))
+          (format "<audio preload='metadata' controls='controls'><source type='audio/%s' src='%s' /></audio>" ext path))
+         ;; fall-through case for everything else
+         (t
+          path))))
+    (defun org-video-link-export (path desc backend)
+      (let ((ext (file-name-extension path)))
+        (cond
+         ((memq backend '(html gfm md hugo))
+          (format "<video preload='metadata' controls='controls'><source type='video/%s' src='%s' /></video>" ext path))
+         ;; fall-through case for everything else
+         (t
+          path))))
+
+    (org-link-set-parameters "audio" :export 'org-audio-link-export) ;;    [[audio:test.mp3]]
+    (org-link-set-parameters "video" :export 'org-video-link-export) ;;    [[video:test.mp4]]
     :config
     ;; Org export code style
-    (setq org-html-htmlize-output-type 'css)
+    (setq org-html-htmlize-output-type 'inline-css
+          org-html-validation-link nil
+          org-html-checkbox-type 'unicode)
     (setq-default org-html-doctype "html5")
     (setq-default org-html-html5-fancy t))
 
