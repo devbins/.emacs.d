@@ -159,20 +159,12 @@ prepended to the element after the #+HEADER: tag."
               org-image-actual-width 300
               org-startup-with-inline-images t
               org-display-remote-inline-images 'download
-              original-image-width-before-del "300" ; 设置图片的默认宽度为400
-              original-caption-before-del ""        ; 设置默认的图示文本为空
 
               org-hide-leading-stars t
               org-fontify-whole-heading-line t
               org-fontify-done-headline t
               org-hide-emphasis-markers t
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
-              org-export-with-broken-links 'mark
-              org-export-with-sub-superscripts '{}
-              org-export-use-babel nil ;; 导出的时候不执行代码，会导致设置的 header-arg 无效 do not evaluate again during export.
-              org-export-with-toc nil
-              org-export-with-section-numbers nil
-              org-export-with-entities t ;; 导出时是否进行转义
               org-use-sub-superscripts '{}
 
               org-ditaa-jar-path (concat user-emacs-directory "ditaa.jar")
@@ -303,79 +295,6 @@ prepended to the element after the #+HEADER: tag."
           org-appear-autoentities t
           org-appear-autokeywords t
           org-appear-inside-latex t))
-
-  ;; Babel
-  (setq org-confirm-babel-evaluate nil
-        org-edit-src-content-indentation 0
-        org-src-fontify-natively t
-        org-src-window-setup 'other-window
-        org-src-tab-acts-natively t)
-
-  (setq org-babel-C-compiler "gcc -std=c++17"
-        org-babel-C++-compiler "g++ -std=c++17")
-
-  (defvar load-language-list '((emacs-lisp . t)
-                               (perl . t)
-                               (python . t)
-                               (sql . t)
-                               (ruby . t)
-                               (js . t)
-                               (css . t)
-                               (sass . t)
-                               (C . t) ;; #+begin_src cpp :includes <iostream> :flags "-std=c++11"
-                               (calc . t)
-                               (java . t)
-                               (dot . t)
-                               (ditaa . t)
-                               (plantuml . t)))
-
-  ;; ob-sh renamed to ob-shell since 26.1.
-  (if emacs/>=26p
-      (cl-pushnew '(shell . t) load-language-list)
-    (cl-pushnew '(sh . t) load-language-list))
-
-  (use-package ob-go
-    :init (cl-pushnew '(go . t) load-language-list))
-
-  (use-package ob-ipython
-    :if (executable-find "jupyter")     ; DO NOT remove
-    :init (cl-pushnew '(ipython . t) load-language-list))
-
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               load-language-list)
-  ;; Org babel extensions
-  ;; HTTP client
-  ;; usage: BEGIN_SRC restclient
-  (use-package ob-restclient
-    :init (cl-pushnew '(restclient . t) load-language-list))
-
-  ;; Async src_block execution
-  ;; usage: begin_src sh :async
-  (use-package ob-async
-    :config (setq ob-async-no-async-languages-alist
-                  '("ipython"
-                    "jupyter-python"
-                    "jupyter-julia"
-                    "jupyter-R"
-                    "jupyter-javascript")))
-
-
-  (use-package ob-kotlin
-    :init (cl-pushnew '(kotlin . t) load-language-list))
-
-  (use-package gnuplot
-    :init (cl-pushnew '(gnuplot . t) load-language-list))
-
-  ;;brew install mermaid-cli
-  (use-package mermaid-mode
-    :if (executable-find "mmdc"))
-  (use-package ob-mermaid
-    :if (executable-find "mmdc")
-    :init (cl-pushnew '(mermaid . t) load-language-list))
-
-  (use-package ob-dart
-    :if (executable-find "dart")
-    :init (cl-pushnew '(dart . t) load-language-list))
 
   ;; Rich text clipboard
   (use-package org-rich-yank
@@ -1029,7 +948,10 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package ob-dart
     :if (executable-find "dart")
-    :init (cl-pushnew '(dart . t) load-language-list)))
+    :init (cl-pushnew '(dart . t) load-language-list))
+
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               load-language-list))
 
 
 (use-package svg-tag-mode
