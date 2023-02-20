@@ -916,6 +916,30 @@ prepended to the element after the #+HEADER: tag."
             )))))
   (advice-add 'org-babel-execute-src-block :before #'get-attributes-from-src-block-result)
 
+  ;; limit the babel result length
+  (defvar org-babel-result-lines-limit 40)
+  (defvar org-babel-result-length-limit 6000)
+
+  (defun org-babel-insert-result@limit (orig-fn result &rest args)
+    (if (not (member (car (org-babel-get-src-block-info)) '("jupyter-python"))) ; not for jupyter-python etc.
+        (if (and result (or org-babel-result-lines-limit org-babel-result-length-limit))
+            (let (new-result plines plenght limit)
+              (with-temp-buffer
+                (insert result)
+                (setq plines (if org-babel-result-lines-limit
+                                 (goto-line org-babel-result-lines-limit)
+                               (point-max)))
+                (setq plenght (if org-babel-result-length-limit
+                                  (min org-babel-result-length-limit (point-max))
+                                (point-max)))
+                (setq limit (min plines plenght))
+                (setq new-result (concat (buffer-substring (point-min) limit)
+                                         (if (< limit (point-max)) "..."))))
+              (apply orig-fn new-result args))
+          (apply orig-fn result args))
+      (apply orig-fn result args)))
+
+  (advice-add 'org-babel-insert-result :around #'org-babel-insert-result@limit)
 
   ;; 代码块语法高亮
   (setq org-src-fontify-natively t
@@ -1005,8 +1029,7 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package ob-dart
     :if (executable-find "dart")
-    :init (cl-pushnew '(dart . t) load-language-list))
-  )
+    :init (cl-pushnew '(dart . t) load-language-list)))
 
 
 (use-package svg-tag-mode
