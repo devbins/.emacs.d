@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 191
+;;     Update #: 192
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,7 +54,8 @@
      :bind (:map lsp-bridge-mode-map
             ("C-c C-t" . lsp-bridge-toggle-sdcv-helper))
      :init
-     (setq lsp-bridge-enable-mode-line nil)
+     (setq lsp-bridge-enable-mode-line nil
+           acm-enable-quick-access t)
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
