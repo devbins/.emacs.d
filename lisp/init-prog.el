@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 81
+;;     Update #: 82
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -99,6 +99,7 @@
 (use-package plantuml-mode
   :init (setq org-plantuml-jar-path (concat user-emacs-directory "plantuml.jar")))
 (use-package rmsbolt)                   ; A compiler output viewer
+(use-package groovy-mode)
 (use-package scala-mode)
 (use-package swift-mode)
 (use-package vimrc-mode)
