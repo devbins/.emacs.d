@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 208
+;;     Update #: 210
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -102,7 +102,6 @@
   (evil-set-initial-state 'image-mode 'motion)
   (evil-set-initial-state 'image-dired-minor-mode 'emacs)
   (evil-set-initial-state 'term-mode 'emacs)
-  (evil-set-initial-state 'snails-mode 'emacs)
   (evil-set-initial-state 'multi-term-mode 'emacs)
   (evil-set-initial-state 'aweshell-mode 'emacs)
   (evil-set-initial-state 'org-capture-mode 'insert)
@@ -285,7 +284,6 @@
     "sa"  'mark-whole-buffer
     "sp"  'consult-ripgrep
     "ss"  'consult-line
-    "sn"  'snails
 
     "te"  'toggle-corfu-english-helper
     "tg"  'go-translate
