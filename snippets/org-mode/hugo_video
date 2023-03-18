@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: hugo_video
+# key: hugo_video
+# --
+#+begin_export html
+{{< video src="/images/$0" type="video/mp4" preload="auto" >}}
+#+end_export
