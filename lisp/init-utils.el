@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 164
+;;     Update #: 176
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -78,9 +78,6 @@
   :commands youdao-dictionary-play-voice-of-current-word
   :bind (("C-c y" . my-youdao-search-at-point)
          ("C-c Y" . youdao-dictionary-search-at-point)
-         :map youdao-dictionary-mode-map
-         ("h" . youdao-dictionary-hydra/body)
-         ("?" . youdao-dictionary-hydra/body)
          :map evil-normal-state-map
          ("q" . quit-window))
   :init
@@ -95,16 +92,7 @@
           (if emacs/>=26p
               (youdao-dictionary-search-at-point-posframe)
             (youdao-dictionary-search-at-point-tooltip))
-        (youdao-dictionary-search-at-point))))
-  :config
-  (with-eval-after-load 'hydra
-    (defhydra youdao-dictionary-hydra (:color blue)
-      ("p" youdao-dictionary-play-voice-of-current-word "play voice of current word")
-      ("y" youdao-dictionary-play-voice-at-point "play voice at point")
-      ("q" quit-window "quit")
-      ("C-g" nil nil)
-      ("h" nil nil)
-      ("?" nil nil))))
+        (youdao-dictionary-search-at-point)))))
 
 (use-package english-teacher
   :quelpa (english-teacher :fetcher github :repo "loyalpartner/english-teacher.el")
@@ -118,12 +106,12 @@
           Woman-Mode) . english-teacher-follow-mode))
 
 (use-package go-translate
-  :commands (go-translate go-translate-popup)
   :config
-  (setq go-translate-base-url "https://translate.google.cn"
-        go-translate-local-language "zh-CN"
-        go-translate-buffer-follow-p t ; 翻译完成后，总是将光标切换到翻译结果窗口
-        go-translate-buffer-source-fold-p t))
+  (setq gts-translate-list '(("en" "zh"))
+        gts-default-translator (gts-translator
+                                :picker (gts-prompt-picker)
+                                :engines (list (gts-bing-engine))
+                                :render (gts-posframe-pop-render))))
 
 ;; Writable `grep' buffer
 (use-package wgrep
