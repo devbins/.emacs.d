@@ -325,6 +325,10 @@
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
 
+(use-package mind-wave
+  :mode ("\\.chat\\'" . mind-wave-chat-mode)
+  :quelpa (mind-wave :fetcher github :repo "manateelazycat/mind-wave" :files ("*")))
+
 (use-package slack
   :commands (slack-start)
   :init
