@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 41
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,10 +89,15 @@
                               '(:server "127.0.0.1" :port 1086 :enable t
                                 :type (:@type "proxyTypeSocks5")))))
 
+(use-package auth-source-pass
+  :init (auth-source-pass-enable))
 
 (use-package password-store
   :if (executable-find "pass")
-  :config (use-package pass))
+  :init (setq auth-sources '(password-store)))
+
+(use-package pass
+  :after password-store)
 
 (use-package autoinsert
   :ensure nil
