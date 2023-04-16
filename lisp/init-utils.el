@@ -325,6 +325,19 @@
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
 
+(use-package slack
+  :commands (slack-start)
+  :init
+  (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
+  (setq slack-prefer-current-team t)
+  :config
+  (slack-register-team
+   :name "emacs-slack"
+   :default t
+   :cookie (password-store-get "slack-cookie")
+   :token (password-store-get "slack-token")
+   :full-and-display-names t))
+
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-utils.el ends here
