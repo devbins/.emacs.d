@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 41
+;;     Update #: 42
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -90,6 +90,7 @@
                                 :type (:@type "proxyTypeSocks5")))))
 
 (use-package auth-source-pass
+  :ensure nil
   :init (auth-source-pass-enable))
 
 (use-package password-store
