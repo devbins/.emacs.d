@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 44
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,6 +86,7 @@
 
   ;; Show TODOs in magit
   (use-package magit-todos
+    :disabled
     :commands magit-todos--scan-with-git-grep
     :init
     (setq magit-todos-scanner #'magit-todos--scan-with-git-grep)
