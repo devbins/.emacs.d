@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 210
+;;     Update #: 211
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -118,6 +118,7 @@
   (evil-set-initial-state 'calibredb-show-mode 'emacs)
   (evil-set-initial-state 'pass-mode 'emacs)
   (evil-set-initial-state 'flutter-mode 'emacs)
+  (evil-set-initial-state 'srefactor-ui-menu-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
