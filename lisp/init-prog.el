@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 82
+;;     Update #: 86
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -202,6 +202,10 @@ Install the doc if it's not installed."
   :diminish yas-minor-mode
   :hook ((prog-mode org-mode) . yas-minor-mode)
   :config (use-package yasnippet-snippets))
+
+(use-package treesit-auto
+  :init (setq treesit-auto-install 'prompt)
+  :config (global-treesit-auto-mode))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
