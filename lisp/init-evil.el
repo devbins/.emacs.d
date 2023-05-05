@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 211
+;;     Update #: 216
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -245,6 +245,10 @@
     "hk"  'find-function-on-key
     "hv"  'find-variable
     "hp"  'describe-package
+
+    "il"  'org-insert-link-global
+    "ii"  'org-id-get-create
+    "ol"  'org-open-at-point-global
 
     "nf"  'narrow-to-defun
     "np"  'narrow-to-page
