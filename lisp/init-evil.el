@@ -192,9 +192,11 @@
 
     "bb"  'consult-buffer
     "bd"  'kill-this-buffer
+    "bh"  'open-dashboard
     "bi"  'consult-imenu
     "bm"  'bookmark-set
     "bj"  'bookmark-jump
+    "bl"  'xwidget-webkit-browse-url
     "bI"  'ibuffer
     "bp"  'previous-buffer
     "bn"  'next-buffer
