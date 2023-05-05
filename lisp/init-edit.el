@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 95
+;;     Update #: 100
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -284,8 +284,15 @@
   :hook (after-init . delete-selection-mode))
 
 (use-package docstr
-  :init (setq docstr-key-support t)
-  :hook (prog-mode . docstr-mode))
+  :init
+  (setq docstr-key-support t
+        docstr-desc-summary ""
+        docstr-desc-param ""
+        docstr-desc-return ""
+        docstr-desc-typename "")
+  (global-docstr-mode 1)
+  :config
+  (docstr-faces-apply))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
