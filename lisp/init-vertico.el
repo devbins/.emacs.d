@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 172
+;;     Update #: 178
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -78,11 +78,18 @@
                                       (right-fringe . 8)
                                       (weight . 50))))
 
+;; support Pinyin first character match for orderless, avy etc.
+(use-package pinyinlib)
+
 (use-package orderless
   :init
-  (setq completion-styles '(orderless basic)
+  (setq completion-styles '(orderless partial-completion basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+        completion-category-overrides '((file (styles partial-completion))))
+  :config
+  (defun completion--regex-pinyin (str)
+    (orderless-regexp (pinyinlib-build-regexp-string str)))
+  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
 
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
