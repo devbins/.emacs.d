@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 42
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -119,6 +119,13 @@
 
 (use-package restart-emacs
   :commands restart-emacs)
+
+(use-package achive
+  :quelpa (achive :fetcher github :repo "zakudriver/achive")
+  :custom
+  (achive-auto-refresh t)
+  (achive-refresh-seconds 5)
+  (achive-stock-list '("sh600036" "sh601012" "sz000625" "sz002050" "sz002013" "sh600176")))
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
