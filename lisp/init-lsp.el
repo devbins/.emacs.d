@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 192
+;;     Update #: 193
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,7 +55,8 @@
             ("C-c C-t" . lsp-bridge-toggle-sdcv-helper))
      :init
      (setq lsp-bridge-enable-mode-line nil
-           acm-enable-quick-access t)
+           acm-enable-quick-access t
+           acm-enable-codeium t)
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
