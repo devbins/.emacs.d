@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 204
+;;     Update #: 205
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -106,12 +106,7 @@
 (use-package minions
   :hook (doom-modeline-mode . minions-mode))
 
-;; Icons
-;; NOTE: Must run `M-x all-the-icons-install-fonts', and install fonts manually on Windows
-(use-package all-the-icons
-  :if (display-graphic-p)
-  :init (unless (or sys/win32p (font-installed-p "all-the-icons"))
-          (all-the-icons-install-fonts t)))
+(use-package nerd-icons)
 
 ;; Show native line numbers if possible, otherwise use `linum'
 (if (fboundp 'display-line-numbers-mode)
