@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 70
+;;     Update #: 75
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,7 +54,7 @@
               widget-forward)
   :custom-face (dashboard-heading ((t (:inherit (font-lock-string-face bold)))))
   :pretty-hydra
-  ((:title (pretty-hydra-title "Dashboard" 'mdicon "nf-md-dashboard")
+  ((:title (pretty-hydra-title "Dashboard" 'mdicon "nf-md-view_dashboard")
     :color pink :quit-key "q")
    ("Navigator"
     (("H" browse-homepage "homepage" :exit t)
@@ -121,16 +121,17 @@
         dashboard-set-init-info t
         dashboard-set-file-icons (display-graphic-p)
         dashboard-set-heading-icons (display-graphic-p)
+        dashboard-icon-type 'nerd-icons
         dashboard-heading-icons '((recents   . "nf-oct-history")
                                   (bookmarks . "nf-oct-bookmark")
                                   (agenda    . "nf-oct-calendar")
                                   (projects  . "nf-oct-briefcase")
                                   (registers . "nf-oct-database"))
-
         dashboard-set-footer t
-        dashboard-footer-icon (cond ((char-displayable-p ?🧡) "🧡 ")
-                                    (t (propertize ">" 'face 'dashboard-footer)))
-
+        dashboard-footer-icon (cond
+                                 ((icons-displayable-p)
+                                  (nerd-icons-octicon "nf-oct-heart" :height 1.2 :face 'nerd-icons-lred))
+                                 (t (propertize ">" 'face 'dashboard-footer)))
         dashboard-set-navigator t)
 
   (dashboard-setup-startup-hook)

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 36
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -194,9 +194,7 @@
                       (icon (if (icons-displayable-p)
                                 (concat
                                  " "
-                                 (all-the-icons-faicon "bolt"
-                                                       :height 1.0 :v-adjust -0.05
-                                                       :face 'all-the-icons-lblue))
+                                 (nerd-icons-faicon "nf-fa-bolt" :face 'nerd-icons-lblue))
                               " x"))
                       (name (aref val 0))
                       (pid (aref val 1))

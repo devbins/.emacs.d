@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 205
+;;     Update #: 206
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,7 +88,9 @@
   (doom-themes-treemacs-theme "doom-colors")
   :init (load-theme 'doom-one)
   :config
-  (doom-themes-treemacs-config))
+  (when (featurep 'all-the-icons)
+          (with-eval-after-load 'lsp-treemacs
+            (doom-themes-treemacs-config))))
 
 (use-package flucui-themes)
 

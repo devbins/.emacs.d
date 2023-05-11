@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,8 +51,13 @@
   :bind ("C-x C-b" . ibuffer)
   :init (setq ibuffer-filter-group-name-face '(:inherit (font-lock-string-face bold)))
   :config
+  ;; Display icons for buffers
+  (use-package nerd-icons-ibuffer
+    :hook (ibuffer-mode . nerd-icons-ibuffer-mode)
+    :init (setq nerd-icons-ibuffer-icon t))
+
   ;; Group ibuffer's list by project root
-  (use-package ibuffer-projectile
+  (use-package ibuffer-project
     :hook (ibuffer . (lambda ()
                      (setq ibuffer-filter-groups (ibuffer-project-generate-filter-groups))
                      (unless (eq ibuffer-sorting-mode 'project-file-relative)

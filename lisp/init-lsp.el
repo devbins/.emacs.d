@@ -327,7 +327,6 @@
 
    ;; C/C++/Objective-C support
    (use-package ccls
-     :defines projectile-project-root-files-top-down-recurring
      :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
      :config
      (setq ccls-sem-highlight-method 'font-lock)
