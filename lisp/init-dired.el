@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 43
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,10 +105,9 @@
   (use-package diredfl
     :init (diredfl-global-mode 1))
 
-  ;; Shows icons
+   ;; Shows icons
   (use-package nerd-icons-dired
     :diminish
-    :if (icons-displayable-p)
     :commands nerd-icons-dired-mode
     :custom-face
     (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))

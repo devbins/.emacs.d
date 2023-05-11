@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 195
+;;     Update #: 197
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -348,13 +348,7 @@
                 "^/usr/(local/)?include/c\\+\\+/v1/"
                 ]))
              :index (:initialBlacklist [] :parametersInDeclarations :json-false :trackDependency 1)))
-     (with-eval-after-load 'projectile
-       (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-       (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
-       (setq projectile-project-root-files-top-down-recurring
-             (append '("compile_commands.json"
-                       ".ccls")
-                     projectile-project-root-files-top-down-recurring)))
+
      (with-no-warnings
        ;; FIXME: fail to call ccls.xref
        ;; @see https://github.com/emacs-lsp/emacs-ccls/issues/109

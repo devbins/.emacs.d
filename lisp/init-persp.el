@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -158,7 +158,7 @@
    :mode-restore-function (lambda (_) (shell))
    :save-vars '(major-mode default-directory)))
 
-;; Projectile integration
+;; Project integration
 (when emacs/>=27p
   (use-package persp-mode-project-bridge
     :autoload (persp-mode-project-bridge-find-perspectives-for-all-buffers
