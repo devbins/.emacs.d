@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (use-package elfeed
   :defer t
   :pretty-hydra
-  ((:title (pretty-hydra-title "Elfeed" 'faicon "rss-square")
+  ((:title (pretty-hydra-title "Elfeed" 'faicon "nf-fa-rss_square" :face 'nerd-icons-orange)
     :color amaranth :quit-key "q")
    ("Search"
     (("c" elfeed-db-compact "compact db")

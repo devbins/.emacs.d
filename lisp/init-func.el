@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 73
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -181,7 +181,8 @@ Same as `replace-string C-q C-m RET RET'."
 (defun icons-displayable-p ()
   "Return non-nil if `all-the-icons' is displayable."
   (and (display-graphic-p)
-       (require 'all-the-icons nil t)))
+       (or (featurep 'nerd-icons)
+           (require 'nerd-icons nil t))))
 
 (define-minor-mode read-mode
   "Minor Mode for better reading experience."

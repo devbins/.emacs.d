@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 194
+;;     Update #: 199
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -124,7 +124,6 @@
 
 ;; Fast search tool: `ripgrep'
 (use-package rg
-  :defines projectile-command-map
   :hook (after-init . rg-enable-default-bindings)
   :bind (:map rg-global-map
          ("c" . rg-dwim-current-dir)
@@ -133,10 +132,7 @@
   :init (setq rg-group-result t
               rg-show-columns t)
   :config
-  (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases)
-
-  (with-eval-after-load 'projectile
-    (bind-key "s R" #'rg-project projectile-command-map)))
+  (cl-pushnew '("tmpl" . "*.tmpl") rg-custom-type-aliases))
 
 
 ;; Docker
@@ -211,7 +207,7 @@
   (ztreep-diff-model-diff-face ((t (:inherit diff-removed))))
   (ztreep-diff-model-add-face ((t (:inherit diff-nonexistent))))
   :pretty-hydra
-  ((:title (pretty-hydra-title "Ztree" 'octicon "diff" :height 1.2 :v-adjust 0)
+  ((:title (pretty-hydra-title "Ztree" 'octicon "nf-oct-diff" :face 'nerd-icons-green)
     :color pink :quit-key "q")
    ("Diff"
     (("C" ztree-diff-copy "copy" :exit t)

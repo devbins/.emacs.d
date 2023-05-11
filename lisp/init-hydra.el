@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,11 +54,11 @@
                                         &key face height v-adjust)
       "Add an icon in the hydra title."
       (let ((face (or face `(:foreground ,(face-background 'highlight))))
-            (height (or height 1.0))
+            (height (or height 1.2))
             (v-adjust (or v-adjust 0.0)))
         (concat
          (when (and (display-graphic-p) icon-type icon-name)
-           (let ((f (intern (format "all-the-icons-%s" icon-type))))
+           (let ((f (intern (format "nerd-icons-%s" icon-type))))
              (when (fboundp f)
                (concat
                 (apply f (list icon-name :face face :height height :v-adjust v-adjust))
@@ -66,8 +66,8 @@
          (propertize title 'face face))))
 
     ;; Global toggles
-    (pretty-hydra-define toggles-hydra (:title (pretty-hydra-title "Toggles" 'faicon "toggle-on")
-                                        :color amaranth :quit-key "q")
+    (pretty-hydra-define toggles-hydra (:title (pretty-hydra-title "Toggles" 'faicon "nf-fa-toggle_on")
+                                        :color amaranth :quit-key ("q" "C-g"))
       ("Basic"
        (("n" (cond ((fboundp 'display-line-numbers-mode)
                     (display-line-numbers-mode (if display-line-numbers-mode -1 1)))

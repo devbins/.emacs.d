@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 193
+;;     Update #: 197
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -154,23 +154,18 @@
        (advice-add #'lsp-icons-get-by-symbol-kind :around #'my-lsp-icons-get-symbol-kind)
 
        (defun my-lsp-icons-get-by-file-ext (fn &rest args)
-         (when (display-graphic-p)
+         (and (display-graphic-p)
            (apply fn args)))
        (advice-add #'lsp-icons-get-by-file-ext :around #'my-lsp-icons-get-by-file-ext)
 
-       (defun my-lsp-icons-all-the-icons-material-icon (icon-name face fallback &optional feature)
-         (if (and (display-graphic-p)
-                (functionp 'all-the-icons-material)
-                (lsp-icons--enabled-for-feature feature))
-             (all-the-icons-material icon-name :face face)
-           (propertize fallback 'face face)))
+
        (advice-add #'lsp-icons-all-the-icons-material-icon :override #'my-lsp-icons-all-the-icons-material-icon)))
 
    (use-package lsp-ui
      :custom-face
      (lsp-ui-sideline-code-action ((t (:inherit warning))))
      :pretty-hydra
-     ((:title (pretty-hydra-title "LSP UI" 'faicon "rocket" :face 'all-the-icons-green)
+     ((:title (pretty-hydra-title "LSP UI" 'faicon "nf-fa-rocket_launch" :face 'nerd-icons-green)
        :color amaranth :quit-key "q")
       ("Doc"
        (("d e" (progn
@@ -332,7 +327,6 @@
 
    ;; C/C++/Objective-C support
    (use-package ccls
-     :defines projectile-project-root-files-top-down-recurring
      :hook ((c-mode c++-mode objc-mode cuda-mode) . (lambda () (require 'ccls)))
      :config
      (setq ccls-sem-highlight-method 'font-lock)
@@ -354,13 +348,7 @@
                 "^/usr/(local/)?include/c\\+\\+/v1/"
                 ]))
              :index (:initialBlacklist [] :parametersInDeclarations :json-false :trackDependency 1)))
-     (with-eval-after-load 'projectile
-       (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
-       (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
-       (setq projectile-project-root-files-top-down-recurring
-             (append '("compile_commands.json"
-                       ".ccls")
-                     projectile-project-root-files-top-down-recurring)))
+
      (with-no-warnings
        ;; FIXME: fail to call ccls.xref
        ;; @see https://github.com/emacs-lsp/emacs-ccls/issues/109

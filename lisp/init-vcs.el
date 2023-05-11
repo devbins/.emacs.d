@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -229,7 +229,7 @@
   :ensure nil
   :diminish
   :pretty-hydra
-  ((:title (pretty-hydra-title "Smerge" 'octicon "diff")
+  ((:title (pretty-hydra-title "Smerge" 'octicon "nf-oct-diff")
            :color pink :quit-key ("q" "C-g"))
    ("Move"
     (("n" smerge-next "next")

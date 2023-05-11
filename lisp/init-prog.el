@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 86
+;;     Update #: 88
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -61,7 +61,7 @@
 ;; Jump to definition
 (use-package dumb-jump
   :pretty-hydra
-  ((:title (pretty-hydra-title "Dump Jump" 'faicon "anchor")
+  ((:title (pretty-hydra-title "Dump Jump" 'faicon "nf-fa-anchor")
     :color blue :quit-key "q")
    ("Jump"
     (("j" dumb-jump-go "Go")

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 65
+;;     Update #: 75
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,7 +54,7 @@
               widget-forward)
   :custom-face (dashboard-heading ((t (:inherit (font-lock-string-face bold)))))
   :pretty-hydra
-  ((:title (pretty-hydra-title "Dashboard" 'material "dashboard" :height 1.1 :v-adjust -0.225)
+  ((:title (pretty-hydra-title "Dashboard" 'mdicon "nf-md-view_dashboard")
     :color pink :quit-key "q")
    ("Navigator"
     (("H" browse-homepage "homepage" :exit t)
@@ -109,6 +109,9 @@
                    "如同明月将死那样生活，\n如同永远不死那样求知。\n——甘地")
         dashboard-banner-logo-title (nth (random (length welcomes)) welcomes)
         dashboard-startup-banner (expand-file-name (if (display-graphic-p) (format "logo/logo%d.png" (random 8)) "banner.txt") user-emacs-directory)
+        dashboard-projects-backend 'project-el
+        dashboard-path-style 'truncate-middle
+        dashboard-path-max-length 60
         dashboard-center-content t
         dashboard-show-shortcuts nil
         dashboard-items '((recents  . 10)
@@ -118,16 +121,17 @@
         dashboard-set-init-info t
         dashboard-set-file-icons (display-graphic-p)
         dashboard-set-heading-icons (display-graphic-p)
-        dashboard-heading-icons '((recents   . "file-text")
-                                  (bookmarks . "bookmark")
-                                  (agenda    . "calendar")
-                                  (projects  . "file-directory")
-                                  (registers . "database"))
-
+        dashboard-icon-type 'nerd-icons
+        dashboard-heading-icons '((recents   . "nf-oct-history")
+                                  (bookmarks . "nf-oct-bookmark")
+                                  (agenda    . "nf-oct-calendar")
+                                  (projects  . "nf-oct-briefcase")
+                                  (registers . "nf-oct-database"))
         dashboard-set-footer t
-        dashboard-footer-icon (cond ((char-displayable-p ?🧡) "🧡 ")
-                                    (t (propertize ">" 'face 'dashboard-footer)))
-
+        dashboard-footer-icon (cond
+                                 ((icons-displayable-p)
+                                  (nerd-icons-octicon "nf-oct-heart" :height 1.2 :face 'nerd-icons-lred))
+                                 (t (propertize ">" 'face 'dashboard-footer)))
         dashboard-set-navigator t)
 
   (dashboard-setup-startup-hook)
