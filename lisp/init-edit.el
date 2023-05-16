@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 100
+;;     Update #: 102
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -215,39 +215,17 @@
     "q" 'imenu-list-quit-window))
 
 ;; Treat undo history as a tree
-(use-package undo-tree
-  :diminish
-  :hook (after-init . global-undo-tree-mode)
-  :init
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-enable-undo-in-region nil
-        undo-tree-auto-save-history nil)
-
-  ;; WORKAROUND:  keep the diff window
-  (with-no-warnings
-    (make-variable-buffer-local 'undo-tree-visualizer-diff)
-    (setq-default undo-tree-visualizer-diff t)))
-
-
-;; Flexible text folding
-(use-package origami
-  :pretty-hydra
-  ((:title (pretty-hydra-title "Origami" 'octicon "fold")
-    :color amaranth :quit-key "q")
-   ("Node"
-    ((":" origami-recursively-toggle-node "toggle recursively")
-     ("a" origami-toggle-all-nodes "toggle all")
-     ("t" origami-toggle-node "toggle current")
-     ("o" origami-show-only-node "only show current"))
-    "Actions"
-    (("u" origami-undo "undo")
-     ("d" origami-redo "redo")
-     ("r" origami-reset "reset"))))
-  :bind (:map origami-mode-map
-         ("C-`" . origami-hydra/body))
-  :hook (prog-mode . origami-mode)
-  :init (setq origami-show-fold-header t)
-  :config (face-spec-reset-face 'origami-fold-header-face))
+(if emacs/>=28p
+    (use-package vundo
+      :bind ("C-x u" . vundo)
+      :config (setq vundo-glyph-alist vundo-unicode-symbols))
+  (use-package undo-tree
+    :diminish
+    :hook (after-init . global-undo-tree-mode)
+    :init (setq undo-tree-visualizer-timestamps t
+                undo-tree-visualizer-diff t
+                undo-tree-enable-undo-in-region nil
+                undo-tree-auto-save-history nil)))
 
 ;; Open files as another user
 (unless sys/win32p
