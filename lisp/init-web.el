@@ -114,13 +114,15 @@
          (js2-mode . js2-highlight-unused-variables-mode))
   :config
   ;; Use default keybindings for lsp
-  (unbind-key "M-." js2-mode-map)
+  (unbind-key "M-." js2-mode-map))
 
-
-  (use-package js2-refactor
+;; Format HTML, CSS and JavaScript/JSON
+;; Install: npm -g install prettier
+(when (executable-find "prettier")
+  (use-package prettier
     :diminish
-    :hook (js2-mode . js2-refactor-mode)
-    :config (js2r-add-keybindings-with-prefix "C-c C-m")))
+    :hook ((js-mode js2-mode css-mode sgml-mode web-mode) . prettier-mode)
+    :init (setq prettier-pre-warm 'none)))
 
 ;; Live browser JavaScript, CSS, and HTML interaction
 (use-package skewer-mode
@@ -154,12 +156,6 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2))
-
-;; Format HTML, CSS and JavaScript/JSON
-;; Install: npm -g install prettier
-(use-package prettier-js
-  :diminish
-  :hook ((js-mode js2-mode json-mode web-mode css-mode sgml-mode html-mode) . prettier-js-mode))
 
 (use-package haml-mode)
 (use-package php-mode)
