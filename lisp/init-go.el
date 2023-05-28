@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 36
+;;     Update #: 37
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,23 +95,6 @@
   (use-package go-fill-struct)
   (use-package go-impl)
   (use-package godoctor)
-
-  ;; Install: See https://github.com/golangci/golangci-lint#install
-  (use-package flycheck-golangci-lint
-    :if (executable-find "golangci-lint")
-    :after flycheck
-    :defines flycheck-disabled-checkers
-    :hook (go-mode . (lambda ()
-                       "Enable golangci-lint."
-                       (setq flycheck-disabled-checkers '(go-gofmt
-                                                          go-golint
-                                                          go-vet
-                                                          go-build
-                                                          go-test
-                                                          go-errcheck))
-                       (flycheck-golangci-lint-setup)))
-    :config
-    (setq flycheck-golangci-lint-disable-linters '("unused")))
 
   ;; go install github.com/fatih/gomodifytags@latest
   (use-package go-tag

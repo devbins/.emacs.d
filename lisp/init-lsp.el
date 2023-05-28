@@ -231,7 +231,6 @@
                  lsp-ui-doc-border "violet"
                  lsp-eldoc-enable-hover nil ; Disable eldoc displays in minibuffer
 
-                 lsp-ui-flycheck-enable t
                  lsp-ui-peek-always-show t
                  lsp-ui-sideline-enable t
                  lsp-ui-sideline-show-hover nil

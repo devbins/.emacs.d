@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,9 +47,6 @@
 ;;; Code:
 
 (use-package kotlin-mode)
-
-(use-package flycheck-kotlin
-  :hook(flycheck-mode . flycheck-kotlin-setup))
 
 (provide 'init-kotlin)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

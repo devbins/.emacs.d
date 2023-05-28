@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 94
+;;     Update #: 95
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -135,7 +135,7 @@ Otherwise the startup will be very slow. "
 
 ;; Programming
 (require 'init-vcs)
-(require 'init-flycheck)
+(require 'init-flymake)
 (require 'init-projectile)
 (require 'init-lsp)
 (require 'init-ctags)

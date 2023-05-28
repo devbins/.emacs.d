@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,7 +55,6 @@
     :diminish cargo-minor-mode
     :hook (rustic-mode . cargo-minor-mode)
     :config
-    (push 'rustic-clippy flycheck-checkers)
     ;; To render buttons correctly, keep it at the last
     (setq compilation-filter-hook
           (append compilation-filter-hook '(cargo-process--add-errno-buttons)))

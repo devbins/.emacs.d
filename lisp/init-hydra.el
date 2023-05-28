@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -94,8 +94,8 @@
         ("i" highlight-indent-guides-mode "indent" :toggle t)
         ("T" global-hl-todo-mode "todo" :toggle t))
        "Coding"
-       (("f" global-flycheck-mode "flycheck" :toggle t)
-        ("F" flymake-mode "flymake" :toggle t)
+       (("F" flymake-mode "flymake" :toggle t)
+        ("f" flycheck-mode "flycheck" :toggle t)
         ("o" origami-mode "folding" :toggle t)
         ("O" hs-minor-mode "hideshow" :toggle t)
         ("u" subword-mode "subword" :toggle t)

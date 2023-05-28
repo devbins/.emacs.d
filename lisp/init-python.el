@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 48
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -67,8 +67,6 @@
   (when (and (executable-find "python3")
            (string= python-shell-interpreter "python"))
     (setq python-shell-interpreter "python3"))
-  (add-to-list 'flycheck-disabled-checkers 'python-pylint)
-  (flycheck-remove-next-checker 'python-flake8 'python-pylint)
   (evil-leader/set-key-for-mode 'python-mode
     "mva" 'pyenv-mode-set
     "mvc" 'pyenv-mode-unset
