@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 218
+;;     Update #: 219
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -236,7 +236,7 @@
     "FO"  'dired-other-frame
     "Ff"  'find-file-other-frame
 
-    "gc"  'grab-mac-link
+    "gc"  'grab-mac-link-dwim
     "gs"  'magit-status
     "gt"  'git-timemachine
     "gb"  'magit-blame
