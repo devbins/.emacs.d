@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 781
+;;     Update #: 797
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1195,6 +1195,10 @@ same directory as the org-buffer and insert a link to this file."
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
     :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
+
+;; https://github.com/metaescape/org-imagine
+(use-package org-imagine
+  :quelpa (org-imagine :fetcher github :repo "metaescape/org-imagine" :files ("*")))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
