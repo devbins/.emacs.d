@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 797
+;;     Update #: 798
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -908,7 +908,7 @@ prepended to the element after the #+HEADER: tag."
         org-confirm-babel-evaluate nil
         ;; 代码块默认前置多少空格
         org-edit-src-content-indentation 0
-        org-babel-C-compiler "gcc -std=c++17"
+        org-babel-C-compiler "gcc -std=c17"
         org-babel-C++-compiler "g++ -std=c++17")
 
   (defvar load-language-list '((emacs-lisp . t)
