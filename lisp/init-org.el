@@ -915,6 +915,7 @@ prepended to the element after the #+HEADER: tag."
                                (perl       . t)
                                (python     . t)
                                (sql        . t)
+                               (sqlite     . t)
                                (ruby       . t)
                                (js         . t)
                                (css        . t)
