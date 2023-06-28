@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,7 +65,11 @@
         (message "flutter binary not found"))))
 
   (evil-leader/set-key-for-mode 'dart-mode
-    "mxx" 'flutter-run-or-hot-reload)
+    "mxx" 'flutter-run-or-hot-reload
+    "mxp" 'flutter-add-package)
+
+  (which-key-add-major-mode-key-based-replacements 'dart-mode
+    "SPC m x" "flutter")
 
   (with-eval-after-load "projectile"
     (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
