@@ -55,6 +55,15 @@
     (use-package lsp-dart
       :init (setq lsp-dart-sdk-dir "~/flutter/bin/cache/dart-sdk")
       :hook (dart-mode . lsp)))
+
+  (defun flutter-add-package (package)
+    "run flutter pub add package"
+    (interactive "spackage name:")
+    (let* ((cmd (executable-find "flutter")))
+      (if cmd
+          (shell-command (format "flutter pub add %s" package))
+        (message "flutter binary not found"))))
+
   (evil-leader/set-key-for-mode 'dart-mode
     "mxx" 'flutter-run-or-hot-reload)
 
