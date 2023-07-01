@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 102
+;;     Update #: 103
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -271,6 +271,8 @@
   (global-docstr-mode 1)
   :config
   (docstr-faces-apply))
+
+(use-package kill-ring-search)
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
