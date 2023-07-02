@@ -119,6 +119,9 @@
   (evil-set-initial-state 'pass-mode 'emacs)
   (evil-set-initial-state 'flutter-mode 'emacs)
   (evil-set-initial-state 'srefactor-ui-menu-mode 'emacs)
+  (evil-set-initial-state 'color-rg-mode 'emacs)
+  (evil-set-initial-state 'color-rg-search-mode 'emacs)
+  (evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
