@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 50
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -126,6 +126,9 @@
   (achive-auto-refresh t)
   (achive-refresh-seconds 5)
   (achive-stock-list '("sh600036" "sh601012" "sz000625" "sz002050" "sz002013" "sh600176")))
+
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
