@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 199
+;;     Update #: 213
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -323,6 +323,13 @@
   :config
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
+
+(use-package dictionary-overlay
+  :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup)
+  :quelpa (dictionary-overlay :fetcher github :repo "ginqi7/dictionary-overlay" :files ("*")))
+
+(use-package websocket-bridge
+  :quelpa (websocket-bridge :fetcher github :repo "ginqi7/websocket-bridge" :files ("*")))
 
 (use-package mind-wave
   :mode ("\\.chat\\'" . mind-wave-chat-mode)
