@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 178
+;;     Update #: 179
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -183,11 +183,11 @@
 (use-package marginalia
    :hook (after-init . marginalia-mode))
 
-(use-package all-the-icons-completion
+(use-package nerd-icons-completion
   :after marginalia
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :hook (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
-  (all-the-icons-completion-mode))
+  (nerd-icons-completion-mode))
 
 (use-package embark
   :bind (("C-." . embark-act)
