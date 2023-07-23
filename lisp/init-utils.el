@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 213
+;;     Update #: 215
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -323,7 +323,7 @@
   :config
   (defvar insert-translated-name-camel-style-mode-list
     '(go-mode)))
-
+;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
   :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup)
   :quelpa (dictionary-overlay :fetcher github :repo "ginqi7/dictionary-overlay" :files ("*")))
