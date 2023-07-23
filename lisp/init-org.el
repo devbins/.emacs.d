@@ -219,6 +219,10 @@ prepended to the element after the #+HEADER: tag."
   (set-face-attribute 'org-level-5 nil :height 1.2 :bold t)
   (set-face-attribute 'org-level-6 nil :height 1.2 :bold t)
   (set-face-attribute 'org-level-7 nil :height 1.2 :bold t)
+
+  (set-face-attribute 'org-block-begin-line nil :underline t)
+  (set-face-attribute 'org-block-end-line nil :overline t :underline nil)
+
   ;; Use embedded webkit browser if possible
   (when (featurep 'xwidget-internal)
     (push '("\\.\\(x?html?\\|pdf\\)\\'"
