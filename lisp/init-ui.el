@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 206
+;;     Update #: 210
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,7 +88,7 @@
   (doom-themes-treemacs-theme "doom-colors")
   :init (load-theme 'doom-one)
   :config
-  (when (featurep 'all-the-icons)
+  (when (featurep 'nerd-icons)
           (with-eval-after-load 'lsp-treemacs
             (doom-themes-treemacs-config))))
 
