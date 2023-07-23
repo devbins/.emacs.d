@@ -26,8 +26,8 @@
     | SPC f R | 重命名文件                      | =rename-this-file=                       |
     | SPC f t | 打开 treemacs                   | =treemacs=                               |
     | SPC f o | 适用外部程序打开当前文件/文件夹 | =open-file-or-directory-in-external-app= |
-    | 无      | 把当前文件转为 UTF-8编码        | =save-buffer-as-utf8=                    |
-    | 无      | 把GBK编码转为UTF-8编码        | =save-buffer-gbk-as-utf8=                |
+    | 无      | 把当前文件转为 UTF-8 编码        | =save-buffer-as-utf8=                    |
+    | 无      | 把 GBK 编码转为 UTF-8 编码        | =save-buffer-gbk-as-utf8=                |
     | 无      | 在 finder 中显示（macOS）       | =reveal-in-osx-finder=                   |
 
 ** Git
@@ -270,9 +270,11 @@
     #+begin_src sh
     brew install sbcl
     #+end_src
-** 使用Emacs编辑浏览器TextArea
+** 使用 Emacs 编辑浏览器 TextArea
    - 安装 [[https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca/related][GhostText - Chrome Web Store]]
 ** FAQ
+*** json-read: JSON readtable error: 84
+    需要把 =Python= 降到 =3.10= ，不能使用 =3.11=
 *** json-readtable-error 122
     在 path 中没有找到 =Python= ，更新 =env= 
 *** void-function org-outline-overlay-data
