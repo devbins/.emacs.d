@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 219
+;;     Update #: 220
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -250,7 +250,7 @@
     "hv"  'find-variable
     "hp"  'describe-package
 
-    "il"  'org-insert-link-global
+    "il"  'org-insert-link-global ;; 不在org mode中使用https://orgmode.org/manual/Using-Links-Outside-Org.html
     "ii"  'org-id-get-create
     "ol"  'org-open-at-point-global
 
