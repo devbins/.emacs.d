@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 798
+;;     Update #: 802
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -206,7 +206,7 @@ prepended to the element after the #+HEADER: tag."
         '(("*" org-bold)
           ("/" italic)
           ("_" underline)
-          ("=" org-verbatim verbatim)
+          ("=" org-verbatim verbatim (:background "#d2268b"))
           ("~" org-code verbatim)
           ("+" (:strike-through t))))
 
