@@ -689,7 +689,7 @@ prepended to the element after the #+HEADER: tag."
     (setq org-crypt-tag-matcher "crypt"
           ;; 避免 secret 这个 tag 被子項目继承造成重复加密
           org-tags-exclude-from-inheritance (quote ("crypt"))
-          ;; 设置用於加密的 GPG ID 设置为 nil 使用对称加密 (symmetric encryption)
+          ;; 设置用于加密的 GPG ID 设置为 nil 使用对称加密 (symmetric encryption)
           org-crypt-key nil)
     :config
     (setenv "GPG_AGENT_INFO" nil)
