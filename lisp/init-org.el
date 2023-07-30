@@ -1181,6 +1181,7 @@ same directory as the org-buffer and insert a link to this file."
     (make-directory org-roam-directory))
   (add-to-list 'org-modules 'org-roam-protocol)
 
+  ;; https://github.com/org-roam/org-roam/wiki/User-contributed-Tricks#showing-node-hierarchy
   (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
     (let ((level (org-roam-node-level node)))
       (concat
@@ -1201,6 +1202,7 @@ same directory as the org-buffer and insert a link to this file."
                                   :and (= type "id")]
                          (org-roam-node-id node)))))
       (format "[%d]" count)))
+
   (defun org-roam-open-refs ()
     "Open REFs of the node at point."
     (interactive)
@@ -1221,6 +1223,44 @@ same directory as the org-buffer and insert a link to this file."
         (dolist (ref refs)
           (unless (string-prefix-p "@" ref)
             (browse-url ref))))))
+
+  (with-eval-after-load 'embark
+    (defun org-roam-backlinks-query (node)
+      "Gets the backlinks of NODE with `org-roam-db-query'."
+      (org-roam-db-query
+       [:select [source dest]
+	            :from links
+	            :where (= dest $s1)
+	            :and (= type "id")]
+       (org-roam-node-id node)))
+
+    (defun org-roam-backlinks-p (source node)
+      "Predicate function that checks if NODE is a backlink of SOURCE."
+      (let* ((source-id (org-roam-node-id source))
+	         (backlinks (org-roam-backlinks-query source))
+	         (id (org-roam-node-id node))
+	         (id-list (list id source-id)))
+        (member id-list backlinks)))
+
+    (defun org-roam-backlinks--read-node-backlinks (source)
+      "Runs `org-roam-node-read' on the backlinks of SOURCE.
+ The predicate used as `org-roam-node-read''s filter-fn is
+ `org-roam-backlinks-p'."
+      (org-roam-node-read nil (apply-partially #'org-roam-backlinks-p source)))
+
+    (defun org-roam-backlinks-node-read (entry)
+      "Read a NODE and run `org-roam-backlinks--read-node-backlinks'."
+      (let* ((node (get-text-property 0 'node entry))
+             (backlink (org-roam-backlinks--read-node-backlinks node)))
+        (find-file (org-roam-node-file backlink))))
+
+    (defvar-keymap embark-org-roam-map
+      :doc "Keymap for Embark org roam node actions."
+      :parent embark-general-map
+      "i" #'org-roam-node-insert
+      "b" #'org-roam-backlinks-node-read
+      "r" #'org-roam-node-random)
+    (add-to-list 'embark-keymap-alist '(org-roam-node . embark-org-roam-map)))
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
