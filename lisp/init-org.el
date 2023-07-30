@@ -1175,10 +1175,32 @@ same directory as the org-buffer and insert a link to this file."
   :init
   (if emacs/>=29p
       (setq org-roam-database-connector 'sqlite-builtin))
+  (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:6} ${directories:10}" (propertize "${tags:20}" 'face 'org-tag)))
   :config
   (unless (file-exists-p org-roam-directory)
-      (make-directory org-roam-directory))
+    (make-directory org-roam-directory))
   (add-to-list 'org-modules 'org-roam-protocol)
+
+  (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
+    (let ((level (org-roam-node-level node)))
+      (concat
+       (when (> level 0) (concat (org-roam-node-file-title node) " > "))
+       (when (> level 1) (concat (string-join (org-roam-node-olp node) " > ") " > "))
+       (org-roam-node-title node))))
+
+  (cl-defmethod org-roam-node-directories ((node org-roam-node))
+    (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
+        (format "(%s)" (car (split-string dirs "/")))
+      ""))
+
+  (cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
+    (let* ((count (caar (org-roam-db-query
+                         [:select (funcall count source)
+                                  :from links
+                                  :where (= dest $s1)
+                                  :and (= type "id")]
+                         (org-roam-node-id node)))))
+      (format "[%d]" count)))
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
