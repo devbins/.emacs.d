@@ -1175,10 +1175,99 @@ same directory as the org-buffer and insert a link to this file."
   :init
   (if emacs/>=29p
       (setq org-roam-database-connector 'sqlite-builtin))
+  (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:6} ${directories:10}" (propertize "${tags:20}" 'face 'org-tag)))
   :config
   (unless (file-exists-p org-roam-directory)
-      (make-directory org-roam-directory))
+    (make-directory org-roam-directory))
   (add-to-list 'org-modules 'org-roam-protocol)
+
+  ;; https://github.com/org-roam/org-roam/wiki/User-contributed-Tricks#showing-node-hierarchy
+  (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
+    (let ((level (org-roam-node-level node)))
+      (concat
+       (when (> level 0) (concat (org-roam-node-file-title node) " > "))
+       (when (> level 1) (concat (string-join (org-roam-node-olp node) " > ") " > "))
+       (org-roam-node-title node))))
+
+  (cl-defmethod org-roam-node-directories ((node org-roam-node))
+    (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
+        (format "(%s)" (car (split-string dirs "/")))
+      ""))
+
+  (cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
+    (let* ((count (caar (org-roam-db-query
+                         [:select (funcall count source)
+                                  :from links
+                                  :where (= dest $s1)
+                                  :and (= type "id")]
+                         (org-roam-node-id node)))))
+      (format "[%d]" count)))
+
+  (defun org-roam-open-refs ()
+    "Open REFs of the node at point."
+    (interactive)
+    (save-excursion
+      (goto-char (org-roam-node-point (org-roam-node-at-point 'assert)))
+      (when-let* ((p (org-entry-get (point) "ROAM_REFS"))
+                  (refs (when p (split-string-and-unquote p)))
+                  (refs (if (length> refs 1)
+                            (completing-read-multiple "Open: " refs)
+                          refs))
+                  (user-error "No ROAM_REFS found"))
+
+        (when-let ((oc-cites (seq-map
+                              (lambda (ref) (substring ref 1))
+                              (seq-filter (apply-partially #'string-prefix-p "@") refs))))
+          (citar-run-default-action oc-cites))
+
+        (dolist (ref refs)
+          (unless (string-prefix-p "@" ref)
+            (browse-url ref))))))
+
+  (with-eval-after-load 'embark
+    (defun org-roam-backlinks-query (node)
+      "Gets the backlinks of NODE with `org-roam-db-query'."
+      (org-roam-db-query
+       [:select [source dest]
+	            :from links
+	            :where (= dest $s1)
+	            :and (= type "id")]
+       (org-roam-node-id node)))
+
+    (defun org-roam-backlinks-p (source node)
+      "Predicate function that checks if NODE is a backlink of SOURCE."
+      (let* ((source-id (org-roam-node-id source))
+	         (backlinks (org-roam-backlinks-query source))
+	         (id (org-roam-node-id node))
+	         (id-list (list id source-id)))
+        (member id-list backlinks)))
+
+    (defun org-roam-backlinks--read-node-backlinks (source)
+      "Runs `org-roam-node-read' on the backlinks of SOURCE.
+ The predicate used as `org-roam-node-read''s filter-fn is
+ `org-roam-backlinks-p'."
+      (org-roam-node-read nil (apply-partially #'org-roam-backlinks-p source)))
+
+    (defun org-roam-backlinks-node-read (entry)
+      "Read a NODE and run `org-roam-backlinks--read-node-backlinks'."
+      (let* ((node (get-text-property 0 'node entry))
+             (backlink (org-roam-backlinks--read-node-backlinks node)))
+        (find-file (org-roam-node-file backlink))))
+
+    (defvar-keymap embark-org-roam-map
+      :doc "Keymap for Embark org roam node actions."
+      :parent embark-general-map
+      "i" #'org-roam-node-insert
+      "b" #'org-roam-backlinks-node-read
+      "r" #'org-roam-node-random)
+    (add-to-list 'embark-keymap-alist '(org-roam-node . embark-org-roam-map)))
+
+  (with-eval-after-load 'shackle
+    (add-to-list 'shackle-rules '("*org-roam*" :align right)))
+
+  (with-eval-after-load 'popper
+    (add-to-list 'popper-reference-buffers '(org-roam-mode)))
+
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
