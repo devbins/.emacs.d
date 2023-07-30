@@ -1201,6 +1201,26 @@ same directory as the org-buffer and insert a link to this file."
                                   :and (= type "id")]
                          (org-roam-node-id node)))))
       (format "[%d]" count)))
+  (defun org-roam-open-refs ()
+    "Open REFs of the node at point."
+    (interactive)
+    (save-excursion
+      (goto-char (org-roam-node-point (org-roam-node-at-point 'assert)))
+      (when-let* ((p (org-entry-get (point) "ROAM_REFS"))
+                  (refs (when p (split-string-and-unquote p)))
+                  (refs (if (length> refs 1)
+                            (completing-read-multiple "Open: " refs)
+                          refs))
+                  (user-error "No ROAM_REFS found"))
+
+        (when-let ((oc-cites (seq-map
+                              (lambda (ref) (substring ref 1))
+                              (seq-filter (apply-partially #'string-prefix-p "@") refs))))
+          (citar-run-default-action oc-cites))
+
+        (dolist (ref refs)
+          (unless (string-prefix-p "@" ref)
+            (browse-url ref))))))
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
