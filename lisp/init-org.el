@@ -1261,6 +1261,13 @@ same directory as the org-buffer and insert a link to this file."
       "b" #'org-roam-backlinks-node-read
       "r" #'org-roam-node-random)
     (add-to-list 'embark-keymap-alist '(org-roam-node . embark-org-roam-map)))
+
+  (with-eval-after-load 'shackle
+    (add-to-list 'shackle-rules '("*org-roam*" :align right)))
+
+  (with-eval-after-load 'popper
+    (add-to-list 'popper-reference-buffers '(org-roam-mode)))
+
   (evil-leader/set-key-for-mode 'org-roam-mode
     "mrl" 'org-roam
     "mrt" 'org-roam-dailies-today
