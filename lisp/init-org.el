@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 820
+;;     Update #: 823
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1091,9 +1091,10 @@ prepended to the element after the #+HEADER: tag."
 
 ;; use excalidraw in org mode
 (use-package org-excalidraw
+  :commands (org-excalidraw-initialize)
   :load-path "site-lisp/org-excalidraw"
   :hook (org-mode . (lambda ()
-                       (org-excalidraw-initialize)))
+                      (org-excalidraw-initialize)))
   :config
   (setq org-excalidraw-directory "~/.org/excalidraw"))
 
