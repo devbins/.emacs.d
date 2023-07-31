@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 215
+;;     Update #: 241
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,7 +95,7 @@
         (youdao-dictionary-search-at-point)))))
 
 (use-package english-teacher
-  :quelpa (english-teacher :fetcher github :repo "loyalpartner/english-teacher.el")
+  :load-path "site-lisp/english-teacher"
   :custom
   (english-teacher-backend 'baidu)
   (english-teacher-show-result-function 'english-teacher-eldoc-show-result-function)
@@ -232,7 +232,7 @@
 
 ;; Emacs-appcliation-framework
 (use-package eaf
-  :quelpa (eaf :fetcher github :repo "emacs-eaf/emacs-application-framework" :files ("*"))
+  :load-path "site-lisp/emacs-application-framework"
   :commands (eaf-open eaf-open-browser eaf-open-browser-with-history)
   :hook (eaf-mode . (lambda () (vertico-posframe-mode -1)))
   :preface
@@ -296,44 +296,17 @@
 (use-package command-log-mode
   :commands global-command-log-mode)
 
-
-(use-package copilot
-  :quelpa (copilot :fetcher github :repo "zerolfx/copilot.el"
-                   :files ("*.el" "dist"))
-  :init
-  ;; accept completion from copilot and fallback to company
-  (defun my-tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-        (corfu-complete))))
-
-;; install dependences
-;; brew install deno
-;; sudo pacman -S deno
-(use-package deno-bridge
-  :disabled
-  :quelpa (deno-bridge :fetcher github :repo "manateelazycat/deno-bridge"))
-
-(use-package insert-translated-name
-  :disabled
-  :quelpa (insert-translated-name :fetcher github :repo "manateelazycat/insert-translated-name" :files ("*"))
-  :bind ("C-c t t" . 'insert-translated-name-insert)
-  :commands (insert-translated-name-insert)
-  :init (setq insert-translated-name-translate-engine 'youdao)
-  :config
-  (defvar insert-translated-name-camel-style-mode-list
-    '(go-mode)))
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
   :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup)
-  :quelpa (dictionary-overlay :fetcher github :repo "ginqi7/dictionary-overlay" :files ("*")))
+  :load-path "site-lisp/dictionary-overlay")
 
 (use-package websocket-bridge
-  :quelpa (websocket-bridge :fetcher github :repo "ginqi7/websocket-bridge" :files ("*")))
+  :load-path "site-lisp/websocket-bridge")
 
 (use-package mind-wave
   :mode ("\\.chat\\'" . mind-wave-chat-mode)
-  :quelpa (mind-wave :fetcher github :repo "manateelazycat/mind-wave" :files ("*")))
+  :load-path "site-lisp/mind-wave")
 
 (use-package slack
   :commands (slack-start)
@@ -347,6 +320,9 @@
    :cookie (password-store-get "slack-cookie")
    :token (password-store-get "slack-token")
    :full-and-display-names t))
+(use-package color-rg
+  :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type)
+  :load-path "site-lisp/color-rg")
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

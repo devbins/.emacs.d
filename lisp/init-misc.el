@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 50
+;;     Update #: 57
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,6 @@
 (use-package aria2
   :defer t
   :commands aria2-downloads-list
-  :quelpa (aria2 :fetcher github :repo "LdBeth/aria2.el")
   :config
   (setq aria2-download-directory (expand-file-name "~/Downloads"))
   (evil-define-key 'normal aria2-mode-map
@@ -62,7 +61,7 @@
 
 ;; Header2Pac
 (use-package header2
-  :quelpa (header2 :fetcher github :repo "emacsmirror/header2")
+  :load-path "site-lisp/header2"
   :hook (emacs-lisp-mode . auto-make-header)
   :custom
   (header-copyright-notice (concat "Copyright (C) 2019 " (user-full-name) "\n"))
@@ -121,7 +120,7 @@
   :commands restart-emacs)
 
 (use-package achive
-  :quelpa (achive :fetcher github :repo "zakudriver/achive")
+  :load-path "site-lisp/achive"
   :custom
   (achive-auto-refresh t)
   (achive-refresh-seconds 5)

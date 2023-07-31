@@ -1,3 +1,36 @@
 [submodule "unicad"]
 	path = site-lisp/unicad
 	url = https://github.com/emacsmirror/unicad.git
+[submodule "lsp-bridge"]
+	path = site-lisp/lsp-bridge
+	url = https://github.com/manateelazycat/lsp-bridge.git
+[submodule "header2"]
+	path = site-lisp/header2
+	url = https://github.com/emacsmirror/header2.git
+[submodule "achive"]
+	path = site-lisp/achive
+	url = https://github.com/zakudriver/achive.git
+[submodule "org-excalidraw"]
+	path = site-lisp/org-excalidraw
+	url = https://github.com/wdavew/org-excalidraw.git
+[submodule "aweshell"]
+	path = site-lisp/aweshell
+	url = https://github.com/manateelazycat/aweshell.git
+[submodule "english-teacher"]
+	path = site-lisp/english-teacher
+	url = https://github.com/loyalpartner/english-teacher.el.git
+[submodule "emacs-application-framework"]
+	path = site-lisp/emacs-application-framework
+	url = https://github.com/emacs-eaf/emacs-application-framework.git
+[submodule "color-rg"]
+	path = site-lisp/color-rg
+	url = https://github.com/manateelazycat/color-rg.git
+[submodule "websocket-bridge"]
+	path = site-lisp/websocket-bridge
+	url = https://github.com/ginqi7/websocket-bridge.git
+[submodule "dictionary-overlay"]
+	path = site-lisp/dictionary-overlay
+	url = https://github.com/ginqi7/dictionary-overlay
+[submodule "mind-wave"]
+	path = site-lisp/mind-wave
+	url = https://github.com/manateelazycat/mind-wave.git

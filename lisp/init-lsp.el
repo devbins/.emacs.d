@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 197
+;;     Update #: 204
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (pcase my-lsp
   ('lsp-bridge
    (use-package lsp-bridge
-     :quelpa (lsp-bridge :fetcher github :repo "manateelazycat/lsp-bridge" :files ("*"))
+     :load-path "site-lisp/lsp-bridge"
      :hook (after-init . global-lsp-bridge-mode)
      :bind (:map lsp-bridge-mode-map
             ("C-c C-t" . lsp-bridge-toggle-sdcv-helper)

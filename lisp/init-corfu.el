@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -107,7 +107,7 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package corfu-english-helper
-  :quelpa (corfu-english-helper :fetcher github :repo "manateelazycat/corfu-english-helper")
+  :load-path "manateelazycat/corfu-english-helper"
   :after corfu
   :commands (toggle-corfu-english-helper corfu-english-helper-search)
   :bind ("C-c t e" . 'toggle-corfu-english-helper))

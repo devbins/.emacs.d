@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 802
+;;     Update #: 820
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -300,7 +300,6 @@ prepended to the element after the #+HEADER: tag."
             ("MOVIE" . "🎬")))))
 
   (use-package valign
-    :quelpa (valign :fetcher github :repo "casouri/valign")
     :hook ((org-mode markdown-mode) . valign-mode)
     :init (setq valign-fancy-bar t))
 
@@ -1092,7 +1091,7 @@ prepended to the element after the #+HEADER: tag."
 
 ;; use excalidraw in org mode
 (use-package org-excalidraw
-  :quelpa (org-excalidraw :fetcher github :repo "wdavew/org-excalidraw")
+  :load-path "site-lisp/org-excalidraw"
   :hook (org-mode . (lambda ()
                        (org-excalidraw-initialize)))
   :config

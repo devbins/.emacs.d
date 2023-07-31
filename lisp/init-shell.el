@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 18
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -230,7 +230,7 @@
 
 
 (use-package aweshell
-  :quelpa (aweshell :fetcher github :repo "manateelazycat/aweshell")
+  :load-path "site-lisp/aweshell"
   :commands (aweshell-new aweshell-dedicated-open)
   :config
   ;; 在Emacs里输入vi，直接在buffer里打开文件
