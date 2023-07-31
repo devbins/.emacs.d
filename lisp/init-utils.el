@@ -94,6 +94,24 @@
             (youdao-dictionary-search-at-point-tooltip))
         (youdao-dictionary-search-at-point)))))
 
+  ;; Default, comment out the providers you don't need.
+(use-package fanyi
+  :init
+  (setq fanyi-auto-select t)
+  :config
+  (with-eval-after-load 'org
+    (require 'ol-fanyi))
+  :custom
+  (fanyi-providers '(;; 海词
+                     fanyi-haici-provider
+                     ;; 有道同义词词典
+                     fanyi-youdao-thesaurus-provider
+                     ;; Etymonline
+                     fanyi-etymon-provider
+                     ;; Longman
+                     fanyi-longman-provider)))
+
+
 (use-package english-teacher
   :load-path "site-lisp/english-teacher"
   :custom
