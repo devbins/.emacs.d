@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 241
+;;     Update #: 252
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -133,9 +133,8 @@
 
 ;; Writable `grep' buffer
 (use-package wgrep
-  :bind
-  (:map grep-mode-map
-   ("C-c C-q" . wgrep-change-to-wgrep-mode))
+  :bind (:map grep-mode-map
+         ("C-c C-q" . wgrep-change-to-wgrep-mode))
   :init
   (setq wgrep-auto-save-buffer t
         wgrep-change-readonly-file t))
