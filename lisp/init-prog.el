@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 88
+;;     Update #: 102
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,12 +51,10 @@
   :ensure nil
   :init
   (when (and (boundp 'xref-search-program) (executable-find "rg"))
-    (setq xref-search-program 'ripgrep))
+    (setq xref-search-program 'rg))
 
-  (with-no-warnings
-    (if emacs/>=28p
-        (setq xref-show-xrefs-function #'xref-show-definitions-completing-read
-              xref-show-definitions-function #'xref-show-definitions-completing-read))))
+  (setq xref-show-xrefs-function #'xref-show-definitions-completing-read
+        xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 ;; Jump to definition
 (use-package dumb-jump
@@ -72,15 +70,10 @@
     (("i" dumb-jump-go-prompt "Prompt")
      ("l" dumb-jump-quick-look "Quick look")
      ("b" dumb-jump-back "Back"))))
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-g j" . dumb-jump-go)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window)
-         ("C-M-j" . dumb-jump-hydra/body))
+  :bind (("C-M-j" . dumb-jump-hydra/body))
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  (setq dumb-jump-prefer-searcher 'rg))
+  (setq dumb-jump-prefer-searcher 'completing-read))
 
 (use-package editorconfig
   :diminish
@@ -127,7 +120,7 @@
   :if emacs/>=27p
   :commands devdocs--installed-p
   :bind (:map prog-mode-map
-         ("<f1>" . devdocs-lookup+))
+         ("<f1>" . devdocs-dwim))
   :init
   (defvar devdocs-major-mode-docs-alist
     '((c-mode . ("C"))
@@ -135,7 +128,7 @@
       (python-mode . ("Python 3.9" "Python 3.8"))
       (ruby-mode . ("Ruby 3"))
       (go-mode . ("Go"))
-      (rust-mode . ("Rust"))
+      (rustic-mode . ("Rust"))
       (css-mode . ("CSS"))
       (html-mode . ("HTML"))
       (js-mode . ("JavaScript" "JQuery"))
@@ -144,33 +137,35 @@
     "Alist of MAJOR-MODE and list of docset names.")
 
   (mapc
-   (lambda (e)
-     (add-hook (intern (format "%s-hook" (car e)))
+   (lambda (mode)
+     (add-hook (intern (format "%s-hook" (car mode)))
                (lambda ()
-                 (setq-local devdocs-current-docs (cdr e)))))
+                 (setq-local devdocs-current-docs (cdr mode)))))
    devdocs-major-mode-docs-alist)
 
-  (defun devdocs-lookup+()
+  (setq devdocs-data-dir (expand-file-name "devdocs" user-emacs-directory))
+
+(defun devdocs-dwim()
     "Look up a DevDocs documentation entry.
+
 Install the doc if it's not installed."
     (interactive)
-
     ;; Install the doc if it's not installed
     (mapc
-     (lambda (str)
-       (let* ((docs (split-string str " "))
-              (doc (if (length= docs 1)
-                       (downcase (car docs))
-                     (concat (downcase (car docs)) "~" (downcase (cdr docs))))))
-         (unless (devdocs--installed-p doc)
-           (message "Installing %s" str)
-           (devdocs-install doc))))
+     (lambda (slug)
+       (unless (member slug (let ((default-directory devdocs-data-dir))
+                              (seq-filter #'file-directory-p
+                                          (when (file-directory-p devdocs-data-dir)
+                                            (directory-files "." nil "^[^.]")))))
+         (mapc
+          (lambda (doc)
+            (when (string= (alist-get 'slug doc) slug)
+              (devdocs-install doc)))
+          (devdocs--available-docs))))
      (alist-get major-mode devdocs-major-mode-docs-alist))
 
     ;; Lookup the symbol at point
-    (if-let ((symbol (symbol-at-point)))
-        (devdocs-lookup nil (symbol-name symbol))
-      (message "No symbol to lookup!"))))
+    (devdocs-lookup nil (thing-at-point 'symbol t))))
 
 (use-package gdb-mi
   :init
@@ -206,6 +201,19 @@ Install the doc if it's not installed."
 (use-package treesit-auto
   :init (setq treesit-auto-install 'prompt)
   :config (global-treesit-auto-mode))
+
+;; Show function arglist or variable docstring
+(use-package eldoc
+  :ensure nil
+  :diminish
+  :config
+  (use-package eldoc-box
+    :diminish (eldoc-box-hover-mode eldoc-box-hover-at-point-mode)
+    :custom-face
+    (eldoc-box-border ((t (:inherit posframe-border :background unspecified))))
+    (eldoc-box-body ((t (:inherit tooltip))))
+    :hook ((emacs-lisp-mode . eldoc-box-hover-at-point-mode)
+           (eglot-managed-mode . eldoc-box-hover-at-point-mode))))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
