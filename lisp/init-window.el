@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -92,7 +92,7 @@
           "\\*Apropos\\*"
           "\\*Backtrace\\*"
           "\\*Calendar\\*"
-          "\\*Embark Actions\\*"
+          "\\*Embark \\(Collect\\|Live\\):.*\\*"
           "\\*Finder\\*"
           "\\*Kill Ring\\*"
           "\\*Go-Translate\\*"

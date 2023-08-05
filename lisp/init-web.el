@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 33
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,18 +69,9 @@
     "Misc"
     (("g" xwidget-webkit-browse-url "browse url" :exit t)
      ("u" xwidget-webkit-current-url "show url" :exit t)
-     ("v" xwwp-follow-link "follow link" :exit t)
      ("w" xwidget-webkit-current-url-message-kill "copy url" :exit t)
      ("?" describe-mode "help" :exit t)
-     ("Q" quit-window "quit" :exit t))))
-  :init
-  ;; Link navigation
-  (use-package xwwp-follow-link-ivy
-    :after ivy
-    :bind (("C-c C-z x" . xwwp)
-           :map xwidget-webkit-mode-map
-           ("v"         . xwwp-follow-link))
-    :init (setq xwwp-follow-link-completion-system 'completing-read)))
+     ("Q" quit-window "quit" :exit t)))))
 
 (use-package css-mode
   :ensure nil
@@ -168,12 +159,6 @@
     :diminish
     :hook (restclient-mode . restclient-test-mode))
 
-  (with-eval-after-load 'company
-    (use-package company-restclient
-      :disabled
-      :defines company-backends
-      :init (add-to-list 'company-backends 'company-restclient)))
-
   (evil-leader/set-key-for-mode 'restclient-mode
     "mn" 'restclient-jump-next
     "mp" 'restclient-jump-prev
@@ -193,7 +178,8 @@
   :config
   (if (fboundp 'gfm-mode)
       (setq atomic-chrome-url-major-mode-alist
-            '(("github\\.com" . gfm-mode)))))
+            '(("github\\.com" . gfm-mode)
+              ("gitlab\\.com" . gfm-mode)))))
 
 ;; https://manateelazycat.github.io/emacs/2018/09/17/indium.html
 (use-package indium
