@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 210
+;;     Update #: 223
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,6 +50,12 @@
 ;; Logo
 (setq fancy-splash-image nil)
 
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
+(setq fast-but-imprecise-scrolling t)
+(setq redisplay-skip-fontification-on-input t)
+
 ;; Title
 (setq frame-title-format '("Emacs - %b")
       icon-title-format frame-title-format)
@@ -57,6 +63,11 @@
 (when sys/mac-x-p
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-hook 'server-after-make-frame-hook
+            (lambda ()
+              (if (display-graphic-p)
+                  (menu-bar-mode 1)
+                (menu-bar-mode -1))))
   (add-hook 'after-load-theme-hook
             (lambda ()
               (let ((bg (frame-parameter nil 'background-mode)))
@@ -66,19 +77,6 @@
 ;; Inhibit resizing frame
 (setq frame-inhibit-implied-resize t
       frame-resize-pixelwise t)
-
-;; Menu/Tool/Scroll bars
-(unless emacs/>=27p
-  (push '(vertical-scroll-bars) default-frame-alist))
-
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
-
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
 
 ;; Theme
 (use-package doom-themes
@@ -108,7 +106,11 @@
 (use-package minions
   :hook (doom-modeline-mode . minions-mode))
 
-(use-package nerd-icons)
+(use-package nerd-icons
+  :config
+  (when (and (display-graphic-p)
+           (not (font-installed-p nerd-icons-font-family)))
+    (nerd-icons-install-fonts t)))
 
 ;; Show native line numbers if possible, otherwise use `linum'
 (if (fboundp 'display-line-numbers-mode)
@@ -264,6 +266,27 @@ If FRAME is nil, it defaults to the selected frame."
 (use-package default-text-scale
   :hook (after-init . default-text-scale-mode))
 
+;; Mouse & Smooth Scroll
+;; Scroll one line at a time (less "jumpy" than defaults)
+(when (display-graphic-p)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . hscroll))
+        mouse-wheel-scroll-amount-horizontal 1
+        mouse-wheel-progressive-speed nil))
+(setq scroll-step 1
+      scroll-margin 0
+      scroll-conservatively 100000
+      auto-window-vscroll nil
+      scroll-preserve-screen-position t)
+
+(if (boundp 'pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode t)
+  (unless sys/macp
+    (use-package good-scroll
+      :diminish
+      :hook (after-init . good-scroll-mode)
+      :bind (([remap next] . good-scroll-up-full-screen)
+             ([remap prior] . good-scroll-down-full-screen)))))
+
 ;; Child frame
 (when (childframe-workable-p)
   (use-package posframe
@@ -274,10 +297,6 @@ If FRAME is nil, it defaults to the selected frame."
       "Face used by the `posframe' border."
       :group 'posframe)
 
-    (with-eval-after-load 'persp-mode
-      (add-hook 'persp-load-buffer-functions
-                (lambda (&rest _)
-                  (posframe-delete-all))))
     :config
     (with-no-warnings
       (defun my-posframe--prettify-frame (&rest _)

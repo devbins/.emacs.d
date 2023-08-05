@@ -337,6 +337,7 @@
    :cookie (password-store-get "slack-cookie")
    :token (password-store-get "slack-token")
    :full-and-display-names t))
+
 (use-package color-rg
   :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type)
   :load-path "site-lisp/color-rg")
