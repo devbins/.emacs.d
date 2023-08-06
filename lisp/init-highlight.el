@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -312,9 +312,8 @@ FACE defaults to inheriting from default and highlight."
       (advice-add cmd :after #'my-recenter-and-pulse))))
 
 (use-package evil-goggles
+  :hook (after-init . evil-goggles-mode)
   :config
-  (evil-goggles-mode)
-
   ;; optionally use diff-mode's faces; as a result, deleted text
   ;; will be highlighed with `diff-removed` face which is typically
   ;; some red color (as defined by the color theme)
