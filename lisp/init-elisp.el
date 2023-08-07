@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -225,12 +225,6 @@ Lisp function does not specify a special indentation."
   :init
   (setq inferior-lisp-program "sbcl"
         slime-contribs '(slime-fancy)))
-
-;; Show function arglist or variable docstring
-;; `global-eldoc-mode' is enabled by default.
-(use-package eldoc
-  :ensure nil
-  :diminish)
 
 ;; Interactive macro expander
 (use-package macrostep

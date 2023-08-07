@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -64,8 +64,22 @@
                        (ibuffer-do-sort-by-project-file-relative))))
     :init (setq ibuffer-project-use-cache t)
     :config
-    (add-to-list 'ibuffer-project-root-functions '(file-remote-p . "Remote"))
-    (add-to-list 'ibuffer-project-root-functions '("\\*.+\\*" . "Default"))))
+    (defun my-ibuffer-project-group-name (root type)
+      "Return group name for project ROOT and TYPE."
+      (if (and (stringp type) (> (length type) 0))
+          (format "%s %s" type root)
+        (format "%s" root)))
+    (if (display-graphic-p)
+        (progn
+          (advice-add #'ibuffer-project-group-name :override #'my-ibuffer-project-group-name)
+          (setq ibuffer-project-root-functions
+                `((ibuffer-project-project-root . ,(nerd-icons-octicon "nf-oct-repo" :height 1.2 :face ibuffer-filter-group-name-face))
+                  (file-remote-p . ,(nerd-icons-codicon "nf-cod-radio_tower" :height 1.2 :face ibuffer-filter-group-name-face)))))
+      (progn
+        (advice-remove #'ibuffer-project-group-name :override #'my-ibuffer-project-group-name)
+        (setq ibuffer-project-root-functions
+              '((ibuffer-project-project-root . "Project")
+                (file-remote-p . "Remote")))))))
 
 
 (defun toggle-maximize-buffer ()

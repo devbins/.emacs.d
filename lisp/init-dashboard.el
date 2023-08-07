@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 75
+;;     Update #: 79
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,7 +58,7 @@
     :color pink :quit-key "q")
    ("Navigator"
     (("H" browse-homepage "homepage" :exit t)
-     ("R" restore-previous-session "recover session" :exit t)
+     ("R" restore-session "recover session" :exit t)
      ("L" restore-session "list sessions" :exit t))
     "Section"
     (("}" dashboard-next-section "next")
@@ -80,7 +80,7 @@
   :bind (("<f2>" . open-dashboard)
          :map dashboard-mode-map
          ("H" . browse-homepage)
-         ("R" . restore-previous-session)
+         ("R" . restore-session)
          ("L" . restore-session)
          ("q" . quit-dashboard)
          ("h" . dashboard-hydra/body)
@@ -145,23 +145,13 @@
                                            'face 'font-lock-comment-face))))
   (advice-add #'dashboard-insert-footer :after #'my-dashboard-insert-copyright)
 
-  (defun restore-previous-session ()
+  (defun restore-session ()
     "Restore the previous session."
     (interactive)
-    (when (bound-and-true-p persp-mode)
-      (restore-session persp-auto-save-fname)))
-
-  (defun restore-session (fname)
-    "Restore the specified session."
-    (interactive (list (read-file-name "Load perspectives from a file: "
-                                       persp-save-dir)))
-    (when (bound-and-true-p persp-mode)
-      (message "Restoring session...")
-      (quit-window t)
-      (condition-case-unless-debug err
-          (persp-load-state-from-file fname)
-        (error "Error: Unable to restore session -- %s" err))
-      (message "Restoring session...done")))
+    (message "Restoring session...")
+    (quit-window t)
+    (desktop-read)
+    (message "Restoring session...done"))
 
   (defun dashboard-goto-recent-files ()
     "Go to recent files."

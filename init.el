@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 96
+;;     Update #: 97
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -115,7 +115,7 @@ Otherwise the startup will be very slow. "
 (require 'init-highlight)
 (require 'init-ibuffer)
 (require 'init-kill-ring)
-(require 'init-persp)
+(require 'init-workspace)
 (require 'init-window)
 (require 'init-treemacs)
 

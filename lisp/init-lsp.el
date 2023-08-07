@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 204
+;;     Update #: 206
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,7 +72,11 @@
        :hook ((prog-mode . (lambda ()
                              (unless (derived-mode-p 'emacs-lisp-mode 'lisp-mode 'makefile-mode)
                                (eglot-ensure))))
-              (markdown-mode . lsp-deferred))))
+              (markdown-mode . lsp-deferred))
+     :config
+     (use-package consult-eglot
+       :bind (:map eglot-mode-map
+              ("C-M-." . consult-eglot-symbols)))))
   ('lsp-mode
    ;; Emacs client for the Language Server Protocol
    ;; https://github.com/emacs-lsp/lsp-mode#supported-languages
@@ -138,6 +142,10 @@
            lsp-rust-analyzer-server-display-inlay-hints t
            lsp-rust-analyzer-proc-macro-enable t)
      :config
+     (use-package consult-lsp
+       :bind (:map lsp-mode-map
+              ("C-M-." . consult-lsp-symbols)))
+
      ;; Configure LSP clients
      (with-no-warnings
        (defun my-lsp--init-if-visible (func &rest args)
