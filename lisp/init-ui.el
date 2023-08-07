@@ -254,8 +254,12 @@ If FRAME is nil, it defaults to the selected frame."
                 (set-fontset-font (frame-parameter nil 'font) charset
                                   (font-spec :family font)))))
 
-(add-to-list 'default-frame-alist '(alpha . (80 . 75)))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(cond (sys/macp
+       (add-to-list 'default-frame-alist '(alpha . (80 . 75))))
+      ((or sys/linuxp sys/win32p)
+       (set-frame-parameter nil 'alpha-background 80)
+       (add-to-list 'default-frame-alist '(alpha-background . 80))))
 
 ;; Display dividers between windows
 (setq window-divider-default-places 'right-only
