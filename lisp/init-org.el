@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 823
+;;     Update #: 824
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1126,7 +1126,7 @@ same directory as the org-buffer and insert a link to this file."
           (concat (file-name-directory (buffer-file-name))
                   "imgs/" (file-name-sans-extension (buffer-name)) "/" (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
   (unless (file-exists-p (file-name-directory filename))
-    (make-directory (file-name-directory filename)))
+    (make-directory (file-name-directory filename) t))
   ;; take screenshot
   (if (eq system-type 'darwin)
       (progn
