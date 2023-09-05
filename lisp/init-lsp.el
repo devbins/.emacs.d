@@ -61,7 +61,8 @@
      :init
      (setq lsp-bridge-enable-mode-line nil
            acm-enable-quick-access t
-           acm-enable-codeium t)
+           acm-enable-codeium nil
+           lsp-bridge-enable-hover-diagnostic t)
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
