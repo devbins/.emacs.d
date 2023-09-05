@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 252
+;;     Update #: 259
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -341,6 +341,11 @@
 (use-package color-rg
   :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type)
   :load-path "site-lisp/color-rg")
+
+(use-package holo-layer
+  :commands (holo-layer-enable)
+  :custom (holo-layer-enable-cursor-animation t)
+  :load-path "site-lisp/holo-layer")
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
