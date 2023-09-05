@@ -34,3 +34,6 @@
 [submodule "mind-wave"]
 	path = site-lisp/mind-wave
 	url = https://github.com/manateelazycat/mind-wave.git
+[submodule "holo-layer"]
+	path = site-lisp/holo-layer
+	url = https://github.com/manateelazycat/holo-layer.git
