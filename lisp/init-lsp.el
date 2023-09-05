@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 206
+;;     Update #: 217
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -61,13 +61,14 @@
      :init
      (setq lsp-bridge-enable-mode-line nil
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
+           lsp-bridge-enable-hover-diagnostic t
+           lsp-bridge-enable-org-babel t
+           lsp-bridge-symbols-enable-which-func t
            acm-enable-quick-access t
-           acm-enable-codeium nil
-           lsp-bridge-enable-hover-diagnostic t)
+           acm-enable-codeium nil)
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
-           lsp-bridge-org-babel-lang-list '("go" "python" "ipython" "ruby" "js" "css" "sass" "c" "rust" "java" "cpp" "c++" "sh")
            lsp-bridge-use-ds-pinyin-in-org-mode t)))
   ('eglot
    (use-package eglot
