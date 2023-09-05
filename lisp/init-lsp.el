@@ -60,6 +60,7 @@
             ("C-c i" . lsp-bridge-find-impl))
      :init
      (setq lsp-bridge-enable-mode-line nil
+           lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            acm-enable-quick-access t
            acm-enable-codeium nil
            lsp-bridge-enable-hover-diagnostic t)
