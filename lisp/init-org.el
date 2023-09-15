@@ -934,11 +934,13 @@ prepended to the element after the #+HEADER: tag."
                                (plantuml   . t)))
 
   ;; 代码块的语言模式设置，设置之后才能正确语法高亮
-  (setq org-src-lang-modes '(("C"      . c)
+  (setq org-src-lang-modes '(("bash"   . sh)
+                             ("C"      . c)
                              ("C++"    . c++)
-                             ("bash"   . sh)
                              ("cpp"    . c++)
                              ("elisp"  . emacs-lisp)
+                             ("go"     . go)
+                             ("rust"   . rustic)
                              ("shell"  . sh)
                              ("mysql"  . sql)))
 
