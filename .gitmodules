@@ -37,3 +37,6 @@
 [submodule "holo-layer"]
 	path = site-lisp/holo-layer
 	url = https://github.com/manateelazycat/holo-layer.git
+[submodule "emacs-anki-helper"]
+	path = site-lisp/emacs-anki-helper
+	url = https://github.com/Elilif/emacs-anki-helper.git
