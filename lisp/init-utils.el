@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 259
+;;     Update #: 262
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,8 +81,7 @@
          :map evil-normal-state-map
          ("q" . quit-window))
   :init
-  (setq url-automatic-caching t
-        youdao-dictionary-use-chinese-word-segmentation t) ; 中文分词
+  (setq url-automatic-caching t)
 
   (with-no-warnings
     (defun my-youdao-search-at-point ()
