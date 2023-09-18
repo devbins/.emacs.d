@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 217
+;;     Update #: 224
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -64,6 +64,7 @@
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-org-babel t
            lsp-bridge-symbols-enable-which-func t
+           lsp-bridge-python-lsp-server "ruff"
            acm-enable-quick-access t
            acm-enable-codeium nil)
      :config
