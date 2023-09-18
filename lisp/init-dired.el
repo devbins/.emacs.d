@@ -207,6 +207,26 @@
             "w" 'image-transform-fit-to-width
             "s" 'image-transform-set-scale))
 
+(use-package dirvish
+  :init
+  (dirvish-override-dired-mode)
+  :config
+  (setq dirvish-reuse-session nil)
+  (setq dirvish-mode-line-format
+        '(:left (sort symlink) :right (omit yank index)))
+  (setq dirvish-attributes
+        '(vc-state subtree-state nerd-icons git-msg file-time file-size)
+        dirvish-use-header-line 'global)
+  (setq delete-by-moving-to-trash t)
+  (setq dired-listing-switches
+        "-l --almost-all --human-readable --group-directories-first --no-group")
+  ;; 文件归类
+  (setq dirvish-emerge-groups '(("Recent files" (predicate . recent-files-2h))
+			                    ("Documents" (extensions "pdf" "tex" "bib" "epub"))
+			                    ("Video" (extensions "mp4" "mkv" "webm"))
+			                    ("Pictures" (extensions "jpg" "png" "svg" "gif"))
+			                    ("Audio" (extensions "mp3" "flac" "wav" "ape" "aac"))
+			                    ("Archives" (extensions "gz" "rar" "zip"))))
 
 (provide 'init-dired)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
