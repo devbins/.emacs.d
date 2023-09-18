@@ -227,6 +227,21 @@
 			                    ("Pictures" (extensions "jpg" "png" "svg" "gif"))
 			                    ("Audio" (extensions "mp3" "flac" "wav" "ape" "aac"))
 			                    ("Archives" (extensions "gz" "rar" "zip"))))
+  (evil-define-key 'normal dirvish-mode-map
+    (kbd "TAB") 'dirvish-subtree-toggle
+    "a" 'dirvish-quick-access
+    "c" 'dirvish-dired-cheatsheet
+    "e" 'dirvish-emerge-menu
+    "f" 'dirvish-file-info-menu
+    "m" 'dirvish-mark-menu
+    "n" 'dirvish-narrow
+    "y" 'dirvish-yank-menu
+    "t" 'dirvish-layout-toggle
+    "r" 'dirvish-renaming-menu
+    "q" 'dirvish-quit
+    "?" 'dirvish-dispatch)
+  :bind (:map dirvish-mode-map
+         ("?" . dirvish-dispatch)))
 
 (provide 'init-dired)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
