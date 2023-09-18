@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 102
+;;     Update #: 103
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -201,19 +201,6 @@ Install the doc if it's not installed."
 (use-package treesit-auto
   :init (setq treesit-auto-install 'prompt)
   :config (global-treesit-auto-mode))
-
-;; Show function arglist or variable docstring
-(use-package eldoc
-  :ensure nil
-  :diminish
-  :config
-  (use-package eldoc-box
-    :diminish (eldoc-box-hover-mode eldoc-box-hover-at-point-mode)
-    :custom-face
-    (eldoc-box-border ((t (:inherit posframe-border :background unspecified))))
-    (eldoc-box-body ((t (:inherit tooltip))))
-    :hook ((emacs-lisp-mode . eldoc-box-hover-at-point-mode)
-           (eglot-managed-mode . eldoc-box-hover-at-point-mode))))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
