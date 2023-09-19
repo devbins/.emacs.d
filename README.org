@@ -78,6 +78,10 @@
 **** Server 安装
 ***** Mac
       #+begin_src sh
+      brew install ccls
+      #+end_src
+      手动安装
+      #+begin_src sh
       brew install cmake llvm
       git clone --depth=1 --recursive https://github.com/MaskRay/ccls
       cd ccls
@@ -116,8 +120,7 @@
 *** Rust
     安装好 =Rust= 之后，需要安装 RLS(Rust Language Server)
     #+begin_src sh
-    brew install rust-analyzer
-    cargo install rust-script
+    rustup component add rust-anzlyer
     #+end_src
 *** Python
 **** Server 安装
@@ -150,10 +153,15 @@
 **** Javascript/Typescript
      #+begin_src sh
      brew install deno
+     npm -i g typescript typescript-language-server
      #+end_src
 **** html/css
      #+begin_src sh
      npm install -g vscode-langservers-extracted
+     #+end_src
+**** vue
+     #+begin_src sh
+     npm i -g @vue/language-server
      #+end_src
 *** YAML
     #+begin_src sh
