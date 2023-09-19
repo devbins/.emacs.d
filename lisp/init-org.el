@@ -1298,7 +1298,35 @@ same directory as the org-buffer and insert a link to this file."
 ;; https://gitlab.com/phillord/org-drill
 (use-package org-drill
   :config (add-to-list 'org-modules 'org-drill))
+
 (use-package org-board)
+
+(use-package anki-helper
+  :load-path "site-lisp/emacs-anki-helper"
+  :config
+  (defun anki-helper--entry-locate (filename entry-name)
+    (find-file filename)
+    (let* ((data (org-element-parse-buffer))
+           (pos (org-element-map data '(headline)
+                                 (lambda (elt)
+                                   (when (string= (org-element-property :raw-value elt)
+                                                  entry-name)
+                                     (org-element-property :begin elt)))
+                                 nil t)))
+      (goto-char pos)
+      (org-reveal)))
+
+  (defun anki-helper-fields-get-with-backlink ()
+    "Get filed info of the current entry with backlink."
+    (let* ((front-and-back (anki-helper-fields-get-default))
+           (filename (file-name-nondirectory (buffer-file-name)))
+           (elt (plist-get (org-element-at-point) 'headline))
+           (entry (plist-get elt :raw-value)))
+      `(,@front-and-back ,filename ,entry)))
+
+  (setq anki-helper-note-types '(("Basic (with backlink)" "Front" "Back" "Source" "Location"))
+        anki-helper-fields-get-alist '(("Basic (with backlink)" . anki-helper-fields-get-with-backlink))
+        anki-helper-default-note-type "Basic (with backlink)"))
 
 ;; https://github.com/chenyanming/calibredb.el
 (use-package calibredb
