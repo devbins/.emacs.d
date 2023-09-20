@@ -51,13 +51,16 @@
   :ensure nil
   :bind (:map dired-mode-map
          ("C-c C-p" . wdired-change-to-wdired-mode)
-         ("e" . wdired-change-to-wdired-mode))
+         ("w" . wdired-change-to-wdired-mode)
+         ("?" . dired-summary))
   :config
   (evil-define-key 'normal dired-mode-map
     "gg" 'evil-goto-first-line
     "G" 'evil-goto-line
-    "e" 'wdired-change-to-wdired-mode
-    "p" 'dired-posframe-show)
+    "h" 'dired-up-directory
+    "w" 'wdired-change-to-wdired-mode
+    "p" 'dired-posframe-show
+    "?" 'dired-summary)
   ;; Always delete and copy recursively
   (setq dired-recursive-deletes 'always
         dired-recursive-copies 'always
