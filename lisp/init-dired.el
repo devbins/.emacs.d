@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 86
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,8 +113,7 @@
     :diminish
     :commands nerd-icons-dired-mode
     :custom-face
-    (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
-    :hook (dired-mode . nerd-icons-dired-mode))
+    (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified)))))
 
   (use-package dired-ranger)
 
