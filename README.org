@@ -124,13 +124,14 @@
     #+end_src
 *** Python
 **** Server 安装
-***** jedi
-      #+begin_src sh
-      pip install -U jedi-language-server
-      #+end_src
 ***** pyright
       #+begin_src sh
-      npm install -g pyright
+      npm i -g pyright
+      #+end_src
+***** ruff
+      如果和 =Anaconda= 一起使用，需要在对应的 =env= 中安装，也就是每个 =env= 都要安装一遍。
+      #+begin_src sh
+      pip install ruff-lsp
       #+end_src
 **** debug
      #+begin_src sh
