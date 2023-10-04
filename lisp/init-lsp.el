@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 224
+;;     Update #: 225
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,7 +62,7 @@
      (setq lsp-bridge-enable-mode-line nil
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            lsp-bridge-enable-hover-diagnostic t
-           lsp-bridge-enable-org-babel t
+           lsp-bridge-enable-org-babel nil
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "ruff"
            acm-enable-quick-access t
