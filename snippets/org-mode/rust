@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: rust
+# key: rust
+# --
+
+#+begin_src rust :crates '($1) :features '(($2 . ("$3")))
+$4
+#+end_src
+$0
