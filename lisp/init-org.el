@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 828
+;;     Update #: 834
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -93,7 +93,7 @@ prepended to the element after the #+HEADER: tag."
      ("m" (hot-expand "<s" "emacs-lisp") "emacs-lisp")
      ("y" (hot-expand "<s" "python :results output") "python")
      ("p" (hot-expand "<s" "perl") "perl")
-     ("r" (hot-expand "<s" "ruby") "ruby")
+     ("r" (hot-expand "<s" "rust :crates '() :features '(())") "rust")
      ("S" (hot-expand "<s" "sh") "sh")
      ("g" (hot-expand "<s" "go :imports '\(\"fmt\"\)") "golang"))
     "Misc"
@@ -803,14 +803,6 @@ prepended to the element after the #+HEADER: tag."
   :ensure nil
   :after org
   :config
-  ;; ==================================
-  ;; 如果出现代码运行结果为乱码，可以参考：
-  ;; https://github.com/nnicandro/emacs-jupyter/issues/366
-  ;; ==================================
-  (defun display-ansi-colors ()
-    (ansi-color-apply-on-region (point-min) (point-max)))
-  (add-hook 'org-babel-after-execute-hook #'display-ansi-colors)
-
   ;; =================================================
   ;; 自动给结果的图片加上相关属性
   ;; =================================================
