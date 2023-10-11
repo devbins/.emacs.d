@@ -108,6 +108,18 @@
      sudo pacman -S node unzip gdb lldb
      #+end_src
      =M-x dap-gdb-lldb-setup=
+**** format
+     #+begin_src sh
+     brew install clang-format
+     #+end_src
+     =.clang-format= example base llvm
+     #+begin_example
+     ---
+     BasedOnStyle: LLVM
+     IndentWidth: 4
+     AccessModifierOffset: -4
+     ---
+     #+end_example
 *** Go
 **** Server 安装
      #+begin_src sh
