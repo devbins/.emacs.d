@@ -40,3 +40,6 @@
 [submodule "emacs-anki-helper"]
 	path = site-lisp/emacs-anki-helper
 	url = https://github.com/Elilif/emacs-anki-helper.git
+[submodule "plantuml-emacs"]
+	path = site-lisp/plantuml-emacs
+	url = https://github.com/ginqi7/plantuml-emacs.git
