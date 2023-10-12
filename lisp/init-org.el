@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 834
+;;     Update #: 846
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1319,6 +1319,18 @@ same directory as the org-buffer and insert a link to this file."
   (setq anki-helper-note-types '(("Basic (with backlink)" "Front" "Back" "Source" "Location"))
         anki-helper-fields-get-alist '(("Basic (with backlink)" . anki-helper-fields-get-with-backlink))
         anki-helper-default-note-type "Basic (with backlink)"))
+
+(use-package plantuml
+  :commands (plantuml--parse-headlines plantuml-org-to-mindmap plantuml-display-json plantuml-org-to-mindmap-open)
+  :load-path "site-lisp/plantuml-emacs"
+  :config
+  (setq plantuml-jar-path (expand-file-name (concat user-emacs-directory "plantuml.jar"))
+        plantuml-output-type "svg"
+        plantuml-relative-path "./imgs/"
+        plantuml-theme "plain"
+        plantuml-add-index-number t
+        plantuml-log-command t
+        plantuml-org-headline-bold t))
 
 ;; https://github.com/chenyanming/calibredb.el
 (use-package calibredb
