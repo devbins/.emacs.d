@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 262
+;;     Update #: 267
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -343,8 +343,9 @@
 
 (use-package holo-layer
   :commands (holo-layer-enable)
-  :custom (holo-layer-enable-cursor-animation t
-           holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command"))
+  :custom
+  (holo-layer-enable-cursor-animation t)
+  (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command"))
   :load-path "site-lisp/holo-layer")
 
 (provide 'init-utils)
