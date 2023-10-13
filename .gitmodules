@@ -43,3 +43,6 @@
 [submodule "plantuml-emacs"]
 	path = site-lisp/plantuml-emacs
 	url = https://github.com/ginqi7/plantuml-emacs.git
+[submodule "ts-docstr"]
+	path = site-lisp/ts-docstr
+	url = https://github.com/emacs-vs/ts-docstr.git
