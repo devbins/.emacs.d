@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 103
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -199,6 +199,8 @@ Install the doc if it's not installed."
   :config (use-package yasnippet-snippets))
 
 (use-package treesit-auto
+  :commands (global-treesit-auto-mode)
+  :demand
   :init (setq treesit-auto-install 'prompt)
   :config (global-treesit-auto-mode))
 
