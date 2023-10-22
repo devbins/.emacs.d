@@ -46,3 +46,6 @@
 [submodule "ts-docstr"]
 	path = site-lisp/ts-docstr
 	url = https://github.com/emacs-vs/ts-docstr.git
+[submodule "insert-translated-name"]
+	path = site-lisp/insert-translated-name
+	url = https://github.com/manateelazycat/insert-translated-name.git
