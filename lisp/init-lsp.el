@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 225
+;;     Update #: 228
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -66,6 +66,7 @@
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "ruff"
            acm-enable-quick-access t
+           acm-enable-tabnine nil
            acm-enable-codeium nil)
      :config
      (require 'lsp-bridge-jdtls)
