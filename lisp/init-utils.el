@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 267
+;;     Update #: 278
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -314,15 +314,15 @@
 
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
-  :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup)
-  :load-path "site-lisp/dictionary-overlay")
+  :load-path "site-lisp/dictionary-overlay"
+  :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup))
 
 (use-package websocket-bridge
   :load-path "site-lisp/websocket-bridge")
 
 (use-package mind-wave
-  :mode ("\\.chat\\'" . mind-wave-chat-mode)
-  :load-path "site-lisp/mind-wave")
+  :load-path "site-lisp/mind-wave"
+  :mode ("\\.chat\\'" . mind-wave-chat-mode))
 
 (use-package slack
   :commands (slack-start)
@@ -338,15 +338,23 @@
    :full-and-display-names t))
 
 (use-package color-rg
-  :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type)
-  :load-path "site-lisp/color-rg")
+  :load-path "site-lisp/color-rg"
+  :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type))
 
 (use-package holo-layer
+  :load-path "site-lisp/holo-layer"
   :commands (holo-layer-enable)
   :custom
   (holo-layer-enable-cursor-animation t)
-  (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command"))
-  :load-path "site-lisp/holo-layer")
+  (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command")))
+
+;; (use-package insert-translated-name
+;;   :load-path "site-lisp/insert-translated-name"
+;;   :commands (insert-translated-name-insert)
+;;   :bind ("C-c t t" . 'insert-translated-name-insert)
+;;   :config
+;;   (setq insert-translated-name-camel-style-mode-list
+;;         '(go-mode)))
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
