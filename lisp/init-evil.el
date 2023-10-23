@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 220
+;;     Update #: 223
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -209,11 +209,11 @@
     "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
     "cc" 'evilnc-copy-and-comment-lines
-    "cp" 'evilnc-comment-or-uncomment-paragraphs
     "cr" 'comment-or-uncomment-region
     "cv" 'evilnc-toggle-invert-comment-line-by-line
     "."  'evilnc-copy-and-comment-operator
     "\\" 'evilnc-comment-operator ; if you prefer backslash key
+    "cp" 'compile
 
     "ff"  'find-file
     "fj"  'dired-jump
