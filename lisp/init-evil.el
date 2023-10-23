@@ -260,20 +260,14 @@
     "nw"  'widen
 
     ;; Project
-    "pb"  'projectile-switch-to-buffer
-    "pc"  'projectile-compile-project
-    "pd"  'projectile-find-dir
-    "pe"  'projectile-edit-dir-locals
-    "pf"  'projectile-find-file
-    "pg"  'projectile-find-tag
-    "pk"  'projectile-kill-buffers
-    "pp"  'projectile-switch-project
-    "pr"  'projectile-recentf
-    "pR"  'projectile-replace
-    "ps"  'projectile-switch-project
-    "pv"  'projectile-vc
-    "px"  'projectile-remove-known-project
-    "pz"  'projectile-cache-current-file
+    "pb"  'project-switch-to-buffer
+    "pc"  'project-compile
+    "pd"  'project-find-dir
+    "pf"  'project-find-file
+    "pk"  'project-kill-buffers
+    "pp"  'project-switch-project
+    "pv"  'project-vc-dir
+    "px"  'project--remove-from-project-list
 
     "po"  'poetry                       ;; Python poetry
 
