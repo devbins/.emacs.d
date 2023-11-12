@@ -10,8 +10,8 @@
    #+end_src
    =straight= 版本见 [[https://github.com/devbins/.emacs.d/tree/straight][straight]] 分支。
 ** Buffer
-    | 快捷键  | 描述                | 对应函数                 |
-    |---------+---------------------+--------------------------|
+    | 快捷键   | 描述                | 对应函数                   |
+    |---------+--------------------+--------------------------|
     | SPC b b | 切换 buffer         | =ivy-switch-buffer=        |
     | SPC b d | 删除 buffer         | =kill-this-buffer=         |
     | SPC b p | 上一个 buffer       | =previous-buffer=          |
@@ -20,21 +20,21 @@
     | SPC b t | 打开 imenu-list     | =imenu-list-smart-toggle=  |
 
 ** 文件
-    | 快捷键  | 描述                            | 对应函数                               |
-    |---------+---------------------------------+----------------------------------------|
-    | SPC f d | 删除当前文件                    | =delete-this-file=                       |
-    | SPC f R | 重命名文件                      | =rename-this-file=                       |
-    | SPC f t | 打开 treemacs                   | =treemacs=                               |
+    | 快捷键   | 描述                        | 对应函数                                 |
+    |---------+----------------------------+----------------------------------------|
+    | SPC f d | 删除当前文件                 | =delete-this-file=                       |
+    | SPC f R | 重命名文件                   | =rename-this-file=                       |
+    | SPC f t | 打开 treemacs               | =treemacs=                               |
     | SPC f o | 适用外部程序打开当前文件/文件夹 | =open-file-or-directory-in-external-app= |
-    | 无      | 把当前文件转为 UTF-8 编码        | =save-buffer-as-utf8=                    |
-    | 无      | 把 GBK 编码转为 UTF-8 编码        | =save-buffer-gbk-as-utf8=                |
-    | 无      | 在 finder 中显示（macOS）       | =reveal-in-osx-finder=                   |
+    | 无       | 把当前文件转为 UTF-8 编码     | =save-buffer-as-utf8=                    |
+    | 无       | 把 GBK 编码转为 UTF-8 编码   | =save-buffer-gbk-as-utf8=                |
+    | 无       | 在 finder 中显示（macOS）    | =reveal-in-osx-finder=                   |
 
 ** Git
-    | 快捷键  | 描述          | 对应函数                    |
+    | 快捷键   | 描述           | 对应函数                      |
     |---------+---------------+-----------------------------|
-    | SPC g s | 选择 Git 仓库 | =magit-status=                |
-    | SPC g t | git 时光机    | =git-timemachine=             |
+    | SPC g s | 选择 Git 仓库   | =magit-status=                |
+    | SPC g t | git 时光机     | =git-timemachine=             |
     | SPC g b | git blame     | =magit-blame=                 |
     | SPC g p | git messenger | =git-messenger:popup-message= |
     
@@ -42,18 +42,18 @@
 *** 在 Org-mode 中使用截图功能，并插入到当前文件
     =org-screenshot=
 *** Org Agenda
-    | 快捷键    | 描述            | 对应函数        |
-    |-----------+-----------------+-----------------|
+    | 快捷键     | 描述            | 对应函数          |
+    |-----------+----------------+-----------------|
     | SPC a o a | 打开 Org Agenda | =org-agenda-list= |
     | SPC m C p | 打开 pomodoro   | =org-pomodoro=    |
 *** Org Mode
-    | 快捷键    | 描述          | 对应函数         |
-    |-----------+---------------+------------------|
-    | SPC m p   | 设置优先级    | =org-priority=     |
+    | 快捷键     | 描述          | 对应函数           |
+    |-----------+--------------+------------------|
+    | SPC m p   | 设置优先级     | =org-priority=     |
     | SPC m i p | 设置 property | =org-set-property= |
     | SPC m i e | 设置 effort   | =org-set-effort=   |
     | SPC m o T | 设置 tags     | =org-set-tags=     |
-    | SPC a o c | 捕获内容      | =org-capture=      |
+    | SPC a o c | 捕获内容       | =org-capture=      |
 *** Org protocol
     在浏览器中，把下面的网址存为标签，在需要的网页中打开标签，两个选一个就行。
     #+begin_src js
@@ -69,10 +69,12 @@
     | SPC m s a | 切换 =Archive= tag                         | =org-toggle-archive-tag= |
     | SPC m s A | 把有 =Archive= tag 的移动到 =Archive= 文件中 | =org-archive-subtree=    |
 *** Org Roam
-    | 快捷键    | 描述                   | 对应函数                  |
-    |-----------+------------------------+---------------------------|
-    | SPC m r l | 打开 Org roam          | =org-roam=                  |
-    | SPC m r b | 切换到 Org roam buffer | =org-roam-switch-to-buffer= |
+    | 快捷键   | 描述              | 对应函数                      |
+    |---------+------------------+-----------------------------|
+    | SPC r a | 同步 org roam 节点  | =org-roam-db-autosync-mode= |
+    | SPC r f | 查找 org roam 节点 | =org-roam-node-find=          |
+    | SPC r i | 插入 org roam 节点 | =org-roam-node-insert=        |
+    | SPC r l | 给节点设置别名     | =org-roam-alias-add=          |
 ** lsp
 *** C/C++
 **** Server 安装
