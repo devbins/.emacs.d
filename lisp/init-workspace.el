@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,24 +47,25 @@
 ;;; Code:
 
 (use-package tabspaces
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
+  :hook (after-init . tabspaces-mode)
   :custom
   (tab-bar-show nil)
+
   (tabspaces-use-filtered-buffers-as-default t)
   (tabspaces-default-tab "Default")
   (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*" "*Messages*"))
+  (tabspaces-include-buffers '("*scratch*"))
   ;; sessions
   (tabspaces-session t)
   (tabspaces-session-auto-restore t)
-  :config
+  :init
+  ;; Filter Buffers for Consult-Buffer
   (with-eval-after-load 'consult
     ;; hide full buffer list (still available with "b" prefix)
     (consult-customize consult--source-buffer :hidden t :default nil)
     ;; set consult-workspace buffer list
     (defvar consult--source-workspace
-      (list :name     "Workspace Buffers"
+      (list :name     "Workspace Buffer"
             :narrow   ?w
             :history  'buffer-name-history
             :category 'buffer
