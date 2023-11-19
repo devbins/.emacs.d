@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 846
+;;     Update #: 850
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -935,11 +935,6 @@ prepended to the element after the #+HEADER: tag."
                              ("rust"   . rustic)
                              ("shell"  . sh)
                              ("mysql"  . sql)))
-
-  ;; ob-sh renamed to ob-shell since 26.1.
-  (if emacs/>=26p
-      (cl-pushnew '(shell . t) load-language-list)
-    (cl-pushnew '(sh . t) load-language-list))
 
   (use-package ob-go
     :init (cl-pushnew '(go . t) load-language-list))
