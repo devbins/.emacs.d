@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 228
+;;     Update #: 232
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,6 +55,8 @@
             ("C-c C-t" . lsp-bridge-toggle-sdcv-helper)
             ("M-s-l" . lsp-bridge-code-format)
             ("C-c a" . lsp-bridge-code-action)
+            ("C-c p" . lsp-bridge-peek)
+            ("C-c t" . lsp-bridge-peek-through)
             ("C-c r" . lsp-bridge-rename)
             ("C-c f" . lsp-bridge-find-def)
             ("C-c i" . lsp-bridge-find-impl))
