@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 47
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -122,10 +122,6 @@
 ;; Start server
 (use-package server
   :hook (after-init . server-mode))
-
-;; History
-(use-package desktop
-  :hook (after-init . desktop-save-mode))
 
 (use-package saveplace
   :hook (after-init . save-place-mode))
