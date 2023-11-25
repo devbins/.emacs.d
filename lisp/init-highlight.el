@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -277,6 +277,8 @@ FACE defaults to inheriting from default and highlight."
            magit-diff-visit-file
            next-error) . my-recenter-and-pulse-line))
   :init
+  (setq pulse-delay 0.08
+        pulse-iterations 2)
   (with-no-warnings
     (defun my-pulse-momentary-line (&rest _)
       "Pulse the current line."
