@@ -54,9 +54,6 @@
   :hook (minibuffer-setup . vertico-repeat-save)
   :bind
   (:map vertico-map
-   ("C-j" . vertico-next)
-   ("C-k" . vertico-previous)
-   ("C-f" . vertico-exit)
    ("<escape>" . minibuffer-keyboard-quit)
    ("?" . minibuffer-completion-help)))
 
