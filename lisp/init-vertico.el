@@ -76,17 +76,19 @@
                                       (weight . 50))))
 
 ;; support Pinyin first character match for orderless, avy etc.
-(use-package pinyinlib)
+(use-package pinyinlib
+  :after orderless
+  :autoload pinyinlib-build-regexp-string
+  :init
+  (defun completion--regex-pinyin (str)
+    (orderless-regexp (pinyinlib-build-regexp-string str)))
+  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
 
 (use-package orderless
   :init
   (setq completion-styles '(orderless partial-completion basic)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion))))
-  :config
-  (defun completion--regex-pinyin (str)
-    (orderless-regexp (pinyinlib-build-regexp-string str)))
-  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
+        completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
