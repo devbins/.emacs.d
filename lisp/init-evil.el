@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 226
+;;     Update #: 227
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -301,6 +301,7 @@
     "tf"  'toggle-frame-fullscreen
     "th"  'english-teacher-follow-mode
     "tt"  'toggle-transparency
+    "ts"  'consult-theme
 
     "ww"  'other-window
     "wm"  'toggle-maximize-buffer
