@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 181
+;;     Update #: 188
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -150,6 +150,7 @@
          ("M-s e" . consult-isearch)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
+  :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (setq register-preview-delay 1
         register-preview-function #'consult-register-format)
@@ -161,9 +162,14 @@
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
-  :hook (completion-list-mode . consult-preview-at-point-mode)
   :config
   (setq consult-preview-key "M-.")
+  ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
+  ;; For some commands and buffer sources it is useful to configure the
+  ;; :preview-key on a per-command basis using the `consult-customize' macro.
+  (consult-customize
+   consult-goto-line
+   consult-theme :preview-key '(:debounce 0.4 any))
   (defvar-local consult-toggle-preview-orig nil)
   (defun consult-toggle-preview ()
     "Command to enable/disable preview."
@@ -190,7 +196,6 @@
 
 (use-package embark
   :bind (("C-." . embark-act)
-         ("M-." . embark-dwim)
          ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
