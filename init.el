@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 97
+;;     Update #: 99
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,6 +138,7 @@ Otherwise the startup will be very slow. "
 (require 'init-flymake)
 (require 'init-projectile)
 (require 'init-lsp)
+(require 'init-dap)
 (require 'init-ctags)
 
 (require 'init-leetcode)
