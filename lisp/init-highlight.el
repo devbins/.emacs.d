@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,7 +51,8 @@
   :ensure nil
   :custom-face (hl-line ((t (:extend t))))
   :hook ((after-init . global-hl-line-mode)
-         ((term-mode vterm-mode) . hl-line-unload-function)))
+         ((dashboard-mode eshell-mode shell-mode term-mode vterm-mode) .
+          (lambda () (setq-local global-hl-line-mode nil)))))
 
 ;; Highlight matching parens
 (use-package paren
