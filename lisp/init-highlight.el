@@ -62,6 +62,7 @@
               show-paren-when-point-in-periphery t)
   :config
   (with-no-warnings
+    (setq show-paren-context-when-offscreen 'child-frame)
     (defun display-line-overlay (pos str &optional face)
       "Display line at POS as STR with FACE.
 FACE defaults to inheriting from default and highlight."
