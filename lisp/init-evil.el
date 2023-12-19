@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 227
+;;     Update #: 229
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -219,6 +219,7 @@
     "fj"  'dired-jump
     "fCd" 'unix2dos
     "fCu" 'dos2unix
+    "fCp" 'copy-current-file
     "fE"  'sudo-edit
     "fd"  'delete-this-file
     "fl"  'format-all-buffer
