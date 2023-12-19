@@ -128,6 +128,16 @@
   :config
   (semantic-mode 1))
 
+;; Expand C macros
+;;
+;; Useful when writing quick tests.
+(use-package cmacexp
+  :ensure nil
+  :commands c-macro-expand
+  :custom
+  (c-macro-prompt-flag t)
+  (c-macro-shrink-window-flag t))
+
 (provide 'init-c)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-c.el ends here
