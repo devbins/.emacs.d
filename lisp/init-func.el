@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 76
+;;     Update #: 77
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -136,6 +136,21 @@ Same as `replace-string C-q C-m RET RET'."
         (kill-new filename)
         (message "Copied '%s'" filename))
     (message "WARNING: Current buffer is not attached to a file!")))
+
+(defun copy-current-file (new-path &optional overwrite-p)
+  "Copy current buffer's file to `NEW-PATH'.
+If `OVERWRITE-P', overwrite the destination file without
+confirmation."
+  (interactive
+   (progn
+     (unless buffer-file-name
+       (user-error "No file is visiting"))
+     (list (read-file-name "Copy file to: ")
+           current-prefix-arg)))
+  (let ((old-path (buffer-file-name))
+        (new-path (expand-file-name new-path)))
+    (make-directory (file-name-directory new-path) t)
+    (copy-file old-path new-path (or overwrite-p 1))))
 
 ;; Mode line
 (defun mode-line-height ()
