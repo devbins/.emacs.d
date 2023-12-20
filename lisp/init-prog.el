@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 107
+;;     Update #: 108
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -201,7 +201,8 @@ Install the doc if it's not installed."
 (use-package treesit-auto
   :commands (global-treesit-auto-mode)
   :demand
-  :init (setq treesit-auto-install 'prompt)
+  :init (setq treesit-auto-install 'prompt
+              treesit-font-lock-level 4)
   :config (global-treesit-auto-mode))
 
 (provide 'init-prog)
