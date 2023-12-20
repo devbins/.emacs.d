@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 42
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -150,12 +150,15 @@
     "SPC m g" "coverage/gen"
     "SPC m h" "doc"
     "SPC m r" "refactor"
-    "SPC m t" "test"
+    "SPC m t" "tag/test"
     "SPC m x" "run"))
 
 ;; Local Golang playground for short snippets
 (use-package go-playground
   :diminish)
+
+(use-package go-ts-mode
+  :init (setq go-ts-mode-indent-offset 4))
 
 (provide 'init-go)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
