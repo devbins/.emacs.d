@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 188
+;;     Update #: 189
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,6 +88,8 @@
   :init
   (setq completion-styles '(orderless partial-completion basic)
         completion-category-defaults nil
+        read-buffer-completion-ignore-case t
+        completion-ignore-case t
         completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package consult
