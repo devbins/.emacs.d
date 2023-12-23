@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 51
+;;     Update #: 53
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -98,8 +98,8 @@
 (use-package conda
   :if (executable-find "conda")
   :config
-  (setq conda-anaconda-home (expand-file-name "/usr/local/anaconda3/")
-        conda-env-home-directory (expand-file-name "/usr/local/anaconda3/")
+  (setq conda-anaconda-home (expand-file-name "~/anaconda3/")
+        conda-env-home-directory (expand-file-name "/Users/dev.bin/anaconda3/")
         conda-env-subdirectory "envs")
 
   (unless (getenv "CONDA_DEFAULT_ENV")
