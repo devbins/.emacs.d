@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 850
+;;     Update #: 855
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -70,17 +70,17 @@ prepended to the element after the #+HEADER: tag."
       (when text (insert text))))
   :pretty-hydra
   ((:title (pretty-hydra-title "Org Template" 'fileicon "org")
-    :color blue :quit-key "q")
+    :color blue :quit-key "ESC")
    ("Basic"
     (("a" (hot-expand "<a") "ascii")
-     ("c" (hot-expand "<c") "center")
-     ("C" (hot-expand "<C") "comment")
+     ("c" (hot-expand "<C") "comment")
+     ("C" (hot-expand "<c") "center")
      ("e" (hot-expand "<e") "example")
      ("E" (hot-expand "<E") "export")
      ("h" (hot-expand "<h") "html")
      ("l" (hot-expand "<l") "latex")
      ("n" (hot-expand "<n") "note")
-     ("o" (hot-expand "<q") "quote")
+     ("q" (hot-expand "<q") "quote")
      ("v" (hot-expand "<v") "verse"))
     "Head"
     (("i" (hot-expand "<i") "index")
