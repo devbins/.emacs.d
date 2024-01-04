@@ -46,6 +46,22 @@
 ;;
 ;;; Code:
 
+(use-package gptel
+  :hook ((gptel-post-stream . gptel-auto-scroll)
+         (gptel-post-response . gptel-end-of-response))
+  :config
+  (setq-default gptel-model "mistral:latest"
+                gptel-backend (gptel-make-ollama
+                               "Ollama"
+                               :host "localhost:11434"
+                               :models '("mistral:latest")
+                               :stream t)
+                gptel-default-mode 'org-mode)
+
+  (gptel-make-gemini
+   "Gemini"
+   :key (password-store-get "gemini")
+   :stream t))
 
 (use-package ellama
   :init
