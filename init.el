@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 99
+;;     Update #: 100
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -151,7 +151,8 @@ Otherwise the startup will be very slow. "
 (require 'init-python)
 (require 'init-dart)
 (require 'init-web)
-(require 'init-ros)
+(require 'init-ai)
+;; (require 'init-ros)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
