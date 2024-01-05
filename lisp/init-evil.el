@@ -245,6 +245,7 @@
     "gt"  'git-timemachine
     "gb"  'magit-blame
     "gp"  'git-messenger:popup-message
+    "gl"  'avy-goto-line
 
     "hf"  'find-function-at-point
     "hk"  'find-function-on-key
