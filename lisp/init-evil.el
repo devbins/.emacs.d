@@ -224,6 +224,7 @@
     "fd"  'delete-this-file
     "fl"  'format-all-buffer
     "ft"  'treemacs
+    "f."    'dirvish-side
     "fo"  'open-file-or-directory-in-external-app
     "fr"  'consult-recent-file
     "fR"  'rename-this-file
