@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 229
+;;     Update #: 233
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -214,6 +214,17 @@
     "."  'evilnc-copy-and-comment-operator
     "\\" 'evilnc-comment-operator ; if you prefer backslash key
     "cp" 'compile
+
+    "eaa" 'ellama-ask-about
+    "eac" 'ellama-chat
+    "ecr" 'ellama-code-review
+    "eca" 'ellama-code-add
+    "ecc" 'ellama-code-complete
+    "er" 'ellama-ask-selection
+    "el" 'ellama-ask-line
+    "et" 'ellama-translate
+    "es" 'ellama-summarize
+    "ev" 'ellama-code-review
 
     "ff"  'find-file
     "fj"  'dired-jump
