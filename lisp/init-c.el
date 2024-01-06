@@ -101,6 +101,8 @@
                      (innamespace           . -) ;; no indentation after namespace
                      (arglist-cont-nonempty . +))))
 
+(use-package c-ts-mode
+    :init (setq c-ts-mode-indent-offset 4))
 ;; Highlight "#if 0" as comments
 (use-package hideif
   :ensure nil
