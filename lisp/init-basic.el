@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,10 +52,6 @@
     "Return the `car' of the `car' of the `cdr' of X."
     (declare (compiler-macro internal--compiler-macro-cXXr))
     (car (car (cdr x)))))
-
-;; Personal information
-(setq user-full-name "devbins"
-      user-mail-address "devbins@126.com")
 
 ;; Key Modifiers
 (with-no-warnings
