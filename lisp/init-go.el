@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 42
+;;     Update #: 46
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -98,27 +98,11 @@
 
   ;; go install github.com/fatih/gomodifytags@latest
   (use-package go-tag
-    :bind (:map go-mode-map
-           ("C-c t t" . go-tag-add)
-           ("C-c t T" . go-tag-remove))
     :init (setq go-tag-args (list "-transform" "camelcase")))
 
-  (use-package go-gen-test
-    :bind (:map go-mode-map
-           ("C-c t g" . go-gen-test-dwim)))
+  (use-package go-gen-test)
 
-  (use-package gotest
-    :bind (:map go-mode-map
-           ("C-c t a" . go-test-current-project)
-           ("C-c t m" . go-test-current-file)
-           ("C-c t ." . go-test-current-test)
-           ("C-c t x" . go-run)))
-
-  (defun go-run-main ()
-    (interactive)
-    (shell-command
-     (format "go run %s"
-             (shell-quote-argument (buffer-file-name)))))
+  (use-package gotest)
 
   (evil-leader/set-key-for-mode 'go-mode
     "mig" 'go-goto-imports
@@ -135,10 +119,10 @@
     "mre" 'godoctor-extract
     "mrn" 'godoctor-rename
     "m="  'gofmt
-    "mxx" 'go-run-main
+    "mxx" 'go-run
     "mta" 'go-tag-add
-    "mtd" 'go-gen-test-dwim
     "mtr" 'go-tag-remove
+    "mtd" 'go-gen-test-dwim
     "mtt" 'go-test-current-test
     "mtf" 'go-test-current-file
     "mtp" 'go-test-current-project
