@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 240
+;;     Update #: 242
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,7 +58,10 @@
             ("C-c p" . lsp-bridge-peek)
             ("C-c t" . lsp-bridge-peek-through)
             ("C-c r" . lsp-bridge-rename)
+            ("C-c d" . lsp-bridge-popup-documentation)
+            ("C-c o" . lsp-bridge-find-type-def-other-window)
             ("C-c f" . lsp-bridge-find-def)
+            ("C-c x" . lsp-bridge-find-references)
             ("C-c i" . lsp-bridge-find-impl))
      :init
      (setq lsp-bridge-enable-mode-line nil
