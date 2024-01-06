@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 232
+;;     Update #: 240
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,6 +73,8 @@
      :config
      (require 'lsp-bridge-jdtls)
      (setq lsp-bridge-c-lsp-server "ccls"
+           acm-backend-search-file-words-enable-fuzzy-match t
+           acm-backend-lsp-match-mode "fuzzy"
            lsp-bridge-use-ds-pinyin-in-org-mode t)))
   ('eglot
    (use-package eglot
