@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 45
+;;     Update #: 52
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,20 +65,6 @@
   (evil-leader/set-key-for-mode 'c++-mode
     "mfo" 'ff-find-other-file
     "mfO" 'ff-find-other-file-other-window)
-  (use-package modern-cpp-font-lock
-    :diminish
-    :init (modern-c++-font-lock-global-mode t))
-
-  (use-package disaster
-    :commands (disaster))
-
-  (use-package cmake-mode
-    :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
-  (use-package company-c-headers :defer t :disabled)
-  (use-package clang-format
-    :commands (clang-format
-               clang-format-region
-               clang-format-buffer))
   :custom
   (c-comment-prefix-regexp '((c-mode   . "//+!?\\|\\**")
                              (c++-mode . "//+!?\\|\\**")
@@ -103,6 +89,25 @@
 
 (use-package c-ts-mode
     :init (setq c-ts-mode-indent-offset 4))
+
+(use-package clang-format
+    :commands (clang-format
+               clang-format-region
+               clang-format-buffer))
+
+(use-package modern-cpp-font-lock
+  :diminish
+  :init (modern-c++-font-lock-global-mode t))
+
+;; Disassemble C/C++ code under cursor
+(use-package disaster
+  :commands (disaster))
+
+(use-package cmake-mode
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
+
+(use-package company-c-headers :defer t :disabled)
+
 ;; Highlight "#if 0" as comments
 (use-package hideif
   :ensure nil
