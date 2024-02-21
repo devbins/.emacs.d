@@ -62,3 +62,8 @@
 /srecode-map.el
 /.lsp/
 /ds-pinyin/
+.DS_Store
+org-persist/
+persist/
+projects
+tree-sitter/
