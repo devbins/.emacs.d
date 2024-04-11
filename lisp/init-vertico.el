@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 189
+;;     Update #: 190
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -201,7 +201,6 @@
          ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
-  :after (embark consult)
   :bind (:map minibuffer-mode-map
          ("C-c C-o" . embark-export))
   :hook (embark-collect . consult-preview-at-point-mode)
