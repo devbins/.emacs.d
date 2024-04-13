@@ -1180,7 +1180,7 @@ same directory as the org-buffer and insert a link to this file."
 
   (cl-defmethod org-roam-node-directories ((node org-roam-node))
     (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
-        (format "(%s)" (car (split-string dirs "/")))
+        (format "(%s)" (directory-file-name dirs))
       ""))
 
   (cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
