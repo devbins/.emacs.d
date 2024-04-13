@@ -1164,7 +1164,7 @@ same directory as the org-buffer and insert a link to this file."
   :init
   (if emacs/>=29p
       (setq org-roam-database-connector 'sqlite-builtin))
-  (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:3} ${directories:10}" (propertize "${tags:10}" 'face 'org-tag)))
+  (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:3} ${directories:20}" (propertize "${tags:10}" 'face 'org-tag)))
   :config
   (unless (file-exists-p org-roam-directory)
     (make-directory org-roam-directory))
