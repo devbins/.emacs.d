@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 855
+;;     Update #: 863
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1028,6 +1028,7 @@ prepended to the element after the #+HEADER: tag."
           ("TODO" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-todo :inverse t :margin 0 :radius 15))))
           ("DOING" . ((lambda (tag) (svg-tag-make "DOING" :face 'org-doing :inverse t :margin 0 :radius 15))))
           ("DONE" . ((lambda (tag) (svg-tag-make "DONE" :face 'org-done :margin 0 :radius 15))))
+          ("ABORT" . ((lambda (tag) (svg-tag-make "ABORT" :face 'org-done :margin 0 :radius 15))))
 
 
           ;; Citation of the form [cite:@Knuth:1984]
