@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 57
+;;     Update #: 77
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -98,6 +98,14 @@
 
 (use-package pass
   :after password-store)
+
+(use-package epa-file
+  :ensure nil
+  :init
+  (setq epa-pinentry-mode 'loopback
+        epa-file-cache-passphrase-for-symmetric-encryption t)
+  :config
+  (epa-file-enable))
 
 (use-package autoinsert
   :ensure nil

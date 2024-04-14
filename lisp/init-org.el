@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 863
+;;     Update #: 868
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -694,14 +694,6 @@ prepended to the element after the #+HEADER: tag."
     (setenv "GPG_AGENT_INFO" nil)
     ;; 当被加密的部份被保存时，自動加密回去
     (org-crypt-use-before-save-magic))
-
-  (use-package epa-file
-    :ensure nil
-    :config
-    (epa-file-enable)
-    (setq epa-pinentry-mode 'loopback
-          epa-file-select-keys 0
-          epa-file-cache-passphrase-for-symmetric-encryption t))
 
   ;; pinentry-start 要使用的时候 Mac 下需要
   ;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
