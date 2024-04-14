@@ -99,7 +99,7 @@
   :if (executable-find "conda")
   :config
   (setq conda-anaconda-home (expand-file-name "~/anaconda3/")
-        conda-env-home-directory (expand-file-name "/Users/dev.bin/anaconda3/")
+        conda-env-home-directory (expand-file-name "~/anaconda3/")
         conda-env-subdirectory "envs")
 
   (unless (getenv "CONDA_DEFAULT_ENV")
