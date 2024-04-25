@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 868
+;;     Update #: 871
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -901,6 +901,7 @@ prepended to the element after the #+HEADER: tag."
   (defvar load-language-list '((emacs-lisp . t)
                                (perl       . t)
                                (python     . t)
+                               (jupyter    . t)
                                (sql        . t)
                                (sqlite     . t)
                                (ruby       . t)
@@ -931,10 +932,6 @@ prepended to the element after the #+HEADER: tag."
   (use-package ob-go
     :init (cl-pushnew '(go . t) load-language-list))
 
-  (use-package ob-ipython
-    :if (executable-find "jupyter")     ; DO NOT remove
-    :init (cl-pushnew '(ipython . t) load-language-list))
-
   ;; REST
   ;; Org babel extensions
   ;; HTTP client
@@ -952,6 +949,8 @@ prepended to the element after the #+HEADER: tag."
                     "jupyter-R"
                     "jupyter-javascript")))
 
+  (setq org-babel-default-header-args:jupyter-python'((:async . "yes")
+                                                      (:session . "py")))
 
   (use-package ob-kotlin
     :init (cl-pushnew '(kotlin . t) load-language-list))
