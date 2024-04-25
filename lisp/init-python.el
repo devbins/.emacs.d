@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 53
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -137,6 +137,8 @@
     (kbd "<S-return>") 'ein:worksheet-execute-cell-and-goto-next
     "gj" 'ein:worksheet-goto-next-input
     "gk" 'ein:worksheet-goto-prev-input))
+
+(use-package jupyter)
 
 (defun pyuic(file)
   "use pyuic convert .ui FILE to .py"
