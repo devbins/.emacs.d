@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10.2)
-project($1)
+
+set(APP_NAME $1)
+project(${APP_NAME})
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -24,4 +26,4 @@ file(GLOB SOURCES CONFIGURE_DEPENDS
     "\${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
-add_executable($1 \${SOURCES})
+add_executable(${APP_NAME} \${SOURCES})
