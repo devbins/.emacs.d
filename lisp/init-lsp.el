@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 242
+;;     Update #: 244
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -70,6 +70,7 @@
            lsp-bridge-enable-org-babel nil
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "ruff"
+           lsp-bridge-enable-inlay-hint t
            acm-enable-quick-access t
            acm-enable-tabnine nil
            acm-enable-codeium nil)
