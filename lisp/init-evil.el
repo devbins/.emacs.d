@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 233
+;;     Update #: 234
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -194,7 +194,7 @@
     "aojv" 'org-journal-schedule-view
 
     "bb"  'consult-buffer
-    "bd"  'kill-this-buffer
+    "bd"  'kill-current-buffer
     "bh"  'open-dashboard
     "bi"  'consult-imenu
     "bm"  'bookmark-set
