@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 31
+;;     Update #: 34
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -231,6 +231,9 @@
 (use-package nov
   :mode ("\\.epub\\'" . nov-mode)
   :functions read-mode
+  :bind (:map nov-mode-map
+              ("j" . next-line)
+              ("k" . previous-line))
   :hook (nov-mode . (lambda ()
                       (my-nov-setup)
                       (shrface-mode)))
