@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 871
+;;     Update #: 874
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -720,6 +720,9 @@ prepended to the element after the #+HEADER: tag."
                         (evil-org-mode)
                         (evil-normalize-keymaps))))
 
+  (use-package auto-space-mode
+    :ensure nil
+    :hook (org-mode . auto-space-mode))
 
   (use-package org-capture
     :ensure nil
