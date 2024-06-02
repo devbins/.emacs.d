@@ -720,9 +720,6 @@ prepended to the element after the #+HEADER: tag."
                         (evil-org-mode)
                         (evil-normalize-keymaps))))
 
-  (use-package pangu-spacing
-    :hook (org-mode . pangu-spacing-mode)
-    :init (setq pangu-spacing-real-insert-separtor t))
 
   (use-package org-capture
     :ensure nil
