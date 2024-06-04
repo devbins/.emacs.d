@@ -217,9 +217,11 @@
 
     "eaa" 'ellama-ask-about
     "eac" 'ellama-chat
-    "ecr" 'ellama-code-review
     "eca" 'ellama-code-add
     "ecc" 'ellama-code-complete
+    "ece" 'ellama-code-edit
+    "eci" 'ellama-code-improve
+    "ecr" 'ellama-code-review
     "er" 'ellama-ask-selection
     "el" 'ellama-ask-line
     "et" 'ellama-translate
