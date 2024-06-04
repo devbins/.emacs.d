@@ -984,21 +984,27 @@ prepended to the element after the #+HEADER: tag."
   (defconst day-time-re (format "\\(%s\\)? ?\\(%s\\)?" day-re time-re))
 
   (defun svg-progress-percent (value)
-    (svg-image (svg-lib-concat
-                (svg-lib-progress-bar (/ (string-to-number value) 100.0)
-                                      nil :margin 0 :stroke 2 :radius 5 :padding 2 :width 5)
-                (svg-lib-tag (concat value "%")
-                             nil :stroke 0 :margin 0)) :ascent 'center))
+    (save-match-data
+      (svg-image (svg-lib-concat
+                  (svg-lib-progress-bar  (/ (string-to-number value) 100.0)
+                                         nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                  (svg-lib-tag (concat value "%")
+                               nil :stroke 0 :margin 0)) :ascent 'center)))
 
   (defun svg-progress-count (value)
-    (let* ((seq (mapcar #'string-to-number (split-string value "/")))
-           (count (float (car seq)))
-           (total (float (cadr seq))))
-      (svg-image (svg-lib-concat
-                  (svg-lib-progress-bar (/ count total) nil
-                                        :margin 0 :stroke 2 :radius 5 :padding 2 :width 5)
-                  (svg-lib-tag value nil
-                               :stroke 0 :margin 0)) :ascent 'center)))
+    (save-match-data
+      (let* ((seq (split-string value "/"))
+             (count (if (stringp (car seq))
+                        (float (string-to-number (car seq)))
+                      0))
+             (total (if (stringp (cadr seq))
+                        (float (string-to-number (cadr seq)))
+                      1000)))
+        (svg-image (svg-lib-concat
+                    (svg-lib-progress-bar (/ count total) nil
+                                          :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                    (svg-lib-tag value nil
+                                 :stroke 0 :margin 0)) :ascent 'center))))
 
   (setq svg-tag-tags
         `(
