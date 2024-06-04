@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 100
+;;     Update #: 102
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -121,6 +121,7 @@ Otherwise the startup will be very slow. "
 
 (require 'init-shell)
 
+(require 'init-space)
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-agenda)
