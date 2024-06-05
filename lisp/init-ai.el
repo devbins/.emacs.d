@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 51
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,14 +50,9 @@
   :hook ((gptel-post-stream . gptel-auto-scroll)
          (gptel-post-response . gptel-end-of-response))
   :config
-  (setq-default gptel-model "mistral:latest"
-                gptel-backend (gptel-make-ollama
-                               "Ollama"
-                               :host "localhost:11434"
-                               :models '("mistral:latest")
-                               :stream t)
-                gptel-default-mode 'org-mode)
-
+  (setq gptel-model "llama2-chinese:13b"
+        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '("llama2-chinese:13b" "codestral:latest" "dolphin-mixtral:8x7b-v2.7-q3_K_M") :stream t)
+        gptel-default-mode 'org-mode)
   (gptel-make-gemini
    "Gemini"
    :key (password-store-get "gemini")
@@ -71,7 +66,10 @@
   :config
   (setopt ellama-provider
 		  (make-llm-ollama
-		   :chat-model "mistral:latest" :embedding-model "mistral:latest")))
+		   :chat-model "llama2-chinese:13b" :embedding-model "llama2-chinese:13b"))
+  (setopt ellama-providers
+		  '(("codestral" . (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
+			("dolphin-mixtral" . (make-llm-ollama :chat-model "dolphin-mixtral:8x7b-v2.7-q3_K_M" :embedding-model "dolphin-mixtral:8x7b-v2.7-q3_K_M")))))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
