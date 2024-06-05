@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 874
+;;     Update #: 882
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -163,6 +163,7 @@ prepended to the element after the #+HEADER: tag."
               org-hide-leading-stars t
               org-fontify-whole-heading-line t
               org-fontify-done-headline t
+              org-fontify-quote-and-verse-blocks t
               org-hide-emphasis-markers t
               org-pretty-entities t ;; 显示 _ 下标 ^ 上标，通过下面的配置，当需要显示的时候放到 {} 中。SPC m T e 来切换显示
               org-use-sub-superscripts '{}
