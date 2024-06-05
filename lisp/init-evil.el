@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 234
+;;     Update #: 236
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -63,6 +63,7 @@
         evil-visual-state-cursor 'hollow
         evil-auto-indent t
         evil-ex-complete-emacs-commands t
+        evil-want-integration t
         evil-want-keybinding nil
         evil-want-fine-undo t
         evil-want-change-word-to-end t)
