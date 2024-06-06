@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 236
+;;     Update #: 237
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -261,6 +261,9 @@
     "gb"  'magit-blame
     "gp"  'git-messenger:popup-message
     "gl"  'avy-goto-line
+
+    "ge"  'gptel
+    "gd"  'gptel-send
 
     "hf"  'find-function-at-point
     "hk"  'find-function-on-key
