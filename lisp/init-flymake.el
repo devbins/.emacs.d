@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package flymake
-  :ensure nil
   :diminish
   :hook (prog-mode . flymake-mode)
   :init (setq flymake-no-changes-timeout nil
