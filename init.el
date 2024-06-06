@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 102
+;;     Update #: 108
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,19 +72,11 @@
   (dolist (dir '("lisp"))
     (push (expand-file-name dir user-emacs-directory) load-path)))
 
-(defun add-subdirs-to-load-path (&rest _)
-  "Add subdirectories to `load-path'.
-Don't put large files in `site-lisp' directory, e.g. EAF.
-Otherwise the startup will be very slow. "
-  (let ((default-directory (expand-file-name "site-lisp" user-emacs-directory)))
-    (normal-top-level-add-subdirs-to-load-path)))
-
 (advice-add #'package-initialize :after #'update-load-path)
-(advice-add #'package-initialize :after #'add-subdirs-to-load-path)
 
 (update-load-path)
 
-;; (setq debug-on-error t)
+(setq debug-on-error t)
 
 ;; Constants
 (require 'init-const)
