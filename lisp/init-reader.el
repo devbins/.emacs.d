@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 34
+;;     Update #: 42
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,12 +57,12 @@
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :magic ("%PDF" . pdf-view-mode)
   :bind (:map pdf-view-mode-map
-         ("C-s" . isearch-forward)
-         ("j" . pdf-view-next-line-or-next-page)
-         ("k" . pdf-view-previous-line-or-previous-page)
-         ("J" . pdf-view-next-page)
-         ("K" . pdf-view-previous-page)
-         ("G" . pdf-view-last-page))
+         ("C-s" . consult-line)
+         ("j"   . pdf-view-next-line-or-next-page)
+         ("k"   . pdf-view-previous-line-or-previous-page)
+         ("J"   . pdf-view-next-page)
+         ("K"   . pdf-view-previous-page)
+         ("G"   . pdf-view-last-page))
   :init (setq pdf-view-use-scaling t
               pdf-view-use-imagemagick nil
               pdf-annot-activate-created-annotations t)
@@ -192,40 +192,40 @@
   (evil-define-key 'visual pdf-view-mode-map "y" 'pdf-view-kill-ring-save)
 
   (evil-define-key 'normal pdf-outline-buffer-mode-map
-    "-"                'negative-argument
-    "j"                'next-line
-    "k"                'previous-line
-    "gk"               'outline-backward-same-level
-    "gj"               'outline-forward-same-level
-    (kbd "<backtab>")  'show-all
-    "gh"               'pdf-outline-up-heading
-    "gg"               'beginning-of-buffer
-    "G"                'pdf-outline-end-of-buffer
-    (kbd "TAB")              'outline-toggle-children
-    (kbd "RET")              'pdf-outline-follow-link
-    (kbd "M-RET")      'pdf-outline-follow-link-and-quit
-    "f"                'pdf-outline-display-link
-    [mouse-1]          'pdf-outline-mouse-display-link
-    "o"                'pdf-outline-select-pdf-window
-    "``"               'pdf-outline-move-to-current-page
-    "''"               'pdf-outline-move-to-current-page
-    "Q"                'pdf-outline-quit-and-kill
-    "q"                'quit-window
-    "F"                'pdf-outline-follow-mode)
+    "-"               'negative-argument
+    "j"               'next-line
+    "k"               'previous-line
+    "gk"              'outline-backward-same-level
+    "gj"              'outline-forward-same-level
+    (kbd "<backtab>") 'show-all
+    "gh"              'pdf-outline-up-heading
+    "gg"              'beginning-of-buffer
+    "G"               'pdf-outline-end-of-buffer
+    (kbd "TAB")       'outline-toggle-children
+    (kbd "RET")       'pdf-outline-follow-link
+    (kbd "M-RET")     'pdf-outline-follow-link-and-quit
+    "f"               'pdf-outline-display-link
+    [mouse-1]         'pdf-outline-mouse-display-link
+    "o"               'pdf-outline-select-pdf-window
+    "``"              'pdf-outline-move-to-current-page
+    "''"              'pdf-outline-move-to-current-page
+    "Q"               'pdf-outline-quit-and-kill
+    "q"               'quit-window
+    "F"               'pdf-outline-follow-mode)
 
   (evil-define-key 'normal pdf-annot-list-mode-map
-    "f"                'pdf-annot-list-display-annotation-from-id
-    "d"                'tablist-flag-forward
-    "x"                'tablist-do-flagged-delete
-    "u"                'tablist-unmark-forward
-    "q"                'tablist-quit)
+    "f" 'pdf-annot-list-display-annotation-from-id
+    "d" 'tablist-flag-forward
+    "x" 'tablist-do-flagged-delete
+    "u" 'tablist-unmark-forward
+    "q" 'tablist-quit)
 
 
   (evil-define-key 'normal pdf-occur-buffer-mode-map
-    "q"              'tablist-quit
-    "g"              'pdf-occur-revert-buffer-with-args
-    "r"              'pdf-occur-revert-buffer-with-args
-    "?"              'evil-search-backward))
+    "q" 'tablist-quit
+    "g" 'pdf-occur-revert-buffer-with-args
+    "r" 'pdf-occur-revert-buffer-with-args
+    "?" 'evil-search-backward))
 
 ;; Epub reader
 (use-package nov
