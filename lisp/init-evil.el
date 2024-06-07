@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 237
+;;     Update #: 239
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -189,10 +189,10 @@
     "aot" 'org-todo-list
     "am"  'wl
     "am"  'netease-cloud-music
-    "aojj" 'org-journal-new-entry
-    "aojs" 'org-journal-search-forever
-    "aojt" 'org-journal-new-scheduled-entry
-    "aojv" 'org-journal-schedule-view
+    "ajj" 'org-journal-new-entry
+    "ajs" 'org-journal-search-forever
+    "ajt" 'org-journal-new-scheduled-entry
+    "ajv" 'org-journal-schedule-view
 
     "bb"  'consult-buffer
     "bd"  'kill-current-buffer
@@ -238,7 +238,7 @@
     "fd"  'delete-this-file
     "fl"  'format-all-buffer
     "ft"  'treemacs
-    "f."    'dirvish-side
+    "f."  'dirvish-side
     "fo"  'open-file-or-directory-in-external-app
     "fr"  'consult-recent-file
     "fR"  'rename-this-file
