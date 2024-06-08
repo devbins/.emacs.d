@@ -54,24 +54,28 @@
               which-key-max-description-length 30)
   :config
   (which-key-add-key-based-replacements
-    "SPC a" "application"
+    "SPC a"   "application"
+    "SPC a j" "journal"
     "SPC a o" "agenda"
     "SPC a t" "command log"
     "SPC a y" "ein"
-    "SPC b" "buffer"
-    "SPC f" "file"
-    "SPC g" "magit"
-    "SPC h" "describe"
-    "SPC n" "narrow"
-    "SPC p" "project"
-    "SPC q" "quit"
-    "SPC s" "search"
-    "SPC t" "toggle"
-    "SPC w" "window"
-    "SPC x" "up/downcase"
-    "SPC y" "youdao"
-    "SPC F" "frame"
-    "SPC P" "password"))
+    "SPC b"   "buffer"
+    "SPC e"   "ellama"
+    "SPC e a" "ellama ask"
+    "SPC e c" "ellama code"
+    "SPC f"   "file"
+    "SPC g"   "magit"
+    "SPC h"   "describe"
+    "SPC n"   "narrow"
+    "SPC p"   "project"
+    "SPC q"   "quit"
+    "SPC s"   "search"
+    "SPC t"   "toggle"
+    "SPC w"   "window"
+    "SPC x"   "up/downcase"
+    "SPC y"   "youdao"
+    "SPC F"   "frame"
+    "SPC P"   "password"))
 
 ;; Youdao Dictionary
 (use-package youdao-dictionary
