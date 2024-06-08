@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 882
+;;     Update #: 884
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -321,7 +321,7 @@ prepended to the element after the #+HEADER: tag."
     :bind (:map org-mode-map
            ("C-M-y" . org-rich-yank)))
 
-  ;; Table of contents
+  ;; Table of contents，添加 toc 标签即可
   (use-package toc-org
     :hook (org-mode . toc-org-mode))
 
@@ -1278,7 +1278,9 @@ same directory as the org-buffer and insert a link to this file."
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
-    :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
+    :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
+
+  (use-package org-noter))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
