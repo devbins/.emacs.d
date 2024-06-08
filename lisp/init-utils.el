@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 278
+;;     Update #: 286
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -117,11 +117,9 @@
 
 (use-package english-teacher
   :load-path "site-lisp/english-teacher"
-  :custom
-  (english-teacher-backend 'baidu)
-  (english-teacher-show-result-function 'english-teacher-eldoc-show-result-function)
+  :init
+  (setq english-teacher-backend 'tencent)
   :hook ((Info-mode
-          elfeed-show-mode
           eww-mode
           Man-mode
           Woman-Mode) . english-teacher-follow-mode))
