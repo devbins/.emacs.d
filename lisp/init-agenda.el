@@ -1,4 +1,4 @@
-;;; init-agenda.el ---
+;;; init-agenda.el --- -*- lexical-binding: t; -*-
 ;;
 ;; Filename: init-agenda.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 121
+;;     Update #: 122
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
