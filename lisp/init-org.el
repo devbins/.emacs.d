@@ -1152,6 +1152,7 @@ same directory as the org-buffer and insert a link to this file."
   (org-roam-v2-ack t)
   (org-roam-directory (expand-file-name "~/.org"))
   (org-roam-mute-cache-build t)
+  (org-roam-db-gc-threshold most-positive-fixnum)
   (org-roam-graph-viewer (if (featurep 'xwidget-internal)
                              #'xwidget-webkit-browse-url
                            #'browse-url))
