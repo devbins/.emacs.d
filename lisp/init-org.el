@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 884
+;;     Update #: 888
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1279,9 +1279,7 @@ same directory as the org-buffer and insert a link to this file."
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
-    :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
-
-  (use-package org-noter))
+    :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
@@ -1291,6 +1289,11 @@ same directory as the org-buffer and insert a link to this file."
   :config (add-to-list 'org-modules 'org-drill))
 
 (use-package org-board)
+
+(use-package org-noter
+  :init (setq org-noter-notes-search-path '((expand-file-name "~/.org/book"))
+              org-noter-auto-save-last-location t
+              org-noter-highlight-selected-text t))
 
 (use-package anki-helper
   :load-path "site-lisp/emacs-anki-helper"
