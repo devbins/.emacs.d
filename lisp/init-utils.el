@@ -350,13 +350,15 @@
   (holo-layer-enable-cursor-animation t)
   (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command")))
 
-;; (use-package insert-translated-name
-;;   :load-path "site-lisp/insert-translated-name"
-;;   :commands (insert-translated-name-insert)
-;;   :bind ("C-c t t" . 'insert-translated-name-insert)
-;;   :config
-;;   (setq insert-translated-name-camel-style-mode-list
-;;         '(go-mode)))
+(use-package insert-translated-name
+  :load-path "site-lisp/insert-translated-name"
+  :commands (insert-translated-name-insert)
+  :bind ("C-c t t" . 'insert-translated-name-insert)
+  :config
+  (setq insert-translated-name-camel-style-mode-list
+        '(go-mode))
+  (setq insert-translated-name-program "ollama"
+        insert-translated-name-ollama-model-name "mistral"))
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
