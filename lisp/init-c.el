@@ -106,7 +106,6 @@
 (use-package cmake-mode
   :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
 
-(use-package company-c-headers :defer t :disabled)
 
 ;; Highlight "#if 0" as comments
 (use-package hideif
