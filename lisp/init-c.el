@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 52
+;;     Update #: 53
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -106,6 +106,10 @@
 (use-package cmake-mode
   :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
 
+(use-package rtags
+  :hook (c++-mode . rtags-start-process-unless-running)
+  :config (setq rtags-completions-enabled t
+                rtags-autostart-diagnostics t))
 
 ;; Highlight "#if 0" as comments
 (use-package hideif
