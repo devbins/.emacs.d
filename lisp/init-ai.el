@@ -58,6 +58,13 @@
    :key (password-store-get "gemini")
    :stream t))
 
+(use-package magit-gptcommit
+  :hook (after-init . magit-gptcommit-status-buffer-setup)
+  :config
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
+  :bind (:map git-commit-mode-map
+              ("C-c C-g" . magit-gptcommit-commit-accept)))
+
 (use-package ellama
   :init
   (setopt ellama-language "Chinese"
