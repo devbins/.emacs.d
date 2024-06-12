@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 11
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,6 +80,11 @@
 (push '(vertical-scroll-bars) default-frame-alist)
 (when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))
+
+(cond ((eq system-type 'darwin) (push '(alpha . (80 . 75)) default-frame-alist))
+      (t (progn (set-frame-parameter nil 'alpha-background 80)
+                (push '(alpha-background . 80) default-frame-alist))))
+
 (setq-default mode-line-format nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
