@@ -67,3 +67,6 @@ org-persist/
 persist/
 projects
 tree-sitter/
+/dictionary-overlay-data/
+/*.sqlite
+/semanticdb/
