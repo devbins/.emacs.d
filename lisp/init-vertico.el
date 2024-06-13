@@ -202,7 +202,7 @@
 
 (use-package embark-consult
   :bind (:map minibuffer-mode-map
-         ("C-c C-o" . embark-export))
+         ("C-c C-e" . embark-export))
   :hook (embark-collect . consult-preview-at-point-mode)
   :init
   ;; Optionally replace the key help with a completing-read interface
