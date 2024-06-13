@@ -297,8 +297,8 @@
    - 安装 [[https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca/related][GhostText - Chrome Web Store]]
 ** 替换与搜索
    1. =SPC s p= 搜索内容
-   2. =C-c C-o= 导出搜索结果到 grep buffer
-   3. =C-c C-q= 切换 =grep-mode= 到 =wgrep-mode=
+   2. =C-c C-e= 导出搜索结果到 grep buffer =embark-export=
+   3. =C-c C-w= 切换 =grep-mode= 到 =wgrep-mode=
    4. 替换
    5. =C-c C-c= 保存更改, =C-c C-k= 取消更改
    [[https://emacs-china.org/t/emacs-consult-embark-wgrep/23542/2][【傻瓜教程】Emacs 定身术之 consult+embark+wgrep 跨文件批量搜索替换 - Emacs-general - Emacs China]]
