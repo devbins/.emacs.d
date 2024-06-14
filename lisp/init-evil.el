@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 239
+;;     Update #: 242
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -177,22 +177,23 @@
     "9"   'winum-select-window-9
     "0"   'treemacs-select-window
 
-    "atl" 'global-command-log-mode
-    "alt" 'clm/toggle-command-log-buffer
-    "ayl" 'ein:notebooklist-login
-    "ayo" 'ein:notebooklist-open
-    "ayr" 'ein:run
-    "ays" 'ein:stop
-    "aoo" 'org-agenda
-    "aoa" 'org-agenda-list
-    "aoc" 'org-capture
-    "aot" 'org-todo-list
+    "ae"  'easy-hugo
     "am"  'wl
     "am"  'netease-cloud-music
     "ajj" 'org-journal-new-entry
     "ajs" 'org-journal-search-forever
     "ajt" 'org-journal-new-scheduled-entry
     "ajv" 'org-journal-schedule-view
+    "alt" 'clm/toggle-command-log-buffer
+    "aoo" 'org-agenda
+    "aoa" 'org-agenda-list
+    "aoc" 'org-capture
+    "aot" 'org-todo-list
+    "atl" 'global-command-log-mode
+    "ayl" 'ein:notebooklist-login
+    "ayo" 'ein:notebooklist-open
+    "ayr" 'ein:run
+    "ays" 'ein:stop
 
     "bb"  'consult-buffer
     "bd"  'kill-current-buffer
@@ -264,6 +265,7 @@
 
     "ge"  'gptel
     "gd"  'gptel-send
+    "gm"  'gptel-menu
 
     "hf"  'find-function-at-point
     "hk"  'find-function-on-key
