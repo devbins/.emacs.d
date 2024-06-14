@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 48
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -281,8 +281,7 @@
 
 
 (use-package pretty-magit
-  :defer t
-  :commands(pretty-magit-setup)
+  :commands (pretty-magit-setup)
   :load-path "site-lisp/pretty-magit"
   :hook(magit-mode . pretty-magit-setup)
   :config

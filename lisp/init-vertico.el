@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 190
+;;     Update #: 193
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,6 +73,7 @@
   :config
   (setq vertico-posframe-parameters '((left-fringe . 8)
                                       (right-fringe . 8)
+                                      (alpha . (80 . 90))
                                       (weight . 50))))
 
 ;; support Pinyin first character match for orderless, avy etc.

@@ -270,7 +270,6 @@
   (eaf-find-alternate-file-in-dired t)
   (eaf-start-python-process-when-require t)
   (eaf-browser-continue-where-left-off t)
-  (eaf-python-command (executable-find "python3"))
   :config
   (require 'eaf-browser nil t)
   (require 'eaf-evil nil t)
