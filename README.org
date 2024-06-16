@@ -311,6 +311,14 @@
    4. 替换
    5. =C-c C-c= 保存更改, =C-c C-k= 取消更改
    [[https://emacs-china.org/t/emacs-consult-embark-wgrep/23542/2][【傻瓜教程】Emacs 定身术之 consult+embark+wgrep 跨文件批量搜索替换 - Emacs-general - Emacs China]]
+** consult-ripgrep
+*** 过滤文件/目录
+    =text -- -g *.py= 只显示 =py= 中匹配的
+    =text -- -g !*.py= 显示除了 =py= 中匹配的
+    
+** consult-line
+*** 排除不要的
+    =text !text1= 有 =text1= 的不显示
 ** FAQ
 *** json-read: JSON readtable error: 84
     需要把 =Python= 降到 =3.10= ，不能使用 =3.11=
