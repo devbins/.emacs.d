@@ -235,6 +235,10 @@
     #+begin_src sh
     brew install shellcheck
     #+end_src
+** gptel
+   =gptel= 启动一个 =buffer= 用来对话，标题就是提示词，写好后使用 =C-c RET= 来发送给大模型进行推理
+   使用 =C-u= 前缀，然后再调用，可以进行参数设置，包括选择大模型，设置指令，系统消息等等。
+   =gptel-send= 会在当前 =buffer= 进行推理，然后在当前光标出进行插入推理结果
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
