@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -94,11 +94,12 @@
 
 (use-package go-translate
   :config
-  (setq gts-translate-list '(("en" "zh"))
-        gts-default-translator (gts-translator
-                                :picker (gts-prompt-picker)
-                                :engines (list (gts-bing-engine))
-                                :render (gts-posframe-pop-render))))
+  (setq gt-langs '("en" "zh")
+        gt-default-translator (gt-translator
+                               :take (gt-taker :text 'buffer :pick 'paragraph)
+                               :engines (list (gt-stardict-engine :exact t)
+                                              (gt-bing-engine))
+                               :render (gt-posframe-pop-render))))
 
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
