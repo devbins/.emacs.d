@@ -50,9 +50,12 @@
   :hook ((gptel-post-stream . gptel-auto-scroll)
          (gptel-post-response . gptel-end-of-response))
   :config
-  (setq gptel-model "llama2-chinese:13b"
-        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '("llama2-chinese:13b" "codestral:latest" "dolphin-mixtral:8x7b-v2.7-q3_K_M") :stream t)
-        gptel-default-mode 'org-mode)
+  (setq gptel-model "qwen2:latest"
+        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '("qwen2:latest" "llama2-chinese:13b" "codestral:latest" "dolphin-mixtral:8x7b-v2.7-q3_K_M") :stream t)
+        gptel-default-mode 'org-mode
+        gptel-prompt-prefix-alist '((markdown-mode . "## ")
+                                    (org-mode . "** ")
+                                    (text-mode . "## ")))
   (gptel-make-gemini
    "Gemini"
    :key (password-store-get "gemini")
