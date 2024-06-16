@@ -230,6 +230,11 @@
     cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=on ..
     make
     #+end_src
+** flymake
+*** shell
+    #+begin_src sh
+    brew install shellcheck
+    #+end_src
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
