@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 288
+;;     Update #: 291
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -76,61 +76,6 @@
     "SPC y"   "youdao"
     "SPC F"   "frame"
     "SPC P"   "password"))
-
-;; Youdao Dictionary
-(use-package youdao-dictionary
-  :commands youdao-dictionary-play-voice-of-current-word
-  :bind (("C-c y" . my-youdao-search-at-point)
-         ("C-c Y" . youdao-dictionary-search-at-point)
-         :map evil-normal-state-map
-         ("q" . quit-window))
-  :init
-  (setq url-automatic-caching t)
-
-  (with-no-warnings
-    (defun my-youdao-search-at-point ()
-      "Search word at point and display result with `posframe', `pos-tip', or buffer."
-      (interactive)
-      (if (display-graphic-p)
-          (if emacs/>=26p
-              (youdao-dictionary-search-at-point-posframe)
-            (youdao-dictionary-search-at-point-tooltip))
-        (youdao-dictionary-search-at-point)))))
-
-  ;; Default, comment out the providers you don't need.
-(use-package fanyi
-  :init
-  (setq fanyi-auto-select t)
-  :config
-  (with-eval-after-load 'org
-    (require 'ol-fanyi))
-  :custom
-  (fanyi-providers '(;; 海词
-                     fanyi-haici-provider
-                     ;; 有道同义词词典
-                     fanyi-youdao-thesaurus-provider
-                     ;; Etymonline
-                     fanyi-etymon-provider
-                     ;; Longman
-                     fanyi-longman-provider)))
-
-
-(use-package english-teacher
-  :load-path "site-lisp/english-teacher"
-  :init
-  (setq english-teacher-backend 'tencent)
-  :hook ((Info-mode
-          eww-mode
-          Man-mode
-          Woman-Mode) . english-teacher-follow-mode))
-
-(use-package go-translate
-  :config
-  (setq gts-translate-list '(("en" "zh"))
-        gts-default-translator (gts-translator
-                                :picker (gts-prompt-picker)
-                                :engines (list (gts-bing-engine))
-                                :render (gts-posframe-pop-render))))
 
 ;; Writable `grep' buffer
 (use-package wgrep
@@ -313,11 +258,6 @@
 (use-package command-log-mode
   :commands global-command-log-mode)
 
-;; https://qiqijin.com/cn/dictionary-overlay.html
-(use-package dictionary-overlay
-  :load-path "site-lisp/dictionary-overlay"
-  :commands (dictionary-overlay-install dictionary-overlay-start dictionary-overlay-stop dictionary-overlay-render-buffer dictionary-overlay-toggle dictionary-overlay-lookup))
-
 (use-package websocket-bridge
   :load-path "site-lisp/websocket-bridge")
 
@@ -348,16 +288,6 @@
   :custom
   (holo-layer-enable-cursor-animation t)
   (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command")))
-
-(use-package insert-translated-name
-  :load-path "site-lisp/insert-translated-name"
-  :commands (insert-translated-name-insert)
-  :bind ("C-c t t" . 'insert-translated-name-insert)
-  :config
-  (setq insert-translated-name-camel-style-mode-list
-        '(go-mode))
-  (setq insert-translated-name-program "ollama"
-        insert-translated-name-ollama-model-name "mistral"))
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

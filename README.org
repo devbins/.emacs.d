@@ -305,7 +305,7 @@
 ** 使用 Emacs 编辑浏览器 TextArea
    - 安装 [[https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca/related][GhostText - Chrome Web Store]]
 ** 替换与搜索
-   1. =SPC s p= 搜索内容
+   1. =SPC s p= 搜索内容，这时候按下 =M-n= 可以获取光标下的单词
    2. =C-c C-e= 导出搜索结果到 grep buffer =embark-export=
    3. =C-c C-w= 切换 =grep-mode= 到 =wgrep-mode=
    4. 替换

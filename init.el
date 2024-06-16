@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 108
+;;     Update #: 109
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -125,6 +125,7 @@
 (require 'init-pretty)
 (require 'init-mail)
 (require 'init-w3m)
+(require 'init-dict)
 
 ;; Programming
 (require 'init-vcs)
