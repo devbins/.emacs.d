@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 242
+;;     Update #: 246
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -144,7 +144,6 @@
   (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
   (define-key minibuffer-local-isearch-map [escape]    'minibuffer-keyboard-quit)
-  (define-key evil-normal-state-map "U" #'undo-tree-visualize)
   (global-set-key [escape]                             'evil-exit-emacs-state)
 
   (evil-define-key 'normal help-mode-map
@@ -314,7 +313,7 @@
     "sp"  'consult-ripgrep
     "ss"  'consult-line
 
-    "te"  'toggle-corfu-english-helper
+    "td"  'fanyi-dwim
     "tg"  'go-translate
     "tp"  'go-translate-popup
     "tt"  'insert-translated-name-insert
