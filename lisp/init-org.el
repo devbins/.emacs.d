@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 888
+;;     Update #: 898
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1089,13 +1089,16 @@ prepended to the element after the #+HEADER: tag."
   (setq org-excalidraw-directory "~/.org/excalidraw"))
 
 (use-package easy-hugo
-  :defer t
   :init
-  (setq easy-hugo-basedir "~/git/blog/")
-  (setq easy-hugo-url "https://devbins.github.io/")
-  (setq easy-hugo-preview-url "http://127.0.0.1:1313/")
-  (setq easy-hugo-postdir "content/post")
-  (setq easy-hugo-default-ext ".org"))
+  (setq easy-hugo-basedir "~/git/blog/"
+        easy-hugo-url "https://devbins.github.io/"
+        easy-hugo-preview-url "http://127.0.0.1:1313/"
+        easy-hugo-postdir "content/post"
+        easy-hugo-default-ext ".org"
+        easy-hugo-server-flags "-D"
+        easy-hugo-org-header t)
+  :config
+  (easy-hugo-enable-menu))
 
 (use-package deft
   :defer t
