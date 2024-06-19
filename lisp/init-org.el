@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 898
+;;     Update #: 902
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -983,6 +983,7 @@ prepended to the element after the #+HEADER: tag."
   (defconst time-re "[0-9]\\{2\\}:[0-9]\\{2\\}")
   (defconst day-re "[A-Za-z]\\{3\\}")
   (defconst day-time-re (format "\\(%s\\)? ?\\(%s\\)?" day-re time-re))
+  (setq svg-tag-action-at-point 'edit)
 
   (defun svg-progress-percent (value)
     (save-match-data
