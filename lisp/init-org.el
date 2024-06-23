@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 902
+;;     Update #: 904
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1081,6 +1081,8 @@ prepended to the element after the #+HEADER: tag."
   (add-hook 'org-agenda-finalize-hook #'org-agenda-show-svg))
 
 ;; use excalidraw in org mode
+;; npm install --global excalidraw_export canvas
+;; use iimage-mode can display svg image in org mode
 (use-package org-excalidraw
   :commands (org-excalidraw-initialize)
   :load-path "site-lisp/org-excalidraw"
