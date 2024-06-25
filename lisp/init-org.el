@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 904
+;;     Update #: 908
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -308,9 +308,13 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Show hidden emphasis markers
   (use-package org-appear
-    :hook (org-mode . org-appear-mode)
+    :commands (org-appear-manual-start org-appear-manual-stop)
+    :hook (org-mode . (lambda ()
+                        (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+                        (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t)))
     :config
-    (setq org-appear-autolinks t
+    (setq org-appear-trigger 'manual
+          org-appear-autolinks t
           org-appear-autosubmarkers t
           org-appear-autoentities t
           org-appear-autokeywords t
