@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 53
+;;     Update #: 54
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -107,6 +107,7 @@
   :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode)))
 
 (use-package rtags
+  :if (executable-find "rdm")
   :hook (c++-mode . rtags-start-process-unless-running)
   :config (setq rtags-completions-enabled t
                 rtags-autostart-diagnostics t))
