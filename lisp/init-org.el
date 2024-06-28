@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 908
+;;     Update #: 909
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,7 +95,8 @@ prepended to the element after the #+HEADER: tag."
      ("p" (hot-expand "<s" "perl") "perl")
      ("r" (hot-expand "<s" "rust :crates '() :features '(())") "rust")
      ("S" (hot-expand "<s" "sh") "sh")
-     ("g" (hot-expand "<s" "go :imports '\(\"fmt\"\)") "golang"))
+     ("g" (hot-expand "<s" "go :imports '\(\"fmt\"\)") "golang")
+     ("+" (hot-expand "<s" "cpp :includes <iostream>") "cpp"))
     "Misc"
     (("Y" (hot-expand "<s" "ipython :session :exports both :results raw drawer\n$0") "ipython")
      ("P" (progn
