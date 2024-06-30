@@ -52,3 +52,6 @@
 [submodule "paw"]
 	path = site-lisp/paw
 	url = https://github.com/chenyanming/paw.git
+[submodule "emt"]
+	path = site-lisp/emt
+	url = https://github.com/roife/emt.git

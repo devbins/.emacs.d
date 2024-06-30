@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 110
+;;     Update #: 120
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -259,6 +259,12 @@
   (docstr-faces-apply))
 
 (use-package kill-ring-search)
+
+
+(use-package emt
+  :if sys/macp
+  :load-path "site-lisp/emt"
+  :hook (after-init . emt-mode))
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
