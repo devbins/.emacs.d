@@ -285,9 +285,10 @@
 (use-package holo-layer
   :load-path "site-lisp/holo-layer"
   :commands (holo-layer-enable)
-  :custom
-  (holo-layer-enable-cursor-animation t)
-  (holo-layer-cursor-block-commands '("watch-other-window-up" "watch-other-window-down" "self-insert-command")))
+  :init
+  (setq holo-layer-type-animation-style "lightning"
+        holo-layer-enable-cursor-animation t
+        holo-layer-enable-type-animation t))
 
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
