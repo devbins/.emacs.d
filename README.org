@@ -8,7 +8,6 @@
    mv .emacs.d .emacs.d.bak
    git clone --recurse-submodules -j8 https://github.com/devbins/.emacs.d.git
    #+end_src
-   =straight= 版本见 [[https://github.com/devbins/.emacs.d/tree/straight][straight]] 分支。
 ** Buffer
     | 快捷键   | 描述                | 对应函数                   |
     |---------+--------------------+--------------------------|
