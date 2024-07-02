@@ -70,3 +70,4 @@ tree-sitter/
 /dictionary-overlay-data/
 /*.sqlite
 /semanticdb/
+/modules/
