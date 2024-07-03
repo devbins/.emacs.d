@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 51
+;;     Update #: 84
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,6 +56,13 @@
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
                                     (text-mode . "## ")))
+  (gptel-make-openai "kimi"
+    :key (password-store-get "kimi")
+    :models '("moonshot-v1-8k"
+              "moonshot-v1-32k"
+              "moonshot-v1-128k")
+    :host "api.moonshot.cn"
+    :stream t)
   (gptel-make-gemini
    "Gemini"
    :key (password-store-get "gemini")
