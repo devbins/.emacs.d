@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 42
+;;     Update #: 48
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -244,6 +244,11 @@
     (read-mode)
     (face-remap-add-relative 'variable-pitch :family "Times New Roman" :height 1.5))
   :config
+  (evil-define-key 'normal nov-mode-map
+    "n" 'nov-next-document
+    "p" 'nov-previous-document
+    "t" 'nov-goto-toc)
+
   ;; FIXME: errors while opening `nov' files with Unicode characters
   ;; @see https://github.com/wasamasa/nov.el/issues/63
   (with-no-warnings
