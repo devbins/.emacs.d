@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 244
+;;     Update #: 245
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,7 +69,7 @@
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-org-babel nil
            lsp-bridge-symbols-enable-which-func t
-           lsp-bridge-python-lsp-server "ruff"
+           lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
            acm-enable-quick-access t
            acm-enable-tabnine nil
