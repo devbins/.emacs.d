@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 909
+;;     Update #: 913
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -976,6 +976,9 @@ prepended to the element after the #+HEADER: tag."
   (use-package ob-dart
     :if (executable-find "dart")
     :init (cl-pushnew '(dart . t) load-language-list))
+
+  (use-package ob-typescript
+    :init (cl-pushnew '(typescript . t) load-language-list))
 
   (org-babel-do-load-languages 'org-babel-load-languages
                                load-language-list))
