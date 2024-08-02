@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,6 +50,7 @@
 (use-package rustic
   :config
   (setq rustic-lsp-format t
+        rust-mode-treesitter-derive t
         rustic-lsp-client nil)
   (use-package cargo
     :diminish cargo-minor-mode
