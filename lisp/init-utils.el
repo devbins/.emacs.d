@@ -294,6 +294,7 @@
 (use-package holo-layer
   :load-path "site-lisp/holo-layer"
   :commands (holo-layer-enable)
+  :hook (after-init . holo-layer-enable)
   :init
   (setq holo-layer-type-animation-style "lightning"
         holo-layer-enable-cursor-animation t
