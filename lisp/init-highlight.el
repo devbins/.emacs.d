@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -190,6 +190,7 @@ FACE defaults to inheriting from default and highlight."
       :init
       (setq colorful-use-prefix t
             colorful-prefix-string "⬤")
+      :config
       (dolist (mode '(html-mode php-mode help-mode helpful-mode))
         (add-to-list 'global-colorful-modes mode)))
   (use-package rainbow-mode
