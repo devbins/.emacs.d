@@ -137,6 +137,10 @@
     #+end_src
 *** Python
 **** Server 安装
+***** basedpyright
+      #+begin_src sh
+      pip install basedpyright
+      #+end_src
 ***** pyright
       #+begin_src sh
       npm i -g pyright
