@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 245
+;;     Update #: 246
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,6 +72,7 @@
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
            acm-enable-quick-access t
+           acm-backend-lsp-show-progress t
            acm-enable-tabnine nil
            acm-enable-codeium nil)
      :config
