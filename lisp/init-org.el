@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 913
+;;     Update #: 914
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -935,6 +935,7 @@ prepended to the element after the #+HEADER: tag."
                              ("go"     . go)
                              ("rust"   . rustic)
                              ("shell"  . sh)
+                             ("ts"     . typescript)
                              ("mysql"  . sql)))
 
   (use-package ob-go
