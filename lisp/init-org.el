@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 914
+;;     Update #: 920
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -122,15 +122,16 @@ prepended to the element after the #+HEADER: tag."
                               ;; @see https://github.com/seagle0128/.emacs.d/issues/88
                               (make-variable-buffer-local 'show-paren-mode)
                               (setq show-paren-mode nil))))
-  :init (setq org-todo-keywords
-              '((sequence "TODO(t!)" "DOING(d!)" "|" "DONE(o!)" "ABORT(a@/!)")
-                (sequence "❍(!)" "⥁(!)" "❓(!)" "⤽(!)" "|" "✔(!)" "✘(@/!)" "♱(@/!)"))
+  :init (setq org-directory "~/.org"
+              org-todo-keywords '((sequence "TODO(t!)" "DOING(d!)" "|" "DONE(o!)" "ABORT(a@/!)")
+                                  (sequence "❍(!)" "⥁(!)" "❓(!)" "⤽(!)" "|" "✔(!)" "✘(@/!)" "♱(@/!)"))
               org-priority-faces '((?A . error)
                                    (?B . warning)
                                    (?C . success))
               org-imenu-depth 5
               ;; define the refile targets
               org-refile-targets '((org-agenda-files :maxlevel . 3))
+              org-refile-allow-creating-parent-nodes 'confirm
               org-refile-use-outline-path 'file
               org-outline-path-complete-in-steps nil
               org-auto-align-tags nil
@@ -909,7 +910,6 @@ prepended to the element after the #+HEADER: tag."
   (defvar load-language-list '((emacs-lisp . t)
                                (perl       . t)
                                (python     . t)
-                               (jupyter    . t)
                                (sql        . t)
                                (sqlite     . t)
                                (ruby       . t)
@@ -924,7 +924,8 @@ prepended to the element after the #+HEADER: tag."
                                (calc       . t)
                                (eshell     . t)
                                (shell      . t)
-                               (plantuml   . t)))
+                               (plantuml   . t)
+                               (jupyter    . t)))
 
   ;; 代码块的语言模式设置，设置之后才能正确语法高亮
   (setq org-src-lang-modes '(("bash"   . sh)
@@ -951,15 +952,15 @@ prepended to the element after the #+HEADER: tag."
   ;; Async src_block execution
   ;; usage: begin_src sh :async
   (use-package ob-async
-    :config (setq ob-async-no-async-languages-alist
-                  '("ipython"
-                    "jupyter-python"
-                    "jupyter-julia"
-                    "jupyter-R"
-                    "jupyter-javascript")))
+    :config
+    (setq ob-async-no-async-languages-alist '("ipython"
+                                              "jupyter-python"
+                                              "jupyter-julia"
+                                              "jupyter-R"
+                                              "jupyter-javascript"))
 
-  (setq org-babel-default-header-args:jupyter-python'((:async . "yes")
-                                                      (:session . "py")))
+    (setq org-babel-default-header-args:jupyter-python '((:async . "yes")
+                                                         (:session . "py"))))
 
   (use-package ob-kotlin
     :init (cl-pushnew '(kotlin . t) load-language-list))
