@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 920
+;;     Update #: 923
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1160,7 +1160,6 @@ same directory as the org-buffer and insert a link to this file."
   :config
   (setq graphviz-dot-indent-width 4))
 
-(if emacs/>=29p (use-package emacsql-sqlite-builtin))
 ;; https://www.zmonster.me/2020/06/27/org-roam-introduction.html
 (use-package org-roam
   :commands (org-roam-alias-add)
@@ -1180,8 +1179,6 @@ same directory as the org-buffer and insert a link to this file."
            ("C-c n j" . org-roam-dailies-capture-today)
            ("C-c n I" . org-roam-insert-immediate))
   :init
-  (if emacs/>=29p
-      (setq org-roam-database-connector 'sqlite-builtin))
   (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:3} ${directories:20}" (propertize "${tags:10}" 'face 'org-tag)))
   :config
   (unless (file-exists-p org-roam-directory)
