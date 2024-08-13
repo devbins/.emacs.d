@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 306
+;;     Update #: 315
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -216,15 +216,6 @@
   (eaf-start-python-process-when-require t)
   (eaf-browser-continue-where-left-off t)
   :config
-  (defun my-eaf-mac-get-size-advice (orig-fn &rest args)
-    (if (memq (frame-parameter (car args) 'fullscreen)
-              '(fullscreen fullboth maximized))
-        0
-      (apply orig-fn args)))
-
-  (advice-add 'eaf--frame-top :around #'my-eaf-mac-get-size-advice)
-  (advice-add 'eaf--frame-left :around #'my-eaf-mac-get-size-advice)
-  (advice-add 'eaf--frame-internal-height :around #'my-eaf-mac-get-size-advice)
   (require 'eaf-browser nil t)
   (require 'eaf-evil nil t)
   (require 'eaf-js-video-player nil t)
