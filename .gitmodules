@@ -55,3 +55,6 @@
 [submodule "emt"]
 	path = site-lisp/emt
 	url = https://github.com/roife/emt.git
+[submodule "emacs-immersive-translate"]
+	path = site-lisp/emacs-immersive-translate
+	url = https://github.com/Elilif/emacs-immersive-translate.git
