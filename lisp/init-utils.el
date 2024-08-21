@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 318
+;;     Update #: 319
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -225,6 +225,8 @@
   (advice-add 'eaf--frame-top :around #'my-eaf-mac-get-size-advice)
   (advice-add 'eaf--frame-left :around #'my-eaf-mac-get-size-advice)
   (advice-add 'eaf--frame-internal-height :around #'my-eaf-mac-get-size-advice)
+  (setq eaf-browser-enable-adblocker t
+        eaf-browser-enable-autofill t)
   (require 'eaf-browser nil t)
   (require 'eaf-evil nil t)
   (require 'eaf-js-video-player nil t)
@@ -232,18 +234,6 @@
   (require 'eaf-mindmap nil t)
   (require 'eaf-jupyter nil t)
   (require 'eaf-org-previewer nil t)
-  (require 'eaf-org nil t)
-  (when (display-graphic-p)
-    (require 'eaf-all-the-icons))
-  (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
-  (eaf-bind-key open_devtools "M-i" eaf-browser-keybinding)
-  (eaf-bind-key insert_or_recover_prev_close_page "X" eaf-browser-keybinding)
-  (eaf-bind-key clear_cookies "C-M-q" eaf-browser-keybinding)
-  (eaf-bind-key clear_history "C-M-p" eaf-browser-keybinding)
-  (eaf-bind-key open_link "C-M-s" eaf-browser-keybinding)
-  (setq eaf-browser-enable-adblocker "true"
-        eaf-browser-enable-autofill "true"
-        eaf-browser-dark-mode nil))
 
 (use-package eww
   :ensure nil
