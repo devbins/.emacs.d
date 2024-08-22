@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 79
+;;     Update #: 81
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,7 @@
   :config
   (autoload 'auto-make-header "header2")
   (autoload 'auto-update-file-header "header2")
-  (add-hook 'write-file-hooks 'auto-update-file-header))
+  (add-to-list 'write-file-functions 'auto-update-file-header))
 
 
 ;; broadway isometric1 starwars doom banner
