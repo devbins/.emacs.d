@@ -58,3 +58,6 @@
 [submodule "emacs-immersive-translate"]
 	path = site-lisp/emacs-immersive-translate
 	url = https://github.com/Elilif/emacs-immersive-translate.git
+[submodule "mu4e-thread-folding"]
+	path = site-lisp/mu4e-thread-folding
+	url = https://github.com/rougier/mu4e-thread-folding.git
