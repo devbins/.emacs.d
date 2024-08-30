@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,8 +73,12 @@
      ("RET" elfeed-search-show-entry "show"))))
   :bind (("C-x w" . elfeed)
          :map elfeed-search-mode-map
+         ("j" . next-line)
+         ("k" . previous-line)
          ("?" . elfeed-hydra/body)
          :map elfeed-show-mode-map
+         ("j" . next-line)
+         ("k" . previous-line)
          ("o" . ace-link)
          ("q" . delete-window))
   :hook (elfeed-show-mode . read-mode)
@@ -86,6 +90,9 @@
 
 (use-package elfeed-dashboard
   :commands (elfeed-dashboard)
+  :bind (:map elfeed-dashboard-mode-map
+         ("j" . next-line)
+         ("k" . previous-line))
   :config
   (setq elfeed-dashboard-file (expand-file-name "elfeed-dashboard.org" user-emacs-directory))
   ;; update feed counts on elfeed-quit
