@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 120
+;;     Update #: 129
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -190,6 +190,7 @@
 (use-package imenu-list
   :config
   (setq imenu-list-focus-after-activation t
+        imenu-auto-rescan t
         imenu-list-auto-resize t)
   (evil-define-key 'normal imenu-list-major-mode-map
     (kbd "RET") 'imenu-list-goto-entry
