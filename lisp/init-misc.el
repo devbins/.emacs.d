@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 81
+;;     Update #: 83
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,16 +88,15 @@
                               '(:server "127.0.0.1" :port 1086 :enable t
                                 :type (:@type "proxyTypeSocks5")))))
 
-(use-package auth-source-pass
-  :ensure nil
-  :init (auth-source-pass-enable))
-
-(use-package password-store
-  :if (executable-find "pass")
-  :init (setq auth-sources '(password-store)))
 
 (use-package pass
-  :after password-store)
+  :if (executable-find "pass")
+  :config
+  (use-package password-store
+    :init (setq auth-sources '(password-store)))
+  (use-package auth-source-pass
+    :ensure nil
+    :init (auth-source-pass-enable)))
 
 (use-package epa-file
   :ensure nil
