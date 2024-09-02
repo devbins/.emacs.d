@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 50
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -231,6 +231,12 @@
 ;; Currently available in Emacs master branch *only*!
 (when (fboundp 'global-so-long-mode)
   (global-so-long-mode))
+
+(setq-default bidi-display-reordering nil)
+(setq bidi-inhibit-bpa t
+      long-line-threshold 1000
+      large-hscroll-threshold 1000
+      syntax-wholeline-max 1000)
 
 ;; Fullscreen
 (when (display-graphic-p)
