@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 36
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,7 +71,9 @@
      ("u" xwidget-webkit-current-url "show url" :exit t)
      ("w" xwidget-webkit-current-url-message-kill "copy url" :exit t)
      ("?" describe-mode "help" :exit t)
-     ("Q" quit-window "quit" :exit t)))))
+     ("Q" quit-window "quit" :exit t))))
+  :config
+  (setq browse-url-browser-function 'xwidget-webkit-browse-url))
 
 (use-package css-mode
   :ensure nil
