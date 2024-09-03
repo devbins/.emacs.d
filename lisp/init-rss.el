@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,7 +86,58 @@
               elfeed-db-directory (locate-user-emacs-file ".elfeed")
               elfeed-show-entry-switch #'pop-to-buffer
               elfeed-show-entry-delete #'delete-window)
-  :config (push elfeed-db-directory recentf-exclude))
+  :config
+  (defun nerd-icon-for-tags (tags)
+    "Generate Nerd Font icon based on tags.
+  Returns default if no match."
+    (cond ((member "youtube" tags)  (nerd-icons-faicon "nf-fa-youtube_play" :face '(:foreground "#FF0200")))
+          ((member "emacs" tags) (nerd-icons-sucicon "nf-custom-emacs" :face '(:foreground "#9A5BBE")))
+          ((member "economics" tags) (nerd-icons-mdicon "nf-md-alpha_e_box_outline" :face '(:foreground "#E3120C")))
+          ((member "db" tags) (nerd-icons-devicon "nf-dev-database" :face '(:foreground "#0574E8")))
+          ((member "novel" tags) (nerd-icons-faicon "nf-fa-book" :face '(:foreground "#02C298")))
+          ((member "forum" tags) (nerd-icons-faicon "nf-fa-forumbee" :face '(:foreground "#EF9120")))
+          ((member "blog" tags) (nerd-icons-octicon "nf-oct-note"))
+          ((member "Android" tags) (nerd-icons-faicon "nf-fa-android" :face '(:foreground "#2AB24C")))
+          ((member "github" tags) (nerd-icons-faicon "nf-fa-github"))
+          ((member "sourcehut" tags) (nerd-icons-faicon "nf-fa-circle_o"))
+          (t (nerd-icons-faicon "nf-fae-feedly" :face '(:foreground "#2AB24C")))))
+  (defun +elfeed-search-print-entry--better-default (entry)
+    "Print ENTRY to the buffer."
+    (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+           (date-width (car (cdr elfeed-search-date-format)))
+           (title (concat (or (elfeed-meta entry :title)
+                             (elfeed-entry-title entry) "")
+                          ;; NOTE: insert " " for overlay to swallow
+                          " "))
+           (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+           (feed (elfeed-entry-feed entry))
+           (feed-title (when feed (or (elfeed-meta feed :title) (elfeed-feed-title feed))))
+           (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
+           (tags-str (mapconcat (lambda (s) (propertize s 'face 'elfeed-search-tag-face)) tags ","))
+           (title-width (- (frame-width)
+                           ;; (window-width (get-buffer-window (elfeed-search-buffer) t))
+                           date-width elfeed-search-trailing-width))
+           (title-column (elfeed-format-column
+                          title (elfeed-clamp
+                                 elfeed-search-title-min-width
+                                 title-width
+                                 elfeed-search-title-max-width) :left))
+
+
+           ;; Title/Feed ALIGNMENT
+           (align-to-feed-pixel (+ date-width
+                                   (max elfeed-search-title-min-width
+                                        (min title-width elfeed-search-title-max-width)))))
+      (insert (propertize date 'face 'elfeed-search-date-face) " ")
+      (insert (propertize title-column 'face title-faces 'kbd-help title))
+      (put-text-property (1- (point)) (point) 'display `(space :align-to ,align-to-feed-pixel))
+      ;; (when feed-title (insert " " (propertize feed-title 'face 'elfeed-search-feed-face) " "))
+      (when feed-title
+        (insert " " (concat (nerd-icon-for-tags tags) " ")
+                (propertize feed-title 'face 'elfeed-search-feed-face) " "))
+      (when tags (insert "(" tags-str ")"))))
+  (setq elfeed-search-print-entry-function #'+elfeed-search-print-entry--better-default)
+  (push elfeed-db-directory recentf-exclude))
 
 (use-package elfeed-dashboard
   :commands (elfeed-dashboard)
