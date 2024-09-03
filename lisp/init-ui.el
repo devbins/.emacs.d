@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 236
+;;     Update #: 238
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -87,8 +87,8 @@
   :init (load-theme 'doom-one)
   :config
   (when (featurep 'nerd-icons)
-          (with-eval-after-load 'lsp-treemacs
-            (doom-themes-treemacs-config))))
+    (with-eval-after-load 'lsp-treemacs
+      (doom-themes-treemacs-config))))
 
 (use-package flucui-themes)
 
@@ -108,8 +108,7 @@
 
 (use-package nerd-icons
   :config
-  (when (and (display-graphic-p)
-           (not (font-installed-p nerd-icons-font-family)))
+  (when (and (display-graphic-p) (not (font-installed-p nerd-icons-font-family)))
     (nerd-icons-install-fonts t)))
 
 ;; Show native line numbers if possible, otherwise use `linum'
@@ -199,8 +198,8 @@ default value for ALPHA is based on
 `inactive-transparency'."
   (interactive)
   (let ((alpha-setting (or alpha
-                          (cons active-transparency
-                                inactive-transparency))))
+                           (cons active-transparency
+                                 inactive-transparency))))
     (set-frame-parameter frame 'alpha alpha-setting)))
 
 (defun disable-transparency (&optional frame)
@@ -233,10 +232,10 @@ If FRAME is nil, it defaults to the selected frame."
 (when (display-graphic-p)
   ;; Set default font
   (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
-                      "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
+                         "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
            return (set-face-attribute 'default nil :font
-                                  (format "%s:pixelsize=%d" font 16)))
+                                      (format "%s:pixelsize=%d" font 20)))
 
   ;; Specify font for all unicode characters
   (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
@@ -251,8 +250,8 @@ If FRAME is nil, it defaults to the selected frame."
   (cl-loop for font in '("STKaiti" "WenQuanYi Micro Hei" "Microsoft Yahei")
            when (font-installed-p font)
            return (dolist (charset '(kana han symbol cjk-misc bopomofo))
-                (set-fontset-font (frame-parameter nil 'font) charset
-                                  (font-spec :family font)))))
+                    (set-fontset-font (frame-parameter nil 'font) charset
+                                      (font-spec :family font)))))
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
