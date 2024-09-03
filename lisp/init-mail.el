@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -76,8 +76,28 @@
   (mu4e-view-show-addresses t)
   (mu4e-confirm-quit nil)
   (mu4e-use-fancy-chars t)
+  (mu4e-headers-unread-mark    '("u" . "📩 "))
+  (mu4e-headers-draft-mark     '("D" . "🚧 "))
+  (mu4e-headers-flagged-mark   '("F" . "🚩 "))
+  (mu4e-headers-new-mark       '("N" . "✨ "))
+  (mu4e-headers-passed-mark    '("P" . "↪ "))
+  (mu4e-headers-replied-mark   '("R" . "↩ "))
+  (mu4e-headers-seen-mark      '("S" . " "))
+  (mu4e-headers-trashed-mark   '("T" . "🗑️ "))
+  (mu4e-headers-attach-mark    '("a" . "📎 "))
+  (mu4e-headers-encrypted-mark '("x" . "🔑 "))
+  (mu4e-headers-signed-mark    '("s" . "🖊 "))
+  (mu4e-headers-list-mark      '("l" . "🔈 "))
+  (mu4e-headers-personal-mark  '("p" . "👨 "))
+  (mu4e-headers-calendar-mark  '("c" . "📅 "))
   (mu4e-headers-results-limit 1000)
   (mu4e-view-use-gnus t)
+  (mu4e-headers-thread-single-orphan-prefix '("─>" . "─▶"))
+  (mu4e-headers-thread-orphan-prefix '("┬>" . "┬▶ "))
+  (mu4e-headers-thread-connection-prefix '("│ " . "│ "))
+  (mu4e-headers-thread-first-child-prefix '("├>" . "├▶"))
+  (mu4e-headers-thread-child-prefix '("├>" . "├▶"))
+  (mu4e-headers-thread-last-child-prefix '("└>" . "╰▶"))
   (gnus-icalendar-org-capture-file "~/.org/.agenda/meetings.org") ; Prerequisite: set it to meetings org fie
   (gnus-icalendar-org-capture-headline '("Meetings")) ; Make sure to create Calendar heading first
   :hook
