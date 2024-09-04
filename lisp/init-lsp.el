@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 246
+;;     Update #: 248
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -67,12 +67,14 @@
      (setq lsp-bridge-enable-mode-line nil
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            lsp-bridge-enable-hover-diagnostic t
+           lsp-bridge-enable-search-words nil
            lsp-bridge-enable-org-babel nil
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
            acm-enable-quick-access t
            acm-backend-lsp-show-progress t
+           acm-enable-search-file-words nil
            acm-enable-tabnine nil
            acm-enable-codeium nil)
      :config
