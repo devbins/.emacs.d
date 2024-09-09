@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 33
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -93,13 +93,13 @@
           Woman-Mode) . english-teacher-follow-mode))
 
 (use-package go-translate
-  :config
-  (setq gt-langs '("en" "zh")
-        gt-default-translator (gt-translator
-                               :take (gt-taker :text 'buffer :pick 'paragraph)
-                               :engines (list (gt-stardict-engine :exact t)
-                                              (gt-bing-engine))
-                               :render (gt-posframe-pop-render))))
+  :init
+  (setq gt-langs '(en zh)
+        gt-buffer-render-follow-p t
+        gt-buffer-render-window-config
+        '((display-buffer-reuse-window display-buffer-in-direction)
+          (direction . bottom)
+          (window-height . 0.4))))
 
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
