@@ -12,7 +12,7 @@
 	url = https://github.com/zakudriver/achive.git
 [submodule "org-excalidraw"]
 	path = site-lisp/org-excalidraw
-	url = https://github.com/wdavew/org-excalidraw.git
+	url = https://github.com/devbins/org-excalidraw.git
 [submodule "aweshell"]
 	path = site-lisp/aweshell
 	url = https://github.com/manateelazycat/aweshell.git
