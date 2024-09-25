@@ -194,6 +194,23 @@
    go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
    go install github.com/fatih/gomodifytags@latest
    #+end_src
+** Python 工作流
+*** 新建Conda env
+    #+begin_src sh
+    conda create -n xxx
+    conda activate xxx
+    #+end_src
+*** 搭建lsp依赖
+    #+begin_src sh
+    pip install basedpyright
+    pip install ruff-lsp
+    #+end_src
+*** 创建工程
+    #+begin_src sh
+    poetry new xxx
+    #+end_src
+*** 编写代码
+    =conda-env-activate= 选择刚刚创建的环境
 ** vterm
    #+begin_src sh
    sudo pacman -S libvterm
