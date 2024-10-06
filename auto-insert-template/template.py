@@ -19,5 +19,5 @@
 #
 # History:
 # ======================
-# `(format-time-string "%Y-%m-%d %H:%M"(current-time))` `user-full-name` <`user-mail-address`> created.
+# `(format-time-string "%Y-%m-%d %H:%M" (current-time))` `user-full-name` <`user-mail-address`> created.
 # ======================
