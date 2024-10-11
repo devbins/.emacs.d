@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: org mode template
+# key: orgtpl
+# --
+* ${1:title}
+  :PROPERTIES:
+  :AUTHOR: ${2:`user-full-name`}
+  :DATE: [`(format-time-string "%Y-%m-%d %H:%M" (current-time))`]
+  :END:
+
+  $0
