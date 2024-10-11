@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 84
+;;     Update #: 85
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -121,8 +121,7 @@
   (add-to-list 'auto-insert-alist '(("\\.\\([Cc]\\|cc\\|cpp\\)\\'" . "C / C++ program") . ["template.c" autoinsert-yas-expand]))
   (add-to-list 'auto-insert-alist '(("\\.go\\'" . "Go program") . ["template.go" autoinsert-yas-expand]))
   (add-to-list 'auto-insert-alist '(("\\.sh\\'" . "shell program") . ["template.sh" autoinsert-yas-expand]))
-  (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") . ["template.cmake" autoinsert-yas-expand]))
-  (add-to-list 'auto-insert-alist '(("\\.org\\'" . "Org Mode") . ["template.org" autoinsert-yas-expand])))
+  (add-to-list 'auto-insert-alist '(("CMakeLists.txt\\'" . "CMake") . ["template.cmake" autoinsert-yas-expand])))
 
 (use-package restart-emacs
   :commands restart-emacs)
