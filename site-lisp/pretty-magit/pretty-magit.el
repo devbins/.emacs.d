@@ -9,7 +9,6 @@
 ;;;; Requires
 
 (require 'dash)
-(require 'dash-functional)
 (require 'magit)
 
 ;;;; Configuration
