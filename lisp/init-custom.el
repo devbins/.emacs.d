@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 58
+;;     Update #: 60
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -114,8 +114,11 @@
 
     ("#+ARCHIVE:" . ?📦)
     ("#+AUTHOR:" . ?👤)
+    (":AUTHOR:" . ?👤)
     ("#+CREATOR:" . ?💁)
+    (":CREATOR:" . ?💁)
     ("#+DATE:" . ?📆)
+    (":DATE:" . ?📆)
     ("#+DESCRIPTION:" . ?⸙)
     ("#+EMAIL:" . ?📧)
     ("#+OPTIONS:" . ?⚙)
