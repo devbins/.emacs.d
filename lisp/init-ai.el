@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 84
+;;     Update #: 104
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,17 +50,24 @@
   :hook ((gptel-post-stream . gptel-auto-scroll)
          (gptel-post-response . gptel-end-of-response))
   :config
-  (setq gptel-model "qwen2:latest"
-        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '("qwen2:latest" "llama2-chinese:13b" "codestral:latest" "dolphin-mixtral:8x7b-v2.7-q3_K_M") :stream t)
+  (setq gptel-model 'qwen2.5:14b
+        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(qwen2.5:14b llama3.1:latest codestral:latest dolphin-mixtral:8x7b-v2.7-q3_K_M) :stream t)
         gptel-default-mode 'org-mode
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
                                     (text-mode . "## ")))
+  (gptel-make-openai "awoi"
+    :key (password-store-get "awoi")
+    :models '(gpt-4o
+              gpt-4-turbo)
+    :host "api.awoi.me"
+    :stream t)
+
   (gptel-make-openai "kimi"
     :key (password-store-get "kimi")
-    :models '("moonshot-v1-8k"
-              "moonshot-v1-32k"
-              "moonshot-v1-128k")
+    :models '(moonshot-v1-8k
+              moonshot-v1-32k
+              moonshot-v1-128k)
     :host "api.moonshot.cn"
     :stream t)
   (gptel-make-gemini
@@ -83,10 +90,11 @@
   :config
   (setopt ellama-provider
 		  (make-llm-ollama
-		   :chat-model "llama2-chinese:13b" :embedding-model "llama2-chinese:13b"))
+		   :chat-model "qwen2.5:14b" :embedding-model "qwen2.5:14b"))
   (setopt ellama-providers
 		  '(("codestral" . (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
-			("dolphin-mixtral" . (make-llm-ollama :chat-model "dolphin-mixtral:8x7b-v2.7-q3_K_M" :embedding-model "dolphin-mixtral:8x7b-v2.7-q3_K_M")))))
+			("dolphin-mixtral" . (make-llm-ollama :chat-model "dolphin-mixtral:8x7b-v2.7-q3_K_M" :embedding-model "dolphin-mixtral:8x7b-v2.7-q3_K_M"))
+            ("llama3.1:latest" . (make-llm-ollama :chat-model "llama3.1:latest" :embedding-model "llama3.1:latest")))))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
