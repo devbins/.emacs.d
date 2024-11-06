@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 104
+;;     Update #: 116
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,6 +95,15 @@
 		  '(("codestral" . (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
 			("dolphin-mixtral" . (make-llm-ollama :chat-model "dolphin-mixtral:8x7b-v2.7-q3_K_M" :embedding-model "dolphin-mixtral:8x7b-v2.7-q3_K_M"))
             ("llama3.1:latest" . (make-llm-ollama :chat-model "llama3.1:latest" :embedding-model "llama3.1:latest")))))
+
+(use-package aider
+  :load-path "site-lisp/aider"
+  :commands (aider-transient-menu)
+  :config
+  (setq aider-args '("--model" "ollama/qwen2.5:14b" "–no-auto-commits"))
+  (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
+  ;; Optional: Set a key binding for the transient menu
+  (global-set-key (kbd "C-c a") 'aider-transient-menu))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
