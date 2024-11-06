@@ -334,6 +334,7 @@
 ** consult-ripgrep
 *** 过滤文件/目录
     =text -- -g *.py= 只显示 =py= 中匹配的
+
     =text -- -g !*.py= 显示除了 =py= 中匹配的
     
 ** consult-line

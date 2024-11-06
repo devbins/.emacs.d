@@ -61,3 +61,6 @@
 [submodule "mu4e-thread-folding"]
 	path = site-lisp/mu4e-thread-folding
 	url = https://github.com/rougier/mu4e-thread-folding.git
+[submodule "aider"]
+	path = site-lisp/aider
+	url = https://github.com/tninja/aider.el.git
