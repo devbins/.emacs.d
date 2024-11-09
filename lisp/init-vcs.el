@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 47
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,7 +54,8 @@
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-popup))
-  :init (setq magit-diff-refine-hunk t)
+  :init (setq magit-diff-refine-hunk t
+              magit-show-long-lines-warning nil)
   :config
   (setq magit-repository-directories '(("~/git/" . 2)
                                        ("~/.emacs.d" . 0))
