@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 248
+;;     Update #: 250
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,7 @@
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-search-words nil
-           lsp-bridge-enable-org-babel nil
+           lsp-bridge-enable-org-babel t
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
@@ -82,7 +82,7 @@
      (setq lsp-bridge-c-lsp-server "ccls"
            acm-backend-search-file-words-enable-fuzzy-match t
            acm-backend-lsp-match-mode "fuzzy"
-           lsp-bridge-use-ds-pinyin-in-org-mode t)))
+           lsp-bridge-use-ds-pinyin-in-org-mode nil)))
   ('eglot
    (use-package eglot
        :hook ((prog-mode . (lambda ()
