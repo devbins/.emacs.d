@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 38
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,7 +73,9 @@
      ("?" describe-mode "help" :exit t)
      ("Q" quit-window "quit" :exit t))))
   :config
-  (setq browse-url-browser-function 'xwidget-webkit-browse-url))
+  (setq browse-url-browser-function 'xwidget-webkit-browse-url)
+  (evil-leader/set-key-for-mode 'xwidget-webkit-mode
+    "ml" 'xwidget-webkit-current-url))
 
 (use-package css-mode
   :ensure nil
