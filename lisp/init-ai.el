@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 116
+;;     Update #: 130
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,7 +51,7 @@
          (gptel-post-response . gptel-end-of-response))
   :config
   (setq gptel-model 'qwen2.5:14b
-        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(qwen2.5:14b llama3.1:latest codestral:latest dolphin-mixtral:8x7b-v2.7-q3_K_M) :stream t)
+        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(qwen2.5:14b qwen2.5-coder:latest llama3.1:latest llama3.2-vision:latest) :stream t)
         gptel-default-mode 'org-mode
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
@@ -70,6 +70,7 @@
               moonshot-v1-128k)
     :host "api.moonshot.cn"
     :stream t)
+
   (gptel-make-gemini
    "Gemini"
    :key (password-store-get "gemini")
@@ -78,7 +79,7 @@
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
   :config
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "qwen2.5-coder:latest"))
   :bind (:map git-commit-mode-map
               ("C-c C-g" . magit-gptcommit-commit-accept)))
 
@@ -92,15 +93,15 @@
 		  (make-llm-ollama
 		   :chat-model "qwen2.5:14b" :embedding-model "qwen2.5:14b"))
   (setopt ellama-providers
-		  '(("codestral" . (make-llm-ollama :chat-model "codestral:latest" :embedding-model "codestral:latest"))
-			("dolphin-mixtral" . (make-llm-ollama :chat-model "dolphin-mixtral:8x7b-v2.7-q3_K_M" :embedding-model "dolphin-mixtral:8x7b-v2.7-q3_K_M"))
-            ("llama3.1:latest" . (make-llm-ollama :chat-model "llama3.1:latest" :embedding-model "llama3.1:latest")))))
+		  '(("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "qwen2.5-coder:latest"))
+            ("llama3.1:latest" . (make-llm-ollama :chat-model "llama3.1:latest" :embedding-model "llama3.1:latest"))
+            ("llama3.2-vision:latest" . (make-llm-ollama :chat-model "llama3.2-vision:latest" :embedding-model "llama3.2-vision:latest")))))
 
 (use-package aider
   :load-path "site-lisp/aider"
   :commands (aider-transient-menu)
   :config
-  (setq aider-args '("--model" "ollama/qwen2.5:14b" "–no-auto-commits"))
+  (setq aider-args '("--model" "ollama/qwen2.5-coder:latest" "–no-auto-commits"))
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c a") 'aider-transient-menu))
