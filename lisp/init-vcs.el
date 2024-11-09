@@ -99,7 +99,15 @@
     :defer t
     :hook(magit-mode . turn-on-magit-gitflow)
     :config
-    (define-key magit-mode-map "%" 'magit-gitflow-popup)))
+    (define-key magit-mode-map "%" 'magit-gitflow-popup))
+
+  (use-package git-cliff
+    :config
+    ;; Integrate to `magit-tag'
+    (with-eval-after-load 'magit-tag
+      (transient-append-suffix 'magit-tag
+        '(1 0 -1)
+        '("c" "changelog" git-cliff-menu)))))
 
 (use-package git-link :defer t)
 
