@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 55
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -85,7 +85,7 @@
   ;; Google docstring style
   (use-package python-insert-docstring
     :bind (:map python-mode-map
-           ("C-c i" . python-insert-docstring-with-google-style-at-point)))
+           ("C-c C-i" . python-insert-docstring-with-google-style-at-point)))
 
   ;; sphinx doc style
   (use-package sphinx-doc
