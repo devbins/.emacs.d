@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 77
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -361,6 +361,11 @@ confirmation."
   (interactive)
   (shell-command "shortcuts run \"OCR Selected Area\"")
   (do-applescript "tell application id \"org.gnu.Emacs\" to activate"))
+
+(defun insert-now-timestamp ()
+  "Insert current timestamp in format %Y-%m-%d %H:%M"
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M" (current-time))))
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
