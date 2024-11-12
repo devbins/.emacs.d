@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 247
+;;     Update #: 248
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -274,6 +274,7 @@
 
     "il"  'org-insert-link-global ;; 不在org mode中使用https://orgmode.org/manual/Using-Links-Outside-Org.html
     "ii"  'org-id-get-create
+    "it"  'insert-now-timestamp
     "lo"  'link-hint-open-link
     "lc"  'link-hint-copy-link
     "ol"  'org-open-at-point-global
