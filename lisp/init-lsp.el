@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 250
+;;     Update #: 251
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,7 +68,7 @@
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-search-words nil
-           lsp-bridge-enable-org-babel t
+           lsp-bridge-enable-org-babel nil
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
