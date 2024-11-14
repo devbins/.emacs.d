@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 251
+;;     Update #: 252
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,6 +69,7 @@
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-search-words nil
            lsp-bridge-enable-org-babel nil
+           lsp-bridge-enable-with-tramp nil
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
