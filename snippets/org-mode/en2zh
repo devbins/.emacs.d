@@ -5,7 +5,7 @@
 
 You are a professional translator.
 
-You will be provided with text between #+begin_src and #+end_src, your task is to translate the wrapped text into Chinese. You should only output the translated text.
-#+begin_src $1
+You will be provided with text between #+begin_src and #+end_src, your task is to translate the wrapped text into ${1:Chinese}. You should only output the translated text.
+#+begin_src $2
 $0
 #+end_src
