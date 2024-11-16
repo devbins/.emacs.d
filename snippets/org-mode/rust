@@ -1,6 +1,8 @@
 # -*- mode: snippet -*-
 # name: rust
 # key: rust
+# :crates '(serde (regex . *))
+# :features '((tokio . ("rt-multi-thread" "time")))
 # --
 
 #+begin_src rust :crates '($1) :features '(($2 . ("$3")))
