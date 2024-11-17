@@ -234,6 +234,13 @@
   (require 'eaf-mindmap nil t)
   (require 'eaf-jupyter nil t)
   (require 'eaf-org-previewer nil t)
+  (require 'eaf-vue-tailwindcss nil t)
+  (require 'eaf-vue-demo nil t)
+  (require 'eaf-rss-reader nil t)
+  (require 'eaf-map nil t)
+  (require 'eaf-netease-cloud-music nil t)
+  (require 'eaf-music-player nil t)
+  (require 'eaf-markmap nil t))
 
 (use-package eww
   :ensure nil
