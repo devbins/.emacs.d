@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 928
+;;     Update #: 931
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1294,6 +1294,39 @@ same directory as the org-buffer and insert a link to this file."
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
     :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
+
+(use-package org-remark
+  :bind (;; :bind keyword also implicitly defers org-remark itself.
+         ;; Keybindings before :map is set for global-map.
+         ("C-c n m" . org-remark-mark)
+         ("C-c n l" . org-remark-mark-line) ; new in v1.3
+         :map org-remark-mode-map
+         ("C-c n o" . org-remark-open)
+         ("C-c n ]" . org-remark-view-next)
+         ("C-c n [" . org-remark-view-prev)
+         ("C-c n r" . org-remark-remove)
+         ("C-c n d" . org-remark-delete))
+  ;; Alternative way to enable `org-remark-global-tracking-mode' in
+  ;; `after-init-hook'.
+  ;; :hook (after-init . org-remark-global-tracking-mode)
+  :init
+  ;; It is recommended that `org-remark-global-tracking-mode' be
+  ;; enabled when Emacs initializes. Alternatively, you can put it to
+  ;; `after-init-hook' as in the comment above
+  (org-remark-global-tracking-mode +1)
+  :config
+  (use-package org-remark-info
+    :ensure nil
+    :after info
+    :config (org-remark-info-mode +1))
+  (use-package org-remark-eww
+    :ensure nil
+    :after eww
+    :config (org-remark-eww-mode +1))
+  (use-package org-remark-nov
+    :ensure nil
+    :after nov
+    :config (org-remark-nov-mode +1)))
 
 (use-package org-analyzer
   :commands (org-analyzer-start))
