@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 28
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,7 +57,7 @@
   (tabspaces-include-buffers '("*scratch*"))
   ;; sessions
   (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
+  ;; (tabspaces-session-auto-restore t)
   :init
   ;; Filter Buffers for Consult-Buffer
   (with-eval-after-load 'consult
