@@ -71,3 +71,4 @@ tree-sitter/
 /*.sqlite
 /semanticdb/
 /modules/
+/tabsession.el
