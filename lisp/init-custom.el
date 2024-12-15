@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 60
+;;     Update #: 62
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -120,6 +120,7 @@
     ("#+DATE:" . ?📆)
     (":DATE:" . ?📆)
     ("#+DESCRIPTION:" . ?⸙)
+    (":DESCRIPTION:" . ?⸙)
     ("#+EMAIL:" . ?📧)
     ("#+OPTIONS:" . ?⚙)
     ("#+SETUPFILE:" . ?⚒)
