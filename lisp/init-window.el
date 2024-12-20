@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,7 +53,7 @@
 ;; Directional window-selection routines
 (use-package windmove
   :ensure nil
-  :hook (after-init . windmove-default-keybindings))
+  :hook (after-init . (lambda () (windmove-default-keybindings 'super))))
 
 ;; Restore old window configurations
 (use-package winner
