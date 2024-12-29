@@ -1222,7 +1222,7 @@ same directory as the org-buffer and insert a link to this file."
                           refs))
                   (user-error "No ROAM_REFS found"))
 
-        (when-let ((oc-cites (seq-map
+        (when-let* ((oc-cites (seq-map
                               (lambda (ref) (substring ref 1))
                               (seq-filter (apply-partially #'string-prefix-p "@") refs))))
           (citar-run-default-action oc-cites))

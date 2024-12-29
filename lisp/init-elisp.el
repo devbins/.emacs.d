@@ -195,7 +195,7 @@ Lisp function does not specify a special indentation."
       (error "Only for help-mode or helpful-mode"))
     (let ((orig-point (point)))
       (save-excursion
-        (when-let
+        (when-let*
             ((hook (progn (goto-char (point-min)) (symbol-at-point)))
              (func (when (and
                           (or (re-search-forward (format "^Value:?[\s|\n]") nil t)
