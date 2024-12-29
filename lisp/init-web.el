@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 40
+;;     Update #: 41
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -97,19 +97,8 @@
   :hook ((css-mode scss-mode less-css-mode) . turn-on-css-eldoc))
 
 ;; JSON mode
-(use-package json-mode)
-
-;; JavaScript
-(use-package js2-mode
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode))
-  :interpreter (("node" . js2-mode)
-                ("node" . js2-jsx-mode))
-  :hook ((js2-mode . js2-imenu-extras-mode)
-         (js2-mode . js2-highlight-unused-variables-mode))
-  :config
-  ;; Use default keybindings for lsp
-  (unbind-key "M-." js2-mode-map))
+(unless (fboundp 'js-json-mode)
+  (use-package json-mode))
 
 ;; Format HTML, CSS and JavaScript/JSON
 ;; Install: npm -g install prettier
