@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,21 +82,42 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-")
-  :config
-  ;; Preview via `grip'
-  ;; Install: pip install grip
-  (use-package grip-mode
-    :bind (:map markdown-mode-command-map
-           ("g" . grip-mode))
-    :init (let ((credential (auth-source-user-and-password "api.github.com")))
-            (setq grip-github-user (car credential)
-                  grip-github-password (cadr credential))))
+"
+        markdown-gfm-additional-languages "Mermaid")
 
-  ;; Table of contents
-  (use-package markdown-toc
-    :bind (:map markdown-mode-command-map
-           ("r" . markdown-toc-generate-or-refresh-toc))))
+  ;; `multimarkdown' is necessary for `highlight.js' and `mermaid.js'
+  (when (executable-find "multimarkdown")
+    (setq markdown-command "multimarkdown"))
+  :config
+  ;; Support `mermaid'
+  (add-to-list 'markdown-code-lang-modes '("mermaid" . mermaid-mode))
+
+  (with-no-warnings
+    ;; Use `which-key' instead
+    (advice-add #'markdown--command-map-prompt :override #'ignore)
+    (advice-add #'markdown--style-map-prompt   :override #'ignore)
+
+    ;; Preview with built-in webkit
+    (defun my-markdown-export-and-preview (fn)
+      "Preview with `xwidget' if applicable, otherwise with the default browser."
+      (if (and (featurep 'xwidget-internal) (display-graphic-p))
+          (centaur-webkit-browse-url (concat "file://" (markdown-export)) t)
+        (funcall fn)))
+    (advice-add #'markdown-export-and-preview :around #'my-markdown-export-and-preview)))
+
+;; Preview via `grip'
+;; Install: pip install grip
+(use-package grip-mode
+  :bind (:map markdown-mode-command-map
+         ("g" . grip-mode))
+  :init (let ((credential (auth-source-user-and-password "api.github.com")))
+          (setq grip-github-user (car credential)
+                grip-github-password (cadr credential))))
+
+;; Table of contents
+(use-package markdown-toc
+  :bind (:map markdown-mode-command-map
+         ("r" . markdown-toc-generate-or-refresh-toc)))
 
 (provide 'init-markdown)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
