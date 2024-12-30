@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 252
+;;     Update #: 254
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -383,7 +383,7 @@
        ;; @see https://github.com/emacs-lsp/emacs-ccls/issues/109
        (cl-defmethod my-lsp-execute-command
          ((_server (eql ccls)) (command (eql ccls.xref)) arguments)
-         (when-let ((xrefs (lsp--locations-to-xref-items
+         (when-let* ((xrefs (lsp--locations-to-xref-items
                             (lsp--send-execute-command (symbol-name command) arguments))))
            (xref--show-xrefs xrefs nil)))
        (advice-add #'lsp-execute-command :override #'my-lsp-execute-command)))
