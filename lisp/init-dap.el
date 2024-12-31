@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -78,6 +78,12 @@
       (("d" dape "dape")
        ("Q" dape-quit "quit" :exit t))))
     :config
+    ;; Pulse source line (performance hit)
+    (add-hook 'dape-display-source-hook 'pulse-momentary-highlight-one-line)
+
+    ;; Showing inlay hints
+    (setq dape-inlay-hints t)
+
     ;; Save buffers on startup, useful for interpreted languages
     (add-hook 'dape-on-start-hooks
               (defun dape--save-on-start ()
