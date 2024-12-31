@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 934
+;;     Update #: 944
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -948,9 +948,13 @@ prepended to the element after the #+HEADER: tag."
   ;; REST
   ;; Org babel extensions
   ;; HTTP client
-  ;; usage: BEGIN_SRC restclient
-  (use-package verb
-    :init (cl-pushnew '(verb . t) load-language-list))
+  ;; walkman-setup
+  (use-package walkman)
+
+  ;; usage: BEGIN_SRC hurl
+  (use-package hurl-mode
+    :load-path "site-lisp/hurl-mode"
+    :mode "\\.hurl\\'")
 
   ;; Async src_block execution
   ;; usage: begin_src sh :async
