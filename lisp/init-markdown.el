@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package markdown-mode
-  :hook ((markdown-mode . auto-fill-mode))
   :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-enable-wiki-links t
@@ -56,7 +55,6 @@
         markdown-make-gfm-checkboxes-buttons t
         markdown-gfm-uppercase-checkbox t
         markdown-fontify-code-blocks-natively t
-        markdown-enable-math t
 
         markdown-content-type "application/xhtml+xml"
         markdown-css-paths '("https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
@@ -72,14 +70,25 @@ body {
   padding: 0 10px;
 }
 </style>
+
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/default.min.css'>
 <script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('markdown-body');
-  document.querySelectorAll('pre[lang] > code').forEach((code) => {
-    code.classList.add(code.parentElement.lang);
-    hljs.highlightBlock(code);
+  document.querySelectorAll('pre code').forEach((code) => {
+    if (code.className != 'mermaid') {
+      hljs.highlightBlock(code);
+    }
   });
+});
+</script>
+
+<script src='https://unpkg.com/mermaid@8.4.8/dist/mermaid.min.js'></script>
+<script>
+mermaid.initialize({
+  theme: 'default',  // default, forest, dark, neutral
+  startOnLoad: true
 });
 </script>
 "
@@ -101,23 +110,57 @@ document.addEventListener('DOMContentLoaded', () => {
     (defun my-markdown-export-and-preview (fn)
       "Preview with `xwidget' if applicable, otherwise with the default browser."
       (if (and (featurep 'xwidget-internal) (display-graphic-p))
-          (centaur-webkit-browse-url (concat "file://" (markdown-export)) t)
+          (xwidget-webkit-browse-url (concat "file://" (markdown-export)) t)
         (funcall fn)))
     (advice-add #'markdown-export-and-preview :around #'my-markdown-export-and-preview)))
 
-;; Preview via `grip'
-;; Install: pip install grip
-(use-package grip-mode
-  :bind (:map markdown-mode-command-map
-         ("g" . grip-mode))
-  :init (let ((credential (auth-source-user-and-password "api.github.com")))
-          (setq grip-github-user (car credential)
-                grip-github-password (cadr credential))))
-
 ;; Table of contents
 (use-package markdown-toc
+  :diminish
   :bind (:map markdown-mode-command-map
-         ("r" . markdown-toc-generate-or-refresh-toc)))
+         ("r" . markdown-toc-generate-or-refresh-toc))
+  :hook (markdown-mode . markdown-toc-mode)
+  :init (setq markdown-toc-indentation-space 2
+              markdown-toc-header-toc-title "\n## Table of Contents"
+              markdown-toc-user-toc-structure-manipulation-fn 'cdr)
+  :config
+  (with-no-warnings
+    (define-advice markdown-toc-generate-toc (:around (fn &rest args) lsp)
+      "Generate or refresh toc after disabling lsp."
+      (cond
+       ((bound-and-true-p lsp-managed-mode)
+        (lsp-managed-mode -1)
+        (apply fn args)
+        (lsp-managed-mode 1))
+       ((bound-and-true-p eglot--manage-mode)
+        (eglot--manage-mode -1)
+        (apply fn args)
+        (eglot--manage-mode 1))
+       (t
+        (apply fn args))))))
+
+;; Preview markdown files
+;; @see: https://github.com/seagle0128/grip-mode?tab=readme-ov-file#prerequisite
+(use-package grip-mode
+  :defines markdown-mode-command-map org-mode-map
+  :functions auth-source-user-and-password
+  :autoload grip-mode
+  :init
+  (with-eval-after-load 'markdown-mode
+    (bind-key "g" #'grip-mode markdown-mode-command-map))
+
+  (with-eval-after-load 'org
+    (bind-key "C-c C-g" #'grip-mode org-mode-map))
+
+  (setq grip-update-after-change nil)
+
+  ;; mdopen doesn't need credentials, and only support external browsers
+  (if (executable-find "mdopen")
+      (setq grip-use-mdopen t)
+    (when-let* ((credential (and (require 'auth-source nil t)
+                                 (auth-source-user-and-password "api.github.com"))))
+      (setq grip-github-user (car credential)
+            grip-github-password (cadr credential)))))
 
 (provide 'init-markdown)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
