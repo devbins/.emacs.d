@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 239
+;;     Update #: 240
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -84,7 +84,7 @@
   (doom-modeline-buffer-file ((t (:inherit (mode-line bold)))))
   :custom
   (doom-themes-treemacs-theme "doom-colors")
-  :init (load-theme 'modus-vivendi)
+  :init (load-theme 'doom-one)
   :config
   (when (featurep 'nerd-icons)
     (with-eval-after-load 'lsp-treemacs
