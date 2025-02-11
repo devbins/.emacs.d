@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 130
+;;     Update #: 137
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,7 +51,8 @@
          (gptel-post-response . gptel-end-of-response))
   :config
   (setq gptel-model 'qwen2.5:14b
-        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(qwen2.5:14b qwen2.5-coder:latest llama3.1:latest llama3.2-vision:latest) :stream t)
+        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(deepseek-r1:14b qwen2.5:14b qwen2.5-coder:latest  llava-llama3:latest) :stream t)
+        gptel-track-media t
         gptel-default-mode 'org-mode
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
@@ -79,29 +80,29 @@
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
   :config
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "qwen2.5-coder:latest"))
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest"))
   :bind (:map git-commit-mode-map
               ("C-c C-g" . magit-gptcommit-commit-accept)))
 
 (use-package ellama
   :init
-  (setopt ellama-language "Chinese"
-                ellama-auto-scroll t)
+  (setq ellama-language "Chinese"
+        ellama-auto-scroll t)
   (require 'llm-ollama)
   :config
-  (setopt ellama-provider
-		  (make-llm-ollama
-		   :chat-model "qwen2.5:14b" :embedding-model "qwen2.5:14b"))
-  (setopt ellama-providers
-		  '(("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "qwen2.5-coder:latest"))
-            ("llama3.1:latest" . (make-llm-ollama :chat-model "llama3.1:latest" :embedding-model "llama3.1:latest"))
-            ("llama3.2-vision:latest" . (make-llm-ollama :chat-model "llama3.2-vision:latest" :embedding-model "llama3.2-vision:latest")))))
+  (setq ellama-provider
+        (make-llm-ollama
+         :chat-model "qwen2.5:14b" :embedding-model "bge-m3:latest"))
+  (setq ellama-providers
+        '(("deepseek-r1:14b" . (make-llm-ollama :chat-model "deepseek-r1:14b" :embedding-model "bge-m3:latest"))
+          ("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest"))
+          ("llava-llama3:latest" . (make-llm-ollama :chat-model "llava-llama3:latest" :embedding-model "bge-m3:latest")))))
 
 (use-package aider
   :load-path "site-lisp/aider"
   :commands (aider-transient-menu)
   :config
-  (setq aider-args '("--model" "ollama/qwen2.5-coder:latest" "–no-auto-commits"))
+  (setq aider-args '("--model" "ollama/qwen2.5-coder:latest" "--no-auto-commits"))
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c a") 'aider-transient-menu))
