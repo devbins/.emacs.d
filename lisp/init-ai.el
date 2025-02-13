@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 137
+;;     Update #: 148
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -98,14 +98,16 @@
           ("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest"))
           ("llava-llama3:latest" . (make-llm-ollama :chat-model "llava-llama3:latest" :embedding-model "bge-m3:latest")))))
 
-(use-package aider
-  :load-path "site-lisp/aider"
-  :commands (aider-transient-menu)
+(use-package aidermacs
+  :load-path "site-lisp/aidermacs"
+  :commands (aidermacs-transient-menu)
   :config
-  (setq aider-args '("--model" "ollama/qwen2.5-coder:latest" "--no-auto-commits"))
+  (require 'aidermacs-backend-vterm nil t)
+  (setq aidermacs-args '("--model" "ollama/deepseek-r1:14b" "--no-auto-commits"))
+  (setq aidermacs-backend 'vterm)
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
-  (global-set-key (kbd "C-c a") 'aider-transient-menu))
+  (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
