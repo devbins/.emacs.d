@@ -64,3 +64,6 @@
 [submodule "hurl-mode"]
 	path = site-lisp/hurl-mode
 	url = https://github.com/JasZhe/hurl-mode.git
+[submodule "aidermacs"]
+	path = site-lisp/aidermacs
+	url = https://github.com/MatthewZMD/aidermacs.git
