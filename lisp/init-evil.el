@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 248
+;;     Update #: 250
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -178,6 +178,8 @@
     "0"   'treemacs-select-window
 
     "ae"  'easy-hugo
+    "ai"  'aidermacs-transient-menu
+    "ab"  'gptel-aibo
     "am"  'wl
     "am"  'netease-cloud-music
     "ajj" 'org-journal-new-entry
