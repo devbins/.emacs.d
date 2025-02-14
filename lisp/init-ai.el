@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 148
+;;     Update #: 154
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -108,6 +108,13 @@
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
+
+(use-package gptel-aibo
+  :load-path "site-lisp/gptel-aibo"
+  :after (gptel)
+  :commands (gptel-aibo)
+  :bind ((:map gptel-aibo-mode-map ("C-c /" . gptel-aibo-apply-last-suggestions))
+         (:map gptel-aibo-complete-mode-map ("C-c i" . gptel-aibo-complete-at-point))))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
