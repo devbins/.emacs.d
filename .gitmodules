@@ -67,3 +67,6 @@
 [submodule "aidermacs"]
 	path = site-lisp/aidermacs
 	url = https://github.com/MatthewZMD/aidermacs.git
+[submodule "gptel-aibo"]
+	path = site-lisp/gptel-aibo
+	url = https://github.com/dolmens/gptel-aibo.git
