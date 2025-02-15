@@ -122,7 +122,6 @@
 (require 'init-utils)
 (require 'init-reader)
 (require 'init-misc)
-(require 'init-pretty)
 (require 'init-mail)
 (require 'init-w3m)
 (require 'init-dict)
