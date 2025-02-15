@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 62
+;;     Update #: 63
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -102,6 +102,56 @@
 
 (setq devbins-package-archives 'melpa)
 
+(defcustom prettify-prog-symbols-alist
+        '(("lambda" . ?λ)
+                                 ("<-" . ?←)
+                                 ("->" . ?→)
+                                 ("->>" . ?↠)
+                                 ("=>" . ?⇒)
+                                 ("map" . ?↦)
+                                 ("/=" . ?≠)
+                                 ("!=" . ?≠)
+                                 ("==" . ?≡)
+                                 ("<=" . ?≤)
+                                 (">=" . ?≥)
+                                 ("<=<" . ?↢)
+                                 (">=>" . ?↣)
+                                 ("&&" . ?∧)
+                                 ("||" . ?∨)
+                                 ("not" . ?¬)
+                                 ("alpha" . ?α)
+                                 ("beta" . ?β)
+                                 ("gamma" . ?γ)
+                                 ("delta" . ?Δ)
+                                 ("epsilon" . ?ε)
+                                 ("zeta" . ?ζ)
+                                 ("eta" . ?η)
+                                 ("theta" . ?θ)
+                                 ("micro" . ?μ)
+                                 ("pi" . ?π)
+                                 ("rho" . ?ρ)
+                                 ("sigma" . ?σ)
+                                 ("phi" . ?φ)
+                                 ("omega" . ?Ω)
+                                 ("sqrt" . ?√)
+                                 ("sum" . ?∑)
+                                 ("infinity" . ?∞)
+                                 ("Infinity" . ?∞)
+
+                                 ("False"  . ?𝔽)
+                                 ("True"   . ?𝕋)
+
+                                 ("None"   . ?∅)
+                                 ("none"   . ?∅)
+
+                                 ("in"     . ?⊆)
+                                 ("not in"    . ?⊈)
+                                 ("`notElem`" . ?⊈)
+                                 ("return" . ?⇒)
+                                 ("def"    . ?𝒇))
+  "Alist of symbol prettifications for `prog-mode'."
+  :group 'devbins
+  :type '(alist :key-type string :value-type (choice character sexp)))
 
 (defcustom prettify-org-symbols-alist
   '(("[ ]" . ?☐)

@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 110
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,6 +45,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
+
+(use-package prog-mode
+  :ensure nil
+  :init
+  (setq prettify-symbols-unprettify-at-point 'right-edge)
+  :hook(prog-mode . (lambda ()
+                      (setq prettify-symbols-alist prettify-prog-symbols-alist)
+                      (prettify-symbols-mode))))
 
 ;; Cross-referencing commands
 (use-package xref
