@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 9
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package markdown-mode
-  :mode (("README\\.md\\'" . gfm-mode))
   :init
   (setq markdown-enable-wiki-links t
         markdown-italic-underscore t
@@ -161,6 +160,14 @@ mermaid.initialize({
                                  (auth-source-user-and-password "api.github.com"))))
       (setq grip-github-user (car credential)
             grip-github-password (cadr credential)))))
+
+(use-package markdown-ts-mode
+  :mode ("\\.md\\'" . markdown-ts-mode)
+  :bind (:map markdown-ts-mode-map ("<tab>" . markdown-cycle))
+  :config
+  (add-to-list 'treesit-language-source-alist '(markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src"))
+  (add-to-list 'treesit-language-source-alist '(markdown-inline "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown-inline/src"))
+  )
 
 (provide 'init-markdown)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
