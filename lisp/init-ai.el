@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 154
+;;     Update #: 174
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -103,15 +103,16 @@
   :commands (aidermacs-transient-menu)
   :config
   (require 'aidermacs-backend-vterm nil t)
-  (setq aidermacs-args '("--model" "ollama/deepseek-r1:14b" "--no-auto-commits"))
   (setq aidermacs-backend 'vterm)
+  (setq aidermacs-default-model "ollama/deepseek-r1:14b")
+  (setq aidermacs-use-architect-mode t)
+  (setq aidermacs-architect-model "ollama/qwen2.5:14b") ; default
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
 
 (use-package gptel-aibo
   :load-path "site-lisp/gptel-aibo"
-  :after (gptel)
   :commands (gptel-aibo)
   :bind ((:map gptel-aibo-mode-map ("C-c /" . gptel-aibo-apply-last-suggestions))
          (:map gptel-aibo-complete-mode-map ("C-c i" . gptel-aibo-complete-at-point))))
