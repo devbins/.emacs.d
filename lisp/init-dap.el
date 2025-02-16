@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 5
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,7 +49,7 @@
 (use-package dape
     :bind (("<f5>" . dape)
            ("M-<f5>" . dape-hydra/body))
-    :custom (dape-buffer-window-arrangment 'right)
+    :custom (dape-buffer-window-arrangement 'right)
     :pretty-hydra
     ((:title (pretty-hydra-title "Debug" 'codicon "nf-cod-debug")
       :color pink :quit-key ("q" "C-g"))
@@ -88,6 +88,10 @@
     (add-hook 'dape-on-start-hooks
               (defun dape--save-on-start ()
                 (save-some-buffers t t)))
+
+    ;; Kill compile buffer on build success
+    (add-hook 'dape-compile-hook 'kill-buffer)
+
     ;; Display hydra on startup
     (add-hook 'dape-on-start-hooks #'dape-hydra/body))
 
