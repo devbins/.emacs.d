@@ -278,6 +278,8 @@
 ;; Git related modes
 (use-package git-modes)
 
+(use-package gitignore-templates)
+
 (use-package pretty-magit
   :commands (pretty-magit-setup)
   :load-path "site-lisp/pretty-magit"
