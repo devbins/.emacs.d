@@ -70,9 +70,12 @@
 
   ;; Access Git forges from Magit
   (use-package forge
+    :after magit
+    :bind (:map magit-mode-map ("@" . forge-dispatch))
     :custom-face
     (forge-topic-label ((t (:inherit variable-pitch :height 0.9 :width condensed :weight regular :underline nil))))
     :init
+    (setq forge-add-default-bindings nil)
     (setq forge-topic-list-columns
           '(("#" 5 forge-topic-list-sort-by-number (:right-align t) number nil)
             ("Title" 60 t nil title  nil)
