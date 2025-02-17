@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 50
+;;     Update #: 63
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -99,10 +99,8 @@
 
   ;; Git Flow
   (use-package magit-gitflow
-    :defer t
-    :hook(magit-mode . turn-on-magit-gitflow)
-    :config
-    (define-key magit-mode-map "%" 'magit-gitflow-popup))
+    :bind (:map magit-mode-map ("%" . magit-gitflow-popup))
+    :hook(magit-mode . turn-on-magit-gitflow))
 
   (use-package git-cliff
     :config
