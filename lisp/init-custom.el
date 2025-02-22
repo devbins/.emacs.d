@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 63
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -196,6 +196,22 @@
   "Alist of symbol prettifications for `org-mode'."
   :group 'devbins
   :type '(alist :key-type string :value-type (choice character sexp)))
+
+(defcustom prettify-magit-symbols-alist
+  '(("Feature:" . ?🌟)
+    ("Add:" . ?)
+    ("Fix:" . ?🐛)
+    ("Clean:" . ?)
+    ("Perf:" . ?🚀)
+    ("Style:" . ?🎨)
+    ("Test:" . ?🔧)
+    ("Refactor:" . ?🔨)
+    ("Chore:" . ?🏠)
+    ("Docs:" . ?📝))
+  "Alist of symbol prettifications for `org-mode'."
+  :group 'devbins
+  :type '(alist :key-type string :value-type (choice character sexp)))
+
 
 (setq org-agenda-dir "~/.org/.agenda/"
       org-agenda-file-inbox (expand-file-name "inbox.org" org-agenda-dir)
