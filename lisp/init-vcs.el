@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 63
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -284,7 +284,10 @@
 (use-package pretty-magit
   :commands (pretty-magit-setup)
   :load-path "site-lisp/pretty-magit"
-  :hook(magit-mode . pretty-magit-setup)
+  :hook((magit-mode . pretty-magit-setup)
+        (magit-mode . (lambda ()
+                               (setq prettify-symbols-alist prettify-magit-symbols-alist)
+                               (prettify-symbols-mode))))
   :config
   (pretty-magit-add-leaders
    '(("Feature" ?🌟 (:foreground "slate gray" :height 1.2))
