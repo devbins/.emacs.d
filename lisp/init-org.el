@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 944
+;;     Update #: 953
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -948,6 +948,11 @@ prepended to the element after the #+HEADER: tag."
   ;; REST
   ;; Org babel extensions
   ;; HTTP client
+  ;; not in org babel do not use indent
+  (use-package verb
+    :init (cl-pushnew '(verb . t) load-language-list)
+    :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
   ;; walkman-setup
   (use-package walkman)
 
