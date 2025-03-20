@@ -259,6 +259,39 @@
    =gptel= 启动一个 =buffer= 用来对话，标题就是提示词，写好后使用 =C-c RET= 来发送给大模型进行推理
    使用 =C-u= 前缀，然后再调用，可以进行参数设置，包括选择大模型，设置指令，系统消息等等。
    =gptel-send= 会在当前 =buffer= 进行推理，然后在当前光标出进行插入推理结果
+** debug(dape)
+*** C/C++/Rust
+    1. 安装 llvm
+       #+begin_src sh
+       brew install llvm
+       #+end_src
+
+    2. 配置环境变量
+       查看 llvm 安装位置 =brew --prefix --installed llvm=
+       #+begin_src sh
+       export PATH="[llvm 安装位置]/bin:$PATH"
+       #+end_src
+
+    3. 传递参数
+       - 命令行参数使用 args， =:args ["-c" "code"]=
+       - 环境变量使用 env， =:env ["OPEN_API_KEY" "xxxx"]=
+
+    4. 运行
+       =M-x dape=
+
+    5. 调试前顺便编译一下
+       =lldb-dap :args ["-a" "123"] compile "llvm-g++ -g=
+       不要忘记 =-g= ，少了就没有调试信息，就不能调试了
+*** js
+    1. 安装 vscode-js-debug
+       到[[https://github.com/microsoft/vscode-js-debug/releases][Releases · microsoft/vscode-js-debug]]下载最新的 Release
+       #+begin_src sh
+       mkdir -p ~/.emacs.d/debug-adapters
+       tar -xvzf js-debug-dap-<version>.tar.gz -C ~/.emacs.d/debug-adapters
+       #+end_src
+
+    2. 运行
+       =M-x dape=
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
