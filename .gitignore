@@ -72,3 +72,4 @@ tree-sitter/
 /semanticdb/
 /modules/
 /tabsession.el
+.aider*
