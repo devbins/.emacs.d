@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 953
+;;     Update #: 954
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -375,69 +375,69 @@ prepended to the element after the #+HEADER: tag."
     (setq-default org-html-html5-fancy t))
 
   (use-package ox-latex
-  :ensure nil
-  :defer t
-  :config
-  (add-to-list 'org-latex-classes
-               '("cn-article"
-                 "\\documentclass[UTF8,a4paper]{article}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    :ensure nil
+    :defer t
+    :config
+    (add-to-list 'org-latex-classes
+                 '("cn-article"
+                   "\\documentclass[UTF8,a4paper]{article}"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (add-to-list 'org-latex-classes
-               '("cn-report"
-                 "\\documentclass[11pt,a4paper]{report}"
-                 ("\\chapter{%s}" . "\\chapter*{%s}")
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-  (setq org-latex-default-class "cn-article")
-  (setq org-latex-image-default-height "0.9\\textheight"
-        org-latex-image-default-width "\\linewidth")
-  (setq org-latex-pdf-process
-	    '("xelatex -interaction nonstopmode -output-directory %o %f"
-	      "bibtex %b"
-	      "xelatex -interaction nonstopmode -output-directory %o %f"
-	      "xelatex -interaction nonstopmode -output-directory %o %f"
-	      "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
-	      ))
-  ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
-  (setq org-latex-listings t)
-  ;; mapping jupyter-python to Python
-  (add-to-list 'org-latex-listings-langs '(jupyter-python "Python"))
-  ;; Options for \lset command（reference to listing Manual)
-  (setq org-latex-listings-options
-        '(
-          ("basicstyle" "\\small\\ttfamily")       ; 源代码字体样式
-          ("keywordstyle" "\\color{eminence}\\small")                 ; 关键词字体样式
-          ;; ("identifierstyle" "\\color{doc}\\small")
-          ("commentstyle" "\\color{commentgreen}\\small\\itshape")    ; 批注样式
-          ("stringstyle" "\\color{red}\\small")                       ; 字符串样式
-          ("showstringspaces" "false")                                ; 字符串空格显示
-          ("numbers" "left")                                          ; 行号显示
-          ("numberstyle" "\\color{preprocess}")                       ; 行号样式
-          ("stepnumber" "1")                                          ; 行号递增
-          ("xleftmargin" "2em")                                       ;
-          ;; ("backgroundcolor" "\\color{background}")                   ; 代码框背景色
-          ("tabsize" "4")                                             ; TAB 等效空格数
-          ("captionpos" "t")                                          ; 标题位置 top or buttom(t|b)
-          ("breaklines" "true")                                       ; 自动断行
-          ("breakatwhitespace" "true")                                ; 只在空格分行
-          ("showspaces" "false")                                      ; 显示空格
-          ("columns" "flexible")                                      ; 列样式
-          ("frame" "tb")                                              ; 代码框：single, or tb 上下线
-          ("frameleftmargin" "1.5em")                                 ; frame 向右偏移
-          ;; ("frameround" "tttt")                                       ; 代码框： 圆角
-          ;; ("framesep" "0pt")
-          ;; ("framerule" "1pt")                                         ; 框的线宽
-          ;; ("rulecolor" "\\color{background}")                         ; 框颜色
-          ;; ("fillcolor" "\\color{white}")
-          ;; ("rulesepcolor" "\\color{comdil}")
-          ("framexleftmargin" "5mm")                                  ; let line numer inside frame
-          )))
+    (add-to-list 'org-latex-classes
+                 '("cn-report"
+                   "\\documentclass[11pt,a4paper]{report}"
+                   ("\\chapter{%s}" . "\\chapter*{%s}")
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+    (setq org-latex-default-class "cn-article")
+    (setq org-latex-image-default-height "0.9\\textheight"
+          org-latex-image-default-width "\\linewidth")
+    (setq org-latex-pdf-process
+	      '("xelatex -interaction nonstopmode -output-directory %o %f"
+	        "bibtex %b"
+	        "xelatex -interaction nonstopmode -output-directory %o %f"
+	        "xelatex -interaction nonstopmode -output-directory %o %f"
+	        "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
+	        ))
+    ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
+    (setq org-latex-listings t)
+    ;; mapping jupyter-python to Python
+    (add-to-list 'org-latex-listings-langs '(jupyter-python "Python"))
+    ;; Options for \lset command（reference to listing Manual)
+    (setq org-latex-listings-options
+          '(
+            ("basicstyle" "\\small\\ttfamily")       ; 源代码字体样式
+            ("keywordstyle" "\\color{eminence}\\small")                 ; 关键词字体样式
+            ;; ("identifierstyle" "\\color{doc}\\small")
+            ("commentstyle" "\\color{commentgreen}\\small\\itshape")    ; 批注样式
+            ("stringstyle" "\\color{red}\\small")                       ; 字符串样式
+            ("showstringspaces" "false")                                ; 字符串空格显示
+            ("numbers" "left")                                          ; 行号显示
+            ("numberstyle" "\\color{preprocess}")                       ; 行号样式
+            ("stepnumber" "1")                                          ; 行号递增
+            ("xleftmargin" "2em")                                       ;
+            ;; ("backgroundcolor" "\\color{background}")                   ; 代码框背景色
+            ("tabsize" "4")                                             ; TAB 等效空格数
+            ("captionpos" "t")                                          ; 标题位置 top or buttom(t|b)
+            ("breaklines" "true")                                       ; 自动断行
+            ("breakatwhitespace" "true")                                ; 只在空格分行
+            ("showspaces" "false")                                      ; 显示空格
+            ("columns" "flexible")                                      ; 列样式
+            ("frame" "tb")                                              ; 代码框：single, or tb 上下线
+            ("frameleftmargin" "1.5em")                                 ; frame 向右偏移
+            ;; ("frameround" "tttt")                                       ; 代码框： 圆角
+            ;; ("framesep" "0pt")
+            ;; ("framerule" "1pt")                                         ; 框的线宽
+            ;; ("rulecolor" "\\color{background}")                         ; 框颜色
+            ;; ("fillcolor" "\\color{white}")
+            ;; ("rulesepcolor" "\\color{comdil}")
+            ("framexleftmargin" "5mm")                                  ; let line numer inside frame
+            )))
 
   (use-package org-ref
     :after org)
