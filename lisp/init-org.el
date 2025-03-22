@@ -374,6 +374,20 @@ prepended to the element after the #+HEADER: tag."
     (setq-default org-html-doctype "html5")
     (setq-default org-html-html5-fancy t))
 
+  (use-package tex
+    :ensure auctex
+    :custom
+    (TeX-parse-self t) ; 自动解析 tex 文件
+    (TeX-PDF-mode t)
+    (TeX-DVI-via-PDFTeX t)
+    :hook (latex-mode . (lambda () (turn-on-cdlatex)
+                          (turn-on-reftex))))
+
+  (use-package cdlatex
+    :after tex
+    :hook (org-mode . (lambda () (turn-on-org-cdlatex)
+                        (org-latex-preview-auto-mode))))
+
   (use-package ox-latex
     :ensure nil
     :defer t
