@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 48
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -275,6 +275,19 @@
   :diminish
   :bind ("<f7>" . olivetti-mode)
   :init (setq olivetti-body-width .67))
+
+;; https://github.com/chenyanming/calibredb.el
+(use-package calibredb
+  :if (executable-find "calibre")
+  :commands (calibredb calibredb-list)
+  :config
+  (setq calibredb-root-dir "~/Calibre Library"
+        calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
+        calibredb-format-character-icons t
+        calibredb-library-alist '(("~/Calibre Library")
+                                  ("/Volumes/devbins/Calibre Library/Compute Science")
+                                  ("/Volumes/devbins/Calibre Library/Geek Time"))))
+
 
 (provide 'init-reader)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

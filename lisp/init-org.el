@@ -1411,15 +1411,6 @@ same directory as the org-buffer and insert a link to this file."
         plantuml-log-command t
         plantuml-org-headline-bold t))
 
-;; https://github.com/chenyanming/calibredb.el
-(use-package calibredb
-  :if (executable-find "calibre")
-  :commands (calibredb calibredb-list)
-  :config
-  (setq calibredb-root-dir "~/Calibre Library")
-  (setq calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)))
-
-
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-org.el ends here
