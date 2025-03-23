@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 964
+;;     Update #: 965
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -387,6 +387,10 @@ prepended to the element after the #+HEADER: tag."
     :after tex
     :hook (org-mode . (lambda () (turn-on-org-cdlatex)
                         (org-latex-preview-auto-mode))))
+
+  ;; Default LaTeX preview image directory
+  (setq org-preview-latex-image-directory
+        (expand-file-name "ltximg/" user-cache-directory))
 
   (use-package ox-latex
     :ensure nil
