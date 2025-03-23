@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 954
+;;     Update #: 964
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -942,7 +942,8 @@ prepended to the element after the #+HEADER: tag."
                                (eshell     . t)
                                (shell      . t)
                                (plantuml   . t)
-                               (jupyter    . t)))
+                               (jupyter    . t)
+                               (latex      . t)))
 
   ;; 代码块的语言模式设置，设置之后才能正确语法高亮
   (setq org-src-lang-modes '(("bash"   . sh)
