@@ -302,7 +302,8 @@ prepended to the element after the #+HEADER: tag."
             ("crypt" . "🔐")
             ("MUSIC" . "♬")
             ("NOTE" . "📝")
-            ("MOVIE" . "🎬")))))
+            ("MOVIE" . "🎬")
+            ("verb" . "☸️")))))
 
   (use-package valign
     :hook ((org-mode markdown-mode) . valign-mode)
