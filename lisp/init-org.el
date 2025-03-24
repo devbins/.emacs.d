@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 965
+;;     Update #: 977
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -393,7 +393,27 @@ prepended to the element after the #+HEADER: tag."
   (setq org-preview-latex-image-directory "imgs/"
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
-  (use-package ox-latex
+  ;; Setup for `org-latex-preview'
+  (setq org-latex-packages-alist '(("T1" "fontenc" t)
+                                   ("" "amsmath"   t)
+                                   ("" "amssymb"   t)
+                                   ("" "siunitx"   t)
+
+                                   ;; Font packages
+                                   ("libertinus" "newtx" t)
+
+                                   ;; Load this after all math to give access to bold math
+                                   ;; See https://ctan.org/pkg/newtx
+                                   ("" "bm" t)
+
+                                   ;; Package physics2 requires to be loaded after font
+                                   ;; packages. See https://ctan.org/pkg/physics2
+                                   ("" "physics2" t)
+
+                                   ;; Differentiations
+                                   ("normal" "fixdif" t)))
+
+    (use-package ox-latex
     :ensure nil
     :defer t
     :config
