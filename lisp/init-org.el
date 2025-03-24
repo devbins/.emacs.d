@@ -390,8 +390,8 @@ prepended to the element after the #+HEADER: tag."
                         (org-latex-preview-auto-mode))))
 
   ;; Default LaTeX preview image directory
-  (setq org-preview-latex-image-directory
-        (expand-file-name "ltximg/" user-cache-directory))
+  (setq org-preview-latex-image-directory "imgs/"
+        org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
   (use-package ox-latex
     :ensure nil
