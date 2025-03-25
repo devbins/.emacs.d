@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 174
+;;     Update #: 179
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -99,7 +99,6 @@
           ("llava-llama3:latest" . (make-llm-ollama :chat-model "llava-llama3:latest" :embedding-model "bge-m3:latest")))))
 
 (use-package aidermacs
-  :load-path "site-lisp/aidermacs"
   :commands (aidermacs-transient-menu)
   :config
   (require 'aidermacs-backend-vterm nil t)
