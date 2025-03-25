@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 50
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -283,11 +283,7 @@
   :config
   (setq calibredb-root-dir "~/Calibre Library"
         calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
-        calibredb-format-character-icons t
-        calibredb-library-alist '(("~/Calibre Library")
-                                  ("/Volumes/devbins/Calibre Library/Compute Science")
-                                  ("/Volumes/devbins/Calibre Library/Geek Time"))))
-
+        calibredb-format-character-icons t))
 
 (provide 'init-reader)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
