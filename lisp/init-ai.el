@@ -104,8 +104,9 @@
   (require 'aidermacs-backend-vterm nil t)
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-default-model "ollama/deepseek-r1:14b")
-  (setq aidermacs-use-architect-mode t)
-  (setq aidermacs-architect-model "ollama/qwen2.5:14b") ; default
+  (setq aidermacs-use-architect-mode t) ;; set t default-mode will be ignore
+  (setq aidermacs-architect-model "ollama/qwen2.5:14b"
+        aidermacs-editor-model "ollama/deepseek-r1:14b")
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
