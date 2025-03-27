@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 131
+;;     Update #: 132
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -246,6 +246,8 @@
         default-input-method "rime"
         rime-cursor "|"
         rime-show-candidate 'posframe
+        rime-emacs-module-header-root (cond (sys/macp "/opt/homebrew/include")
+                                            (sys/linuxp nil))
         rime-librime-root (cond (sys/macp (expand-file-name "librime/dist" user-emacs-directory))
                                 (sys/linuxp nil)))
   :config
