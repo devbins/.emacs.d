@@ -46,26 +46,6 @@
 ;;
 ;;; Code:
 
-;; Youdao Dictionary
-(use-package youdao-dictionary
-  :commands youdao-dictionary-play-voice-of-current-word
-  :bind (("C-c y" . my-youdao-search-at-point)
-         ("C-c Y" . youdao-dictionary-search-at-point)
-         :map evil-normal-state-map
-         ("q" . quit-window))
-  :init
-  (setq url-automatic-caching t)
-
-  (with-no-warnings
-    (defun my-youdao-search-at-point ()
-      "Search word at point and display result with `posframe', `pos-tip', or buffer."
-      (interactive)
-      (if (display-graphic-p)
-          (if emacs/>=26p
-              (youdao-dictionary-search-at-point-posframe)
-            (youdao-dictionary-search-at-point-tooltip))
-        (youdao-dictionary-search-at-point)))))
-
 ;; Default, comment out the providers you don't need.
 (use-package fanyi
   :init
