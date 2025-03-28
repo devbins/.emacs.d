@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 33
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -79,7 +79,52 @@
         gt-buffer-render-window-config
         '((display-buffer-reuse-window display-buffer-in-direction)
           (direction . bottom)
-          (window-height . 0.4))))
+          (window-height . 0.4)))
+
+  (setq gt-pop-posframe-forecolor (face-foreground 'tooltip nil t)
+        gt-pop-posframe-backcolor (face-background 'tooltip nil t))
+  (when (facep 'posframe-border)
+    (setq gt-pin-posframe-bdcolor (face-background 'posframe-border nil t)))
+  :config
+  (with-no-warnings
+    (setq gt-preset-translators
+          `((default . ,(gt-translator
+                         :taker   (list (gt-taker :pick nil :if 'selection)
+                                        (gt-taker :text 'paragraph :if '(Info-mode help-mode helpful-mode devdocs-mode))
+                                        (gt-taker :text 'buffer :pick 'fresh-word
+                                                  :if (lambda (translatror)
+                                                        (and (not (derived-mode-p 'fanyi-mode)) buffer-read-only)))
+                                        (gt-taker :text 'word))
+                         :engines (if (display-graphic-p)
+                                      (list (gt-bing-engine :if 'not-word)
+                                            (gt-youdao-dict-engine :if 'word))
+                                    (list (gt-bing-engine :if 'not-word)
+                                          (gt-youdao-dict-engine :if 'word)
+                                          (gt-youdao-suggest-engine :if 'word)
+                                          (gt-google-engine :if 'word)))
+                         :render  (list (gt-posframe-pop-render
+                                         :if (lambda (translator)
+                                               (and (display-graphic-p)
+                                                    (not (derived-mode-p 'Info-mode 'help-mode 'helpful-mode 'devdocs-mode))
+                                                    (not (member (buffer-name) '("COMMIT_EDITMSG")))))
+                                         :frame-params (list :accept-focus nil
+                                                             :width 70
+                                                             :height 15
+                                                             :left-fringe 16
+                                                             :right-fringe 16
+                                                             :border-width 1
+                                                             :border-color gt-pin-posframe-bdcolor))
+                                        (gt-overlay-render :if 'read-only)
+                                        (gt-insert-render :if (lambda (translator) (member (buffer-name) '("COMMIT_EDITMSG"))))
+                                        (gt-buffer-render))))
+            (multi-dict . ,(gt-translator :taker (gt-taker :prompt t)
+                                          :engines (list (gt-bing-engine)
+                                                         (gt-youdao-dict-engine)
+                                                         (gt-youdao-suggest-engine :if 'word)
+                                                         (gt-google-engine))
+                                          :render (gt-buffer-render)))
+            (Text-Utility . ,(gt-text-utility :taker (gt-taker :pick nil)
+                                              :render (gt-buffer-render)))))))
 
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
