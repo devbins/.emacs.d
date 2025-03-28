@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 254
+;;     Update #: 255
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,6 +65,7 @@
             ("C-c i" . lsp-bridge-find-impl))
      :init
      (setq lsp-bridge-enable-mode-line nil
+           lsp-bridge-completion-obey-trigger-characters-p nil
            lsp-bridge-completion-hide-characters '(";" "(" ")" "[" "]" "{" "}" "," "\"")
            lsp-bridge-enable-hover-diagnostic t
            lsp-bridge-enable-search-words nil
