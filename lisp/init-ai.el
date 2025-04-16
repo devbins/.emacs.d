@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 179
+;;     Update #: 185
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,6 +71,13 @@
               moonshot-v1-128k)
     :host "api.moonshot.cn"
     :stream t)
+
+  (gptel-make-openai "OpenRouter"
+    :host "openrouter.ai"
+    :endpoint "/api/v1/chat/completions"
+    :stream t
+    :key (password-store-get "openrouter")
+    :models '(google/gemini-2.5-pro-exp-03-25:free))
 
   (gptel-make-gemini
    "Gemini"
