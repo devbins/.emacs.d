@@ -26,6 +26,7 @@
 *** [[https://www.reddit.com/r/emacs.rss][reddit]]
 *** [[http://feed.williamlong.info/][月光博客]]
 *** [[https://devbins.github.io/index.xml][dev.bins]] 
+*** [[https://www.gtdstudy.com/index.xml][Space Looming]]
 ** Programming Language :pl:
 *** [[https://matklad.github.io/feed.xml][Matklad]] :rust:
 *** [[https://lucumr.pocoo.org/feed.atom][Armin Ronacher]]  :python:rust:
