@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 185
+;;     Update #: 192
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -77,7 +77,11 @@
     :endpoint "/api/v1/chat/completions"
     :stream t
     :key (password-store-get "openrouter")
-    :models '(google/gemini-2.5-pro-exp-03-25:free))
+    :models '(google/gemini-2.5-pro-exp-03-25:free
+              deepseek/deepseek-chat-v3-0324:free
+              google/gemini-2.0-flash-exp:free
+              google/gemini-2.0-flash-thinking-exp:free
+              google/gemma-3-27b-it:free))
 
   (gptel-make-gemini
    "Gemini"
