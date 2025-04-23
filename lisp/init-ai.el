@@ -95,6 +95,11 @@
               google/gemini-2.0-flash-thinking-exp:free
               google/gemma-3-27b-it:free))
 
+  (gptel-make-openai "siliconflow"
+    :host "api.siliconflow.cn"
+    :key (password-store-get "siliconflow")
+    :models '(deepseek-ai/DeepSeek-R1) :stream t)
+
   (gptel-make-gemini
    "Gemini"
    :key (password-store-get "gemini")
