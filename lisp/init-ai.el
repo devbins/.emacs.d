@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 192
+;;     Update #: 200
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,6 +53,7 @@
   (setq gptel-model 'qwen2.5:14b
         gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(deepseek-r1:14b qwen2.5:14b qwen2.5-coder:latest  llava-llama3:latest) :stream t)
         gptel-track-media t
+        gptel-use-tools t
         gptel-default-mode 'org-mode
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
