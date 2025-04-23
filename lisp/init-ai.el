@@ -51,7 +51,18 @@
          (gptel-post-response . gptel-end-of-response))
   :config
   (setq gptel-model 'qwen2.5:14b
-        gptel-backend (gptel-make-ollama "Ollama" :host "localhost:11434" :models '(deepseek-r1:14b qwen2.5:14b qwen2.5-coder:latest  llava-llama3:latest) :stream t)
+        gptel-backend (gptel-make-ollama "Ollama"
+                        :host "localhost:11434"
+                        :models '(deepseek-r1:14b
+                                  qwen2.5:14b
+                                  qwen2.5-coder:latest
+                                  (llava-llama3:latest :description "LLaVA is a novel end-to-end trained large multimodal model that combines a vision encoder and Vicuna for general-purpose visual and language understanding"
+                                   :capabilities (tool json media)
+                                   :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html"))
+                                  (gemma3:12b :description "the Gemma 3 models are multimodal—processing text and images—and feature a 128K context window with support for over 140 languages. "
+                                              :capabilities (tool json media)
+                                              :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
+                        :stream t)
         gptel-track-media t
         gptel-use-tools t
         gptel-default-mode 'org-mode
