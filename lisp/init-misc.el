@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 85
+;;     Update #: 88
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -101,7 +101,7 @@
 (use-package epa-file
   :ensure nil
   :init
-  (setq epa-pinentry-mode 'loopback
+  (setq epg-pinentry-mode 'loopback
         epa-file-cache-passphrase-for-symmetric-encryption t)
   :config
   (epa-file-enable))
