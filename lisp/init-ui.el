@@ -235,7 +235,7 @@ If FRAME is nil, it defaults to the selected frame."
                          "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
            return (set-face-attribute 'default nil :font
-                                      (format "%s:pixelsize=%d" font 20)))
+                                      (format "%s:pixelsize=%d" font 18)))
 
   ;; Specify font for all unicode characters
   (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
