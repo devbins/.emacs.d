@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 88
+;;     Update #: 92
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -92,8 +92,7 @@
 (use-package pass
   :if (executable-find "pass")
   :config
-  (use-package password-store
-    :init (setq auth-sources '(password-store)))
+  (use-package password-store)
   (use-package auth-source-pass
     :ensure nil
     :init (auth-source-pass-enable)))
