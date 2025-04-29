@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 200
+;;     Update #: 208
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,9 +46,10 @@
 ;;
 ;;; Code:
 
+;; prompt download to ~/.cache/gptel-crowdsourced-prompts.csv
 (use-package gptel
   :hook ((gptel-post-stream . gptel-auto-scroll)
-         (gptel-post-response . gptel-end-of-response))
+         (gptel-post-response-functions . gptel-end-of-response))
   :config
   (setq gptel-model 'qwen2.5:14b
         gptel-backend (gptel-make-ollama "Ollama"
