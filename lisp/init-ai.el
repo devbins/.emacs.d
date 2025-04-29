@@ -71,14 +71,14 @@
                                     (org-mode . "** ")
                                     (text-mode . "## ")))
   (gptel-make-openai "awoi"
-    :key (password-store-get "awoi")
+    :key (auth-source-pass-get 'secret "awoi")
     :models '(gpt-4o
               gpt-4-turbo)
     :host "api.awoi.me"
     :stream t)
 
   (gptel-make-openai "kimi"
-    :key (password-store-get "kimi")
+    :key (auth-source-pass-get 'secret "kimi")
     :models '(moonshot-v1-8k
               moonshot-v1-32k
               moonshot-v1-128k)
@@ -89,7 +89,7 @@
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
     :stream t
-    :key (password-store-get "openrouter")
+    :key (auth-source-pass-get 'secret "openrouter")
     :models '(google/gemini-2.5-pro-exp-03-25:free
               deepseek/deepseek-chat-v3-0324:free
               google/gemini-2.0-flash-exp:free
@@ -98,12 +98,12 @@
 
   (gptel-make-openai "siliconflow"
     :host "api.siliconflow.cn"
-    :key (password-store-get "siliconflow")
+    :key (auth-source-pass-get 'secret "siliconflow")
     :models '(deepseek-ai/DeepSeek-R1) :stream t)
 
   (gptel-make-gemini
    "Gemini"
-   :key (password-store-get "gemini")
+   :key (auth-source-pass-get 'secret "gemini")
    :stream t))
 
 (use-package magit-gptcommit
