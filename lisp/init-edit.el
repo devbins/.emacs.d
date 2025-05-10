@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 133
+;;     Update #: 136
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -220,18 +220,11 @@
 (use-package mwim
   :bind (([remap move-beginning-of-line] . mwim-beginning)
          ([remap move-end-of-line] . mwim-end)))
+
 ;; Treat undo history as a tree
-(if emacs/>=28p
-    (use-package vundo
-      :bind ("C-x u" . vundo)
-      :config (setq vundo-glyph-alist vundo-unicode-symbols))
-  (use-package undo-tree
-    :diminish
-    :hook (after-init . global-undo-tree-mode)
-    :init (setq undo-tree-visualizer-timestamps t
-                undo-tree-visualizer-diff t
-                undo-tree-enable-undo-in-region nil
-                undo-tree-auto-save-history nil)))
+(use-package vundo
+  :bind ("C-x u" . vundo)
+  :config (setq vundo-glyph-alist vundo-unicode-symbols))
 
 ;; Open files as another user
 (unless sys/win32p
