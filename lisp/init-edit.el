@@ -216,6 +216,10 @@
     "gr" 'imenu-list-refresh
     "q" 'imenu-list-quit-window))
 
+;; Move to the beginning/end of line or code
+(use-package mwim
+  :bind (([remap move-beginning-of-line] . mwim-beginning)
+         ([remap move-end-of-line] . mwim-end)))
 ;; Treat undo history as a tree
 (if emacs/>=28p
     (use-package vundo
