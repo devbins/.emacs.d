@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 136
+;;     Update #: 143
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -233,7 +233,8 @@
 ;; https://github.com/DogLooksGood/emacs-rime
 (use-package rime
   :init
-  (setq rime-disable-predicates '(rime-predicate-prog-in-code-p
+  (setq rime-disable-predicates '(rime-predicate-evil-mode-p
+                                  rime-predicate-prog-in-code-p
                                   rime-predicate-after-alphabet-char-p)
         rime-inline-predicates '(rime-predicate-space-after-cc-p
                                  rime-predicate-current-uppercase-letter-p)
@@ -332,6 +333,7 @@
                      'face '(:inherit shadow :height 0.8))
                     " "))))
   (setq hs-set-up-overlay #'hs-display-code-line-counts))
+
 (use-package emt
   :if sys/macp
   :load-path "site-lisp/emt"
