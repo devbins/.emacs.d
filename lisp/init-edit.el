@@ -238,8 +238,8 @@
         rime-inline-predicates '(rime-predicate-space-after-cc-p
                                  rime-predicate-current-uppercase-letter-p)
         rime-translate-keybindings '("C-f" "C-b" "C-n" "C-p" "C-g" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>")
-        rime-posframe-properties (list :font "STKaiti"
-                                       :internal-border-width 10)
+        rime-posframe-properties (list :font "STKaiti-20"
+                                       :internal-border-width 2)
         default-input-method "rime"
         rime-cursor "|"
         rime-show-candidate 'posframe
