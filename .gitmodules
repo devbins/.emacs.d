@@ -31,9 +31,6 @@
 [submodule "dictionary-overlay"]
 	path = site-lisp/dictionary-overlay
 	url = https://github.com/ginqi7/dictionary-overlay
-[submodule "mind-wave"]
-	path = site-lisp/mind-wave
-	url = https://github.com/manateelazycat/mind-wave.git
 [submodule "holo-layer"]
 	path = site-lisp/holo-layer
 	url = https://github.com/manateelazycat/holo-layer.git
