@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 208
+;;     Update #: 212
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,11 +51,11 @@
   :hook ((gptel-post-stream . gptel-auto-scroll)
          (gptel-post-response-functions . gptel-end-of-response))
   :config
-  (setq gptel-model 'qwen2.5:14b
+  (setq gptel-model 'qwen3:14b
         gptel-backend (gptel-make-ollama "Ollama"
                         :host "localhost:11434"
                         :models '(deepseek-r1:14b
-                                  qwen2.5:14b
+                                  qwen3:14b
                                   qwen2.5-coder:latest
                                   (llava-llama3:latest :description "LLaVA is a novel end-to-end trained large multimodal model that combines a vision encoder and Vicuna for general-purpose visual and language understanding"
                                    :capabilities (tool json media)
@@ -121,7 +121,7 @@
   :config
   (setq ellama-provider
         (make-llm-ollama
-         :chat-model "qwen2.5:14b" :embedding-model "bge-m3:latest"))
+         :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
   (setq ellama-providers
         '(("deepseek-r1:14b" . (make-llm-ollama :chat-model "deepseek-r1:14b" :embedding-model "bge-m3:latest"))
           ("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest"))
@@ -134,7 +134,7 @@
   (setq aidermacs-backend 'vterm)
   (setq aidermacs-default-model "ollama/deepseek-r1:14b")
   (setq aidermacs-use-architect-mode t) ;; set t default-mode will be ignore
-  (setq aidermacs-architect-model "ollama/qwen2.5:14b"
+  (setq aidermacs-architect-model "ollama/qwen3:14b"
         aidermacs-editor-model "ollama/deepseek-r1:14b")
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   ;; Optional: Set a key binding for the transient menu
