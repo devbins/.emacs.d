@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 40
+;;     Update #: 41
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -141,7 +141,7 @@
   (setq insert-translated-name-camel-style-mode-list
         '(go-mode))
   (setq insert-translated-name-program "ollama"
-        insert-translated-name-ollama-model-name "qwen2"))
+        insert-translated-name-ollama-model-name "qwen3:14b"))
 
 (use-package paw
   :load-path "site-lisp/paw")
