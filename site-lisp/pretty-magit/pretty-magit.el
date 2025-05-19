@@ -63,8 +63,11 @@
   (when (and pretty-magit--use-commit-prompt?
              pretty-magit--prompt)
     (setq pretty-magit--use-commit-prompt? nil)
-    (insert (completing-read "Commit Type " (completion-table-dynamic (lambda (str) pretty-magit--prompt)) nil t))
-    (pretty-magit--add-magit-faces)
+    (message (magit-repository-local-get 'magit-gptcommit--last-message))
+    (save-excursion
+      (goto-char (point-min))
+      (insert (completing-read "Commit Type " (completion-table-dynamic (lambda (str) pretty-magit--prompt)) nil t)))
+    ;; (pretty-magit--add-magit-faces)
     (evil-insert 1)))
 
 ;;;; Enable
@@ -73,7 +76,7 @@
 (defun pretty-magit-setup (&optional no-commit-prompts?)
   "Advise the appropriate magit funcs to add pretty-magit faces."
   ;; (advice-add 'magit-status         :after 'pretty-magit--add-magit-faces)
-  (advice-add 'magit-refresh-buffer :after 'pretty-magit--add-magit-faces)
+  ;; (advice-add 'magit-refresh-buffer :after 'pretty-magit--symbol)
 
   (unless no-commit-prompts?
     (remove-hook 'git-commit-setup-hook 'with-editor-usage-message)
