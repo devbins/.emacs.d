@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 259
+;;     Update #: 261
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -123,6 +123,8 @@
   (evil-set-initial-state 'color-rg-mode 'emacs)
   (evil-set-initial-state 'color-rg-search-mode 'emacs)
   (evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
+  (evil-set-initial-state 'achive-visual-mode 'emacs)
+  (evil-set-initial-state 'fanyi-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
