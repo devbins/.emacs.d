@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 143
+;;     Update #: 144
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -218,8 +218,8 @@
 
 ;; Move to the beginning/end of line or code
 (use-package mwim
-  :bind (([remap move-beginning-of-line] . mwim-beginning)
-         ([remap move-end-of-line] . mwim-end)))
+  :bind (([remap move-beginning-of-line] . mwim-beginning-of-code-or-line)
+         ([remap move-end-of-line] . mwim-end-of-code-or-line)))
 
 ;; Treat undo history as a tree
 (use-package vundo
