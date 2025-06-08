@@ -127,8 +127,7 @@
          :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
   (setq ellama-providers
         '(("deepseek-r1:14b" . (make-llm-ollama :chat-model "deepseek-r1:14b" :embedding-model "bge-m3:latest"))
-          ("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest"))
-          ("llava-llama3:latest" . (make-llm-ollama :chat-model "llava-llama3:latest" :embedding-model "bge-m3:latest")))))
+          ("qwen2.5-coder:latest" . (make-llm-ollama :chat-model "qwen2.5-coder:latest" :embedding-model "bge-m3:latest")))))
 
 (use-package aidermacs
   :commands (aidermacs-transient-menu)
