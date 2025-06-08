@@ -55,13 +55,14 @@
         gptel-backend (gptel-make-ollama "Ollama"
                         :host "localhost:11434"
                         :models '(deepseek-r1:14b
-                                  qwen3:14b
-                                  qwen2.5-coder:latest
-                                  (llava-llama3:latest :description "LLaVA is a novel end-to-end trained large multimodal model that combines a vision encoder and Vicuna for general-purpose visual and language understanding"
-                                   :capabilities (tool json media)
-                                   :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html"))
+                                  (qwen3:14b :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
+                                             :capabilities (tool json))
+                                  (qwen2.5-coder:latest :description "The latest series of Code-Specific Qwen models, with significant improvements in code generation, code reasoning, and code fixing."
+                                                        :capabilities (tool json))
+                                  (devstral:latest :description "Devstral excels at using tools to explore codebases, editing multiple files and power software engineering agents."
+                                                   :capabilities (tool json))
                                   (gemma3:12b :description "the Gemma 3 models are multimodal—processing text and images—and feature a 128K context window with support for over 140 languages. "
-                                              :capabilities (tool json media)
+                                              :capabilities (json media)
                                               :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
                         :stream t)
         gptel-track-media t
