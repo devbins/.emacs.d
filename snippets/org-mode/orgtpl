@@ -4,9 +4,10 @@
 # --
 * ${1:title}
   :PROPERTIES:
-  :AUTHOR: ${2:`user-full-name`}
+  :CREATOR: ${2:`user-full-name`}
+  :AUTHOR: $3
   :DATE: [`(format-time-string "%Y-%m-%d %H:%M" (current-time))`]
-  :DESCRIPTION: $3
+  :DESCRIPTION: $4
   :END:
 
   $0
