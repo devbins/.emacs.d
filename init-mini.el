@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -111,6 +111,10 @@
 
 (add-hook 'prog-mode-hook #'subword-mode)
 (add-hook 'minibuffer-setup-hook #'subword-mode)
+
+;; Completion
+(when (fboundp 'global-completion-preview-mode)
+  (global-completion-preview-mode 1))
 
 ;; IDO
 (ido-mode 1)
