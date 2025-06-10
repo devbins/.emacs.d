@@ -78,6 +78,28 @@
                                        "  Generate ONLY the replacement text,"
                                        " without any explanation or markdown code fences or org code fences."
                                        " translate english to chinese.")))
+(defun gptel-translate-to-chinese(&optional dry-run)
+  "Use AI to translate the currently selected text into Chinese."
+  (interactive "P")
+  (gptel-request (list (or (get-char-property (point) 'gptel-rewrite)
+                          (buffer-substring-no-properties (region-beginning) (region-end)))
+                       "What is the required change?"
+                       "Rewrite:")
+    :dry-run dry-run
+    :system (alist-get 'translate gptel-directives)
+    :stream t
+    :context
+    (let ((ov (or (cdr-safe (get-char-property-and-overlay (point) 'gptel-rewrite))
+                 (make-overlay (region-beginning) (region-end) nil t))))
+      (overlay-put ov 'category 'gptel)
+      (overlay-put ov 'evaporate t)
+      (cons ov (generate-new-buffer "*gptel-rewrite*")))
+    :callback #'gptel--rewrite-callback))
+
+(with-eval-after-load 'gptel-transient
+  (transient-append-suffix 'gptel-menu '(2 -1)
+    ["Quick Tools"
+     ("q t" "Translate select regions to chinese" gptel-translate-to-chinese)]))
   (gptel-make-openai "awoi"
     :key (auth-source-pass-get 'secret "awoi")
     :models '(gpt-4o
