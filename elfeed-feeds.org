@@ -29,6 +29,8 @@
 *** [[https://www.gtdstudy.com/index.xml][Space Looming]]
 *** [[https://www.ruanyifeng.com/blog/atom.xml][阮一峰的网络日志]]
 *** [[https://s.baoyu.io/feed.xml][宝玉的分享]] 
+*** [[https://zhupite.com/feed.xml][皮特的烂笔头]]
+*** [[https://www.usmacd.com/rss.xml][安全代码]]
 ** Programming Language :pl:
 *** [[https://matklad.github.io/feed.xml][Matklad]] :rust:
 *** [[https://lucumr.pocoo.org/feed.atom][Armin Ronacher]]  :python:rust:
