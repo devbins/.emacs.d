@@ -78,6 +78,7 @@
                                        "  Generate ONLY the replacement text,"
                                        " without any explanation or markdown code fences or org code fences."
                                        " translate english to chinese.")))
+
 (defun gptel-translate-to-chinese(&optional dry-run)
   "Use AI to translate the currently selected text into Chinese."
   (interactive "P")
@@ -100,6 +101,9 @@
   (transient-append-suffix 'gptel-menu '(2 -1)
     ["Quick Tools"
      ("q t" "Translate select regions to chinese" gptel-translate-to-chinese)]))
+
+  (require 'gptel-integrations)
+
   (gptel-make-openai "awoi"
     :key (auth-source-pass-get 'secret "awoi")
     :models '(gpt-4o
