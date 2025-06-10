@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 233
+;;     Update #: 238
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -137,6 +137,26 @@
    "Gemini"
    :key (auth-source-pass-get 'secret "gemini")
    :stream t))
+
+(use-package mcp
+  :after gptel
+  :config
+  (require 'mcp-hub)
+  (setq mcp-hub-servers
+        '(
+          ("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+          ;; https://github.com/nickclyde/duckduckgo-mcp-server
+          ("playwright" . (:command "npx" :args ("@playwright/mcp@latest")))
+          ("github" . (:command "docker"
+                       :args ("run"
+                              "--name" "github-mcp"
+                              "--interactive"
+                              "--rm"
+                              "--env"
+                              "GITHUB_PERSONAL_ACCESS_TOKEN"
+                              "ghcr.io/github/github-mcp-server")
+                       :env (:GITHUB_PERSONAL_ACCESS_TOKEN (auth-source-pass-get 'secret "github"))))
+          )))
 
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
