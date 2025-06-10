@@ -71,6 +71,13 @@
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
                                     (text-mode . "## ")))
+
+    (add-to-list 'gptel-directives
+               `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
+                                       "  Follow my instructions and improve or rewrite the text I provide."
+                                       "  Generate ONLY the replacement text,"
+                                       " without any explanation or markdown code fences or org code fences."
+                                       " translate english to chinese.")))
   (gptel-make-openai "awoi"
     :key (auth-source-pass-get 'secret "awoi")
     :models '(gpt-4o
