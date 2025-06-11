@@ -57,8 +57,6 @@
                         :models '(deepseek-r1:14b
                                   (qwen3:14b :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
                                              :capabilities (tool json))
-                                  (qwen2.5-coder:latest :description "The latest series of Code-Specific Qwen models, with significant improvements in code generation, code reasoning, and code fixing."
-                                                        :capabilities (tool json))
                                   (devstral:latest :description "Devstral excels at using tools to explore codebases, editing multiple files and power software engineering agents."
                                                    :capabilities (tool json))
                                   (gemma3:12b :description "the Gemma 3 models are multimodal—processing text and images—and feature a 128K context window with support for over 140 languages. "
@@ -73,7 +71,7 @@
                                     (text-mode . "## ")))
 
     (add-to-list 'gptel-directives
-               `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
+                 `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
                                        "  Follow my instructions and improve or rewrite the text I provide."
                                        "  Generate ONLY the replacement text,"
                                        " without any explanation or markdown code fences or org code fences."
