@@ -184,12 +184,14 @@
   :commands (aidermacs-transient-menu)
   :config
   (require 'aidermacs-backend-vterm nil t)
+  (setopt aidermacs-vterm-use-theme-colors nil)
   (setq aidermacs-backend 'vterm)
-  (setq aidermacs-default-model "ollama/deepseek-r1:14b")
+  (setq aidermacs-default-model "opentrouter/qwen/qwen3-30b-a3b:free")
   (setq aidermacs-use-architect-mode t) ;; set t default-mode will be ignore
-  (setq aidermacs-architect-model "ollama/qwen3:14b"
-        aidermacs-editor-model "ollama/deepseek-r1:14b")
+  (setq aidermacs-architect-model "openrouter/deepseek/deepseek-r1-0528:free"
+        aidermacs-editor-model "openrouter/mistralai/devstral-small:free")
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
+  (setenv "OPENROUTER_API_KEY" (auth-source-pass-get 'secret "openrouter"))
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
 
