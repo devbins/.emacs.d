@@ -165,7 +165,7 @@
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
   :config
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "devstral:latest" :embedding-model "bge-m3:latest"))
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
   :bind (:map git-commit-mode-map
               ("C-c C-g" . magit-gptcommit-commit-accept)))
 
