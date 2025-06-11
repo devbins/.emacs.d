@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 238
+;;     Update #: 245
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -123,7 +123,9 @@
     :stream t
     :key (auth-source-pass-get 'secret "openrouter")
     :models '(google/gemini-2.5-pro-exp-03-25:free
+              qwen/qwen3-30b-a3b:free
               deepseek/deepseek-chat-v3-0324:free
+              deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
               mistralai/devstral-small:free
               google/gemini-2.0-flash-exp:free
