@@ -149,9 +149,11 @@
   (require 'mcp-hub)
   (setq mcp-hub-servers
         '(
-          ("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server")))
           ;; https://github.com/nickclyde/duckduckgo-mcp-server
+          ("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+          ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
           ("playwright" . (:command "npx" :args ("@playwright/mcp@latest")))
+          ("context7" . (:url "https://mcp.context7.com/mcp"))
           ("github" . (:command "docker"
                        :args ("run"
                               "--name" "github-mcp"
