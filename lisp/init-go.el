@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 46
+;;     Update #: 51
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,13 +47,14 @@
 ;;; Code:
 
 ;; Golang
-(use-package go-mode
+(use-package go-ts-mode
   :functions go-update-tools
   :commands godoc-gogetdoc
-  :bind (:map go-mode-map
+  :bind (:map go-ts-mode-map
          ("C-c R" . go-remove-unused-imports)
          ("<f1>" . godoc-at-point))
-  :init (setq godoc-at-point-function #'godoc-gogetdoc)
+  :init (setq godoc-at-point-function #'godoc-gogetdoc
+              go-ts-mode-indent-offset 4)
   :config
   ;; Install or update tools
   (defvar go--tools '("golang.org/x/tools/gopls"
@@ -104,7 +105,7 @@
 
   (use-package gotest)
 
-  (evil-leader/set-key-for-mode 'go-mode
+  (evil-leader/set-key-for-mode 'go-ts-mode
     "mig" 'go-goto-imports
     "mir" 'go-remove-unused-imports
     "mia" 'go-import-add
@@ -128,7 +129,7 @@
     "mtp" 'go-test-current-project
     "mhh" 'godoc-at-point
     "mhd" 'godef-describe)
-  (which-key-add-major-mode-key-based-replacements 'go-mode
+  (which-key-add-major-mode-key-based-replacements 'go-ts-mode
     "SPC m i" "import"
     "SPC m e" "playground"
     "SPC m g" "coverage/gen"
@@ -140,9 +141,6 @@
 ;; Local Golang playground for short snippets
 (use-package go-playground
   :diminish)
-
-(use-package go-ts-mode
-  :init (setq go-ts-mode-indent-offset 4))
 
 (provide 'init-go)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
