@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 51
+;;     Update #: 54
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,14 +47,13 @@
 ;;; Code:
 
 ;; Golang
-(use-package go-ts-mode
+(use-package go-mode
   :functions go-update-tools
   :commands godoc-gogetdoc
   :bind (:map go-ts-mode-map
          ("C-c R" . go-remove-unused-imports)
          ("<f1>" . godoc-at-point))
-  :init (setq godoc-at-point-function #'godoc-gogetdoc
-              go-ts-mode-indent-offset 4)
+  :init (setq godoc-at-point-function #'godoc-gogetdoc)
   :config
   ;; Install or update tools
   (defvar go--tools '("golang.org/x/tools/gopls"
@@ -141,6 +140,9 @@
 ;; Local Golang playground for short snippets
 (use-package go-playground
   :diminish)
+
+(use-package go-ts-mode
+  :init (setq go-ts-mode-indent-offset 4))
 
 (provide 'init-go)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
