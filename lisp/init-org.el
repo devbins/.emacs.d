@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 977
+;;     Update #: 982
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -381,6 +381,7 @@ prepended to the element after the #+HEADER: tag."
     (TeX-parse-self t) ; 自动解析 tex 文件
     (TeX-PDF-mode t)
     (TeX-DVI-via-PDFTeX t)
+    (TeX-engine 'xetex) ;; 支持中文
     :hook (latex-mode . (lambda () (turn-on-cdlatex)
                           (turn-on-reftex))))
 
