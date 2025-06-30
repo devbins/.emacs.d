@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 255
+;;     Update #: 261
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -74,6 +74,7 @@
            lsp-bridge-symbols-enable-which-func t
            lsp-bridge-python-lsp-server "basedpyright"
            lsp-bridge-enable-inlay-hint t
+           lsp-bridge-tex-lsp-server "digestif"
            acm-enable-quick-access t
            acm-backend-lsp-show-progress t
            acm-enable-search-file-words nil
