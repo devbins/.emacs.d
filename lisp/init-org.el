@@ -396,6 +396,8 @@ prepended to the element after the #+HEADER: tag."
         org-preview-latex-default-process 'dvisvgm ;; tlmgr install dvisvgm
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
+  ;; 避免图片太小
+  (plist-put org-format-latex-options :scale 2.5)
   ;; Setup for `org-latex-preview'
   (setq org-latex-packages-alist '(("T1" "fontenc" t)
                                    ("" "amsmath"   t)
