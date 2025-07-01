@@ -386,9 +386,10 @@ prepended to the element after the #+HEADER: tag."
                           (turn-on-reftex))))
 
   (use-package cdlatex
-    :after tex
-    :hook (org-mode . (lambda () (turn-on-org-cdlatex)
-                        (org-latex-preview-auto-mode))))
+    :hook ((org-mode . (lambda () (turn-on-org-cdlatex)
+                        ;; (org-latex-preview-auto-mode)
+                        ))
+           (LaTeX-mode . turn-on-cdlatex)))
 
   ;; Default LaTeX preview image directory
   (setq org-preview-latex-image-directory "imgs/"
