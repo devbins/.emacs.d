@@ -74,6 +74,9 @@
 ;; Inhibit resizing frame
 (setq frame-inhibit-implied-resize t)
 
+;; no titlebar，会导致在 fullscreen 的时候 TAB 健失灵
+;; (add-to-list 'default-frame-alist '(undecorated . t))
+;; (add-to-list 'default-frame-alist '(undecorated-round . t))
 ;; Faster to disable these here (before they've been initialized)
 (push '(menu-bar-lines . 0) default-frame-alist)
 (push '(tool-bar-lines . 0) default-frame-alist)
