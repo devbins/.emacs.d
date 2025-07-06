@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 13
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,8 +47,7 @@
 ;;; Code:
 
 (if (and (fboundp 'native-comp-available-p) (native-comp-available-p) (fboundp 'json-serialize))
-    (setq native-comp-deferred-compilation t
-          native-comp-jit-compilation nil ;; nil disable native-comp
+    (setq native-comp-jit-compilation t;; nil disable native-comp
           comp-speed 2
           warning-minimum-level :error)
      (message "Not support native-comp"))
