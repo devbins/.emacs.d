@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 262
+;;     Update #: 268
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -277,8 +277,8 @@
     "gd"  'gptel-send
     "gm"  'gptel-menu
 
-    "hf"  'find-function-at-point
-    "hk"  'find-function-on-key
+    "hf"  'describe-function
+    "hk"  'describe-key
     "hv"  'find-variable
     "hp"  'describe-package
 
