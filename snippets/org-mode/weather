@@ -2,7 +2,7 @@
 # name: weather
 # key: weather
 # --
-
+天气
 #+BEGIN_SRC sh :results output :async
 curl -s 'wttr.in/?0T'
 #+END_SRC
