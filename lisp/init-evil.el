@@ -240,6 +240,8 @@
 
     "ff"  'find-file
     "fj"  'dired-jump
+    "fk"  'find-function-on-key
+    "fp"   'find-function-at-point
     "fCd" 'unix2dos
     "fCu" 'dos2unix
     "fCp" 'copy-current-file
