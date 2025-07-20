@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 256
+;;     Update #: 261
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -128,7 +128,12 @@
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
+              tngtech/deepseek-r1t2-chimera:free
+              moonshotai/kimi-k2:free
+              moonshotai/kimi-dev-72b:free
+              tencent/hunyuan-a13b-instruct:free
               mistralai/devstral-small:free
+              mistralai/mistral-small-3.2-24b-instruct:free
               google/gemini-2.0-flash-exp:free
               google/gemini-2.0-flash-thinking-exp:free
               google/gemma-3-27b-it:free))
