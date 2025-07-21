@@ -133,8 +133,8 @@
     :endpoint "/api/v1/chat/completions"
     :stream t
     :key (auth-source-pass-get 'secret "openrouter")
-    :models '(google/gemini-2.5-pro-exp-03-25:free
-              qwen/qwen3-32b:free
+    :models '(qwen/qwen3-32b:free
+              qwen/qwen3-235b-a22b:free
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
@@ -144,6 +144,7 @@
               tencent/hunyuan-a13b-instruct:free
               mistralai/devstral-small:free
               mistralai/mistral-small-3.2-24b-instruct:free
+              google/gemini-2.5-pro-exp-03-25:free
               google/gemini-2.0-flash-exp:free
               google/gemini-2.0-flash-thinking-exp:free
               google/gemma-3-27b-it:free))
