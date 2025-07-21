@@ -154,10 +154,9 @@
     :key (auth-source-pass-get 'secret "siliconflow")
     :models '(deepseek-ai/DeepSeek-R1) :stream t)
 
-  (gptel-make-gemini
-   "Gemini"
-   :key (auth-source-pass-get 'secret "gemini")
-   :stream t))
+  (gptel-make-gemini "Gemini"
+    :key (auth-source-pass-get 'secret "gemini")
+    :stream t))
 
 (use-package mcp
   :after gptel
