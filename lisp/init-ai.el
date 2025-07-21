@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 261
+;;     Update #: 264
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -213,6 +213,7 @@
         aidermacs-editor-model "openrouter/mistralai/devstral-small:free")
   (setenv "OLLAMA_API_BASE" "http://127.0.0.1:11434")
   (setenv "OPENROUTER_API_KEY" (auth-source-pass-get 'secret "openrouter"))
+  (setenv "GEMINI_API_KEY" (auth-source-pass-get 'secret "gemini"))
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
 
