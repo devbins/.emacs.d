@@ -78,6 +78,16 @@
                                        " without any explanation or markdown code fences or org code fences."
                                        " translate english to chinese.")))
 
+    (defun toggle-gptel-proxy()
+      "toggle gptel proxy"
+      (interactive)
+      (setq gptel-proxy (if (string-empty-p gptel-proxy)
+                            http-proxy
+                          ""))
+      (message (if (string-empty-p gptel-proxy)
+                   "gptel proxy disabled"
+                 "enabled gptel proxy")))
+
 (defun gptel-translate-to-chinese(&optional dry-run)
   "Use AI to translate the currently selected text into Chinese."
   (interactive "P")
