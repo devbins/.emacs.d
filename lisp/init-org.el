@@ -996,7 +996,9 @@ prepended to the element after the #+HEADER: tag."
   ;; not in org babel do not use indent
   (use-package verb
     :init (cl-pushnew '(verb . t) load-language-list)
-    :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+    :config
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+    (setq verb-babel-timeout 60))
 
   ;; walkman-setup
   (use-package walkman)
