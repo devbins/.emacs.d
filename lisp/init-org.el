@@ -313,8 +313,8 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-appear
     :commands (org-appear-manual-start org-appear-manual-stop)
     :hook ((org-mode . (lambda ()
-                        (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
-                        (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t)))
+                         (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+                         (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t)))
            (org-mode . org-appear-mode))
     :config
     (setq org-appear-trigger 'manual
