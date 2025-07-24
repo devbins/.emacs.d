@@ -1231,12 +1231,12 @@ same directory as the org-buffer and insert a link to this file."
                              #'xwidget-webkit-browse-url
                            #'browse-url))
   :bind (("C-c n l" . org-roam-buffer-toggle)
-           ("C-c n f" . org-roam-node-find)
-           ("C-c n g" . org-roam-graph)
-           ("C-c n i" . org-roam-node-insert)
-           ("C-c n c" . org-roam-capture)
-           ("C-c n j" . org-roam-dailies-capture-today)
-           ("C-c n I" . org-roam-insert-immediate))
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today)
+         ("C-c n I" . org-roam-insert-immediate))
   :init
   (setq org-roam-node-display-template (concat "${hierarchy:*} ${backlinkscount:3} ${directories:20}" (propertize "${tags:10}" 'face 'org-tag)))
   :config
