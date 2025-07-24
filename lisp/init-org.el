@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 982
+;;     Update #: 1000
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -375,34 +375,41 @@ prepended to the element after the #+HEADER: tag."
     (setq-default org-html-doctype "html5")
     (setq-default org-html-html5-fancy t))
 
-  (use-package tex
-    :ensure auctex
-    :custom
-    (TeX-parse-self t) ; 自动解析 tex 文件
-    (TeX-PDF-mode t)
-    (TeX-DVI-via-PDFTeX t)
-    (TeX-engine 'xetex) ;; 支持中文
-    :hook (latex-mode . (lambda () (turn-on-cdlatex)
-                          (turn-on-reftex))))
+  ;; org-format-latex-options '(:foreground default :background "Transparent" :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+  ;; 避免图片太小
+  (plist-put org-format-latex-options :scale 2.5)
 
-  (use-package cdlatex
-    :hook ((org-mode . (lambda () (turn-on-org-cdlatex)
-                        ;; (org-latex-preview-auto-mode)
-                        ))
-           (LaTeX-mode . turn-on-cdlatex)))
-
-  ;; Default LaTeX preview image directory
-  (setq org-preview-latex-image-directory "imgs/"
+  (setq org-preview-latex-image-directory "imgs/" ;; Default LaTeX preview image directory
         org-preview-latex-default-process 'dvisvgm ;; tlmgr install dvisvgm
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
-  ;; 避免图片太小
-  (plist-put org-format-latex-options :scale 2.5)
+
   ;; Setup for `org-latex-preview'
   (setq org-latex-packages-alist '(("T1" "fontenc" t)
                                    ("" "amsmath"   t)
                                    ("" "amssymb"   t)
                                    ("" "siunitx"   t)
+
+                                   ;; hook right arrow with text above and below
+                                   ;; https://tex.stackexchange.com/questions/186896/xhookrightarrow-and-xmapsto
+                                   ("" "svg" t)
+                                   ("" "svg-extract" t)
+
+                                   ;; for mapsfrom
+                                   ;; see: https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
+                                   ("" "stmaryrd" t)
+                                   ("" "mathrsfs" t)
+                                   ("" "tikz" t)
+                                   ("" "tikz-cd" t)
+                                   ;; ("" "quiver" t)
+                                   ;; see https://castel.dev/post/lecture-notes-2/
+                                   ("" "import" t)
+                                   ("" "xifthen" t)
+                                   ("" "pdfpages" t)
+                                   ("" "transparent" t)
+                                   ;; algorithm
+                                   ;; https://tex.stackexchange.com/questions/229355/algorithm-algorithmic-algorithmicx-algorithm2e-algpseudocode-confused
+                                   ("ruled,linesnumbered" "algorithm2e" t)
 
                                    ;; Font packages
                                    ("libertinus" "newtx" t)
@@ -416,11 +423,13 @@ prepended to the element after the #+HEADER: tag."
                                    ("" "physics2" t)
 
                                    ;; Differentiations
-                                   ("normal" "fixdif" t)))
+                                   ("normal" "fixdif" t)
+                                   ("UTF8,fontset=macnew" "ctex" t )
+                                   ("" "minted")))
 
-    (use-package ox-latex
+
+  (use-package ox-latex
     :ensure nil
-    :defer t
     :config
     (add-to-list 'org-latex-classes
                  '("cn-article"
@@ -438,24 +447,19 @@ prepended to the element after the #+HEADER: tag."
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
-    (setq org-latex-default-class "cn-article")
-    (setq org-latex-image-default-height "0.9\\textheight"
-          org-latex-image-default-width "\\linewidth")
-    (setq org-latex-pdf-process
-	      '("xelatex -interaction nonstopmode -output-directory %o %f"
-	        "bibtex %b"
-	        "xelatex -interaction nonstopmode -output-directory %o %f"
-	        "xelatex -interaction nonstopmode -output-directory %o %f"
-	        "rm -fr %b.out %b.log %b.tex %b.brf %b.bbl auto"
-	        ))
-    ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
-    (setq org-latex-listings t)
+
+    (setq org-latex-default-class "cn-article"
+          org-latex-image-default-height "0.9\\textheight"
+          org-latex-image-default-width "\\linewidth"
+          org-latex-pdf-process '("latexmk -f -xelatex -shell-escape -output-directory=%o %F")
+          org-latex-src-block-backend 'minted ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
+          org-latex-compiler "xelatex")
+
     ;; mapping jupyter-python to Python
     (add-to-list 'org-latex-listings-langs '(jupyter-python "Python"))
     ;; Options for \lset command（reference to listing Manual)
     (setq org-latex-listings-options
-          '(
-            ("basicstyle" "\\small\\ttfamily")       ; 源代码字体样式
+          '(("basicstyle" "\\small\\ttfamily")       ; 源代码字体样式
             ("keywordstyle" "\\color{eminence}\\small")                 ; 关键词字体样式
             ;; ("identifierstyle" "\\color{doc}\\small")
             ("commentstyle" "\\color{commentgreen}\\small\\itshape")    ; 批注样式
@@ -480,8 +484,7 @@ prepended to the element after the #+HEADER: tag."
             ;; ("rulecolor" "\\color{background}")                         ; 框颜色
             ;; ("fillcolor" "\\color{white}")
             ;; ("rulesepcolor" "\\color{comdil}")
-            ("framexleftmargin" "5mm")                                  ; let line numer inside frame
-            )))
+            ("framexleftmargin" "5mm"))))                                  ; let line numer inside frame
 
   (use-package org-ref
     :after org)
