@@ -1260,9 +1260,9 @@ same directory as the org-buffer and insert a link to this file."
   (cl-defmethod org-roam-node-backlinkscount ((node org-roam-node))
     (let* ((count (caar (org-roam-db-query
                          [:select (funcall count source)
-                                  :from links
-                                  :where (= dest $s1)
-                                  :and (= type "id")]
+                          :from links
+                          :where (= dest $s1)
+                          :and (= type "id")]
                          (org-roam-node-id node)))))
       (format "[%d]" count)))
 
@@ -1279,8 +1279,8 @@ same directory as the org-buffer and insert a link to this file."
                   (user-error "No ROAM_REFS found"))
 
         (when-let* ((oc-cites (seq-map
-                              (lambda (ref) (substring ref 1))
-                              (seq-filter (apply-partially #'string-prefix-p "@") refs))))
+                               (lambda (ref) (substring ref 1))
+                               (seq-filter (apply-partially #'string-prefix-p "@") refs))))
           (citar-run-default-action oc-cites))
 
         (dolist (ref refs)
@@ -1292,9 +1292,9 @@ same directory as the org-buffer and insert a link to this file."
       "Gets the backlinks of NODE with `org-roam-db-query'."
       (org-roam-db-query
        [:select [source dest]
-	            :from links
-	            :where (= dest $s1)
-	            :and (= type "id")]
+	    :from links
+	    :where (= dest $s1)
+	    :and (= type "id")]
        (org-roam-node-id node)))
 
     (defun org-roam-backlinks-p (source node)
@@ -1407,11 +1407,11 @@ same directory as the org-buffer and insert a link to this file."
     (find-file filename)
     (let* ((data (org-element-parse-buffer))
            (pos (org-element-map data '(headline)
-                                 (lambda (elt)
-                                   (when (string= (org-element-property :raw-value elt)
-                                                  entry-name)
-                                     (org-element-property :begin elt)))
-                                 nil t)))
+                  (lambda (elt)
+                    (when (string= (org-element-property :raw-value elt)
+                                   entry-name)
+                      (org-element-property :begin elt)))
+                  nil t)))
       (goto-char pos)
       (org-reveal)))
 
