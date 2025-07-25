@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1000
+;;     Update #: 1002
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -383,6 +383,9 @@ prepended to the element after the #+HEADER: tag."
         org-preview-latex-default-process 'dvisvgm ;; tlmgr install dvisvgm
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
+  (setq org-latex-hyperref-template
+        "\\hypersetup{pdfborder={0 0 0}, colorlinks=true, linkcolor=black, urlcolor=black}")
+
 
   ;; Setup for `org-latex-preview'
   (setq org-latex-packages-alist '(("T1" "fontenc" t)
@@ -425,7 +428,8 @@ prepended to the element after the #+HEADER: tag."
                                    ;; Differentiations
                                    ("normal" "fixdif" t)
                                    ("UTF8,fontset=macnew" "ctex" t )
-                                   ("" "minted")))
+                                   ("" "minted")
+                                   ("" "hyperref")))
 
 
   (use-package ox-latex
