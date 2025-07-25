@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 109
+;;     Update #: 110
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -116,6 +116,7 @@
 (require 'init-space)
 (require 'init-markdown)
 (require 'init-org)
+(require 'init-latex)
 (require 'init-agenda)
 
 (require 'init-rss)
