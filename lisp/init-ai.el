@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 266
+;;     Update #: 267
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -135,6 +135,7 @@
     :key (auth-source-pass-get 'secret "openrouter")
     :models '(qwen/qwen3-32b:free
               qwen/qwen3-235b-a22b:free
+              qwen/qwen3-coder:free
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
