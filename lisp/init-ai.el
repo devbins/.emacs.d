@@ -223,6 +223,30 @@
   :bind ((:map gptel-aibo-mode-map ("C-c /" . gptel-aibo-apply-last-suggestions))
          (:map gptel-aibo-complete-mode-map ("C-c i" . gptel-aibo-complete-at-point))))
 
+(defun my-ai-code-notify (title message)
+  "Display a macOS notification with sound."
+  (call-process "osascript" nil nil nil
+                "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
+                             message title)))
+
+;; install claude-code.el
+(use-package claude-code
+  :load-path "site-lisp/claude-code"
+  :config (claude-code-mode)
+  (use-package vterm)
+  (add-to-list 'display-buffer-alist
+                 '("^\\*claude"
+                   (display-buffer-in-side-window)
+                   (side . right)
+                   (window-width . 90)))
+
+  (setq claude-code-terminal-backend 'vterm)
+  (setenv "ANTHROPIC_BASE_URL" "https://anyrouter.top")
+  (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "anyrouter"))
+
+
+  (setq claude-code-notification-function #'my-ai-code-notify)
+  :bind-keymap ("C-c c" . claude-code-command-map))
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-ai.el ends here
