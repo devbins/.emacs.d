@@ -64,3 +64,6 @@
 [submodule "claude-code"]
 	path = site-lisp/claude-code
 	url = https://github.com/stevemolitor/claude-code.el
+[submodule "gemini-cli"]
+	path = site-lisp/gemini-cli
+	url = https://github.com/linchen2chris/gemini-cli.el.git
