@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1002
+;;     Update #: 1003
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -384,7 +384,7 @@ prepended to the element after the #+HEADER: tag."
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
   (setq org-latex-hyperref-template
-        "\\hypersetup{pdfborder={0 0 0}, colorlinks=true, linkcolor=black, urlcolor=black}")
+        "\\hypersetup{hidelinks}")
 
 
   ;; Setup for `org-latex-preview'
