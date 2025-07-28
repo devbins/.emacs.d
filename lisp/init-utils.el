@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 319
+;;     Update #: 321
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -142,9 +142,6 @@
          (mapc 'bongo-insert-file files)))
       (bongo-switch-buffers))
     (bind-key "b" #'bongo-add-dired-files dired-mode-map)))
-
-(use-package netease-cloud-music
-  :commands (netease-cloud-music))
 
 ;; IRC
 (use-package erc
