@@ -162,6 +162,10 @@
     #+begin_src sh
     npm i -g vscode-json-languageserver
     #+end_src
+*** Java
+    #+begin_src sh
+    brew install jdtls
+    #+end_src
 *** Kotlin
     格式化工具
     #+begin_src sh
