@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1003
+;;     Update #: 1005
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -833,6 +833,7 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package org-journal
     :commands (org-journal-new-entry org-journal-search-forever)
+    :hook (org-journal-mode . org-mode) ;; fast save in org mode
     :config
     (setq org-journal-dir "~/.org/journal/"
           org-journal-file-format "%Y-%m.org"
