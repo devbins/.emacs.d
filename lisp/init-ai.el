@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 269
+;;     Update #: 272
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,45 +71,45 @@
                                     (org-mode . "** ")
                                     (text-mode . "## ")))
 
-    (add-to-list 'gptel-directives
-                 `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
-                                       "  Follow my instructions and improve or rewrite the text I provide."
-                                       "  Generate ONLY the replacement text,"
-                                       " without any explanation or markdown code fences or org code fences."
-                                       " translate english to chinese.")))
+  (add-to-list 'gptel-directives
+               `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
+                                      "  Follow my instructions and improve or rewrite the text I provide."
+                                      "  Generate ONLY the replacement text,"
+                                      " without any explanation or markdown code fences or org code fences."
+                                      " translate english to chinese.")))
 
-    (defun toggle-gptel-proxy()
-      "toggle gptel proxy"
-      (interactive)
-      (setq gptel-proxy (if (string-empty-p gptel-proxy)
-                            http-proxy
-                          ""))
-      (message (if (string-empty-p gptel-proxy)
-                   "gptel proxy disabled"
-                 "enabled gptel proxy")))
+  (defun toggle-gptel-proxy()
+    "toggle gptel proxy"
+    (interactive)
+    (setq gptel-proxy (if (string-empty-p gptel-proxy)
+                          http-proxy
+                        ""))
+    (message (if (string-empty-p gptel-proxy)
+                 "gptel proxy disabled"
+               "enabled gptel proxy")))
 
-    (defun gptel-translate-to-chinese(&optional dry-run)
-      "Use AI to translate the currently selected text into Chinese."
-      (interactive "P")
-      (gptel-request (list (or (get-char-property (point) 'gptel-rewrite)
-                               (buffer-substring-no-properties (region-beginning) (region-end)))
-                           "What is the required change?"
-                           "Rewrite:")
-                     :dry-run dry-run
-                     :system (alist-get 'translate gptel-directives)
-                     :stream t
-                     :context
-        (let ((ov (or (cdr-safe (get-char-property-and-overlay (point) 'gptel-rewrite))
-                      (make-overlay (region-beginning) (region-end) nil t))))
-          (overlay-put ov 'category 'gptel)
-          (overlay-put ov 'evaporate t)
-          (cons ov (generate-new-buffer "*gptel-rewrite*")))
-        :callback #'gptel--rewrite-callback))
+  (defun gptel-translate-to-chinese(&optional dry-run)
+    "Use AI to translate the currently selected text into Chinese."
+    (interactive "P")
+    (gptel-request (list (or (get-char-property (point) 'gptel-rewrite)
+                             (buffer-substring-no-properties (region-beginning) (region-end)))
+                         "What is the required change?"
+                         "Rewrite:")
+                   :dry-run dry-run
+                   :system (alist-get 'translate gptel-directives)
+                   :stream t
+                   :context
+                   (let ((ov (or (cdr-safe (get-char-property-and-overlay (point) 'gptel-rewrite))
+                                 (make-overlay (region-beginning) (region-end) nil t))))
+                     (overlay-put ov 'category 'gptel)
+                     (overlay-put ov 'evaporate t)
+                     (cons ov (generate-new-buffer "*gptel-rewrite*")))
+                   :callback #'gptel--rewrite-callback))
 
-(with-eval-after-load 'gptel-transient
-  (transient-append-suffix 'gptel-menu '(2 -1)
-    ["Quick Tools"
-     ("q t" "Translate select regions to chinese" gptel-translate-to-chinese)]))
+  (with-eval-after-load 'gptel-transient
+    (transient-append-suffix 'gptel-menu '(2 -1)
+      ["Quick Tools"
+       ("q t" "Translate select regions to chinese" gptel-translate-to-chinese)]))
 
   (require 'gptel-integrations)
 
