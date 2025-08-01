@@ -235,10 +235,10 @@
   :config (claude-code-mode)
   (use-package vterm)
   (add-to-list 'display-buffer-alist
-                 '("^\\*claude"
-                   (display-buffer-in-side-window)
-                   (side . right)
-                   (window-width . 90)))
+               '("^\\*claude"
+                 (display-buffer-in-side-window)
+                 (side . right)
+                 (window-width . 90)))
 
   (setq claude-code-terminal-backend 'vterm)
   (setenv "ANTHROPIC_BASE_URL" "https://anyrouter.top")
@@ -253,10 +253,10 @@
   :config (gemini-cli-mode)
   (use-package vterm)
   (add-to-list 'display-buffer-alist
-                 '("^\\*gemini"
-                   (display-buffer-in-side-window)
-                   (side . right)
-                   (window-width . 90)))
+               '("^\\*gemini"
+                 (display-buffer-in-side-window)
+                 (side . right)
+                 (window-width . 90)))
   (setq gemini-cli-terminal-backend 'vterm)
   (setq gemini-cli-notification-function #'my-ai-code-notify)
   :bind-keymap ("C-c g" . gemini-cli-command-map))
