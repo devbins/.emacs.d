@@ -164,22 +164,14 @@
   :config
   (require 'mcp-hub)
   (setq mcp-hub-servers
-        '(
-          ;; https://github.com/nickclyde/duckduckgo-mcp-server
-          ("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server")))
+        `(("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server"))) ;; https://github.com/nickclyde/duckduckgo-mcp-server
           ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
           ("playwright" . (:command "npx" :args ("@playwright/mcp@latest")))
           ("context7" . (:url "https://mcp.context7.com/mcp"))
+          ("amap-maps" . (:command "npx" :args ("-y" "@amap/amap-maps-mcp-server") :env (:AMAP_MAPS_API_KEY ,(auth-source-pass-get 'secret "amap"))))
           ("github" . (:command "docker"
-                       :args ("run"
-                              "--name" "github-mcp"
-                              "--interactive"
-                              "--rm"
-                              "--env"
-                              "GITHUB_PERSONAL_ACCESS_TOKEN"
-                              "ghcr.io/github/github-mcp-server")
-                       :env (:GITHUB_PERSONAL_ACCESS_TOKEN (auth-source-pass-get 'secret "github"))))
-          )))
+                       :args ("run" "--name" "github-mcp" "--interactive" "--rm" "--env" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/github-mcp-server")
+                       :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(auth-source-pass-get 'secret "github")))))))
 
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
