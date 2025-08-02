@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 56
+;;     Update #: 57
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -107,13 +107,8 @@
 
 (use-package poetry)
 (use-package ein
-  :defer t
   :commands (ein:notebooklist-open ein:notebooklist-login ein:run ein:stop)
   :config
-  (defun devbins/ein:worksheet-merge-cell-next ()
-    (interactive)
-    (ein:worksheet-merge-cell (ein:worksheet--get-ws-or-error) (ein:worksheet-get-current-cell) t t))
-
   ;; keybindings for ipython notebook traceback mode
   (evil-leader/set-key-for-mode 'ein:traceback-mode
     "RET" 'ein:tb-jump-to-source-at-point-command
