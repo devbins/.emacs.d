@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 92
+;;     Update #: 96
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -85,7 +85,7 @@
   :defer t
   :init (setq telega-use-images (if (display-graphic-p) t nil)
               telega-proxies (list
-                              '(:server "127.0.0.1" :port 1086 :enable t
+                              `(:server ,socks-proxy :port ,socks-port :enable t
                                 :type (:@type "proxyTypeSocks5")))))
 
 
