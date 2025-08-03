@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 268
+;;     Update #: 269
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -108,6 +108,7 @@
   (evil-set-initial-state 'org-capture-mode 'insert)
   (evil-set-initial-state 'calculator-mode 'emacs)
   (evil-set-initial-state 'ros-process-mode 'emacs)
+  (evil-set-initial-state 'telega-root-mode 'emacs)
   (evil-set-initial-state 'telega-chat-mode 'emacs)
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (evil-set-initial-state 'nov-mode 'emacs)
