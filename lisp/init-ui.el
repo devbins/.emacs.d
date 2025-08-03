@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 240
+;;     Update #: 242
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -276,14 +276,12 @@ If FRAME is nil, it defaults to the selected frame."
       auto-window-vscroll nil
       scroll-preserve-screen-position t)
 
-(if (boundp 'pixel-scroll-precision-mode)
-    (pixel-scroll-precision-mode t)
-  (unless sys/macp
-    (use-package good-scroll
-      :diminish
-      :hook (after-init . good-scroll-mode)
-      :bind (([remap next] . good-scroll-up-full-screen)
-             ([remap prior] . good-scroll-down-full-screen)))))
+(use-package ultra-scroll
+  :init
+  (setq scroll-conservatively 3 ; or whatever value you prefer, since v0.4
+        scroll-margin 0)        ; important: scroll-margin>0 not yet supported
+  :config
+  (ultra-scroll-mode 1))
 
 ;; Child frame
 (when (childframe-workable-p)
