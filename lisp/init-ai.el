@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 272
+;;     Update #: 274
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -142,6 +142,7 @@
               tngtech/deepseek-r1t2-chimera:free
               moonshotai/kimi-k2:free
               moonshotai/kimi-dev-72b:free
+              moonshotai/kimi-vl-a3b-thinking:free
               tencent/hunyuan-a13b-instruct:free
               mistralai/devstral-small:free
               mistralai/mistral-small-3.2-24b-instruct:free
