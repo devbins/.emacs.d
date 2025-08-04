@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1005
+;;     Update #: 1008
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -453,8 +453,9 @@ prepended to the element after the #+HEADER: tag."
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
     (setq org-latex-default-class "cn-article"
-          org-latex-image-default-height "0.9\\textheight"
-          org-latex-image-default-width "\\linewidth"
+          ;; org-latex-image-default-height "0.9\\textheight"
+          ;; org-latex-image-default-width "\\linewidth"
+          org-latex-image-actual-width "0.7\\textwidth"
           org-latex-pdf-process '("latexmk -f -xelatex -shell-escape -output-directory=%o %F")
           org-latex-src-block-backend 'minted ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
           org-latex-compiler "xelatex")
