@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 17
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,8 +48,10 @@
 
 (if (and (fboundp 'native-comp-available-p) (native-comp-available-p) (fboundp 'json-serialize))
     (setq native-comp-jit-compilation t;; nil disable native-comp
-          comp-speed 2
-          warning-minimum-level :error)
+          comp-speed 3
+          warning-minimum-level :error
+          comp-deferred-compilation t
+          native-comp-async-report-warnings-errors 'slient)
      (message "Not support native-comp"))
 
 ;; Defer garbage collection further back in the startup process
