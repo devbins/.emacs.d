@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 71
+;;     Update #: 72
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,8 +55,7 @@
          ("C-x M-g" . magit-dispatch)
          ("C-c M-g" . magit-file-popup))
   :init (setq magit-diff-refine-hunk t
-              git-commit-major-mode 'git-commit-elisp-text-mode
-              magit-show-long-lines-warning nil)
+              git-commit-major-mode 'git-commit-elisp-text-mode)
   :config
   (setq magit-repository-directories '(("~/git/" . 2)
                                        ("~/.emacs.d" . 0))
