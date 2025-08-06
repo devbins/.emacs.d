@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 321
+;;     Update #: 322
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -292,7 +292,7 @@
   :init
   (setq holo-layer-type-animation-style "lightning"
         holo-layer-enable-cursor-animation t
-        holo-layer-enable-type-animation t)
+        holo-layer-enable-type-animation nil)
   :config
   (defun holo-layer-mac-get-window-info (orig-fn &rest args)
     (if (memq (frame-parameter (car args) 'fullscreen)
