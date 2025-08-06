@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 261
+;;     Update #: 269
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,8 @@
   ('lsp-bridge
    (use-package lsp-bridge
      :load-path "site-lisp/lsp-bridge"
-     :hook (after-init . global-lsp-bridge-mode)
+     :hook ((after-init . global-lsp-bridge-mode)
+            (lsp-bridge-mode . lsp-bridge-breadcrumb-mode))
      :bind (:map lsp-bridge-mode-map
             ("C-c C-t" . lsp-bridge-toggle-sdcv-helper)
             ("M-s-l" . lsp-bridge-code-format)
@@ -81,7 +82,8 @@
            acm-enable-tabnine nil
            acm-enable-codeium nil)
      :config
-     (require 'lsp-bridge-jdtls)
+     ;; (require 'lsp-bridge-jdtls)
+     (require 'lsp-bridge-breadcrumb)
      (add-to-list 'lsp-bridge-formatting-indent-alist '(web-mode . lsp-bridge-indent-two-level))
      (setq lsp-bridge-c-lsp-server "ccls"
            acm-backend-search-file-words-enable-fuzzy-match t
