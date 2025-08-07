@@ -122,7 +122,7 @@
 
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
-    :models '(Qwen/Qwen3-480B-A35B-Instruct
+    :models '(Qwen/Qwen3-Coder-480B-A35B-Instruct
               Qwen/Qwen3-235B-A22B-Instruct-2507
               Qwen/Qwen3-235B-A22B-Thinking-2507)
     :host "api-inference.modelscope.cn"
