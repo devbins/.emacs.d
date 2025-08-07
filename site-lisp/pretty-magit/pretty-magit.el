@@ -63,7 +63,6 @@
   (when (and pretty-magit--use-commit-prompt?
              pretty-magit--prompt)
     (setq pretty-magit--use-commit-prompt? nil)
-    (message (magit-repository-local-get 'magit-gptcommit--last-message))
     (save-excursion
       (goto-char (point-min))
       (insert (completing-read "Commit Type " (completion-table-dynamic (lambda (str) pretty-magit--prompt)) nil t)))
