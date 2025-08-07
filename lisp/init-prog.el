@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 110
+;;     Update #: 111
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -184,7 +184,7 @@ Install the doc if it's not installed."
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook ((prog-mode org-mode) . yas-minor-mode)
+  :hook ((prog-mode org-mode LaTeX-mode markdown-mode) . yas-minor-mode)
   :config (use-package yasnippet-snippets))
 
 (use-package treesit-auto
