@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 303
+;;     Update #: 305
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -173,10 +173,9 @@
   :load-path "site-lisp/ragmacs"
   :after gptel
   :init
-  (message "ragmacs")
+  (require 'ragmacs)
   :config
   (gptel-make-preset 'introspect
-    :pre (lambda () (require 'ragmacs))
     :system
     "You are pair programming with the user in Emacs and on Emacs.
 
@@ -210,7 +209,6 @@
  2. If you use LaTeX notation, enclose math in \( and \), or \[ and \] delimiters.
  </formatting>"
     :tools '("introspection"))
-  (require 'ragmacs)
   (setq gptel-tools
         (list ragmacs-manuals
               ragmacs-symbol-manual-node
