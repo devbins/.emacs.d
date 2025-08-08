@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 305
+;;     Update #: 307
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -296,6 +296,12 @@
 
   (setq claude-code-notification-function #'my-ai-code-notify)
   :bind-keymap ("C-c c" . claude-code-command-map))
+
+(use-package claude-code-ide
+  :load-path "site-lisp/claude-code-ide"
+  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package gemini-cli
   :load-path "site-lisp/gemini-cli"
