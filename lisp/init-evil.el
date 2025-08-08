@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 269
+;;     Update #: 271
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -163,7 +163,7 @@
     :init
     (setq evil-collection-calendar-want-org-bindings t)
     ;; The list of supported modes is configured by evil-collection-mode=list
-    (evil-collection-init '(dired view magit magit-todos magit-section forge ibuffer custom calendar pdf nov docker vterm eshell xwidget markdown))
+    (evil-collection-init '(dired view magit magit-todos magit-section magit-repos forge ibuffer custom calendar pdf nov docker vterm eshell xwidget markdown mu4e mu4e-conversation ))
     ))
 
 (use-package evil-leader
