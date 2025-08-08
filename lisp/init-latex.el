@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,12 +49,22 @@
 (use-package tex
   :ensure auctex
   :custom
+  (TeX-auto-save t)
   (TeX-parse-self t) ; 自动解析 tex 文件
   (TeX-PDF-mode t)
   (TeX-DVI-via-PDFTeX t)
   (TeX-engine 'xetex) ;; 支持中文
+  (TeX-view-program-selection '((output-pdf "pdf-tools"))
+                              TeX-source-correlate-start-server t)
+  (TeX-view-program-list '(("pdf-tools" "TeX-pdf-tools-sync-view")))
+  (TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   :hook (latex-mode . (lambda () (turn-on-cdlatex)
-                        (turn-on-reftex))))
+                        (turn-on-reftex)
+                        (setq reftex-plug-into-AUCTeX t)
+                        (reftex-isearch-minor-mode)
+                        (setq TeX-PDF-mode t)
+                        (setq TeX-source-correlate-method 'synctex)
+                        (setq TeX-source-correlate-start-server t))))
 
 (use-package cdlatex
   :hook ((org-mode . (lambda () (turn-on-org-cdlatex)
