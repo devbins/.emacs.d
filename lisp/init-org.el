@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1008
+;;     Update #: 1009
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -318,6 +318,7 @@ prepended to the element after the #+HEADER: tag."
            (org-mode . org-appear-mode))
     :config
     (setq org-appear-trigger 'manual
+          org-appear-delay 0.2
           org-appear-autolinks t
           org-appear-autosubmarkers t
           org-appear-autoentities t
