@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 30
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,6 +48,7 @@
 
 (use-package mu4e
   :ensure nil
+  :if (executable-find "mu")
   :commands (mu4e make-mu4e-context)
   :init
   (use-package mu4e-alert
@@ -57,7 +58,7 @@
     :hook
     ((after-init . mu4e-alert-enable-notifications)
      (after-init . mu4e-alert-enable-mode-line-display)))
-  (use-package mu4e-overview :defer t)
+  (use-package mu4e-overview)
   :bind
   ((:map mu4e-view-mode-map
     ("e" . mu4e-view-save-attachment)))
@@ -98,8 +99,6 @@
   (mu4e-headers-thread-first-child-prefix '("├>" . "├▶"))
   (mu4e-headers-thread-child-prefix '("├>" . "├▶"))
   (mu4e-headers-thread-last-child-prefix '("└>" . "╰▶"))
-  (gnus-icalendar-org-capture-file "~/.org/.agenda/meetings.org") ; Prerequisite: set it to meetings org fie
-  (gnus-icalendar-org-capture-headline '("Meetings")) ; Make sure to create Calendar heading first
   :hook
   ((mu4e-view-mode . visual-line-mode)
    (mu4e-compose-mode . (lambda ()
@@ -123,10 +122,10 @@
     :after mu4e
     :bind
     ((:map mu4e-headers-mode-map
-           ("TAB" . mu4e-headers-toggle-at-point)
-           ("C-<tab>" . mu4e-headers-toggle-fold-all))
+      ("TAB" . mu4e-headers-toggle-at-point)
+      ("C-<tab>" . mu4e-headers-toggle-fold-all))
      (:map mu4e-search-minor-mode-map
-           ("S" . mu4e-kill-update-mail)))
+      ("S" . mu4e-kill-update-mail)))
     :custom
     (mu4e-thread-folding-default-view `folded)
     (mu4e-headers-fields '((:empty         .    2)
@@ -138,11 +137,20 @@
     :config
     (add-to-list 'mu4e-header-info-custom
                  '(:empty . (:name "Empty"
-                                   :shortname ""
-                                   :function (lambda (msg) "  ")))))
+                             :shortname ""
+                             :function (lambda (msg) "  ")))))
   :config
   (require 'mu4e-icalendar)
-  (setq mail-user-agent (mu4e-user-agent))
+  (setq mail-user-agent 'mu4e-user-agent
+        message-send-mail-function 'smtpmail-send-it
+        ;; https://emacs.stackexchange.com/a/45216/16450
+        message-citation-line-format "\nOn %a, %b %d, %Y at %r %z, %N wrote:\n"
+        message-citation-line-function 'message-insert-formatted-citation-line
+        ;; https://github.com/djcb/mu/issues/1798
+        mm-discouraged-alternatives '("text/html" "text/richtext")
+        ;; mu4e 展示邮件时，使用的时间格式
+        gnus-article-time-format "%a, %Y-%m-%d %T %z"
+        gnus-article-date-headers '(user-defined original))
   (mu4e-icalendar-setup)
   (gnus-icalendar-org-setup)
   (defalias 'mu4e-add-attachment 'mail-add-attachment
@@ -151,38 +159,65 @@
   (add-to-list 'mu4e-view-actions
                '("ViewInBrowser" . mu4e-action-view-in-browser) t)
   (setq mu4e-contexts
-        (list
-         (make-mu4e-context
-          :name "gmail"
-          :enter-func (lambda () (mu4e-message "Entering context gmail"))
-          :leave-func (lambda () (mu4e-message "Leaving context gmail"))
-          :match-func
-          (lambda (msg)
-            (when msg
-              (string-match "gmail" (mu4e-message-field msg :maildir))))
-          :vars '((mu4e-sent-folder . "/gmail/Sent Mail")
-                  (mu4e-drafts-folder . "/gmail/Drafts")
-                  (mu4e-trash-folder . "/gmail/Trash")
-                  (mu4e-sent-messages-behavior . sent)
-                  (mu4e-compose-signature . user-full-name)
-                  (user-mail-address . user-mail-address) ; Prerequisite: Set this to your email
-                  (mu4e-compose-format-flowed . t)
-                  (smtpmail-queue-dir . "~/.mail/gmail/queue/cur")
-                  (message-send-mail-function . smtpmail-send-it)
-                  (smtpmail-smtp-user . "matthewzmd") ; Set to your username
-                  (smtpmail-starttls-credentials . (("smtp.gmail.com" 587 nil nil)))
-                  (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
-                  (smtpmail-default-smtp-server . "smtp.gmail.com")
-                  (smtpmail-smtp-server . "smtp.gmail.com")
-                  (smtpmail-smtp-service . 587)
-                  (smtpmail-debug-info . t)
-                  (smtpmail-debug-verbose . t)
-                  (mu4e-maildir-shortcuts . ( ("/gmail/INBOX" . ?i)
-                                              ("/gmail/Sent Mail" . ?s)
-                                              ("/gmail/Trash"       . ?t)
-                                              ("/gmail/All Mail"  . ?a)
-                                              ("/gmail/Starred"   . ?r)
-                                              ("/gmail/Drafts"    . ?d))))))))
+        `(,(make-mu4e-context
+            :name "gmail"
+            :enter-func (lambda () (mu4e-message "Entering context gmail"))
+            :leave-func (lambda () (mu4e-message "Leaving context gmail"))
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-match "gmail" (mu4e-message-field msg :maildir))))
+            :vars '((mu4e-sent-folder . "/gmail/Sent Mail")
+                    (mu4e-drafts-folder . "/gmail/Drafts")
+                    (mu4e-trash-folder . "/gmail/Trash")
+                    (mu4e-sent-messages-behavior . sent)
+                    (mu4e-compose-signature . ,user-full-name)
+                    (user-mail-address . ,user-mail-address)
+                    (mu4e-compose-format-flowed . t)
+                    (smtpmail-queue-dir . "~/.mail/gmail/queue/cur")
+                    (smtpmail-smtp-user . ,user-full-name) ; Set to your username
+                    (smtpmail-starttls-credentials . (("smtp.gmail.com" 587 nil nil)))
+                    (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
+                    (smtpmail-default-smtp-server . "smtp.gmail.com")
+                    (smtpmail-smtp-server . "smtp.gmail.com")
+                    (smtpmail-smtp-service . 587)
+                    (smtpmail-debug-info . t)
+                    (smtpmail-debug-verbose . t)
+                    (mu4e-maildir-shortcuts . ( ("/gmail/INBOX" . ?i)
+                                                ("/gmail/Sent Mail" . ?s)
+                                                ("/gmail/Trash"       . ?t)
+                                                ("/gmail/All Mail"  . ?a)
+                                                ("/gmail/Starred"   . ?r)
+                                                ("/gmail/Drafts"    . ?d)))))
+          ,(make-mu4e-context
+            :name "126"
+            :enter-func (lambda () (mu4e-message "Entering context gmail"))
+            :leave-func (lambda () (mu4e-message "Leaving context gmail"))
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-match "126" (mu4e-message-field msg :maildir))))
+            :vars `((mu4e-sent-folder . "/126/已发送")
+                    (mu4e-drafts-folder . "/126/草稿箱")
+                    (mu4e-trash-folder . "/126/已删除")
+                    (mu4e-sent-messages-behavior . sent)
+                    (mu4e-compose-signature . ,user-full-name)
+                    (user-mail-address . ,user-mail-address)
+                    (mu4e-compose-format-flowed . t)
+                    (smtpmail-queue-dir . "~/.mail/126/queue/cur")
+                    (smtpmail-smtp-user . ,user-full-name) ; Set to your username
+                    (smtpmail-starttls-credentials . (("smtp.126.com" 587 nil nil)))
+                    (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
+                    (smtpmail-default-smtp-server . "smtp.126.com")
+                    (smtpmail-smtp-server . "smtp.126.com")
+                    (smtpmail-smtp-service . 587)
+                    (smtpmail-debug-info . t)
+                    (smtpmail-debug-verbose . t)
+                    (mu4e-maildir-shortcuts . ( ("/126/Inbox" . ?i)
+                                                ("/126/已发送" . ?s)
+                                                ("/126/已删除" . ?t)
+                                                ("/126/草稿箱" . ?d)))))
+          )))
 
 (provide 'init-mail)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
