@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 96
+;;     Update #: 97
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -91,7 +91,7 @@
 
 (use-package pass
   :if (executable-find "pass")
-  :config
+  :init
   (use-package password-store)
   (use-package auth-source-pass
     :ensure nil
