@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1010
+;;     Update #: 1012
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1005,6 +1005,9 @@ prepended to the element after the #+HEADER: tag."
   ;; Org babel extensions
   ;; HTTP client
   ;; not in org babel do not use indent
+  (use-package ob-restclient
+    :init (cl-pushnew '(restclient . t) load-language-list))
+
   (use-package verb
     :init (cl-pushnew '(verb . t) load-language-list)
     :config
