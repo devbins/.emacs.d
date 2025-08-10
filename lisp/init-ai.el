@@ -131,9 +131,9 @@
 
   (gptel-make-openai "kimi"
     :key (auth-source-pass-get 'secret "kimi")
-    :models '(moonshot-v1-8k
-              moonshot-v1-32k
-              moonshot-v1-128k)
+    :models '(kimi-latest
+              kimi-k2-0711-preview
+              kimi-k2-turbo-preview)
     :host "api.moonshot.cn"
     :stream t)
 
