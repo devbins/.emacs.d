@@ -148,6 +148,8 @@
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
+              z-ai/glm-4.5-air:free
+              cognitivecomputations/dolphin-mistral-24b-venice-edition:free
               tngtech/deepseek-r1t2-chimera:free
               moonshotai/kimi-k2:free
               moonshotai/kimi-dev-72b:free
