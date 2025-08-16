@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1012
+;;     Update #: 1015
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -336,11 +336,16 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Export text/html MIME emails
   (use-package org-mime
+    :commands (org-mime-edit-mail-in-org-mode)
     :hook (message-send . org-mime-confirm-when-no-multipart)
     :bind (:map message-mode-map
            ("C-c M-o" . org-mime-htmlize)
            :map org-mode-map
-           ("C-c M-o" . org-mime-org-buffer-htmlize)))
+           ("C-c M-o" . org-mime-org-buffer-htmlize))
+    :config
+    (setq org-mime-export-options '(:section-numbers nil
+                                    :with-author nil
+                                    :with-toc nil)))
 
 
   (use-package htmlize
