@@ -59,6 +59,7 @@
   (mu4e-view-prefer-html t)
   (mu4e-update-interval 180)
   (mu4e-headers-auto-update t)
+  (mu4e-headers-date-format "%+4Y-%m-%d")
   (mu4e-compose-format-flowed t)
   (mu4e-view-show-images t)
   (mu4e-change-filenames-when-moving t) ; work better for mbsync
