@@ -128,36 +128,6 @@
                '("ViewInBrowser" . mu4e-action-view-in-browser) t)
   (setq mu4e-contexts
         `(,(make-mu4e-context
-            :name "gmail"
-            :enter-func (lambda () (mu4e-message "Entering context gmail"))
-            :leave-func (lambda () (mu4e-message "Leaving context gmail"))
-            :match-func
-            (lambda (msg)
-              (when msg
-                (string-match "gmail" (mu4e-message-field msg :maildir))))
-            :vars '((mu4e-sent-folder . "/gmail/Sent Mail")
-                    (mu4e-drafts-folder . "/gmail/Drafts")
-                    (mu4e-trash-folder . "/gmail/Trash")
-                    (mu4e-sent-messages-behavior . sent)
-                    (mu4e-compose-signature . ,user-full-name)
-                    (user-mail-address . ,user-mail-address)
-                    (mu4e-compose-format-flowed . t)
-                    (smtpmail-queue-dir . "~/.mail/gmail/queue/cur")
-                    (smtpmail-smtp-user . ,user-full-name) ; Set to your username
-                    (smtpmail-starttls-credentials . (("smtp.gmail.com" 587 nil nil)))
-                    (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
-                    (smtpmail-default-smtp-server . "smtp.gmail.com")
-                    (smtpmail-smtp-server . "smtp.gmail.com")
-                    (smtpmail-smtp-service . 587)
-                    (smtpmail-debug-info . t)
-                    (smtpmail-debug-verbose . t)
-                    (mu4e-maildir-shortcuts . ( ("/gmail/INBOX" . ?i)
-                                                ("/gmail/Sent Mail" . ?s)
-                                                ("/gmail/Trash"       . ?t)
-                                                ("/gmail/All Mail"  . ?a)
-                                                ("/gmail/Starred"   . ?r)
-                                                ("/gmail/Drafts"    . ?d)))))
-          ,(make-mu4e-context
             :name "126"
             :enter-func (lambda () (mu4e-message "Entering context gmail"))
             :leave-func (lambda () (mu4e-message "Leaving context gmail"))
@@ -185,6 +155,36 @@
                                                 ("/126/已发送" . ?s)
                                                 ("/126/已删除" . ?t)
                                                 ("/126/草稿箱" . ?d)))))
+            ,(make-mu4e-context
+              :name "gmail"
+              :enter-func (lambda () (mu4e-message "Entering context gmail"))
+              :leave-func (lambda () (mu4e-message "Leaving context gmail"))
+              :match-func
+              (lambda (msg)
+                (when msg
+                  (string-match "gmail" (mu4e-message-field msg :maildir))))
+              :vars `((mu4e-sent-folder . "/gmail/Sent Mail")
+                      (mu4e-drafts-folder . "/gmail/Drafts")
+                      (mu4e-trash-folder . "/gmail/Trash")
+                      (mu4e-sent-messages-behavior . sent)
+                      (mu4e-compose-signature . ,user-full-name)
+                      (user-mail-address . ,user-mail-address)
+                      (mu4e-compose-format-flowed . t)
+                      (smtpmail-queue-dir . "~/.mail/gmail/queue/cur")
+                      (smtpmail-smtp-user . ,user-full-name) ; Set to your username
+                      (smtpmail-stream-type . ssl)
+                      (smtpmail-starttls-credentials . (("smtp.gmail.com" 587 nil nil)))
+                      (smtpmail-auth-credentials . `(("smtp.gmail.com" 587 ,user-mail-address nil)))
+                      (smtpmail-smtp-server . "smtp.gmail.com")
+                      (smtpmail-smtp-service . 587)
+                      (smtpmail-debug-info . t)
+                      (smtpmail-debug-verbose . t)
+                      (mu4e-maildir-shortcuts . ( ("/gmail/INBOX" . ?i)
+                                                  ("/gmail/Sent Mail" . ?s)
+                                                  ("/gmail/Trash"       . ?t)
+                                                  ("/gmail/All Mail"  . ?a)
+                                                  ("/gmail/Starred"   . ?r)
+                                                  ("/gmail/Drafts"    . ?d)))))
           )))
 
 (use-package mu4e-alert
