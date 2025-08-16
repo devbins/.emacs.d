@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 78
+;;     Update #: 79
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,12 +145,12 @@
                     (user-mail-address . ,user-mail-address)
                     (mu4e-compose-format-flowed . t)
                     (smtpmail-queue-dir . "~/.mail/126/queue/cur")
-                    (smtpmail-smtp-user . ,user-full-name) ; Set to your username
-                    (smtpmail-starttls-credentials . (("smtp.126.com" 587 nil nil)))
-                    (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
-                    (smtpmail-default-smtp-server . "smtp.126.com")
+                    (smtpmail-smtp-user . ,user-mail-address) ; Set to your username
+                    (smtpmail-stream-type . ssl)
+                    (smtpmail-starttls-credentials . (("smtp.126.com" 465 nil nil)))
+                    (smtpmail-auth-credentials . `(("smtp.126.com" 465 ,user-mail-address nil)))
                     (smtpmail-smtp-server . "smtp.126.com")
-                    (smtpmail-smtp-service . 587)
+                    (smtpmail-smtp-service . 465)
                     (smtpmail-debug-info . t)
                     (smtpmail-debug-verbose . t)
                     (mu4e-maildir-shortcuts . ( ("/126/Inbox" . ?i)
