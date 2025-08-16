@@ -50,15 +50,6 @@
   :ensure nil
   :if (executable-find "mu")
   :commands (mu4e make-mu4e-context)
-  :init
-  (use-package mu4e-alert
-    :config
-    (when (executable-find "notify-send")
-      (mu4e-alert-set-default-style 'libnotify))
-    :hook
-    ((after-init . mu4e-alert-enable-notifications)
-     (after-init . mu4e-alert-enable-mode-line-display)))
-  (use-package mu4e-overview)
   :bind
   ((:map mu4e-view-mode-map
     ("e" . mu4e-view-save-attachment)))
@@ -116,29 +107,6 @@
                                   (:from . 22)
                                   (:thread-subject . ,(- (window-body-width) 70)) ;; alternatively, use :subject
                                   (:size . 7))))))
-  :init
-  (use-package mu4e-thread-folding
-    :load-path "site-lisp/mu4e-thread-folding"
-    :after mu4e
-    :bind
-    ((:map mu4e-headers-mode-map
-      ("TAB" . mu4e-headers-toggle-at-point)
-      ("C-<tab>" . mu4e-headers-toggle-fold-all))
-     (:map mu4e-search-minor-mode-map
-      ("S" . mu4e-kill-update-mail)))
-    :custom
-    (mu4e-thread-folding-default-view `folded)
-    (mu4e-headers-fields '((:empty         .    2)
-                           (:human-date    .   12)
-                           (:flags         .    6)
-                           (:mailing-list  .   10)
-                           (:from          .   22)
-                           (:subject       .   nil)))
-    :config
-    (add-to-list 'mu4e-header-info-custom
-                 '(:empty . (:name "Empty"
-                             :shortname ""
-                             :function (lambda (msg) "  ")))))
   :config
   (require 'mu4e-icalendar)
   (setq mail-user-agent 'mu4e-user-agent
@@ -219,6 +187,37 @@
                                                 ("/126/草稿箱" . ?d)))))
           )))
 
+(use-package mu4e-alert
+  :config
+  (when (executable-find "notify-send")
+    (mu4e-alert-set-default-style 'libnotify))
+  :hook
+  ((after-init . mu4e-alert-enable-notifications)
+   (after-init . mu4e-alert-enable-mode-line-display)))
+
+(use-package mu4e-overview)
+(use-package mu4e-thread-folding
+  :load-path "site-lisp/mu4e-thread-folding"
+  :after mu4e
+  :bind
+  ((:map mu4e-headers-mode-map
+    ("TAB" . mu4e-headers-toggle-at-point)
+    ("C-<tab>" . mu4e-headers-toggle-fold-all))
+   (:map mu4e-search-minor-mode-map
+    ("S" . mu4e-kill-update-mail)))
+  :custom
+  (mu4e-thread-folding-default-view `folded)
+  (mu4e-headers-fields '((:empty         .    2)
+                         (:human-date    .   12)
+                         (:flags         .    6)
+                         (:mailing-list  .   10)
+                         (:from          .   22)
+                         (:subject       .   nil)))
+  :config
+  (add-to-list 'mu4e-header-info-custom
+               '(:empty . (:name "Empty"
+                           :shortname ""
+                           :function (lambda (msg) "  ")))))
 (provide 'init-mail)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-mail.el ends here
