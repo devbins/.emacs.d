@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 55
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,6 +62,8 @@
   (mu4e-compose-format-flowed t)
   (mu4e-view-show-images t)
   (mu4e-change-filenames-when-moving t) ; work better for mbsync
+  (mu4e-context-policy 'pick-first)
+  (mu4e-compose-context-policy 'ask-first)
   (mu4e-attachment-dir "~/.mail/Downloads")
   (message-kill-buffer-on-exit t)
   (mu4e-compose-dont-reply-to-self t)
