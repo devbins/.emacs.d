@@ -337,7 +337,12 @@ prepended to the element after the #+HEADER: tag."
   ;; Export text/html MIME emails
   (use-package org-mime
     :commands (org-mime-edit-mail-in-org-mode)
-    :hook (message-send . org-mime-confirm-when-no-multipart)
+    :hook ((message-send . org-mime-confirm-when-no-multipart)
+           (org-mime-html . (lambda () (org-mime-change-element-style
+                                    "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
+                                                  "#E6E1DC" "#232323"))))
+           (org-mime-html . (lambda () (org-mime-change-element-style
+                                    "blockquote" "border-left: 2px solid gray; padding-left: 4px;"))))
     :bind (:map message-mode-map
            ("C-c M-o" . org-mime-htmlize)
            ("C-c '" . org-mime-edit-mail-in-org-mode)
@@ -347,7 +352,8 @@ prepended to the element after the #+HEADER: tag."
     :config
     (setq org-mime-export-options '(:section-numbers nil
                                     :with-author nil
-                                    :with-toc nil)))
+                                    :with-toc nil)
+          org-mime-export-ascii 'utf-8))
 
 
   (use-package htmlize
