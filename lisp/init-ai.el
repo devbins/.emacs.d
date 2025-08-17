@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 307
+;;     Update #: 309
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,6 +145,7 @@
     :models '(qwen/qwen3-32b:free
               qwen/qwen3-235b-a22b:free
               qwen/qwen3-coder:free
+              openai/gpt-oss-20b:free
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
               deepseek/deepseek-r1-0528-qwen3-8b:free
