@@ -340,6 +340,8 @@ prepended to the element after the #+HEADER: tag."
     :hook (message-send . org-mime-confirm-when-no-multipart)
     :bind (:map message-mode-map
            ("C-c M-o" . org-mime-htmlize)
+           ("C-c '" . org-mime-edit-mail-in-org-mode)
+           ("C-c r" . org-mime-revert-to-plain-text-mail)
            :map org-mode-map
            ("C-c M-o" . org-mime-org-buffer-htmlize))
     :config
