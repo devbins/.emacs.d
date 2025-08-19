@@ -778,9 +778,9 @@ prepended to the element after the #+HEADER: tag."
   ;; 把allow-emacs-pinentry 加入 .gnupg/gpg-agent.conf
   ;; http://elpa.gnu.org/packages/pinentry.html
   ;; This will force Emacs to use its own internal password prompt instead of an external pin entry program.
-  (use-package pinentry
-    :if sys/macp
-    :hook (org-mode . pinentry-start))
+  ;; (use-package pinentry
+  ;;   :if sys/macp
+  ;;   :hook (org-mode . pinentry-start))
 
   (use-package orgit
     :disabled)
