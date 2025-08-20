@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 8
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -99,18 +99,11 @@
   (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
 (use-package kind-icon
-  :ensure t
   :after corfu
   :custom
   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
-(use-package corfu-english-helper
-  :load-path "manateelazycat/corfu-english-helper"
-  :after corfu
-  :commands (toggle-corfu-english-helper corfu-english-helper-search)
-  :bind ("C-c t e" . 'toggle-corfu-english-helper))
 
 (provide 'init-corfu)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
