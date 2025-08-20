@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,7 @@
 ;;; Code:
 
 (use-package corfu
+  :hook (mu4e-compose-mode . corfu-mode)
   :bind (:map corfu-map
          ("TAB" . corfu-next)
          ([tab] . corfu-next)
