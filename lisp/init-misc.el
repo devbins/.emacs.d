@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 97
+;;     Update #: 98
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -95,7 +95,9 @@
   (use-package password-store)
   (use-package auth-source-pass
     :ensure nil
-    :init (auth-source-pass-enable)))
+    :init
+    (setq auth-source-debug t)
+    (auth-source-pass-enable)))
 
 (use-package epa-file
   :ensure nil
