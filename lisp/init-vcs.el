@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 72
+;;     Update #: 76
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -48,7 +48,6 @@
 
 ;; Git
 (use-package magit
-  :defer t
   :mode (("\\COMMIT_EDITMSG\\'" . text-mode)
          ("\\MERGE_MSG\\'" . text-mode))
   :bind (("C-x g" . magit-status)
@@ -110,7 +109,7 @@
         '(1 0 -1)
         '("c" "changelog" git-cliff-menu)))))
 
-(use-package git-link :defer t)
+(use-package git-link)
 
 ;; Walk through git revisions of a file
 (use-package git-timemachine
