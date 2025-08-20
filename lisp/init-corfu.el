@@ -63,13 +63,6 @@
         corfu-preview-current nil
         corfu-on-exact-match nil))
 
-(use-package corfu-doc
-  :after corfu
-  :bind (:map corfu-map
-         ("M-p" . corfu-doc-scroll-down)
-         ("M-n" . corfu-doc-scroll-up)
-         ("M-d" . corfu-doc-toggle))
-  :hook (corfu-mode . corfu-doc-mode))
 
 (use-package corfu-history
   :ensure nil
