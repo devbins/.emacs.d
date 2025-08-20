@@ -120,6 +120,11 @@
     :host "api.awoi.me"
     :stream t)
 
+  (gptel-make-openai "lm studio"
+   :protocol "http"
+    :host "localhost:1234"
+    :stream t
+    :models '((openai/gpt-oss-20b :capabilities (tool json url))))
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
     :models '(Qwen/Qwen3-Coder-480B-A35B-Instruct
