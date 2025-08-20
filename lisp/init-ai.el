@@ -125,6 +125,14 @@
     :host "localhost:1234"
     :stream t
     :models '((openai/gpt-oss-20b :capabilities (tool json url))))
+
+  (gptel-make-openai "bailian"
+    :key (auth-source-pass-get 'secret "bailian")
+    :stream t
+    :host "dashscope.aliyuncs.com"
+    :endpoint "/compatible-mode/v1/chat/completions"
+    :models '(qwen3-coder-plus))
+
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
     :models '(Qwen/Qwen3-Coder-480B-A35B-Instruct
