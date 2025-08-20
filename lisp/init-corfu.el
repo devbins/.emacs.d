@@ -48,6 +48,10 @@
 
 (use-package corfu
   :bind (:map corfu-map
+         ("TAB" . corfu-next)
+         ([tab] . corfu-next)
+         ("S-TAB" . corfu-previous)
+         ([backtab] . corfu-previous)
          ("C-j" . corfu-next)
          ("C-k" . corfu-previous)
          ("C-f" . corfu-insert)
@@ -61,8 +65,8 @@
         corfu-auto-prefix 1
         corfu-quit-at-boundary t
         corfu-preview-current nil
+        corfu-quit-no-match 'separator
         corfu-on-exact-match nil))
-
 
 (use-package corfu-history
   :ensure nil
