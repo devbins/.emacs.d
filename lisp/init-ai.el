@@ -249,6 +249,8 @@
 (use-package magit-gptcommit
   :hook (after-init . magit-gptcommit-status-buffer-setup)
   :config
+  ;; (require 'llm-openai)
+  ;; (setq magit-gptcommit-llm-provider (make-llm-openai-compatible :url "http://localhost:1234/v1/" :chat-model "openai/gpt-oss-20b"))
   (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "devstral:latest" :embedding-model "bge-m3:latest"))
   :bind (:map git-commit-mode-map
          ("C-c C-g" . magit-gptcommit-commit-accept)))
