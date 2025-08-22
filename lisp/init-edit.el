@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 144
+;;     Update #: 147
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -338,6 +338,8 @@
   :if sys/macp
   :load-path "site-lisp/emt"
   :hook (after-init . emt-mode))
+
+(setq with-editor-emacsclient-executable "emacsclient")
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
