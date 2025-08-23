@@ -339,10 +339,10 @@ prepended to the element after the #+HEADER: tag."
     :commands (org-mime-edit-mail-in-org-mode)
     :hook ((message-send . org-mime-confirm-when-no-multipart)
            (org-mime-html . (lambda () (org-mime-change-element-style
-                                    "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
-                                                  "#E6E1DC" "#232323"))))
+                                   "pre" (format "color: %s; background-color: %s; padding: 0.5em;"
+                                                 "#E6E1DC" "#232323"))))
            (org-mime-html . (lambda () (org-mime-change-element-style
-                                    "blockquote" "border-left: 2px solid gray; padding-left: 4px;"))))
+                                   "blockquote" "border-left: 2px solid gray; padding-left: 4px;"))))
     :bind (:map message-mode-map
            ("C-c M-o" . org-mime-htmlize)
            ("C-c '" . org-mime-edit-mail-in-org-mode)
