@@ -1,3 +1,4 @@
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://gongzhitaao.org/orgcss/org.css"/>
 * Emacs
 ** 介绍
    这份 =Emacs= 配置基于 [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]] 定制而来，增加了 =Vim(Evil)= 的支持，使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 的快捷键绑定。因为之前一直使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 所以习惯了它的快捷键。
