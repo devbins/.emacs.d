@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: org-table-border
+# key: border
+# --
+#+ATTR_HTML: :border 1 :rules all :frame border
