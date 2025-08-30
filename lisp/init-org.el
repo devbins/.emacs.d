@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1015
+;;     Update #: 1018
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -277,7 +277,6 @@ prepended to the element after the #+HEADER: tag."
 
   ;; Prettify UI
   (use-package org-superstar
-    :defer t
     :hook (org-mode . org-superstar-mode)
     :init
     (setq org-superstar-headline-bullets-list '("◉" "○" "✸" "☢" "❀" "✿" "☯" "☭" "♥" "✜" "♠" "★")
@@ -770,7 +769,6 @@ prepended to the element after the #+HEADER: tag."
           ;; 设置用于加密的 GPG ID 设置为 nil 使用对称加密 (symmetric encryption)
           org-crypt-key user-mail-address)
     :config
-    (setenv "GPG_AGENT_INFO" nil)
     ;; 当被加密的部份被保存时，自動加密回去
     (org-crypt-use-before-save-magic))
 
@@ -786,7 +784,6 @@ prepended to the element after the #+HEADER: tag."
     :disabled)
 
   (use-package evil-org
-    :defer t
     :after org
     :diminish
     :init
@@ -1200,7 +1197,6 @@ prepended to the element after the #+HEADER: tag."
   (easy-hugo-enable-menu))
 
 (use-package deft
-  :defer t
   :init (setq deft-directory "~/Nextcloud/"
               deft-extensions '("md" "org" "txt")
               deft-recursive t
