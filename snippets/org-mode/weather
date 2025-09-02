@@ -3,6 +3,6 @@
 # key: weather
 # --
 天气
-#+BEGIN_SRC sh :results output :async
+#+BEGIN_SRC sh :results output :async :session weather
 curl -s 'wttr.in/?0T'
 #+END_SRC
