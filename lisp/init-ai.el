@@ -297,6 +297,11 @@
                 "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
                              message title)))
 
+(add-to-list 'display-buffer-alist
+             '("^\\*claude"
+               (display-buffer-in-side-window)
+               (side . right)
+               (window-width . 90)))
 ;; install claude-code.el
 (use-package claude-code
   :load-path "site-lisp/claude-code"
