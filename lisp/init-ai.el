@@ -328,7 +328,6 @@
 (use-package gemini-cli
   :load-path "site-lisp/gemini-cli"
   :config (gemini-cli-mode)
-  (use-package vterm)
   (add-to-list 'display-buffer-alist
                '("^\\*gemini"
                  (display-buffer-in-side-window)
