@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1018
+;;     Update #: 1022
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1035,6 +1035,7 @@ prepended to the element after the #+HEADER: tag."
   ;; Async src_block execution
   ;; usage: begin_src sh :async
   (use-package ob-async
+    :disabled
     :config
     (setq ob-async-no-async-languages-alist '("ipython"
                                               "jupyter-python"
