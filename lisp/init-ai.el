@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 311
+;;     Update #: 317
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -248,11 +248,13 @@
                        :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(auth-source-pass-get 'secret "github")))))))
 
 (use-package magit-gptcommit
-  :hook (after-init . magit-gptcommit-status-buffer-setup)
+  :after magit
+  :commands (magit-gptcommit-status-buffer-setup)
   :config
   ;; (require 'llm-openai)
   ;; (setq magit-gptcommit-llm-provider (make-llm-openai-compatible :url "http://localhost:1234/v1/" :chat-model "openai/gpt-oss-20b"))
   (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "devstral:latest" :embedding-model "bge-m3:latest"))
+  (magit-gptcommit-status-buffer-setup)
   :bind (:map git-commit-mode-map
          ("C-c C-g" . magit-gptcommit-commit-accept)))
 
