@@ -84,7 +84,6 @@
            acm-enable-codeium nil)
      :config
      ;; (require 'lsp-bridge-jdtls)
-     (require 'lsp-bridge-breadcrumb)
      (add-to-list 'lsp-bridge-formatting-indent-alist '(web-mode . lsp-bridge-indent-two-level))
      (setq lsp-bridge-c-lsp-server "ccls"
            acm-backend-search-file-words-enable-fuzzy-match t
