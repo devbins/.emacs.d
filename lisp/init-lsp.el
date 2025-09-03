@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 270
+;;     Update #: 273
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -60,7 +60,8 @@
             ("C-c t" . lsp-bridge-peek-through)
             ("C-c r" . lsp-bridge-rename)
             ("C-c j" . lsp-bridge-popup-documentation-scroll-down)
-            ("C-c k" . lsp-bridge-popup-documentation-scroll-up)  ("C-c d" . lsp-bridge-popup-documentation)
+            ("C-c k" . lsp-bridge-popup-documentation-scroll-up)
+            ("C-c d" . lsp-bridge-popup-documentation)
             ("C-c o" . lsp-bridge-find-type-def-other-window)
             ("C-c f" . lsp-bridge-find-def)
             ("C-c x" . lsp-bridge-find-references)
