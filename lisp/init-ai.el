@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 317
+;;     Update #: 323
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -247,16 +247,16 @@
                        :args ("run" "--name" "github-mcp" "--interactive" "--rm" "--env" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/github-mcp-server")
                        :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(auth-source-pass-get 'secret "github")))))))
 
+;; (require 'llm-openai)
+;; (setq magit-gptcommit-llm-provider (make-llm-openai-compatible :url "http://localhost:1234/v1/" :chat-model "openai/gpt-oss-20b"))
 (use-package magit-gptcommit
   :after magit
   :commands (magit-gptcommit-status-buffer-setup)
-  :config
-  ;; (require 'llm-openai)
-  ;; (setq magit-gptcommit-llm-provider (make-llm-openai-compatible :url "http://localhost:1234/v1/" :chat-model "openai/gpt-oss-20b"))
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "devstral:latest" :embedding-model "bge-m3:latest"))
-  (magit-gptcommit-status-buffer-setup)
   :bind (:map git-commit-mode-map
-         ("C-c C-g" . magit-gptcommit-commit-accept)))
+         ("C-c C-g" . magit-gptcommit-commit-accept))
+  :init
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "devstral:latest" :embedding-model "bge-m3:latest"))
+  (magit-gptcommit-status-buffer-setup))
 
 (use-package ellama
   :init
