@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 42
+;;     Update #: 43
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,7 +72,7 @@
           Man-mode
           Woman-Mode) . english-teacher-follow-mode))
 
-(use-package go-translate
+(use-package gt
   :init
   (setq gt-langs '(en zh)
         gt-buffer-render-follow-p t
