@@ -378,6 +378,16 @@
 ** consult-line
 *** 排除不要的
     =text !text1= 有 =text1= 的不显示
+
+** alias
+   #+begin_src sh
+   alias emacsd='emacs --daemon'
+   alias et='emacsclient -tn'
+   alias ec='emacsclient -cn'
+   alias em='emacs -Q -l ~/.emacs.d/init-mini.el'
+   alias magit="emacsclient -cn --eval '(magit-status)'"
+   #+end_src
+
 ** FAQ
 *** json-read: JSON readtable error: 84
     需要把 =Python= 降到 =3.10= ，不能使用 =3.11=
