@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sqlite
+# key: sqlite
+# --
+#+BEGIN_SRC sqlite :db $1
+$0
+#+END_SRC
