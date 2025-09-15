@@ -306,13 +306,6 @@
 ;; (setenv "ANTHROPIC_BASE_URL" "https://anyrouter.top")
 ;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "anyrouter"))
 
-;; install claude-code.el
-(use-package claude-code
-  :load-path "site-lisp/claude-code"
-  :config (claude-code-mode)
-  (setq claude-code-terminal-backend 'vterm)
-  (setq claude-code-notification-function #'my-ai-code-notify)
-  :bind-keymap ("C-c c" . claude-code-command-map))
 
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
