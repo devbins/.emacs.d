@@ -315,14 +315,16 @@
 
 (use-package gemini-cli
   :load-path "site-lisp/gemini-cli"
-  :config (gemini-cli-mode)
+  :config
   (add-to-list 'display-buffer-alist
                '("^\\*gemini"
                  (display-buffer-in-side-window)
                  (side . right)
                  (window-width . 90)))
+  (setq gemini-cli-program "qwen")
   (setq gemini-cli-terminal-backend 'vterm)
   (setq gemini-cli-notification-function #'my-ai-code-notify)
+  (gemini-cli-mode)
   :bind-keymap ("C-c g" . gemini-cli-command-map))
 
 (provide 'init-ai)
