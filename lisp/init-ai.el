@@ -300,12 +300,6 @@
                 "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
                              message title)))
 
-(add-to-list 'display-buffer-alist
-             '("^\\*claude"
-               (display-buffer-in-side-window)
-               (side . right)
-               (window-width . 90)))
-
 ;; (setenv "ANTHROPIC_BASE_URL" "https://dashscope.aliyuncs.com/api/v2/apps/claude-code-proxy")
 ;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "bailian"))
 
