@@ -2,6 +2,6 @@
 # name: sqlite
 # key: sqlite
 # --
-#+BEGIN_SRC sqlite :db $1
+#+BEGIN_SRC sqlite :db $1 :colnames yes
 $0
 #+END_SRC
