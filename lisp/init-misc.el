@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 98
+;;     Update #: 99
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -74,6 +74,7 @@
 ;; broadway isometric1 starwars doom banner
 ;; sudo pacman -S figlet
 (use-package figlet
+  :if (executable-find "figlet")
   :config (setq figlet-default-font "banner"))
 
 (use-package carbon-now-sh)
