@@ -67,9 +67,9 @@
         gptel-use-tools t
         gptel-expert-commands t
         gptel-default-mode 'org-mode
-        gptel-prompt-prefix-alist '((markdown-mode . "## ")
-                                    (org-mode . "** ")
-                                    (text-mode . "## ")))
+        gptel-prompt-prefix-alist '((markdown-mode . "# ")
+                                    (org-mode . "* ")
+                                    (text-mode . "# ")))
 
   (add-to-list 'gptel-directives
                `(translate . ,(concat "You are a large language model and a writing assistant. Respond concisely."
