@@ -65,7 +65,7 @@
                         :stream t)
         gptel-track-media t
         gptel-use-tools t
-        ;; gptel-log-level 'debug
+        gptel-expert-commands t
         gptel-default-mode 'org-mode
         gptel-prompt-prefix-alist '((markdown-mode . "## ")
                                     (org-mode . "** ")
