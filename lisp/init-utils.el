@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 322
+;;     Update #: 324
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -126,7 +126,6 @@
   :commands (bongo-buffer
              bongo-library-buffer-p
              bongo-library-buffer)
-  :bind ("C-<f9>" . bongo)
   :init
   (with-eval-after-load 'dired
     (defun bongo-add-dired-files ()
