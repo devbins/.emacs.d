@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 41
+;;     Update #: 43
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,9 +73,33 @@
      ("?" describe-mode "help" :exit t)
      ("Q" quit-window "quit" :exit t))))
   :config
-  (setq browse-url-browser-function 'xwidget-webkit-browse-url)
   (evil-leader/set-key-for-mode 'xwidget-webkit-mode
     "ml" 'xwidget-webkit-current-url))
+
+;; 1. 定义一个函数：决定如何打开链接
+(defun my/browse-url-chooser (url &optional _ignored)
+  "智能选择用 xwidget 还是外部浏览器打开 URL。 URL 是要打开的链接字符串。"
+  (interactive (list (thing-at-point 'url)))
+  (let* ((choices '("xwidget" "external browser" "eaf"))
+         (choice (completing-read (format "Open %s with: " url)
+                                  choices
+                                  nil t
+                                  nil
+                                  nil
+                                  "external browser")))
+
+    (cond
+     ((string= choice "xwidget")
+      (xwidget-webkit-browse-url url))
+     ((string= choice "external browser")
+      (browse-url-default-browser url))
+     ((string= choice "eaf")
+      (eaf-open-browser url))
+     (t
+      (message "Invalid choice: %s" choice)))))
+
+;; 2. 替换默认的 browse-url 行为
+(setq browse-url-browser-function 'my/browse-url-chooser)
 
 (use-package css-mode
   :ensure nil
