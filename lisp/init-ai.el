@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 333
+;;     Update #: 341
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -244,7 +244,7 @@
           ("playwright" . (:command "npx" :args ("@playwright/mcp@latest")))
           ("context7" . (:url "https://mcp.context7.com/mcp"))
           ("amap-maps" . (:command "npx" :args ("-y" "@amap/amap-maps-mcp-server") :env (:AMAP_MAPS_API_KEY ,(auth-source-pass-get 'secret "amap"))))
-          ("chrome" . (:command "npx" args ("-y" "chrome-devtools-mcp@latest")))
+          ("chrome-devtools" . (:command "npx" :args ("-y" "chrome-devtools-mcp@latest")))
           ("github" . (:command "docker"
                        :args ("run" "--name" "github-mcp" "--interactive" "--rm" "--env" "GITHUB_PERSONAL_ACCESS_TOKEN" "ghcr.io/github/github-mcp-server")
                        :env (:GITHUB_PERSONAL_ACCESS_TOKEN ,(auth-source-pass-get 'secret "github")))))))
