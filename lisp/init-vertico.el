@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 193
+;;     Update #: 194
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -91,6 +91,9 @@
         completion-category-defaults nil
         read-buffer-completion-ignore-case t
         completion-ignore-case t
+        completion-cycle-threshold nil
+        completion-in-region-function 'completion--in-region
+        dynamic-completion-mode 1
         completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package consult
