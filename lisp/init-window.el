@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,7 +86,6 @@
         '("\\*Messages\\*"
           "Output\\*$" "\\*Pp Eval Output\\*$"
           "\\*Compile-Log\\*"
-          "\\*Completions\\*"
           "\\*Warnings\\*"
           "\\*Async Shell Command\\*"
           "\\*Apropos\\*"
