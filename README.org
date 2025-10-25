@@ -76,6 +76,10 @@
     | SPC r i | 插入 org roam 节点 | =org-roam-node-insert=        |
     | SPC r l | 给节点设置别名     | =org-roam-alias-add=          |
 ** lsp
+*** Bash
+    #+begin_src sh
+    npm i -g bash-language-server
+    #+end_src
 *** C/C++
 **** Server 安装
 ***** Mac
