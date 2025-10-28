@@ -63,15 +63,6 @@
                      ;; Longman
                      fanyi-longman-provider)))
 
-(use-package english-teacher
-  :load-path "site-lisp/english-teacher"
-  :init
-  (setq english-teacher-backend 'tencent)
-  :hook ((Info-mode
-          eww-mode
-          Man-mode
-          Woman-Mode) . english-teacher-follow-mode))
-
 (use-package gt
   :init
   (setq gt-langs '(en zh)

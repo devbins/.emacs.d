@@ -16,9 +16,6 @@
 [submodule "aweshell"]
 	path = site-lisp/aweshell
 	url = https://github.com/manateelazycat/aweshell.git
-[submodule "english-teacher"]
-	path = site-lisp/english-teacher
-	url = https://github.com/loyalpartner/english-teacher.el.git
 [submodule "emacs-application-framework"]
 	path = site-lisp/emacs-application-framework
 	url = https://github.com/emacs-eaf/emacs-application-framework.git
