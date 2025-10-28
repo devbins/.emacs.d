@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 43
+;;     Update #: 49
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,9 +73,8 @@
           (window-height . 0.4)))
 
   (setq gt-pop-posframe-forecolor (face-foreground 'tooltip nil t)
-        gt-pop-posframe-backcolor (face-background 'tooltip nil t))
-  (when (facep 'posframe-border)
-    (setq gt-pin-posframe-bdcolor (face-background 'posframe-border nil t)))
+        gt-pop-posframe-backcolor (face-background 'tooltip nil t)
+        gt-pin-posframe-bdcolor (face-background 'posframe-border nil t))
   :config
   (with-no-warnings
     (setq gt-preset-translators
@@ -115,33 +114,21 @@
                                                          (gt-google-engine))
                                           :render (gt-buffer-render)))
             (Text-Utility . ,(gt-text-utility :taker (gt-taker :pick nil)
-                                              :render (gt-buffer-render)))
+                                              :render (gt-buffer-render)))))
 
-              ;; gt-insert-render
-               (after-source-insert . ,(gt-translator
-                                        :taker (gt-taker :text 'buffer :pick 'paragraph)
-                                        :engines (gt-google-engine)
-                                        :render (gt-insert-render :type 'after)))
-               (replace-source-chat-insert . ,(gt-translator
-                                               :taker (gt-taker :text 'paragraph :pick nil)
-                                               :engines (gt-google-engine)
-                                               :render (gt-insert-render :type 'replace)))
-               (only-translate-rare-insert . ,(gt-translator
-                                               :taker (gt-taker :text 'paragraph
-                                                                :pick 'word
-                                                                :pick-pred (lambda (w) (length> w 6)))
-                                               :engines (gt-google-engine)
-                                               :render (gt-insert-render :type 'after
-                                                                         :rfmt " (%s)"
-                                                                         :rface '(:foreground "grey"))))
-               ;; gt-overlay-render
-               (after-source-overlay . ,(gt-translator
-                                         :taker (gt-taker :text 'buffer :pick 'paragraph)
-                                         :engines (gt-google-engine)
-                                         :render (gt-overlay-render :type 'after
-                                                                    :sface nil
-                                                                    :rface 'font-lock-doc-face)))
-            ))))
+    (defun gt--translate (dict)
+      "Translate using DICT from the preset tranlators."
+      (gt-start (alist-get dict gt-preset-translators)))
+
+    (defun gt-translate-prompt ()
+      "Translate with prompt using the multiple dictionaries."
+      (interactive)
+      (gt--translate 'multi-dict))
+
+    (defun gt-use-text-utility ()
+      "Handle the texts with the utilities."
+      (interactive)
+      (gt--translate 'Text-Utility))))
 
 ;; https://qiqijin.com/cn/dictionary-overlay.html
 (use-package dictionary-overlay
