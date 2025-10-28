@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 242
+;;     Update #: 251
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -247,7 +247,7 @@ If FRAME is nil, it defaults to the selected frame."
            return (set-fontset-font t 'symbol font nil 'prepend))
 
   ;; Specify font for Chinese characters
-  (cl-loop for font in '("STKaiti" "WenQuanYi Micro Hei" "Microsoft Yahei")
+  (cl-loop for font in '("STKaiti" "Xingkai SC" "LingWai SC" "HanziPen SC" "WenQuanYi Micro Hei" "Microsoft Yahei")
            when (font-installed-p font)
            return (dolist (charset '(kana han symbol cjk-misc bopomofo))
                     (set-fontset-font (frame-parameter nil 'font) charset
