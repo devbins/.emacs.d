@@ -58,9 +58,6 @@
 [submodule "gemini-cli"]
 	path = site-lisp/gemini-cli
 	url = https://github.com/linchen2chris/gemini-cli.el.git
-[submodule "ragmacs"]
-	path = site-lisp/ragmacs
-	url = https://github.com/positron-solutions/ragmacs.git
 [submodule "claude-code-ide"]
 	path = site-lisp/claude-code-ide
 	url = https://github.com/manzaltu/claude-code-ide.el.git
