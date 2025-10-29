@@ -113,13 +113,6 @@
 
   (require 'gptel-integrations)
 
-  (gptel-make-openai "awoi"
-    :key (auth-source-pass-get 'secret "awoi")
-    :models '(gpt-4o
-              gpt-4-turbo)
-    :host "api.awoi.me"
-    :stream t)
-
   (gptel-make-openai "lm studio"
    :protocol "http"
     :host "localhost:1234"
