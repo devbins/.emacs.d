@@ -129,7 +129,6 @@
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
     :models '(Qwen/Qwen3-Next-80B-A3B-Instruct
-              Qwen/Qwen3-Coder-480B-A35B-Instruct
               Qwen/Qwen3-235B-A22B-Instruct-2507
               Qwen/Qwen3-235B-A22B-Thinking-2507)
     :host "api-inference.modelscope.cn"
@@ -163,11 +162,10 @@
               moonshotai/kimi-dev-72b:free
               moonshotai/kimi-vl-a3b-thinking:free
               tencent/hunyuan-a13b-instruct:free
+              minimax/minimax-m2:free
               mistralai/devstral-small:free
               mistralai/mistral-small-3.2-24b-instruct:free
-              google/gemini-2.5-pro-exp-03-25:free
               google/gemini-2.0-flash-exp:free
-              google/gemini-2.0-flash-thinking-exp:free
               google/gemma-3-27b-it:free))
 
   (gptel-make-openai "siliconflow"
