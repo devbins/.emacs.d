@@ -1,4 +1,4 @@
-;;; init-ai.el --- -*- lexical-binding: t -*-
+;;; init-ai.el --- -*- lexical-binding: t no-byte-compile: t -*-
 ;;
 ;; Filename: init-ai.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 341
+;;     Update #: 342
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
