@@ -280,11 +280,6 @@
   ;; Optional: Set a key binding for the transient menu
   (global-set-key (kbd "C-c C-a") 'aidermacs-transient-menu))
 
-(use-package gptel-aibo
-  :load-path "site-lisp/gptel-aibo"
-  :commands (gptel-aibo)
-  :bind ((:map gptel-aibo-mode-map ("C-c /" . gptel-aibo-apply-last-suggestions))
-         (:map gptel-aibo-complete-mode-map ("C-c i" . gptel-aibo-complete-at-point))))
 
 (defun my-ai-code-notify (title message)
   "Display a macOS notification with sound."
