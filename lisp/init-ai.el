@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 342
+;;     Update #: 343
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -114,7 +114,7 @@
   (require 'gptel-integrations)
 
   (gptel-make-openai "lm studio"
-   :protocol "http"
+    :protocol "http"
     :host "localhost:1234"
     :stream t
     :models '((openai/gpt-oss-20b :capabilities (tool json url))))
