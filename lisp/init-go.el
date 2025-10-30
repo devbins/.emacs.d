@@ -1,4 +1,4 @@
-;;; init-go.el --- -*- lexical-binding: t -*-
+;;; init-go.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-go.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 55
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

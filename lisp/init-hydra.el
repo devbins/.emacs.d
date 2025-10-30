@@ -1,4 +1,4 @@
-;;; init-hydra.el --- -*- lexical-binding: t -*-
+;;; init-hydra.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-hydra.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 19
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

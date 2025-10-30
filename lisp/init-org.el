@@ -1,4 +1,4 @@
-;;; init-org.el --- -*- lexical-binding: t -*-
+;;; init-org.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-org.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1027
+;;     Update #: 1028
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

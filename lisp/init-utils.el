@@ -1,4 +1,4 @@
-;;; init-utils.el --- -*- lexical-binding: t -*-
+;;; init-utils.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-utils.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 324
+;;     Update #: 325
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

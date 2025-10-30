@@ -1,4 +1,4 @@
-;;; init-web.el --- -*- lexical-binding: t -*-
+;;; init-web.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-web.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 43
+;;     Update #: 44
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

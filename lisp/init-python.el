@@ -1,4 +1,4 @@
-;;; init-python.el --- -*- lexical-binding: t -*-
+;;; init-python.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-python.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 57
+;;     Update #: 58
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

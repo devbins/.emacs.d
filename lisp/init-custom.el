@@ -1,4 +1,4 @@
-;;; init-custom.el --- -*- lexical-binding: t -*-
+;;; init-custom.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-custom.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 66
+;;     Update #: 68
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

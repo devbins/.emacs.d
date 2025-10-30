@@ -1,4 +1,4 @@
-;;; init-dired.el --- -*- lexical-binding: t -*-
+;;; init-dired.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-dired.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 86
+;;     Update #: 87
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

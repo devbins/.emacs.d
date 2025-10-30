@@ -1,4 +1,4 @@
-;;; init-w3m.el --- -*- lexical-binding: t -*-
+;;; init-w3m.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-w3m.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 3
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

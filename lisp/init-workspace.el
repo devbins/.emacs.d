@@ -1,4 +1,4 @@
-;;; init-workspace.el --- -*- lexical-binding: t -*-
+;;; init-workspace.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-workspace.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 30
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

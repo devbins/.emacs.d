@@ -1,4 +1,4 @@
-;;; init-vcs.el --- -*- lexical-binding: t -*-
+;;; init-vcs.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-vcs.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 76
+;;     Update #: 77
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

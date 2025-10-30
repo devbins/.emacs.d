@@ -1,4 +1,4 @@
-;;; init-space.el --- -*- lexical-binding: t -*-
+;;; init-space.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-space.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1
+;;     Update #: 2
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

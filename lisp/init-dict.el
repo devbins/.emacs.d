@@ -1,4 +1,4 @@
-;;; init-dict.el --- -*- lexical-binding: t -*-
+;;; init-dict.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-dict.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 49
+;;     Update #: 50
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

@@ -1,4 +1,4 @@
-;;; init-c.el --- -*- lexical-binding: t -*-
+;;; init-c.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-c.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 54
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

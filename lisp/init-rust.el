@@ -1,4 +1,4 @@
-;;; init-rust.el --- -*- lexical-binding: t -*-
+;;; init-rust.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-rust.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 27
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

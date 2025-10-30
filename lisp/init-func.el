@@ -1,4 +1,4 @@
-;;; init-func.el --- -*- lexical-binding: t -*-
+;;; init-func.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-func.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 78
+;;     Update #: 79
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

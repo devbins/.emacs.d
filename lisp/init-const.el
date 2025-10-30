@@ -1,4 +1,4 @@
-;;; init-const.el --- -*- lexical-binding: t -*-
+;;; init-const.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-const.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 12
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

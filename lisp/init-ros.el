@@ -1,4 +1,4 @@
-;;; init-ros.el --- -*- lexical-binding: t -*-
+;;; init-ros.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-ros.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

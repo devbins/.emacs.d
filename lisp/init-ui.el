@@ -1,4 +1,4 @@
-;;; init-ui.el --- -*- lexical-binding: t -*-
+;;; init-ui.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-ui.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 251
+;;     Update #: 256
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

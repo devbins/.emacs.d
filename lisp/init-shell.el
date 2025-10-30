@@ -1,4 +1,4 @@
-;;; init-shell.el --- -*- lexical-binding: t -*-
+;;; init-shell.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-shell.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 21
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

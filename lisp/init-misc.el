@@ -1,4 +1,4 @@
-;;; init-misc.el --- -*- lexical-binding: t -*-
+;;; init-misc.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-misc.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 99
+;;     Update #: 100
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

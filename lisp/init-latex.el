@@ -1,4 +1,4 @@
-;;; init-latex.el --- -*- lexical-binding: t -*-
+;;; init-latex.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-latex.el
 ;; Description: latex config
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 24
+;;     Update #: 25
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

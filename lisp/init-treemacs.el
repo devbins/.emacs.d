@@ -1,4 +1,4 @@
-;;; init-treemacs.el --- -*- lexical-binding: t -*-
+;;; init-treemacs.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-treemacs.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

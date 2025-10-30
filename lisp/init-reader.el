@@ -1,4 +1,4 @@
-;;; reader.el --- -*- lexical-binding: t -*-
+;;; reader.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: reader.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 54
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

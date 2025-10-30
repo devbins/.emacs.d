@@ -1,4 +1,4 @@
-;;; init-lsp.el --- -*- lexical-binding: t -*-
+;;; init-lsp.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-lsp.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 275
+;;     Update #: 276
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

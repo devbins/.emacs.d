@@ -1,4 +1,4 @@
-;;; init-dashboard.el --- -*- lexical-binding: t -*-
+;;; init-dashboard.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-dashboard.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 80
+;;     Update #: 81
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

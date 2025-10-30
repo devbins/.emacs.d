@@ -1,4 +1,4 @@
-;;; init-mail.el --- -*- lexical-binding: t -*-
+;;; init-mail.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-mail.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 79
+;;     Update #: 81
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

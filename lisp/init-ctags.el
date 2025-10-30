@@ -1,4 +1,4 @@
-;;; init-ctags.el --- -*- lexical-binding: t -*-
+;;; init-ctags.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-ctags.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 10
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

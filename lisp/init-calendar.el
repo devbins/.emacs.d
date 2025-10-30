@@ -1,4 +1,4 @@
-;;; init-calendar.el --- -*- lexical-binding: t -*-
+;;; init-calendar.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-calendar.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 4
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

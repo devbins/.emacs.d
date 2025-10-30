@@ -1,4 +1,4 @@
-;;; init-corfu.el --- -*- lexical-binding: t -*-
+;;; init-corfu.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-corfu.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 15
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

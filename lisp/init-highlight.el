@@ -1,4 +1,4 @@
-;;; init-highlight.el --- -*- lexical-binding: t -*-
+;;; init-highlight.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-highlight.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 38
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

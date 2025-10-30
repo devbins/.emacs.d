@@ -1,4 +1,4 @@
-;;; init-ibuffer.el --- -*- lexical-binding: t -*-
+;;; init-ibuffer.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-ibuffer.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 14
+;;     Update #: 15
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

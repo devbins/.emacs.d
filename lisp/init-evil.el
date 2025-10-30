@@ -1,4 +1,4 @@
-;;; init-evil.el --- -*- lexical-binding: t -*-
+;;; init-evil.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-evil.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 271
+;;     Update #: 272
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

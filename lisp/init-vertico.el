@@ -1,4 +1,4 @@
-;;; init-vertico.el --- -*- lexical-binding: t -*-
+;;; init-vertico.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-vertico.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 194
+;;     Update #: 195
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

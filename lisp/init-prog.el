@@ -1,4 +1,4 @@
-;;; init-prog.el --- -*- lexical-binding: t -*-
+;;; init-prog.el --- -*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-prog.el
 ;; Description:
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 111
+;;     Update #: 112
 ;; URL:
 ;; Doc URL:
 ;; Keywords:

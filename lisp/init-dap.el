@@ -1,4 +1,4 @@
-;;; init-dap.el --- Initialize DAP configurations.	-*- lexical-binding: t -*-
+;;; init-dap.el --- Initialize DAP configurations.	-*- lexical-binding: t no-byte-compile: t; -*-
 ;;
 ;; Filename: init-dap.el
 ;; Description: debug adapter protocol
@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 7
+;;     Update #: 8
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
