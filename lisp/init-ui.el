@@ -264,24 +264,28 @@ If FRAME is nil, it defaults to the selected frame."
 (use-package default-text-scale
   :hook (after-init . default-text-scale-mode))
 
-;; Mouse & Smooth Scroll
+;; Scrolling
 ;; Scroll one line at a time (less "jumpy" than defaults)
-(when (display-graphic-p)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . hscroll))
-        mouse-wheel-scroll-amount-horizontal 1
-        mouse-wheel-progressive-speed nil))
-(setq scroll-step 1
+(setq hscroll-step 1
+      hscroll-margin 2
+      scroll-step 1
       scroll-margin 0
       scroll-conservatively 100000
+      scroll-preserve-screen-position t
       auto-window-vscroll nil
-      scroll-preserve-screen-position t)
+      ;; mouse
+      mouse-wheel-scroll-amount-horizontal 1
+      mouse-wheel-progressive-speed nil)
 
-(use-package ultra-scroll
-  :init
-  (setq scroll-conservatively 3 ; or whatever value you prefer, since v0.4
-        scroll-margin 0)        ; important: scroll-margin>0 not yet supported
-  :config
-  (ultra-scroll-mode 1))
+;; Smooth scrolling
+(when (fboundp 'pixel-scroll-precision-mode) ;; 29+
+  (use-package ultra-scroll
+    :functions (hl-todo-mode diff-hl-flydiff-mode)
+    :hook (after-init . ultra-scroll-mode)
+    :config
+    (add-hook 'ultra-scroll-hide-functions #'diff-hl-flydiff-mode)
+    (add-hook 'ultra-scroll-hide-functions #'hl-todo-mode)
+    (add-hook 'ultra-scroll-hide-functions #'jit-lock-mode)))
 
 ;; Child frame
 (when (childframe-workable-p)
