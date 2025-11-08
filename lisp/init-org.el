@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1028
+;;     Update #: 1029
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -832,7 +832,7 @@ prepended to the element after the #+HEADER: tag."
                                    "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
                                   ("w" "work" entry (file+headline org-agenda-file-gtd "work")
                                    "* TODO [#A] %?\n  %i\n %U"
-                                   :empty-lines 1[[zsh:1: command not found: osascript]])
+                                   :empty-lines 1)
                                   ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
                                   ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
                                    "* TODO [#C] %?\n %(grab-mac-link)\n %i\n %U"
