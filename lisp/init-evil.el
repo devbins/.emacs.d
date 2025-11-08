@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 272
+;;     Update #: 273
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -327,8 +327,8 @@
     "ss"  'consult-line
 
     "td"  'fanyi-dwim
-    "tg"  'go-translate
-    "tp"  'go-translate-popup
+    "tg"  'gt-translate
+    "tp"  'gt-translate-prompt
     "tt"  'insert-translated-name-insert
     "tl"  'toggle-truncate-lines
     "tw"  'toggle-frame-maximized
