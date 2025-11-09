@@ -149,8 +149,18 @@
 
 (use-package anki-editor
   :load-path "site-lisp/anki-editor")
+
 (use-package paw
-  :load-path "site-lisp/paw")
+  :load-path "site-lisp/paw"
+  :commands (paw paw-annotation-mode paw-annotation-live-mode)
+  :config
+  (setq paw-authorization-keys (auth-source-pass-get 'secret "eudic")
+              paw-online-word-servers '(eudic anki)
+              paw-nerd-icons-icon-enable t
+              paw-click-overlay-enable t
+              paw-sdcv-dictionary-data-dir (expand-file-name "dict" user-emacs-directory)
+              paw-sdcv-dictionary-list '(""))
+  (add-to-list 'paw-annotation-mode-supported-modes 'xwidget-webkit-mode))
 
 (provide 'init-dict)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
