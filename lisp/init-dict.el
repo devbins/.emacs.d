@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 50
+;;     Update #: 52
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -64,6 +64,7 @@
                      fanyi-longman-provider)))
 
 (use-package gt
+  :bind ("C-c t e" . gt-translate)
   :init
   (setq gt-langs '(en zh)
         gt-buffer-render-follow-p t
