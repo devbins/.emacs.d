@@ -147,6 +147,8 @@
   (setq insert-translated-name-program "ollama"
         insert-translated-name-ollama-model-name "qwen3:14b"))
 
+(use-package anki-editor
+  :load-path "site-lisp/anki-editor")
 (use-package paw
   :load-path "site-lisp/paw")
 
