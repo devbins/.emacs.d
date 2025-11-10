@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1029
+;;     Update #: 1032
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1160,7 +1160,10 @@ prepended to the element after the #+HEADER: tag."
   :hook (org-mode . (lambda ()
                       (org-excalidraw-initialize)))
   :config
-  (setq org-excalidraw-directory "~/.org/excalidraw"))
+  (let ((dir "~/.org/excalidraw"))
+    (unless (file-directory-p dir)
+      (make-directory dir t))
+    (setq org-excalidraw-directory dir)))
 
 (use-package easy-hugo
   :init
