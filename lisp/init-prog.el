@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 112
+;;     Update #: 114
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -83,7 +83,7 @@
 (use-package rmsbolt)                   ; A compiler output viewer
 (use-package groovy-mode)
 (use-package scala-mode)
-(use-package swift-mode)
+(use-package swift-ts-mode)
 (use-package vimrc-mode)
 
 (use-package subword
