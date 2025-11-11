@@ -63,4 +63,4 @@
 	url = https://github.com/manzaltu/claude-code-ide.el.git
 [submodule "anki-editor"]
 	path = site-lisp/anki-editor
-	url = https://github.com/louietan/anki-editor.git
+	url = https://github.com/anki-editor/anki-editor.git
