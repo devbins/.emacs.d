@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 2
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,39 +46,18 @@
 ;;
 ;;; Code:
 ;; Kill & Mark things easily
-(use-package easy-kill-extras
+(use-package easy-kill
   :bind (([remap kill-ring-save] . easy-kill)
-         ([remap mark-sexp] . easy-mark-sexp)
-         ([remap mark-word] . easy-mark-word)
-
-         ;; Integrate `zap-to-char'
-         ([remap zap-to-char] . easy-mark-to-char)
-         ([remap zap-up-to-char] . easy-mark-up-to-char)
-
-         ;; Integrate `expand-region'
-         :map easy-kill-base-map
-         ("o" . easy-kill-er-expand)
-         ("i" . easy-kill-er-unexpand))
+         ([remap mark-sexp] . easy-mark))
   :init (setq kill-ring-max 200
-              save-interprogram-paste-before-kill t ; Save clipboard contents before replacement
-              easy-kill-alist '((?w word           " ")
-                                (?s sexp           "\n")
-                                (?l list           "\n")
-                                (?f filename       "\n")
-                                (?d defun          "\n\n")
-                                (?D defun-name     " ")
-                                (?e line           "\n")
-                                (?b buffer-file-name)
+              save-interprogram-paste-before-kill t)) ; Save clipboard contents before replacement
 
-                                (?^ backward-line-edge "")
-                                (?$ forward-line-edge "")
-                                (?h buffer "")
-                                (?< buffer-before-point "")
-                                (?> buffer-after-point "")
-                                (?f string-to-char-forward "")
-                                (?F string-up-to-char-forward "")
-                                (?t string-to-char-backward "")
-                                (?T string-up-to-char-backward ""))))
+;; Interactively insert and edit items from kill-ring
+(use-package browse-kill-ring
+  :bind ("C-c k" . browse-kill-ring)
+  :hook (after-init . browse-kill-ring-default-keybindings)
+  :init (setq browse-kill-ring-separator "────────────────"
+              browse-kill-ring-separator-face 'shadow))
 
 (provide 'init-kill-ring)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
