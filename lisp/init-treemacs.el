@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 23
+;;     Update #: 28
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,27 +81,11 @@
      (treemacs-git-mode 'simple)))
 
   (use-package treemacs-evil
-    :after treemacs evil)
+    :demand t)
 
   (use-package treemacs-nerd-icons
     :demand t
-    :custom-face
-    (treemacs-nerd-icons-root-face ((t (:inherit nerd-icons-green :height 1.3))))
-    (treemacs-nerd-icons-file-face ((t (:inherit nerd-icons-dsilver))))
-    :config (treemacs-load-theme "nerd-icons"))
-
-  (use-package treemacs-magit
-    :after magit
-    :commands treemacs-magit--schedule-update
-    :hook ((magit-post-commit
-            git-commit-post-finish
-            magit-post-stage
-            magit-post-unstage)
-           . treemacs-magit--schedule-update))
-
-  (use-package treemacs-tab-bar
-    :demand t
-    :config (treemacs-set-scope-type 'Tabs)))
+    :config (treemacs-load-theme "nerd-icons")))
 
 
 (provide 'init-treemacs)
