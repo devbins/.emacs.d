@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1032
+;;     Update #: 1033
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -188,6 +188,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("crypt" . ?e)
                                     ("NOTE" . ?n)
                                     ("MUSIC" . ?m)
+                                    ("noexport" . ?p)
                                     ("MOVIE" . ?f))))
   :config
   (add-to-list 'org-modules 'org-protocol)
