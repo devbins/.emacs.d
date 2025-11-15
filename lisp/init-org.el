@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1033
+;;     Update #: 1043
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1404,7 +1404,13 @@ same directory as the org-buffer and insert a link to this file."
   :init (setq org-noter-notes-search-path '((expand-file-name "~/.org/book"))
               org-noter-always-create-frame nil
               org-noter-auto-save-last-location t
-              org-noter-highlight-selected-text t))
+              org-noter-highlight-selected-text t)
+  :config
+  (evil-define-key 'visual org-noter-doc-mode-map
+    "ii" 'org-noter-insert-note
+    "ip" 'org-noter-insert-precise-note
+    "ni" 'org-noter-insert-note-toggle-no-questions
+    "np" 'org-noter-insert-precise-note-toggle-no-questions))
 
 (use-package anki-helper
   :load-path "site-lisp/emacs-anki-helper"
