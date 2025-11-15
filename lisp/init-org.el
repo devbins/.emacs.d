@@ -1402,6 +1402,7 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package org-noter
   :init (setq org-noter-notes-search-path '((expand-file-name "~/.org/book"))
+              org-noter-always-create-frame nil
               org-noter-auto-save-last-location t
               org-noter-highlight-selected-text t))
 
