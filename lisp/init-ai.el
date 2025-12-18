@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 346
+;;     Update #: 370
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,8 +57,7 @@
                         :models '(deepseek-r1:14b
                                   (qwen3:14b :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
                                              :capabilities (tool json))
-                                  (devstral:latest :description "Devstral excels at using tools to explore codebases, editing multiple files and power software engineering agents."
-                                                   :capabilities (tool json))
+                                  (deepseek-ocr:latest :description "DeepSeek-OCR is a vision-language model that can perform token-efficient OCR." :capabilities (json media) :mime-types ("image/jpeg" "image/png"))
                                   (gemma3:12b :description "the Gemma 3 models are multimodal—processing text and images—and feature a 128K context window with support for over 140 languages. "
                                               :capabilities (json media)
                                               :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
