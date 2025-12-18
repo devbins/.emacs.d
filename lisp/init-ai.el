@@ -247,17 +247,30 @@
                 "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
                              message title)))
 
-;; (setenv "ANTHROPIC_BASE_URL" "https://dashscope.aliyuncs.com/api/v2/apps/claude-code-proxy")
-;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "bailian"))
-
-;; (setenv "ANTHROPIC_BASE_URL" "https://anyrouter.top")
-;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "anyrouter"))
-
-
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
+;; (setenv "ANTHROPIC_BASE_URL" "https://dashscope.aliyuncs.com/api/v2/apps/claude-code-proxy")
+;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "bailian"))
+
+  ;; https://anyrouter.top
+;; https://q.quuvv.cn
+;; https://pmpjfbhq.cn-nb1.rainapp.top
+  (setenv "ANTHROPIC_BASE_URL" "https://pmpjfbhq.cn-nb1.rainapp.top")
+  (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "anyrouter"))
+
+  (defun use-mimo()
+    "change to mimo llm"
+    (interactive)
+    (setenv "ANTHROPIC_BASE_URL" "https://api.xiaomimimo.com/anthropic")
+    (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "mimo"))
+    (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" "mimo-v2-flash")
+    (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" "mimo-v2-flash")
+    (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" "mimo-v2-flash"))
+
+;; (setenv "ANTHROPIC_BASE_URL" "http://127.0.0.1:3456")
+;; (setenv "ANTHROPIC_AUTH_TOKEN" "test")
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package gemini-cli
