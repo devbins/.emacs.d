@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 370
+;;     Update #: 372
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -251,8 +251,7 @@
   :load-path "site-lisp/claude-code-ide"
   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
-;; (setenv "ANTHROPIC_BASE_URL" "https://dashscope.aliyuncs.com/api/v2/apps/claude-code-proxy")
-;; (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "bailian"))
+  (setenv "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" "1")
 
   ;; https://anyrouter.top
 ;; https://q.quuvv.cn
