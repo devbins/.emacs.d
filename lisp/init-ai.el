@@ -248,29 +248,86 @@
                 "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
                              message title)))
 
+;; Anthropic API 提供商配置
+(defvar my-anthropic-providers
+  '((anyrouter . (:base-url "https://pmpjfbhq.cn-nb1.rainapp.top"
+                  :auth-key "anyrouter"))
+    (mimo . (:base-url "https://api.xiaomimimo.com/anthropic"
+             :auth-key "mimo"
+             :models (:opus "mimo-v2-flash"
+                      :sonnet "mimo-v2-flash"
+                      :haiku "mimo-v2-flash")))
+    (local . (:base-url "http://127.0.0.1:3456"
+              :auth-key nil
+              :auth-token "test")))
+  "Anthropic API 提供商配置列表。
+每个提供商包含:
+  :base-url   - API 基础 URL
+  :auth-key   - auth-source-pass 中的密钥名称
+  :auth-token - 直接指定的 token (优先级低于 auth-key)
+  :models     - 可选的模型配置 (:opus :sonnet :haiku)")
+
+(defvar my-anthropic-current-provider 'anyrouter
+  "当前使用的 Anthropic API 提供商。")
+
+(defun my-anthropic-switch-provider (provider)
+  "切换 Anthropic API 提供商。"
+  (interactive
+   (list (intern (completing-read "Select provider: "
+                                  (mapcar #'car my-anthropic-providers)
+                                  nil t))))
+  (let* ((config (alist-get provider my-anthropic-providers))
+         (base-url (plist-get config :base-url))
+         (auth-key (plist-get config :auth-key))
+         (auth-token (plist-get config :auth-token))
+         (models (plist-get config :models)))
+    (unless config
+      (user-error "Unknown provider: %s" provider))
+    (setenv "ANTHROPIC_BASE_URL" base-url)
+    (setenv "ANTHROPIC_AUTH_TOKEN"
+            (if auth-key
+                (auth-source-pass-get 'secret auth-key)
+              auth-token))
+    ;; 清除或设置模型配置
+    (if models
+        (progn
+          (when-let ((opus (plist-get models :opus)))
+            (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" opus))
+          (when-let ((sonnet (plist-get models :sonnet)))
+            (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" sonnet))
+          (when-let ((haiku (plist-get models :haiku)))
+            (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" haiku)))
+      ;; 没有模型配置时清除环境变量
+      (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" nil)
+      (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" nil)
+      (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" nil))
+    (setq my-anthropic-current-provider provider)
+    (message "Switched to %s: %s" provider base-url)))
+
+(defun my-anthropic-get-env-for-agent-shell ()
+  "获取当前提供商的环境变量配置，用于 agent-shell。"
+  (let* ((config (alist-get my-anthropic-current-provider my-anthropic-providers))
+         (base-url (plist-get config :base-url))
+         (auth-key (plist-get config :auth-key))
+         (auth-token (plist-get config :auth-token))
+         (models (plist-get config :models)))
+    (apply #'agent-shell-make-environment-variables
+           `("ANTHROPIC_BASE_URL" ,base-url
+             "ANTHROPIC_AUTH_TOKEN" ,(if auth-key
+                                         (auth-source-pass-get 'secret auth-key)
+                                       auth-token)
+             ,@(when-let ((opus (plist-get models :opus)))
+                 `("ANTHROPIC_MODEL" ,opus
+                   "ANTHROPIC_SMALL_FAST_MODEL" ,opus))))))
+
+
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
   (setenv "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" "1")
-
-  ;; https://anyrouter.top
-;; https://q.quuvv.cn
-;; https://pmpjfbhq.cn-nb1.rainapp.top
-  (setenv "ANTHROPIC_BASE_URL" "https://pmpjfbhq.cn-nb1.rainapp.top")
-  (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "anyrouter"))
-
-  (defun use-mimo()
-    "change to mimo llm"
-    (interactive)
-    (setenv "ANTHROPIC_BASE_URL" "https://api.xiaomimimo.com/anthropic")
-    (setenv "ANTHROPIC_AUTH_TOKEN" (auth-source-pass-get 'secret "mimo"))
-    (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" "mimo-v2-flash")
-    (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" "mimo-v2-flash")
-    (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" "mimo-v2-flash"))
-
-;; (setenv "ANTHROPIC_BASE_URL" "http://127.0.0.1:3456")
-;; (setenv "ANTHROPIC_AUTH_TOKEN" "test")
+  ;; 使用默认提供商初始化
+  (my-anthropic-switch-provider my-anthropic-current-provider)
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package gemini-cli
