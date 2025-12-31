@@ -209,7 +209,7 @@
   :bind (:map git-commit-mode-map
          ("C-c C-g" . magit-gptcommit-commit-accept))
   :init
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma3:12b" :embedding-model "bge-m3:latest"))
   (magit-gptcommit-status-buffer-setup))
 
 (use-package ellama
