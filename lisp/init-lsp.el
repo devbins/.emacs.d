@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 276
+;;     Update #: 282
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -81,10 +81,13 @@
            acm-enable-quick-access t
            acm-backend-lsp-show-progress t
            acm-enable-search-file-words nil
+           acm-enable-capf t
            acm-enable-tabnine nil
            acm-enable-codeium nil)
      :config
      (add-to-list 'lsp-bridge-formatting-indent-alist '(web-mode . lsp-bridge-indent-two-level))
+     (add-to-list 'acm-backend-capf-mode-list 'org-mode)
+     (add-to-list 'acm-backend-capf-mode-list 'mu4e-compose-mode)
      (setq lsp-bridge-c-lsp-server "ccls"
            acm-backend-search-file-words-enable-fuzzy-match t
            acm-backend-lsp-match-mode "fuzzy"
