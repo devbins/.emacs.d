@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 372
+;;     Update #: 380
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -343,6 +343,11 @@
   (setq gemini-cli-notification-function #'my-ai-code-notify)
   (gemini-cli-mode)
   :bind-keymap ("C-c g" . gemini-cli-command-map))
+
+(use-package agent-shell
+  :config
+  (setq agent-shell-anthropic-claude-environment
+        (my-anthropic-get-env-for-agent-shell)))
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
