@@ -64,3 +64,6 @@
 [submodule "anki-editor"]
 	path = site-lisp/anki-editor
 	url = https://github.com/anki-editor/anki-editor.git
+[submodule "animation"]
+	path = site-lisp/animation
+	url = https://github.com/kekeimiku/animation.el.git
