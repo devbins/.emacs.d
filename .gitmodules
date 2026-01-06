@@ -67,3 +67,6 @@
 [submodule "animation"]
 	path = site-lisp/animation
 	url = https://github.com/kekeimiku/animation.el.git
+[submodule "lolipop"]
+	path = site-lisp/lolipop
+	url = https://github.com/RadioNoiseE/lolipop.git
