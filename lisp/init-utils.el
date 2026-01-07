@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 325
+;;     Update #: 326
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -300,6 +300,13 @@
       (apply orig-fn args)))
   (advice-add 'holo-layer-get-emacs-frame-info :around #'holo-layer-mac-get-window-info))
 
+(use-package animation
+  :load-path "site-lisp/animation"
+  :init
+  (require 'ripple-click)
+  (ripple-click-mode)
+  (require 'bracket-lightning)
+  (bracket-lightning-mode))
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-utils.el ends here
