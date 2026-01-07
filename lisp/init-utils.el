@@ -307,6 +307,14 @@
   (ripple-click-mode)
   (require 'bracket-lightning)
   (bracket-lightning-mode))
+
+(use-package lolipop
+  :load-path "site-lisp/lolipop"
+  :config
+  (require 'lolipop-mode)
+  (lolipop-mode))
+
+
 (provide 'init-utils)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-utils.el ends here
