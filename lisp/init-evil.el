@@ -247,7 +247,7 @@
     "fCu" 'dos2unix
     "fCp" 'copy-current-file
     "fE"  'sudo-edit
-    "fd"  'delete-this-file
+    "fd"  'trash-this-file
     "fl"  'format-all-buffer
     "ft"  'treemacs
     "f."  'dirvish-side
