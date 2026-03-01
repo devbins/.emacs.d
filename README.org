@@ -395,6 +395,12 @@
    alias magit="emacsclient -cn --eval '(magit-status)'"
    #+end_src
 
+** dirvish
+   图片预览
+   #+begin_src sh
+   brew install vips
+   #+end_src
+
 ** FAQ
 *** json-read: JSON readtable error: 84
     需要把 =Python= 降到 =3.10= ，不能使用 =3.11=
