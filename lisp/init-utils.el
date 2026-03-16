@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 326
+;;     Update #: 327
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -262,10 +262,6 @@
 
 (use-package websocket-bridge
   :load-path "site-lisp/websocket-bridge")
-
-(use-package mind-wave
-  :load-path "site-lisp/mind-wave"
-  :mode ("\\.chat\\'" . mind-wave-chat-mode))
 
 (use-package slack
   :commands (slack-start)
