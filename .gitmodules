@@ -70,3 +70,6 @@
 [submodule "lolipop"]
 	path = site-lisp/lolipop
 	url = https://github.com/RadioNoiseE/lolipop.git
+[submodule "appine"]
+	path = site-lisp/appine
+	url = https://github.com/chaoswork/appine.git
