@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 381
+;;     Update #: 395
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -117,6 +117,12 @@
     :host "localhost:1234"
     :stream t
     :models '((openai/gpt-oss-20b :capabilities (tool json url))))
+
+  (gptel-make-anthropic "omlx"
+    :protocol "http"
+    :host "localhost:8000"
+    :stream t
+    :models '((Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit :capabilities (media tool json))))
 
   (gptel-make-openai "bailian"
     :key (auth-source-pass-get 'secret "bailian")
