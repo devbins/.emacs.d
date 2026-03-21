@@ -131,6 +131,11 @@
     :endpoint "/compatible-mode/v1/chat/completions"
     :models '(qwen3-coder-plus))
 
+  (gptel-make-openai "nvidia"
+    :key (auth-source-pass-get 'secret "nvidia")
+    :host "integrate.api.nvidia.com"
+    :stream t
+    :models '(z-ai/glm5 minimaxai/minimax-m2.5 qwen/qwen3.5-397b-a17b))
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
     :models '(Qwen/Qwen3-Next-80B-A3B-Instruct
