@@ -194,7 +194,7 @@
     "l" 'image-dired-forward-image
     "h" 'image-dired-backward-image
     "q" 'image-dired-kill-buffer-and-window
-    "RET" 'image-dired-display-thumbnail-original-image))
+    (kbd "RET") 'image-dired-display-thumbnail-original-image))
 
 (use-package image-mode
   :ensure nil
