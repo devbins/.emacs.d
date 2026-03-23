@@ -129,7 +129,7 @@
     :stream t
     :host "dashscope.aliyuncs.com"
     :endpoint "/compatible-mode/v1/chat/completions"
-    :models '(qwen3-coder-plus))
+    :models '(tongyi-xiaomi-analysis-pro qwen3.5-plus qwen3-coder-plus))
 
   (gptel-make-openai "nvidia"
     :key (auth-source-pass-get 'secret "nvidia")
