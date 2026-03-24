@@ -136,14 +136,15 @@
     :host "integrate.api.nvidia.com"
     :stream t
     :models '(z-ai/glm5 minimaxai/minimax-m2.5 qwen/qwen3.5-397b-a17b))
+
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
-    :models '(Qwen/Qwen3-Next-80B-A3B-Instruct
+    :models '(Qwen/Qwen3.5-397B-A17B
+              Qwen/Qwen3-Next-80B-A3B-Instruct
               Qwen/Qwen3-Coder-480B-A35B-Instruct
-              ZhipuAI/GLM-4.6
-              MiniMax/MiniMax-M2
-              Qwen/Qwen3-235B-A22B-Instruct-2507
-              Qwen/Qwen3-235B-A22B-Thinking-2507)
+              ZhipuAI/GLM-5
+              MiniMax/MiniMax-M2.5
+              moonshotai/Kimi-K2.5)
     :host "api-inference.modelscope.cn"
     :stream t)
 
