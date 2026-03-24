@@ -224,18 +224,6 @@
   (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma3:12b" :embedding-model "bge-m3:latest"))
   (magit-gptcommit-status-buffer-setup))
 
-(use-package ellama
-  :init
-  (setq ellama-language "Chinese"
-        ellama-auto-scroll t)
-  (require 'llm-ollama)
-  :config
-  (setq ellama-provider
-        (make-llm-ollama
-         :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
-  (setq ellama-providers
-        '(("qwen3:14b" . (make-llm-ollama :chat-model "qwen3:14b" :embedding-model "bge-m3:latest"))
-          ("deepseek-r1:14b" . (make-llm-ollama :chat-model "deepseek-r1:14b" :embedding-model "bge-m3:latest")))))
 
 (defun my-ai-code-notify (title message)
   "Display a macOS notification with sound."
