@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 330
+;;     Update #: 331
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -311,7 +311,7 @@
   (lolipop-mode))
 
 (use-package appine
-  :commands (appine-open-web-split appine-open-file-split)
+  :commands (appine appine-open-url appine-open-file)
   :load-path "site-lisp/appine")
 
 
