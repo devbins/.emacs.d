@@ -221,6 +221,7 @@
   :bind (:map git-commit-mode-map
          ("C-c C-g" . magit-gptcommit-commit-accept))
   :init
+  (require 'llm-ollama)
   (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma3:12b" :embedding-model "bge-m3:latest"))
   (magit-gptcommit-status-buffer-setup))
 
