@@ -163,6 +163,13 @@
     :models  '(mimo-v2-pro mimo-v2-omni mimo-v2-flash)
     :stream t)
 
+  (gptel-make-openai "Github"
+    :host "models.inference.ai.azure.com"
+    :endpoint "/chat/completions?api-version=2024-05-01-preview"
+    :stream t
+    :key (auth-source-pass-get 'secret "github")
+    :models '(gpt-4o))
+
   (gptel-make-openai "OpenRouter"
     :host "openrouter.ai"
     :endpoint "/api/v1/chat/completions"
