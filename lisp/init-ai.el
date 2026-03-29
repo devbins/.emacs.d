@@ -160,7 +160,7 @@
   (gptel-make-openai "mimo"
     :host "api.xiaomimimo.com"
     :key (auth-source-pass-get 'secret "mimo")
-    :models  '(mimo-v2-flash)
+    :models  '(mimo-v2-pro mimo-v2-omni mimo-v2-flash)
     :stream t)
 
   (gptel-make-openai "OpenRouter"
