@@ -198,7 +198,7 @@
   (gptel-make-openai "siliconflow"
     :host "api.siliconflow.cn"
     :key (auth-source-pass-get 'secret "siliconflow")
-    :models '(deepseek-ai/DeepSeek-R1) :stream t)
+    :models '(deepseek-ai/DeepSeek-R1 Pro/zai-org/GLM-5 Pro/MiniMaxAI/MiniMax-M2.5 Pro/moonshotai/Kimi-K2.5) :stream t)
 
   (gptel-make-gemini "Gemini"
     :key (auth-source-pass-get 'secret "gemini")
