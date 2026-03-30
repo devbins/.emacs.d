@@ -245,9 +245,22 @@
                   :auth-key "anyrouter"))
     (mimo . (:base-url "https://api.xiaomimimo.com/anthropic"
              :auth-key "mimo"
-             :models (:opus "mimo-v2-flash"
-                      :sonnet "mimo-v2-flash"
-                      :haiku "mimo-v2-flash")))
+             :models (:opus "mimo-v2-pro"
+                      :sonnet "mimo-v2-pro"
+                      :haiku "mimo-v2-pro")))
+
+    (ollama . (:base-url "http://localhost:11434"
+               :auth-key ""
+               :models (:opus "gemma3:12b"
+                        :sonnet "gemma3:12b"
+                        :haiku "gemma3:12b")))
+
+    (omlx . (:base-url "http://localhost:8000"
+             :auth-key ""
+             :models (:opus "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit"
+                      :sonnet "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit"
+                      :haiku "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit")))
+
     (local . (:base-url "http://127.0.0.1:3456"
               :auth-key nil
               :auth-token "test")))
