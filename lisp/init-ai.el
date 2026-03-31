@@ -164,8 +164,8 @@
     :stream t)
 
   (gptel-make-openai "Github"
-    :host "models.inference.ai.azure.com"
-    :endpoint "/chat/completions?api-version=2024-05-01-preview"
+    :host "models.github.ai"
+    :endpoint "/inference/chat/completions"
     :stream t
     :key (auth-source-pass-get 'secret "github")
     :models '(gpt-4o))
