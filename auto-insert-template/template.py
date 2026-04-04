@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/env python
 # File:    `(buffer-name)`
 # Author:  `user-full-name` <`user-mail-address`>
 #
