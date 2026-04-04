@@ -58,7 +58,7 @@
                                   (qwen3:14b :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
                                              :capabilities (tool json))
                                   (deepseek-ocr:latest :description "DeepSeek-OCR is a vision-language model that can perform token-efficient OCR." :capabilities (json media) :mime-types ("image/jpeg" "image/png"))
-                                  (gemma3:12b :description "the Gemma 3 models are multimodal—processing text and images—and feature a 128K context window with support for over 140 languages. "
+                                  (gemma4:latest :description "Gemma 4 models are designed to deliver frontier-level performance at each size. They are well-suited for reasoning, agentic workflows, coding, and multimodal understanding."
                                               :capabilities (json media)
                                               :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
                         :stream t)
@@ -229,7 +229,7 @@
          ("C-c C-g" . magit-gptcommit-commit-accept))
   :init
   (require 'llm-ollama)
-  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma3:12b" :embedding-model "bge-m3:latest"))
+  (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma4:latest" :embedding-model "bge-m3:latest"))
   (magit-gptcommit-status-buffer-setup))
 
 
@@ -251,9 +251,9 @@
 
     (ollama . (:base-url "http://localhost:11434"
                :auth-key ""
-               :models (:opus "gemma3:12b"
-                        :sonnet "gemma3:12b"
-                        :haiku "gemma3:12b")))
+               :models (:opus "gemma4:latest"
+                        :sonnet "gemma4:latest"
+                        :haiku "gemma4:latest")))
 
     (omlx . (:base-url "http://localhost:8000"
              :auth-key ""
