@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1043
+;;     Update #: 1047
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -188,6 +188,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("crypt" . ?e)
                                     ("NOTE" . ?n)
                                     ("MUSIC" . ?m)
+                                    ("HEALTH" . ?H)
                                     ("noexport" . ?p)
                                     ("MOVIE" . ?f))))
   :config
@@ -301,6 +302,7 @@ prepended to the element after the #+HEADER: tag."
             ("THOUGHT". "💡")
             ("crypt" . "🔐")
             ("MUSIC" . "♬")
+            ("HEALTH" . "🧪")
             ("NOTE" . "📝")
             ("MOVIE" . "🎬")
             ("verb" . "☸️")))))
