@@ -48,6 +48,9 @@
 
 ;; Default, comment out the providers you don't need.
 (use-package fanyi
+  :bind (:map fanyi-mode-map
+         ("j" . next-line)
+         ("k" . previous-line))
   :init
   (setq fanyi-auto-select t)
   :config
