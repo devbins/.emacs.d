@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 57
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,7 +80,6 @@
   (setq gt-pop-posframe-forecolor (face-foreground 'tooltip nil t)
         gt-pop-posframe-backcolor (face-background 'tooltip nil t)
         gt-pin-posframe-bdcolor (face-background 'posframe-border nil t))
-  :config
   (setq gt-preset-translators
         `((default . ,(gt-translator
                        :taker   (list (gt-taker :pick nil :if 'selection)
@@ -119,7 +118,7 @@
                                         :render (gt-buffer-render)))
           (Text-Utility . ,(gt-text-utility :taker (gt-taker :pick nil)
                                             :render (gt-buffer-render)))))
-
+  :config
   (defun gt--translate (dict)
     "Translate using DICT from the preset tranlators."
     (gt-start (alist-get dict gt-preset-translators)))
