@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 70
+;;     Update #: 71
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -158,7 +158,7 @@
   :commands (paw paw-annotation-mode paw-annotation-live-mode)
   :config
   (setq paw-authorization-keys (auth-source-pass-get 'secret "eudic")
-        paw-online-word-servers '(eudic anki)
+        paw-online-word-servers '(eudic)
         paw-nerd-icons-icon-enable t
         paw-click-overlay-enable t
         paw-sdcv-dictionary-data-dir (expand-file-name "dict" user-emacs-directory)
