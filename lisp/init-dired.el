@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 87
+;;     Update #: 90
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -216,10 +216,11 @@
   (setq dirvish-reuse-session nil)
   (setq dirvish-mode-line-format
         '(:left (sort symlink) :right (omit yank index)))
-  (setq dirvish-attributes
-        '(vc-state subtree-state nerd-icons git-msg file-time file-size)
+  (setq dirvish-attributes '(vc-state subtree-state nerd-icons git-msg file-time file-size)
+        dirvish-side-attributes '(vc-state nerd-icons collapse file-size)
         dirvish-use-header-line 'global)
-  (setq delete-by-moving-to-trash t)
+  (setq delete-by-moving-to-trash t
+        dirvish-large-directory-threshold 20000)
   (setq dired-listing-switches
         "-l --almost-all --human-readable --group-directories-first --no-group")
   ;; 文件归类
