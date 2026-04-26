@@ -142,6 +142,8 @@
     :models '(Qwen/Qwen3.5-397B-A17B
               Qwen/Qwen3-Next-80B-A3B-Instruct
               Qwen/Qwen3-Coder-480B-A35B-Instruct
+              deepseek-ai/DeepSeek-V4-Pro
+              deepseek-ai/DeepSeek-V4-Flash
               ZhipuAI/GLM-5.1
               MiniMax/MiniMax-M2.7
               moonshotai/Kimi-K2.5)
