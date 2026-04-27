@@ -519,6 +519,17 @@ prepended to the element after the #+HEADER: tag."
       :diminish
       :hook (org-mode . org-fragtog-mode)))
 
+  (use-package ratex
+    :commands (ratex-setup)
+    :load-path "site-lisp/ratex/lisp"
+    :init
+    (ratex-setup)
+    :config
+    (setq ratex-edit-preview 'posframe
+          ratex-posframe-background-color "black"
+          ratex-render-color "white"
+          ratex-font-size 25))
+
   ;; Preview
   (use-package org-preview-html
     :diminish)
