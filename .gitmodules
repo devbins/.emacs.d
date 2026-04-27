@@ -73,3 +73,6 @@
 [submodule "appine"]
 	path = site-lisp/appine
 	url = https://github.com/chaoswork/appine.git
+[submodule "ratex"]
+	path = site-lisp/ratex
+	url = https://github.com/gongshangzheng/ratex.el.git
