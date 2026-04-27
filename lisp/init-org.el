@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1047
+;;     Update #: 1067
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -513,22 +513,25 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-ref
     :after org)
 
-  (when emacs/>=27p
-    ;; Auto-toggle Org LaTeX fragments
-    (use-package org-fragtog
-      :diminish
-      :hook (org-mode . org-fragtog-mode)))
+  (defvar my/use-org-ratex t)
 
-  (use-package ratex
-    :commands (ratex-setup)
-    :load-path "site-lisp/ratex/lisp"
-    :init
-    (ratex-setup)
-    :config
-    (setq ratex-edit-preview 'posframe
-          ratex-posframe-background-color "black"
-          ratex-render-color "white"
-          ratex-font-size 25))
+  (if my/use-org-ratex
+      ;; Use ratex for better LaTeX preview.
+      (use-package ratex
+        :commands (ratex-setup)
+        :load-path "site-lisp/ratex/lisp"
+        :init
+        (ratex-setup)
+        :config
+        (setq ratex-edit-preview 'posframe
+              ratex-posframe-background-color "black"
+              ratex-render-color "white"
+              ratex-font-size 25))
+    (when emacs/>=27p
+      ;; Auto-tooggle Org LaTeX fragments
+      (use-package org-fragtog
+        :diminish
+        :hook (org-mode . org-fragtog-mode))))
 
   ;; Preview
   (use-package org-preview-html
