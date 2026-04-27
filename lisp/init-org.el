@@ -513,9 +513,9 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-ref
     :after org)
 
-  (defvar my/use-org-ratex t)
+  (defvar my/use-org-latex-ratex t)
 
-  (if my/use-org-ratex
+  (if my/use-org-latex-ratex
       ;; Use ratex for better LaTeX preview.
       (use-package ratex
         :commands (ratex-setup)
