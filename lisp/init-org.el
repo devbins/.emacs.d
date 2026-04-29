@@ -400,10 +400,6 @@ prepended to the element after the #+HEADER: tag."
         org-preview-latex-default-process 'dvisvgm ;; tlmgr install dvisvgm
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
-  (setq org-latex-hyperref-template
-        "\\hypersetup{hidelinks}")
-
-
   ;; Setup for `org-latex-preview'
   (setq org-latex-packages-alist '(("T1" "fontenc" t)
                                    ("" "amsmath"   t)
@@ -469,6 +465,9 @@ prepended to the element after the #+HEADER: tag."
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+    (setq org-latex-hyperref-template
+          "\\hypersetup{hidelinks}")
 
     (setq org-latex-default-class "cn-article"
           ;; org-latex-image-default-height "0.9\\textheight"
