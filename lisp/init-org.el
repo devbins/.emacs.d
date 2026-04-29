@@ -401,49 +401,21 @@ prepended to the element after the #+HEADER: tag."
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
   ;; Setup for `org-latex-preview'
-  (setq org-latex-packages-alist '(("T1" "fontenc" t)
+  (setq org-latex-packages-alist '(
                                    ("" "amsmath"   t)
                                    ("" "amssymb"   t)
-                                   ("" "siunitx"   t)
+                                   ("" "booktabs")
+                                   ("" "physics2" t) ;; 带了 bm
+                                   ;; ("UTF8,fontset=macnew" "ctex" t)
+                                   ("" "tikz" t)
+                                   ("" "tikz-cd" t)
+                                   ("" "minted")
+                                   ("ruled,linesnumbered" "algorithm2e" t)
 
                                    ;; hook right arrow with text above and below
                                    ;; https://tex.stackexchange.com/questions/186896/xhookrightarrow-and-xmapsto
                                    ("" "svg" t)
-                                   ("" "svg-extract" t)
-
-                                   ;; for mapsfrom
-                                   ;; see: https://tex.stackexchange.com/questions/26508/left-version-of-mapsto
-                                   ("" "stmaryrd" t)
-                                   ("" "mathrsfs" t)
-                                   ("" "tikz" t)
-                                   ("" "tikz-cd" t)
-                                   ;; ("" "quiver" t)
-                                   ;; see https://castel.dev/post/lecture-notes-2/
-                                   ("" "import" t)
-                                   ("" "xifthen" t)
-                                   ("" "pdfpages" t)
-                                   ("" "transparent" t)
-                                   ;; algorithm
-                                   ;; https://tex.stackexchange.com/questions/229355/algorithm-algorithmic-algorithmicx-algorithm2e-algpseudocode-confused
-                                   ("ruled,linesnumbered" "algorithm2e" t)
-
-                                   ;; Font packages
-                                   ("libertinus" "newtx" t)
-
-                                   ;; Load this after all math to give access to bold math
-                                   ;; See https://ctan.org/pkg/newtx
-                                   ("" "bm" t)
-
-                                   ;; Package physics2 requires to be loaded after font
-                                   ;; packages. See https://ctan.org/pkg/physics2
-                                   ("" "physics2" t)
-
-                                   ;; Differentiations
-                                   ("normal" "fixdif" t)
-                                   ("UTF8,fontset=macnew" "ctex" t)
-                                   ("" "minted")
-                                   ("" "booktabs")
-                                   ("" "hyperref")))
+                                   ("" "svg-extract" t)))
 
 
   (use-package ox-latex
@@ -451,7 +423,7 @@ prepended to the element after the #+HEADER: tag."
     :config
     (add-to-list 'org-latex-classes
                  '("cn-article"
-                   "\\documentclass[UTF8,a4paper]{article}"
+                   "\\documentclass[UTF8,a4paper,nofonts]{ctexart}"
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
