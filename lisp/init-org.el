@@ -438,9 +438,6 @@ prepended to the element after the #+HEADER: tag."
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
 
-    (setq org-latex-hyperref-template
-          "\\hypersetup{hidelinks}")
-
     (setq org-latex-default-class "cn-article"
           ;; org-latex-image-default-height "0.9\\textheight"
           ;; org-latex-image-default-width "\\linewidth"
@@ -448,7 +445,8 @@ prepended to the element after the #+HEADER: tag."
           org-latex-pdf-process '("latexmk -f -xelatex -shell-escape -output-directory=%o %F")
           org-latex-src-block-backend 'minted ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
           org-latex-compiler "xelatex"
-          org-latex-tables-booktabs t) ;; 三线表
+          org-latex-tables-booktabs t ;; 三线表
+          org-latex-hyperref-template "\\hypersetup{hidelinks}")
 
     ;; mapping jupyter-python to Python
     (add-to-list 'org-latex-listings-langs '(jupyter-python "Python"))
