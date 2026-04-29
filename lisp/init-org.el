@@ -404,12 +404,14 @@ prepended to the element after the #+HEADER: tag."
   (setq org-latex-packages-alist '(
                                    ("" "amsmath"   t)
                                    ("" "amssymb"   t)
+                                   ("" "graphicx" t)
                                    ("" "booktabs")
                                    ("" "physics2" t) ;; 带了 bm
-                                   ;; ("UTF8,fontset=macnew" "ctex" t)
+                                   ("UTF8,fontset=macnew" "ctex" t)
                                    ("" "tikz" t)
                                    ("" "tikz-cd" t)
-                                   ("" "minted")
+                                   ("" "minted" t) ; 代码高亮首选
+                                   ("" "xcolor" t)
                                    ("ruled,linesnumbered" "algorithm2e" t)
 
                                    ;; hook right arrow with text above and below
@@ -423,7 +425,7 @@ prepended to the element after the #+HEADER: tag."
     :config
     (add-to-list 'org-latex-classes
                  '("cn-article"
-                   "\\documentclass[UTF8,a4paper,nofonts]{ctexart}"
+                   "\\documentclass[UTF8,a4paper]{ctexart}" ;; nofonts 是 luaLatex 的要求，使用系统字体
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
