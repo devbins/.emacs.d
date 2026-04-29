@@ -396,7 +396,7 @@ prepended to the element after the #+HEADER: tag."
   ;; 避免图片太小
   (plist-put org-format-latex-options :scale 2.5)
 
-  (setq org-preview-latex-image-directory "imgs/" ;; Default LaTeX preview image directory
+  (setq org-preview-latex-image-directory "images/" ;; Default LaTeX preview image directory
         org-preview-latex-default-process 'dvisvgm ;; tlmgr install dvisvgm
         org-highlight-latex-and-related '(native)) ;; Highlight inline LaTeX code
 
@@ -764,7 +764,7 @@ prepended to the element after the #+HEADER: tag."
              (file-name-nondirectory
               (car (url-path-and-query
                     (url-generic-parse-url link)))))
-            (dirname (concat "imgs/" (file-name-sans-extension (buffer-name)))))
+            (dirname (concat "images/" (file-name-sans-extension (buffer-name)))))
         (unless (file-exists-p dirname)
           (make-directory dirname))
         (expand-file-name filename dirname)))
@@ -1209,7 +1209,7 @@ same directory as the org-buffer and insert a link to this file."
         (concat
          (make-temp-name
           (concat (file-name-directory (buffer-file-name))
-                  "imgs/" (file-name-sans-extension (buffer-name)) "/" (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
+                  "images/" (file-name-sans-extension (buffer-name)) "/" (format-time-string "%Y%m%d_%H%M%S_"))) ".png"))
   (unless (file-exists-p (file-name-directory filename))
     (make-directory (file-name-directory filename) t))
   ;; take screenshot
@@ -1221,7 +1221,7 @@ same directory as the org-buffer and insert a link to this file."
       (call-process "import" nil nil nil filename))
   ;; insert into file if correctly taken
   (if (file-exists-p filename)
-      (insert (concat "[[file:./imgs/" (file-name-sans-extension (file-relative-name (buffer-file-name))) "/" (file-name-nondirectory filename) "]]")))
+      (insert (concat "[[file:./images/" (file-name-sans-extension (file-relative-name (buffer-file-name))) "/" (file-name-nondirectory filename) "]]")))
   (org-display-inline-images))
 
 ;; https://github.com/jjasghar/alfred-org-capture
@@ -1460,7 +1460,7 @@ same directory as the org-buffer and insert a link to this file."
   :config
   (setq plantuml-jar-path (expand-file-name (concat user-emacs-directory "plantuml.jar"))
         plantuml-output-type "svg"
-        plantuml-relative-path "./imgs/"
+        plantuml-relative-path "./images/"
         plantuml-theme "plain"
         plantuml-add-index-number t
         plantuml-log-command t
