@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 100
+;;     Update #: 106
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -84,10 +84,12 @@
 (use-package telega
   :commands (telega)
   :defer t
-  :init (setq telega-use-images (if (display-graphic-p) t nil)
-              telega-proxies (list
-                              `(:server ,socks-proxy :port ,socks-port :enable t
-                                :type (:@type "proxyTypeSocks5")))))
+  :init (setq telega-use-images (if (display-graphic-p) t nil))
+  :config
+  (add-hook 'telega-before-auth-hook
+          (lambda ()
+             (telega--addProxy `(:server ,socks-proxy :port ,socks-port
+                                :type (:@type "proxyTypeSocks5")) 'enable))))
 
 
 (use-package pass
