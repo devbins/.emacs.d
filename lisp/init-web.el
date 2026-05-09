@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 44
+;;     Update #: 47
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -80,7 +80,7 @@
 (defun my/browse-url-chooser (url &optional _ignored)
   "智能选择用 xwidget 还是外部浏览器打开 URL。 URL 是要打开的链接字符串。"
   (interactive (list (thing-at-point 'url)))
-  (let* ((choices '("xwidget" "external browser" "eaf"))
+  (let* ((choices '("xwidget" "external browser" "eaf" "appine"))
          (choice (completing-read (format "Open %s with: " url)
                                   choices
                                   nil t
@@ -95,6 +95,8 @@
       (browse-url-default-browser url))
      ((string= choice "eaf")
       (eaf-open-browser url))
+     ((string= choice "appine")
+      (appine-open-url url))
      (t
       (message "Invalid choice: %s" choice)))))
 
