@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 331
+;;     Update #: 335
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -313,7 +313,8 @@
 (use-package appine
   :commands (appine appine-open-url appine-open-file)
   :load-path "site-lisp/appine"
-  :config (setq appine-use-for-org-links t))
+  :config (setq appine-use-for-org-links t
+                appine-rss-path (expand-file-name "elfeed-feeds.org" user-emacs-directory)))
 
 
 (provide 'init-utils)
