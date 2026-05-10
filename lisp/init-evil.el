@@ -198,6 +198,9 @@
     "aoa" 'org-agenda-list
     "aoc" 'org-capture
     "aot" 'org-todo-list
+    "aol" 'appine-open-url
+    "aof" 'appine-open-file
+    "aok" 'appine-kill
     "atl" 'global-command-log-mode
     "ayl" 'ein:notebooklist-login
     "ayo" 'ein:notebooklist-open
