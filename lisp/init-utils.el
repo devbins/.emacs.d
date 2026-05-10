@@ -312,7 +312,8 @@
 
 (use-package appine
   :commands (appine appine-open-url appine-open-file)
-  :load-path "site-lisp/appine")
+  :load-path "site-lisp/appine"
+  :config (setq appine-use-for-org-links t))
 
 
 (provide 'init-utils)
