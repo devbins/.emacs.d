@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 22
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,7 @@
           comp-speed 3
           warning-minimum-level :error
           comp-deferred-compilation t
+          native-comp-async-jobs-number 2
           native-comp-async-report-warnings-errors 'slient)
      (message "Not support native-comp"))
 
