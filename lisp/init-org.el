@@ -822,9 +822,8 @@ prepended to the element after the #+HEADER: tag."
                                    "* TODO [#A] %?\n  %i\n %U"
                                    :empty-lines 1)
                                   ;; org-mac-chrome-get-frontmost-url org-mac-chrome-insert-frontmost-url
-                                  ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
-                                   "* TODO [#C] %?\n %(grab-mac-link)\n %i\n %U"
-                                   :empty-lines 1)
+                                  ("c" "org-protocol-capture" entry (file+headline org-agenda-file-note "Quick notes")
+                                   "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t :empty-lines 1)
                                   ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
                                    "* TODO [#C] %?\n  %i\n %a \n %U"
                                    :empty-lines 1)
