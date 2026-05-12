@@ -200,6 +200,7 @@
     "aot" 'org-todo-list
     "aol" 'appine-open-url
     "aof" 'appine-open-file
+    "aor" 'appine-open-file-from-recentf
     "aok" 'appine-kill
     "atl" 'global-command-log-mode
     "ayl" 'ein:notebooklist-login
