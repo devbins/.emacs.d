@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 25
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -144,7 +144,10 @@
 ;; Better terminal emulator
 (unless sys/win32p
   (use-package ghostel
-    :hook (eshell-load . ghostel-eshell-visual-command-mode)))
+    :hook (eshell-load . ghostel-eshell-visual-command-mode)
+    :config (use-package evil-ghostel
+              :after (ghostel evil)
+              :hook (ghostel-mode . evil-ghostel-mode))))
 
 ;; Shell Pop: leverage `popper'
 (with-no-warnings
