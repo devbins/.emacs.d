@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 81
+;;     Update #: 82
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -85,7 +85,8 @@
          ("q" . quit-dashboard)
          ("h" . dashboard-hydra/body)
          ("?" . dashboard-hydra/body))
-  :hook (dashboard-mode . (lambda () (setq-local frame-title-format "")))
+  :hook (dashboard-mode . (lambda () (setq-local frame-title-format nil
+                                            global-hl-line-mode nil)))
   :init
   (setq welcomes '("立志要如山，行道要如水，\n不如山，不能坚定，\n不如水，不能曲达。"
                    "人除了死亡，\n其他都是擦伤。"
