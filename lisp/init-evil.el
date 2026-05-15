@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 285
+;;     Update #: 288
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -203,6 +203,7 @@
     "aor" 'appine-open-file-from-recentf
     "aos" 'appine-rss
     "aok" 'appine-kill
+    "aoc" 'appine-close-tab
     "atl" 'global-command-log-mode
     "ayl" 'ein:notebooklist-login
     "ayo" 'ein:notebooklist-open
