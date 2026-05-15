@@ -325,6 +325,13 @@
    | C-w    | 复制选中的内容到剪切板 | =pdf-view-kill-ring-save=         |
    | j      | 往下滚动               | =pdf-view-next-line-or-next-page= |
    | k      | 往上滚动               | =pdf-view-previous-line-or-previous-page=                   |
+
+** mermaid
+   #+begin_src mermaid
+   sequenceDiagram
+       A-->B: Works!
+   #+end_src
+    
 ** 安装字体 
 *** Mac
     #+begin_src sh
