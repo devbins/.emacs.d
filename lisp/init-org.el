@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1067
+;;     Update #: 1134
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -1435,6 +1435,7 @@ same directory as the org-buffer and insert a link to this file."
         plantuml-theme "plain"
         plantuml-add-index-number t
         plantuml-log-command t
+        plantuml-default-exec-mode 'jar
         plantuml-org-headline-bold t))
 
 (provide 'init-org)
