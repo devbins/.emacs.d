@@ -162,7 +162,7 @@
   (gptel-make-openai "mimo"
     :host "api.xiaomimimo.com"
     :key (auth-source-pass-get 'secret "mimo")
-    :models  '(mimo-v2-pro mimo-v2-omni mimo-v2-flash)
+    :models  '(mimo-v2.5-pro mimo-v2.5)
     :stream t)
 
   (gptel-make-openai "Github"
@@ -247,9 +247,9 @@
                   :auth-key "anyrouter"))
     (mimo . (:base-url "https://api.xiaomimimo.com/anthropic"
              :auth-key "mimo"
-             :models (:opus "mimo-v2-pro"
-                      :sonnet "mimo-v2-pro"
-                      :haiku "mimo-v2-pro")))
+             :models (:opus "mimo-v2.5-pro"
+                      :sonnet "mimo-v2.5-pro"
+                      :haiku "mimo-v2.5-pro")))
 
     (ollama . (:base-url "http://localhost:11434"
                :auth-key ""
