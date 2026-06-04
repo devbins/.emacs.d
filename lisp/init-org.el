@@ -489,15 +489,13 @@ prepended to the element after the #+HEADER: tag."
   (if my/use-org-latex-ratex
       ;; Use ratex for better LaTeX preview.
       (use-package ratex
-        :commands (ratex-setup)
         :load-path "site-lisp/ratex/lisp"
-        :init
-        (ratex-setup)
         :config
         (setq ratex-edit-preview 'posframe
               ratex-posframe-background-color "black"
               ratex-render-color "white"
-              ratex-font-size 25))
+              ratex-font-size 25)
+        (global-ratex-mode 1))
     (when emacs/>=27p
       ;; Auto-tooggle Org LaTeX fragments
       (use-package org-fragtog
