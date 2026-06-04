@@ -332,6 +332,7 @@
   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
   :config
   (setenv "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" "1")
+  (setq claude-code-ide-terminal-backend 'ghostel)
   ;; 使用默认提供商初始化
   (my-anthropic-switch-provider my-anthropic-current-provider)
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
