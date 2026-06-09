@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 106
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,7 +89,7 @@
   (add-hook 'telega-before-auth-hook
           (lambda ()
              (telega--addProxy `(:server ,socks-proxy :port ,socks-port
-                                :type (:@type "proxyTypeSocks5")) 'enable))))
+                                :type (:@type "proxyTypeSocks5")) :enable-p 'enable))))
 
 
 (use-package pass
