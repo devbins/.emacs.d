@@ -363,6 +363,14 @@
     (agent-shell-macext-notifications t)           ; enable native notifications
     (agent-shell-macext-notify-current-buffer nil)) ; nil = suppress when shell/viewport is current and Emacs is focused
 
+  (use-package agent-shell-pet
+    :vc (:url "https://github.com/lgmoneda/agent-shell-pet.git")
+    :init (global-agent-shell-pet-mode 1)
+    :config
+    (setq agent-shell-pet-renderer 'macos-native
+          agent-shell-pet-speech-bubble-theme 'light
+          agent-shell-pet-size 'medium)))
+
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-ai.el ends here
