@@ -352,6 +352,8 @@
   :bind-keymap ("C-c g" . gemini-cli-command-map))
 
 (use-package agent-shell
+  :bind (:map agent-shell-mode-map
+              ("M-RET" . newline))
   :config
   (setq agent-shell-anthropic-claude-environment (my-anthropic-get-env-for-agent-shell)
         agent-shell-prefer-viewport-interaction t)
