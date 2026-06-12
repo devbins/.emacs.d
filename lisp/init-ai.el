@@ -353,8 +353,8 @@
 
 (use-package agent-shell
   :config
-  (setq agent-shell-anthropic-claude-environment
-        (my-anthropic-get-env-for-agent-shell)))
+  (setq agent-shell-anthropic-claude-environment (my-anthropic-get-env-for-agent-shell)
+        agent-shell-prefer-viewport-interaction t)
   (use-package agent-shell-macext
     :vc (:url "https://github.com/cxa/agent-shell-macext")
     :hook (agent-shell-mode . agent-shell-macext-setup)
