@@ -355,6 +355,13 @@
   :config
   (setq agent-shell-anthropic-claude-environment
         (my-anthropic-get-env-for-agent-shell)))
+  (use-package agent-shell-macext
+    :vc (:url "https://github.com/cxa/agent-shell-macext")
+    :hook (agent-shell-mode . agent-shell-macext-setup)
+    :custom
+    (agent-shell-macext-file-copy-policy 'auto)    ; auto, always-copy, always-original
+    (agent-shell-macext-notifications t)           ; enable native notifications
+    (agent-shell-macext-notify-current-buffer nil)) ; nil = suppress when shell/viewport is current and Emacs is focused
 
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
