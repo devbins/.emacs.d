@@ -82,3 +82,6 @@
 [submodule "agent-shell-pet"]
 	path = site-lisp/agent-shell-pet
 	url = https://github.com/lgmoneda/agent-shell-pet.git
+[submodule "agent-shell-macext"]
+	path = site-lisp/agent-shell-macext
+	url = https://github.com/cxa/agent-shell-macext
