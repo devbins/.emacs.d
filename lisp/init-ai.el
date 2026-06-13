@@ -369,7 +369,7 @@
     :load-path "site-lisp/agent-shell-pet"
     :init (global-agent-shell-pet-mode 1)
     :config
-    (setq agent-shell-pet-renderer 'macos-native
+    (setq agent-shell-pet-renderer (if sys/macp 'macos-native 'child-frame)
           agent-shell-pet-speech-bubble-theme 'light
           agent-shell-pet-size 'medium)))
 
