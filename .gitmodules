@@ -76,3 +76,9 @@
 [submodule "ratex"]
 	path = site-lisp/ratex
 	url = https://github.com/gongshangzheng/ratex.el.git
+[submodule "excalidraw"]
+	path = site-lisp/excalidraw
+	url = https://github.com/4honor/org-excalidraw.git
+[submodule "agent-shell-pet"]
+	path = site-lisp/agent-shell-pet
+	url = https://github.com/lgmoneda/agent-shell-pet.git
