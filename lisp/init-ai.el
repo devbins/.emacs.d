@@ -366,7 +366,7 @@
     (agent-shell-macext-notify-current-buffer nil)) ; nil = suppress when shell/viewport is current and Emacs is focused
 
   (use-package agent-shell-pet
-    :vc (:url "https://github.com/lgmoneda/agent-shell-pet.git")
+    :load-path "site-lisp/agent-shell-pet"
     :init (global-agent-shell-pet-mode 1)
     :config
     (setq agent-shell-pet-renderer 'macos-native
