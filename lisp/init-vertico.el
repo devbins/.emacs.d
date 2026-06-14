@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 195
+;;     Update #: 197
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -156,7 +156,6 @@
          ("M-s e" . consult-isearch)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
-  :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (setq register-preview-delay 1
         register-preview-function #'consult-register-format)
@@ -207,7 +206,6 @@
 (use-package embark-consult
   :bind (:map minibuffer-mode-map
          ("C-c C-e" . embark-export))
-  :hook (embark-collect . consult-preview-at-point-mode)
   :init
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
