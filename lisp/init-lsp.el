@@ -66,6 +66,9 @@
             ("C-c f" . lsp-bridge-find-def)
             ("C-c x" . lsp-bridge-find-references)
             ("C-c i" . lsp-bridge-find-impl))
+     :custom
+     (acm-backend-capf-mode-list (append (bound-and-true-p acm-backend-capf-mode-list)
+                                      '(org-mode mu4e-compose-mode)))
      :init
      (setq lsp-bridge-enable-mode-line nil
            lsp-bridge-completion-obey-trigger-characters-p nil
@@ -86,8 +89,6 @@
            acm-enable-codeium nil)
      :config
      (add-to-list 'lsp-bridge-formatting-indent-alist '(web-mode . lsp-bridge-indent-two-level))
-     (add-to-list 'acm-backend-capf-mode-list 'org-mode)
-     (add-to-list 'acm-backend-capf-mode-list 'mu4e-compose-mode)
      (setq lsp-bridge-c-lsp-server "ccls"
            acm-backend-search-file-words-enable-fuzzy-match t
            acm-backend-lsp-match-mode "fuzzy"
