@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,8 +47,7 @@
 ;;; Code:
 
 (use-package corfu
-  :hook ((mu4e-compose-mode . corfu-mode)
-         (jupyter-repl-mode . corfu-mode)
+  :hook ((jupyter-repl-mode . corfu-mode)
          (agent-shell-mode . corfu-mode)
          (agent-shell-viewport-edit-mode . corfu-mode))
   :bind (:map corfu-map
