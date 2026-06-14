@@ -214,6 +214,7 @@
         `(("sequential-thinking" . (:command "npx" :args ("-y" "@modelcontextprotocol/server-sequential-thinking")))
           ("ddg-search" . (:command "uvx" :args ("duckduckgo-mcp-server"))) ;; https://github.com/nickclyde/duckduckgo-mcp-server
           ("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+          ("anysearch" . (:url "https://api.anysearch.com/mcp" :headers (("Authorization" . ,(auth-source-pass-get 'secret "anysearch")))))
           ("playwright" . (:command "npx" :args ("@playwright/mcp@latest")))
           ("context7" . (:url "https://mcp.context7.com/mcp"))
           ("amap-maps" . (:command "npx" :args ("-y" "@amap/amap-maps-mcp-server") :env (:AMAP_MAPS_API_KEY ,(auth-source-pass-get 'secret "amap"))))
