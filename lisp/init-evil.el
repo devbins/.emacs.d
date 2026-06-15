@@ -154,17 +154,17 @@
     "q" 'quit-window)
 
   (evil-define-key 'normal helpful-mode-map
-    "q" 'quit-window)
+    "q" 'quit-window))
 
-  (use-package evil-collection
-    :custom (evil-collection-setup-minibuffer t)
-    :commands (evil-collection-init)
-    :after evil
-    :init
-    (setq evil-collection-calendar-want-org-bindings t)
-    ;; The list of supported modes is configured by evil-collection-mode=list
-    (evil-collection-init '(dired view magit magit-todos magit-section magit-repos forge ibuffer custom calendar pdf nov docker vterm eshell xwidget markdown mu4e mu4e-conversation ))
-    ))
+(use-package evil-collection
+  :custom (evil-collection-setup-minibuffer t)
+  :commands (evil-collection-init)
+  :after evil
+  :init
+  (setq evil-collection-calendar-want-org-bindings t)
+  ;; The list of supported modes is configured by evil-collection-mode=list
+  ;; (evil-collection-init '(dired view magit magit-todos magit-section magit-repos forge ibuffer custom calendar pdf nov docker vterm eshell xwidget markdown mu4e mu4e-conversation ))
+  (evil-collection-init))
 
 (use-package evil-leader
   :init
