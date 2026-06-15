@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 288
+;;     Update #: 290
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -189,6 +189,7 @@
     "ab"  'gptel-aibo
     "am"  'wl
     "am"  'netease-cloud-music
+    "as"  'agent-shell
     "ajj" 'org-journal-new-entry
     "ajs" 'org-journal-search-forever
     "ajt" 'org-journal-new-scheduled-entry
