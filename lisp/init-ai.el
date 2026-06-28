@@ -263,7 +263,7 @@
          (url-request-extra-headers
           `(("Authorization" . ,(concat "Bearer " (my-llm--auth-token))))))
     (with-current-buffer
-        (url-retrieve-synchronously (concat base-url "/models") nil t 10)
+        (url-retrieve-synchronously (concat base-url "/v1/models") nil t 10)
       (goto-char (point-min))
       (re-search-forward "\n\n" nil t)
       (let* ((json-object-type 'alist)
@@ -293,14 +293,18 @@
              (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL"))))
 
 (defun my-llm-get-env-for-agent-shell ()
-  "获取当前环境变量配置，用于 agent-shell。"
-  (let ((opus (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")))
+  "获取当前环境变量配置，用于 agent-shell。
+如果环境变量未设置，从 my-llm-provider 获取默认值。"
+  (let* ((base-url (or (getenv "ANTHROPIC_BASE_URL")
+                       (plist-get my-llm-provider :base-url)))
+         (auth-token (or (getenv "ANTHROPIC_AUTH_TOKEN")
+                         (my-llm--auth-token)))
+         (model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "mimo-v2.5")))
     (apply #'agent-shell-make-environment-variables
-           `("ANTHROPIC_BASE_URL" ,(getenv "ANTHROPIC_BASE_URL")
-             "ANTHROPIC_AUTH_TOKEN" ,(getenv "ANTHROPIC_AUTH_TOKEN")
-             ,@(when opus
-                 `("ANTHROPIC_MODEL" ,opus
-                   "ANTHROPIC_SMALL_FAST_MODEL" ,opus))))))
+           `("ANTHROPIC_BASE_URL" ,base-url
+             "ANTHROPIC_AUTH_TOKEN" ,auth-token
+             "ANTHROPIC_MODEL" ,model
+             "ANTHROPIC_SMALL_FAST_MODEL" ,model))))
 
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
