@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 39
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -87,6 +87,23 @@
               elfeed-show-entry-switch #'pop-to-buffer
               elfeed-show-entry-delete #'delete-window)
   :config
+  (defun elfeed-grab-link ()
+    "Grab the current elfeed entry as an org-link with title."
+    (interactive)
+    (let* ((entry (cond
+                   ((derived-mode-p 'elfeed-search-mode)
+                    (elfeed-search-selected :single))
+                   ((derived-mode-p 'elfeed-show-mode)
+                    (if (boundp 'elfeed-show-entry)
+                        elfeed-show-entry
+                      (user-error "Cannot determine entry in this buffer")))
+                   (t (user-error "Not in elfeed buffer"))))
+           (url (elfeed-entry-link entry))
+           (title (elfeed-entry-title entry))
+           (link (org-link-make-string url title)))
+      (kill-new link)
+      (message "Copied: %s" (substring-no-properties link))))
+
   (defun nerd-icon-for-tags (tags)
     "Generate Nerd Font icon based on tags.
   Returns default if no match."
