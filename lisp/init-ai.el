@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 395
+;;     Update #: 396
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -235,98 +235,72 @@
   (setq magit-gptcommit-llm-provider (make-llm-ollama :chat-model "gemma4:latest" :embedding-model "bge-m3:latest"))
   (magit-gptcommit-status-buffer-setup))
 
-
 (defun my-ai-code-notify (title message)
   "Display a macOS notification with sound."
   (call-process "osascript" nil nil nil
                 "-e" (format "display notification \"%s\" with title \"%s\" sound name \"Glass\""
                              message title)))
 
-;; Anthropic API 提供商配置
-(defvar my-anthropic-providers
-  '((anyrouter . (:base-url "https://pmpjfbhq.cn-nb1.rainapp.top"
-                  :auth-key "anyrouter"))
-    (mimo . (:base-url "https://api.xiaomimimo.com/anthropic"
-             :auth-key "mimo"
-             :models (:opus "mimo-v2.5-pro"
-                      :sonnet "mimo-v2.5-pro"
-                      :haiku "mimo-v2.5-pro")))
+;; LLM 提供商配置
+(defvar my-llm-provider
+  '(:base-url "http://localhost:8317"
+    :auth-key "providers")
+  "当前 LLM 提供商配置。
+:base-url  - API 地址
+:auth-key  - auth-source-pass 中的密钥名称
+:auth-token - 直接指定的 token (与 :auth-key 二选一)")
 
-    (ollama . (:base-url "http://localhost:11434"
-               :auth-key ""
-               :models (:opus "gemma4:latest"
-                        :sonnet "gemma4:latest"
-                        :haiku "gemma4:latest")))
+(defun my-llm--auth-token ()
+  "获取当前 provider 的认证 token。"
+  (let ((key (plist-get my-llm-provider :auth-key)))
+    (if (and key (not (string-empty-p key)))
+        (auth-source-pass-get 'secret key)
+      (plist-get my-llm-provider :auth-token))))
 
-    (omlx . (:base-url "http://localhost:8000"
-             :auth-key ""
-             :models (:opus "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit"
-                      :sonnet "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit"
-                      :haiku "Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit")))
+(defun my-llm--fetch-models ()
+  "从 API 获取可用模型列表。"
+  (let* ((base-url (string-trim-right (plist-get my-llm-provider :base-url) "/"))
+         (url-request-extra-headers
+          `(("Authorization" . ,(concat "Bearer " (my-llm--auth-token))))))
+    (with-current-buffer
+        (url-retrieve-synchronously (concat base-url "/models") nil t 10)
+      (goto-char (point-min))
+      (re-search-forward "\n\n" nil t)
+      (let* ((json-object-type 'alist)
+             (data (json-read)))
+        (kill-buffer)
+        ;; 兼容 {"data": [{"id": "xxx"}]} 和 ["xxx"] 两种格式
+        (if (listp (car data))
+            (mapcar (lambda (m) (cdr (assoc 'id m)))
+                    (cdr (assoc 'data data)))
+          data)))))
 
-    (local . (:base-url "http://127.0.0.1:3456"
-              :auth-key nil
-              :auth-token "test")))
-  "Anthropic API 提供商配置列表。
-每个提供商包含:
-  :base-url   - API 基础 URL
-  :auth-key   - auth-source-pass 中的密钥名称
-  :auth-token - 直接指定的 token (优先级低于 auth-key)
-  :models     - 可选的模型配置 (:opus :sonnet :haiku)")
+(defun my-llm-switch-model ()
+  "从 API 获取模型列表，为 Opus/Sonnet/Haiku 各选一个模型并设置环境变量。"
+  (interactive)
+  (let ((models (my-llm--fetch-models)))
+    (unless models (user-error "No models available"))
+    (let ((default (car models)))
+      (dolist (tier '("Opus" "Sonnet" "Haiku"))
+        (let ((model (completing-read (format "%s: " tier)
+                                      models nil t nil nil default)))
+          (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model))))
+    (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
+    (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
+    (message "Models set: opus=%s sonnet=%s haiku=%s"
+             (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")
+             (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL")
+             (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL"))))
 
-(defvar my-anthropic-current-provider 'anyrouter
-  "当前使用的 Anthropic API 提供商。")
-
-(defun my-anthropic-switch-provider (provider)
-  "切换 Anthropic API 提供商。"
-  (interactive
-   (list (intern (completing-read "Select provider: "
-                                  (mapcar #'car my-anthropic-providers)
-                                  nil t))))
-  (let* ((config (alist-get provider my-anthropic-providers))
-         (base-url (plist-get config :base-url))
-         (auth-key (plist-get config :auth-key))
-         (auth-token (plist-get config :auth-token))
-         (models (plist-get config :models)))
-    (unless config
-      (user-error "Unknown provider: %s" provider))
-    (setenv "ANTHROPIC_BASE_URL" base-url)
-    (setenv "ANTHROPIC_AUTH_TOKEN"
-            (if auth-key
-                (auth-source-pass-get 'secret auth-key)
-              auth-token))
-    ;; 清除或设置模型配置
-    (if models
-        (progn
-          (when-let ((opus (plist-get models :opus)))
-            (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" opus))
-          (when-let ((sonnet (plist-get models :sonnet)))
-            (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" sonnet))
-          (when-let ((haiku (plist-get models :haiku)))
-            (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" haiku)))
-      ;; 没有模型配置时清除环境变量
-      (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" nil)
-      (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" nil)
-      (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" nil))
-    (setq my-anthropic-current-provider provider)
-    (message "Switched to %s: %s" provider base-url)))
-
-(defun my-anthropic-get-env-for-agent-shell ()
-  "获取当前提供商的环境变量配置，用于 agent-shell。"
-  (let* ((config (alist-get my-anthropic-current-provider my-anthropic-providers))
-         (base-url (plist-get config :base-url))
-         (auth-key (plist-get config :auth-key))
-         (auth-token (plist-get config :auth-token))
-         (models (plist-get config :models)))
+(defun my-llm-get-env-for-agent-shell ()
+  "获取当前环境变量配置，用于 agent-shell。"
+  (let ((opus (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")))
     (apply #'agent-shell-make-environment-variables
-           `("ANTHROPIC_BASE_URL" ,base-url
-             "ANTHROPIC_AUTH_TOKEN" ,(if auth-key
-                                         (auth-source-pass-get 'secret auth-key)
-                                       auth-token)
-             ,@(when-let ((opus (plist-get models :opus)))
+           `("ANTHROPIC_BASE_URL" ,(getenv "ANTHROPIC_BASE_URL")
+             "ANTHROPIC_AUTH_TOKEN" ,(getenv "ANTHROPIC_AUTH_TOKEN")
+             ,@(when opus
                  `("ANTHROPIC_MODEL" ,opus
                    "ANTHROPIC_SMALL_FAST_MODEL" ,opus))))))
-
 
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
@@ -334,8 +308,12 @@
   :config
   (setenv "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" "1")
   (setq claude-code-ide-terminal-backend 'ghostel)
-  ;; 使用默认提供商初始化
-  (my-anthropic-switch-provider my-anthropic-current-provider)
+  ;; 初始化 provider 环境变量 (不弹选择)
+  (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
+  (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
+  (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" "mimo-v2.5-pro")
+  (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" "mimo-v2.5")
+  (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" "mimo-v2.5")
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package gemini-cli
@@ -356,7 +334,7 @@
   :bind (:map agent-shell-mode-map
               ("M-RET" . newline))
   :config
-  (setq agent-shell-anthropic-claude-environment (my-anthropic-get-env-for-agent-shell)
+  (setq agent-shell-anthropic-claude-environment (my-llm-get-env-for-agent-shell)
         agent-shell-prefer-viewport-interaction t)
   (use-package agent-shell-macext
     :if sys/macp
