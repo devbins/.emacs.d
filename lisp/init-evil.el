@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 291
+;;     Update #: 293
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -187,10 +187,6 @@
     "0"   'treemacs-select-window
 
     "ae"  'easy-hugo
-    "ai"  'aidermacs-transient-menu
-    "ab"  'gptel-aibo
-    "am"  'wl
-    "am"  'netease-cloud-music
     "as"  'agent-shell
     "ajj" 'org-journal-new-entry
     "ajs" 'org-journal-search-forever
@@ -234,19 +230,6 @@
     "."  'evilnc-copy-and-comment-operator
     "\\" 'evilnc-comment-operator ; if you prefer backslash key
     "cp" 'compile
-
-    "eaa" 'ellama-ask-about
-    "eac" 'ellama-chat
-    "eca" 'ellama-code-add
-    "ecc" 'ellama-code-complete
-    "ece" 'ellama-code-edit
-    "eci" 'ellama-code-improve
-    "ecr" 'ellama-code-review
-    "er" 'ellama-ask-selection
-    "el" 'ellama-ask-line
-    "et" 'ellama-translate
-    "es" 'ellama-summarize
-    "ev" 'ellama-code-review
 
     "ff"  'find-file
     "fj"  'dired-jump
