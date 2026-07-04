@@ -204,6 +204,12 @@
     :key (auth-source-pass-get 'secret "siliconflow")
     :models '(deepseek-ai/DeepSeek-R1 Pro/zai-org/GLM-5 Pro/MiniMaxAI/MiniMax-M2.5 Pro/moonshotai/Kimi-K2.5) :stream t)
 
+  (gptel-make-openai "providers"
+    :host "http://localhost:8317"
+    :key (auth-source-pass-get 'secret "providers")
+    :models '(mimo-v2.5 deepseek-v4-flash deepseek-v4-pro) :stream t)
+
+
   (gptel-make-gemini "Gemini"
     :key (auth-source-pass-get 'secret "gemini")
     :stream t))
