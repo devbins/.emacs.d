@@ -334,6 +334,10 @@
   (gemini-cli-mode)
   :bind-keymap ("C-c g" . gemini-cli-command-map))
 
+(use-package codex-ide
+  :load-path "site-lisp/emacs-codex-ide"
+  :bind ("C-c C-;" . codex-ide-menu))
+
 (use-package agent-shell
   :bind (:map agent-shell-mode-map
               ("M-RET" . newline))
