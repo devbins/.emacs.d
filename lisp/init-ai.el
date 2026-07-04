@@ -344,6 +344,8 @@
     :if sys/macp
     :load-path "site-lisp/agent-shell-macext"
     :hook (agent-shell-mode . agent-shell-macext-setup)
+    :config
+    (define-key agent-shell-viewport-edit-mode-map [remap yank] #'agent-shell-macext-yank)
     :custom
     (agent-shell-macext-file-copy-policy 'auto)    ; auto, always-copy, always-original
     (agent-shell-macext-notifications t)           ; enable native notifications
