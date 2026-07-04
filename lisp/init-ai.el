@@ -295,6 +295,7 @@
           (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model))))
     (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
     (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
+    (my-llm-update-agent-shell-env)
     (message "Models set: opus=%s sonnet=%s haiku=%s"
              (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")
              (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL")
@@ -313,6 +314,12 @@
              "ANTHROPIC_AUTH_TOKEN" ,auth-token
              "ANTHROPIC_MODEL" ,model
              "ANTHROPIC_SMALL_FAST_MODEL" ,model))))
+
+(defun my-llm-update-agent-shell-env ()
+  "刷新 agent-shell 的环境变量配置。"
+  (when (boundp 'agent-shell-anthropic-claude-environment)
+    (setq agent-shell-anthropic-claude-environment
+          (my-llm-get-env-for-agent-shell))))
 
 (use-package claude-code-ide
   :load-path "site-lisp/claude-code-ide"
