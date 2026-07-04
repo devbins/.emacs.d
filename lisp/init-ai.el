@@ -180,6 +180,7 @@
     :models '(qwen/qwen3-32b:free
               qwen/qwen3-235b-a22b:free
               qwen/qwen3-coder:free
+              qwen/qwen3.6-plus-preview:free
               openai/gpt-oss-20b:free
               deepseek/deepseek-chat-v3-0324:free
               deepseek/deepseek-r1-0528:free
@@ -189,6 +190,7 @@
               tngtech/deepseek-r1t2-chimera:free
               moonshotai/kimi-k2:free
               moonshotai/kimi-dev-72b:free
+              nvidia/nemotron-3-super-120b-a12b-free
               moonshotai/kimi-vl-a3b-thinking:free
               tencent/hunyuan-a13b-instruct:free
               minimax/minimax-m2:free
