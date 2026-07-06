@@ -308,12 +308,15 @@
                        (plist-get my-llm-provider :base-url)))
          (auth-token (or (getenv "ANTHROPIC_AUTH_TOKEN")
                          (my-llm--auth-token)))
-         (model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "mimo-v2.5")))
+         (opus_model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "mimo-v2.5"))
+         (sonnet_model (or (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL") "mimo-v2.5"))
+         (haiku_model (or (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL") "mimo-v2.5")))
     (apply #'agent-shell-make-environment-variables
            `("ANTHROPIC_BASE_URL" ,base-url
              "ANTHROPIC_AUTH_TOKEN" ,auth-token
-             "ANTHROPIC_MODEL" ,model
-             "ANTHROPIC_SMALL_FAST_MODEL" ,model))))
+             "ANTHROPIC_DEFAULT_OPUS_MODEL" ,opus_model
+             "ANTHROPIC_DEFAULT_SONNET_MODEL" ,sonnet_model
+             "ANTHROPIC_DEFAULT_HAIKU_MODEL" ,haiku_model))))
 
 (defun my-llm-update-agent-shell-env ()
   "刷新 agent-shell 的环境变量配置。"
