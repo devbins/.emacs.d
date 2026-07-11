@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 81
+;;     Update #: 82
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -186,6 +186,13 @@ confirmation."
   "Revert a buffer with GBK and save as UTF-8."
   (interactive)
   (save-buffer-as-utf8 'gbk))
+
+
+(defun selected-region-or-symbol-at-point ()
+  "Return the selected region, otherwise return the symbol at point."
+  (if (region-active-p)
+      (buffer-substring-no-properties (region-beginning) (region-end))
+    (thing-at-point 'symbol t)))
 
 (defun recompile-elpa ()
   "Recompile packages in elpa directory. Useful if you switch Emacs versions."

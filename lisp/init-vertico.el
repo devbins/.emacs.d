@@ -171,9 +171,10 @@
   ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
-  (consult-customize
-   consult-goto-line
-   consult-theme :preview-key '(:debounce 0.4 any))
+  (consult-customize consult-goto-line :preview-key 'any
+                     consult-theme :preview-key '(:debounce 0.5 "<up>" "<down>")
+                     consult-line consult-line-multi consult-ripgrep consult-git-grep consult-grep
+                     :initial (selected-region-or-symbol-at-point))
   (defvar-local consult-toggle-preview-orig nil)
   (defun consult-toggle-preview ()
     "Command to enable/disable preview."
