@@ -54,8 +54,7 @@
   :hook (minibuffer-setup . vertico-repeat-save)
   :bind
   (:map vertico-map
-   ("<escape>" . minibuffer-keyboard-quit)
-   ("?" . minibuffer-completion-help)))
+   ("<escape>" . minibuffer-keyboard-quit)))
 
 (use-package vertico-directory
   :after vertico
@@ -191,7 +190,7 @@
   :bind ("M-s y" . consult-yasnippet))
 
 (use-package marginalia
-   :hook (after-init . marginalia-mode))
+  :hook (after-init . marginalia-mode))
 
 (use-package nerd-icons-completion
   :after marginalia
