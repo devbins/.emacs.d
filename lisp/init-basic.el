@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 53
+;;     Update #: 54
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -114,11 +114,6 @@
 
 ;; 时间戳使用英文星期
 (setq system-time-locale "C")
-
-;; 告诉 Emacs 假设所有文本都是从左到右的，并跳过双向括号算法：
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right)
-(setq bidi-inhibit-bpa t)
 
 ;; Start server
 (use-package server
@@ -250,6 +245,10 @@
 ;; Currently available in Emacs master branch *only*!
 (when (fboundp 'global-so-long-mode)
   (global-so-long-mode))
+
+;; 告诉 Emacs 假设所有文本都是从左到右的，并跳过双向括号算法：
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
 
 (setq-default bidi-display-reordering nil)
 (setq bidi-inhibit-bpa t
