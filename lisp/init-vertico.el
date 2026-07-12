@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 197
+;;     Update #: 212
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,7 +82,33 @@
   :init
   (defun completion--regex-pinyin (str)
     (orderless-regexp (pinyinlib-build-regexp-string str)))
-  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin))
+  (add-to-list 'orderless-matching-styles 'completion--regex-pinyin)
+  (defcustom my-consult-py-prefix ?:
+    "The prefix character when using consult to search Pinyin."
+    :group 'consult
+    :type 'character)
+
+  (defun my--consult-py-regexp-compiler (input type ignore-case)
+    "Compile the INPUT string to a list of regular expressions.
+
+The function should return a pair, the list of regular expressions and a
+highlight function. The highlight function should take a single
+argument, the string to highlight given the INPUT. TYPE is the desired
+type of regular expression, which can be `basic', `extended', `emacs' or
+`pcre'. If IGNORE-CASE is non-nil return a highlight function which
+matches case insensitively."
+    (setq input (consult--split-escaped
+                 (if (char-equal my-consult-py-prefix (string-to-char input))
+                     ;; Detect the first entered character. If it matches
+                     ;; `my-consult-py-prefix', convert the subsequent
+                     ;; characters into Pinyin regexp.
+                     (pinyinlib-build-regexp-string (substring input 1))
+                   input)))
+    (cons (mapcar (lambda (x) (consult--convert-regexp x type)) input)
+          (when-let (regexps (seq-filter #'consult--valid-regexp-p input))
+            (apply-partially #'consult--highlight-regexps regexps ignore-case))))
+
+  (advice-add 'consult--default-regexp-compiler :override #'my--consult-py-regexp-compiler))
 
 (use-package orderless
   :init
