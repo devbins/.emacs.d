@@ -1138,19 +1138,10 @@ prepended to the element after the #+HEADER: tag."
         (setq keyword (car keywords)))))
   (add-hook 'org-agenda-finalize-hook #'org-agenda-show-svg))
 
-;; use excalidraw in org mode
-;; npm install --global excalidraw_export canvas
-;; use iimage-mode can display svg image in org mode
 (use-package org-excalidraw
-  :commands (org-excalidraw-initialize)
+  :commands (org-excalidraw-setup)
   :load-path "site-lisp/org-excalidraw"
-  :hook (org-mode . (lambda ()
-                      (org-excalidraw-initialize)))
-  :config
-  (let ((dir "~/.org/excalidraw"))
-    (unless (file-directory-p dir)
-      (make-directory dir t))
-    (setq org-excalidraw-directory dir)))
+  :hook (org-mode . org-excalidraw-setup))
 
 (use-package easy-hugo
   :init
