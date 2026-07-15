@@ -1429,6 +1429,14 @@ same directory as the org-buffer and insert a link to this file."
         plantuml-default-exec-mode 'jar
         plantuml-org-headline-bold t))
 
+(use-package clutch
+  :config
+  (use-package pg)
+  (use-package mysql)
+  (setq clutch-connection-alist
+        '(("mysql" . (:backend mysql :profile-entry "MySQL"))
+          ("pg" . (:backend pg :profile-entry "PostgreSQL")))))
+
 (provide 'init-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-org.el ends here
