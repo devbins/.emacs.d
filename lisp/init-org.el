@@ -187,6 +187,7 @@ prepended to the element after the #+HEADER: tag."
                                     ("THOUGHT". ?T)
                                     ("crypt" . ?e)
                                     ("NOTE" . ?n)
+                                    ("investment" . ?i)
                                     ("MUSIC" . ?m)
                                     ("HEALTH" . ?H)
                                     ("noexport" . ?p)
