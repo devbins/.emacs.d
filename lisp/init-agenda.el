@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 124
+;;     Update #: 136
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -130,12 +130,12 @@
         org-agenda-align-tags-to-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
         org-agenda-tags-column (- (- (/ (/ (display-pixel-width) 2) 10) 3))
         org-agenda-columns-add-appointments-to-effort-sum t
-        org-agenda-prefix-format '((agenda . " %i %-12:c %? e %?-12t % s")
-                                   (timeline . " % s")
-                                   (effort . " %e %(or (org-entry-get (point) \"Effort\") \"0:00\")")
-                                   (todo . " %i %-12:c")
-                                   (search . " %i %-12:c")
-                                   (tags . " %i %-12:c"))
+        org-agenda-prefix-format '((agenda . " %i %-12:c %-12t %s")   ;%i %-12:c %-12t %s
+                                   (timeline . " %s")                        ; 时间线只显示标题（简洁）
+                                   (todo     . " %i %-12:c %s")              ; 待办显示 缩进 + 优先级 + 标题（必须加 %s！）
+                                   (search   . " %i %-12:c %s")              ; 搜索显示 缩进 + 优先级 + 标题
+                                   (tags     . " %i %-12:c %s")              ; 标签显示 缩进 + 优先级 + 标题
+                                   (effort   . " %-12:e %s"))                ; 工作量视图：左对齐工作量 + 标题
 
 
         org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir)
@@ -150,7 +150,7 @@
         org-agenda-compact-blocks t
         org-agenda-sticky t
         org-agenda-span 'day
-        org-agenda-sorting-strategy '((agenda habit-down time-up user-defined-up effort-up priority-down)
+        org-agenda-sorting-strategy '((agenda habit-down time-up effort-up priority-down)
                                       (todo priority-down category-keep)
                                       (tags priority-down category-keep)))
   :config
@@ -230,7 +230,9 @@
 
   ;; Add graphical view of agenda
   (use-package org-timeline
-    :hook (org-agenda-finalize . org-timeline-insert-timeline))
+    :after org-agenda
+    :init
+    (add-hook 'org-agenda-finalize-hook #'org-timeline-insert-timeline 'append))
 
   (use-package appt
     :ensure nil
