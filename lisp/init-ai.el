@@ -135,7 +135,7 @@
     :key (auth-source-pass-get 'secret "nvidia")
     :host "integrate.api.nvidia.com"
     :stream t
-    :models '(z-ai/glm5 minimaxai/minimax-m2.5 moonshotai/kimi-k2.5 qwen/qwen3.5-397b-a17b))
+    :models '(z-ai/glm-5.2 minimaxai/minimax-m3 minimaxai/minimax-m2.7 moonshotai/kimi-k2.6 qwen/qwen3.5-397b-a17b))
 
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
