@@ -59,8 +59,8 @@
                                              :capabilities (tool json))
                                   (deepseek-ocr:latest :description "DeepSeek-OCR is a vision-language model that can perform token-efficient OCR." :capabilities (json media) :mime-types ("image/jpeg" "image/png"))
                                   (gemma4:latest :description "Gemma 4 models are designed to deliver frontier-level performance at each size. They are well-suited for reasoning, agentic workflows, coding, and multimodal understanding."
-                                              :capabilities (json media)
-                                              :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
+                                                 :capabilities (json media)
+                                                 :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html")))
                         :stream t)
         gptel-track-media t
         gptel-use-tools t
@@ -94,16 +94,16 @@
                              (buffer-substring-no-properties (region-beginning) (region-end)))
                          "What is the required change?"
                          "Rewrite:")
-      :dry-run dry-run
-      :system (alist-get 'translate gptel-directives)
-      :stream t
-      :context
-      (let ((ov (or (cdr-safe (get-char-property-and-overlay (point) 'gptel-rewrite))
-                    (make-overlay (region-beginning) (region-end) nil t))))
-        (overlay-put ov 'category 'gptel)
-        (overlay-put ov 'evaporate t)
-        (cons ov (generate-new-buffer "*gptel-rewrite*")))
-      :callback #'gptel--rewrite-callback))
+                   :dry-run dry-run
+                   :system (alist-get 'translate gptel-directives)
+                   :stream t
+                   :context
+                   (let ((ov (or (cdr-safe (get-char-property-and-overlay (point) 'gptel-rewrite))
+                                 (make-overlay (region-beginning) (region-end) nil t))))
+                     (overlay-put ov 'category 'gptel)
+                     (overlay-put ov 'evaporate t)
+                     (cons ov (generate-new-buffer "*gptel-rewrite*")))
+                   :callback #'gptel--rewrite-callback))
 
   (with-eval-after-load 'gptel-transient
     (transient-append-suffix 'gptel-menu '(2 -1)
@@ -345,7 +345,7 @@
 
 (use-package agent-shell
   :bind (:map agent-shell-mode-map
-              ("M-RET" . newline))
+         ("M-RET" . newline))
   :config
   (setq agent-shell-anthropic-claude-environment (my-llm-get-env-for-agent-shell)
         agent-shell-prefer-viewport-interaction t)
