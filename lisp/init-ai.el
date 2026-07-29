@@ -291,9 +291,9 @@
                        (plist-get my-llm-provider :base-url)))
          (auth-token (or (getenv "ANTHROPIC_AUTH_TOKEN")
                          (my-llm--auth-token)))
-         (opus_model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "mimo-v2.5"))
-         (sonnet_model (or (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL") "mimo-v2.5"))
-         (haiku_model (or (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL") "mimo-v2.5")))
+         (opus_model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "deepseek-v4-pro[1m]"))
+         (sonnet_model (or (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL") "deepseek-v4-flash[1m]"))
+         (haiku_model (or (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL") "deepseek-v4-flash[1m]")))
     (apply #'agent-shell-make-environment-variables
            `("ANTHROPIC_BASE_URL" ,base-url
              "ANTHROPIC_AUTH_TOKEN" ,auth-token
