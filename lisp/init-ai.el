@@ -177,27 +177,10 @@
     :endpoint "/api/v1/chat/completions"
     :stream t
     :key (auth-source-pass-get 'secret "openrouter")
-    :models '(qwen/qwen3-32b:free
-              qwen/qwen3-235b-a22b:free
-              qwen/qwen3-coder:free
-              qwen/qwen3.6-plus-preview:free
-              openai/gpt-oss-20b:free
-              deepseek/deepseek-chat-v3-0324:free
-              deepseek/deepseek-r1-0528:free
-              deepseek/deepseek-r1-0528-qwen3-8b:free
-              z-ai/glm-4.5-air:free
-              cognitivecomputations/dolphin-mistral-24b-venice-edition:free
-              tngtech/deepseek-r1t2-chimera:free
-              moonshotai/kimi-k2:free
-              moonshotai/kimi-dev-72b:free
-              nvidia/nemotron-3-super-120b-a12b-free
-              moonshotai/kimi-vl-a3b-thinking:free
-              tencent/hunyuan-a13b-instruct:free
-              minimax/minimax-m2:free
-              mistralai/devstral-small:free
-              mistralai/mistral-small-3.2-24b-instruct:free
-              google/gemini-2.0-flash-exp:free
-              google/gemma-3-27b-it:free))
+    :models '(deepseek/deepseek-v4-flash
+              deepseek/deepseek-v4-pro
+              z-ai/glm-5.2
+              moonshotai/kimi-k3))
 
   (gptel-make-openai "siliconflow"
     :host "api.siliconflow.cn"
