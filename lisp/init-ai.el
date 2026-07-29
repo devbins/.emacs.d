@@ -284,8 +284,6 @@
                (key (intern (concat ":" (downcase tier) "-model"))))
           (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model)
           (setq my-llm-provider (plist-put my-llm-provider key model)))))
-    (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
-    (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
     (my-llm-update-agent-shell-env)
     (message "Models set: opus=%s sonnet=%s haiku=%s"
              (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")
