@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 293
+;;     Update #: 294
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -128,7 +128,8 @@
   (evil-set-initial-state 'fanyi-mode 'emacs)
   (evil-set-initial-state 'mcp-hub-mode 'emacs)
   (evil-set-initial-state 'agent-shell-viewport-view-mode 'emacs)
-  (evil-set-initial-state 'agent-shell-viewport-edit-mode'emacs)
+  (evil-set-initial-state 'agent-shell-viewport-edit-mode 'emacs)
+  (evil-set-initial-state 'clutch-result-mode 'emacs)
 
   ;; remove all keybindings from insert-state keymap,it is VERY VERY important
   (setcdr evil-insert-state-map nil)
