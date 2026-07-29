@@ -235,11 +235,17 @@
 ;; LLM 提供商配置
 (defvar my-llm-provider
   '(:base-url "http://localhost:8317"
-    :auth-key "providers")
+    :auth-key "providers"
+    :opus-model "deepseek-v4-pro[1m]"
+    :sonnet-model "deepseek-v4-flash[1m]"
+    :haiku-model "deepseek-v4-flash[1m]")
   "当前 LLM 提供商配置。
 :base-url  - API 地址
 :auth-key  - auth-source-pass 中的密钥名称
-:auth-token - 直接指定的 token (与 :auth-key 二选一)")
+:auth-token - 直接指定的 token (与 :auth-key 二选一)
+:opus-model - Opus 层级默认模型
+:sonnet-model - Sonnet 层级默认模型
+:haiku-model - Haiku 层级默认模型")
 
 (defun my-llm--auth-token ()
   "获取当前 provider 的认证 token。"
@@ -273,9 +279,11 @@
     (unless models (user-error "No models available"))
     (let ((default (car models)))
       (dolist (tier '("Opus" "Sonnet" "Haiku"))
-        (let ((model (completing-read (format "%s: " tier)
-                                      models nil t nil nil default)))
-          (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model))))
+        (let* ((model (completing-read (format "%s: " tier)
+                                       models nil t nil nil default))
+               (key (intern (concat ":" (downcase tier) "-model"))))
+          (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model)
+          (setq my-llm-provider (plist-put my-llm-provider key model)))))
     (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
     (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
     (my-llm-update-agent-shell-env)
@@ -286,14 +294,12 @@
 
 (defun my-llm-get-env-for-agent-shell ()
   "获取当前环境变量配置，用于 agent-shell。
-如果环境变量未设置，从 my-llm-provider 获取默认值。"
-  (let* ((base-url (or (getenv "ANTHROPIC_BASE_URL")
-                       (plist-get my-llm-provider :base-url)))
-         (auth-token (or (getenv "ANTHROPIC_AUTH_TOKEN")
-                         (my-llm--auth-token)))
-         (opus_model (or (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL") "deepseek-v4-pro[1m]"))
-         (sonnet_model (or (getenv "ANTHROPIC_DEFAULT_SONNET_MODEL") "deepseek-v4-flash[1m]"))
-         (haiku_model (or (getenv "ANTHROPIC_DEFAULT_HAIKU_MODEL") "deepseek-v4-flash[1m]")))
+从 my-llm-provider 读取所有配置。"
+  (let* ((base-url (plist-get my-llm-provider :base-url))
+         (auth-token (my-llm--auth-token))
+         (opus_model (plist-get my-llm-provider :opus-model))
+         (sonnet_model (plist-get my-llm-provider :sonnet-model))
+         (haiku_model (plist-get my-llm-provider :haiku-model)))
     (apply #'agent-shell-make-environment-variables
            `("ANTHROPIC_BASE_URL" ,base-url
              "ANTHROPIC_AUTH_TOKEN" ,auth-token
@@ -316,9 +322,9 @@
   ;; 初始化 provider 环境变量 (不弹选择)
   (setenv "ANTHROPIC_BASE_URL" (plist-get my-llm-provider :base-url))
   (setenv "ANTHROPIC_AUTH_TOKEN" (my-llm--auth-token))
-  (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" "mimo-v2.5-pro")
-  (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" "mimo-v2.5")
-  (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" "mimo-v2.5")
+  (setenv "ANTHROPIC_DEFAULT_OPUS_MODEL" (plist-get my-llm-provider :opus-model))
+  (setenv "ANTHROPIC_DEFAULT_SONNET_MODEL" (plist-get my-llm-provider :sonnet-model))
+  (setenv "ANTHROPIC_DEFAULT_HAIKU_MODEL" (plist-get my-llm-provider :haiku-model))
   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 
 (use-package gemini-cli
