@@ -86,10 +86,50 @@
   :defer t
   :init (setq telega-use-images (if (display-graphic-p) t nil))
   :config
+  (setq telega-autoplay-mode t
+        telega-notifications-mode t
+        telega-emoji-use-images nil
+        telega-chat-fill-column 90
+        telega-sticker-size '(6 . 24)
+        ;; 替代两行头像，防止头像因为字符高度不统一裂开。
+        telega-avatar-workaround-gaps-for (when (display-graphic-p) '(return t))
+        ;; 以下都是 telega-symbols-emojify 中的 telega-symbol
+        ;; telega-symbol
+        ;; remove iterm from `telega-symbols-emojify`
+        telega-symbols-emojify (cl-reduce (lambda (emojify key)
+                                            (assq-delete-all key emojify))
+                                          '(verified vertical-bar checkmark forum heavy-checkmark reply reply-quote horizontal-bar forward button-close summarize-in summarize-out)
+                                          :initial-value telega-symbols-emojify)
+        telega-symbol-button-close (nerd-icons-mdicon "nf-md-close_box_outline")
+        telega-symbol-verified (nerd-icons-codicon "nf-cod-verified_filled" :face 'telega-blue)
+        telega-symbol-vertical-bar "│" ;; U+2502 Box Drawings Light Vertical
+        telega-symbol-saved-messages-tag-end (nerd-icons-faicon "nf-fa-tag")
+        telega-symbol-forum (nerd-icons-mdicon "nf-md-format_list_text")
+        telega-symbol-flames (nerd-icons-mdicon "nf-md-delete_clock")
+        telega-symbol-mark (propertize " " 'face 'telega-button-highlight)
+        telega-symbol-reply (nerd-icons-faicon "nf-fa-reply")
+        telega-symbol-reply-quote (nerd-icons-faicon "nf-fa-reply_all")
+        telega-symbol-forward (nerd-icons-faicon "nf-fa-mail_forward")
+        telega-symbol-checkmark (nerd-icons-mdicon "nf-md-check")
+        telega-symbol-heavy-checkmark (nerd-icons-codicon "nf-cod-check_all")
+        telega-symbol-summarize-in (nerd-icons-octicon "nf-oct-fold")
+        telega-symbol-summarize-out (nerd-icons-octicon "nf-oct-unfold")
+        telega-translate-to-language-by-default "zh"
+        telega-chat-input-markups '("markdown2" "org")
+        ;; telega-root
+        ;; telega-root-default-view-function 'telega-view-folders
+        telega-root-keep-cursor 'track
+        ;; telega-root-show-avatars nil
+        telega-root-buffer-name "*Telega Root*"
+        ;; remove chat folder icons
+        telega-chat-folders-insexp (lambda () nil)
+        telega-filters-custom nil
+        telega-root-fill-column 70 ; fill-column
+        telega-filter-custom-show-folders nil)
   (add-hook 'telega-before-auth-hook
-          (lambda ()
-             (telega--addProxy `(:server ,socks-proxy :port ,socks-port
-                                :type (:@type "proxyTypeSocks5")) :enable-p 'enable))))
+            (lambda ()
+              (telega--addProxy `(:server ,socks-proxy :port ,socks-port
+                                  :type (:@type "proxyTypeSocks5")) :enable-p 'enable))))
 
 
 (use-package pass
