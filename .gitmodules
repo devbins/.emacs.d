@@ -85,3 +85,6 @@
 [submodule "agent-shell-macext"]
 	path = site-lisp/agent-shell-macext
 	url = https://github.com/cxa/agent-shell-macext
+[submodule "md-mode"]
+	path = site-lisp/md-mode
+	url = https://github.com/yibie/md-mode
