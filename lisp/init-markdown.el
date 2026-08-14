@@ -46,6 +46,10 @@
 ;;
 ;;; Code:
 
+(use-package md-mode
+  :load-path "site-lisp/md-mode"
+  :mode ("\\.md\\'" . md-mode))
+
 (use-package markdown-mode
   :init
   (setq markdown-enable-wiki-links t
