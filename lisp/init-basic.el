@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 54
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -243,8 +243,20 @@
 
 ;; So Long mitigates slowness due to extremely long lines.
 ;; Currently available in Emacs master branch *only*!
-(when (fboundp 'global-so-long-mode)
-  (global-so-long-mode))
+(use-package so-long
+  :ensure nil
+  :init (global-so-long-mode 1)
+  :custom (so-long-threshold 5000)
+  :config
+  (add-to-list 'so-long-target-modes 'conf-mode)
+  (add-to-list 'so-long-target-modes 'text-mode)
+  (add-to-list 'so-long-variable-overrides '(font-lock-maximum-decoration . 1))
+  (add-to-list 'so-long-variable-overrides '(save-place-alist . nil))
+  (cl-callf2 delq 'font-lock-mode so-long-minor-modes)
+  (cl-callf2 delq 'display-line-numbers-mode so-long-minor-modes)
+  (setf (alist-get 'buffer-read-only so-long-variable-overrides nil t) nil)
+  (setq so-long-function #'turn-on-so-long-minor-mode
+        so-long-revert-function #'turn-off-so-long-minor-mode))
 
 ;; 告诉 Emacs 假设所有文本都是从左到右的，并跳过双向括号算法：
 (setq-default bidi-display-reordering 'left-to-right
