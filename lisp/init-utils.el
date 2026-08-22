@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 342
+;;     Update #: 345
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -311,7 +311,7 @@
   (lolipop-mode))
 
 (use-package appine
-  :commands (appine appine-open-url appine-open-file appine-open-file-from-recentf appine-rss)
+  :commands (appine appine-open-url appine-open-file appine-open-file-from-recentf appine-rss appine-grab-url)
   :load-path "site-lisp/appine"
   :config (setq appine-rss-path (expand-file-name "elfeed-feeds.org" user-emacs-directory)))
 
