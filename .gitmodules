@@ -70,9 +70,6 @@
 [submodule "lolipop"]
 	path = site-lisp/lolipop
 	url = https://github.com/RadioNoiseE/lolipop.git
-[submodule "appine"]
-	path = site-lisp/appine
-	url = https://github.com/chaoswork/appine.git
 [submodule "ratex"]
 	path = site-lisp/ratex
 	url = https://github.com/gongshangzheng/ratex.el.git
@@ -88,3 +85,6 @@
 [submodule "md-mode"]
 	path = site-lisp/md-mode
 	url = https://github.com/yibie/md-mode
+[submodule "appine"]
+	path = site-lisp/appine
+	url = https://github.com/devbins/appine.git
