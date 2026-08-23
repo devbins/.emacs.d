@@ -1432,7 +1432,7 @@ same directory as the org-buffer and insert a link to this file."
 
 (use-package clutch
   :config
-  (use-package pg)
+  (use-package pgsql)
   (use-package mysql)
   (setq clutch-connection-alist
         '(("mysql" . (:backend mysql :profile-entry "MySQL"))
