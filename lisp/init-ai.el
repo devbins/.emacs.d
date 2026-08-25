@@ -282,8 +282,8 @@
         (let* ((model (completing-read (format "%s: " tier)
                                        models nil t nil nil default))
                (key (intern (concat ":" (downcase tier) "-model"))))
-          (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") model)
-          (setq my-llm-provider (plist-put my-llm-provider key model)))))
+          (setenv (concat "ANTHROPIC_DEFAULT_" (upcase tier) "_MODEL") (concat model "[1m]"))
+          (setq my-llm-provider (plist-put my-llm-provider key (concat model "[1m]"))))))
     (my-llm-update-agent-shell-env)
     (message "Models set: opus=%s sonnet=%s haiku=%s"
              (getenv "ANTHROPIC_DEFAULT_OPUS_MODEL")
