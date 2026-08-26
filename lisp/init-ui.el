@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 256
+;;     Update #: 261
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -253,7 +253,7 @@ If FRAME is nil, it defaults to the selected frame."
                     (set-fontset-font (frame-parameter nil 'font) charset
                                       (font-spec :family font)))))
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(setq initial-frame-alist '((fullscreen . maximized)))
 
 ;; Display dividers between windows
 (setq window-divider-default-places 'right-only
