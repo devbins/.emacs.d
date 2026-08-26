@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 294
+;;     Update #: 313
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -68,6 +68,221 @@
         evil-want-fine-undo t
         evil-want-change-word-to-end t)
   :config
+  (evil-set-leader 'normal (kbd "SPC"))
+  (evil-set-leader 'normal (kbd "<leader>m") :localleader)
+
+  (defun define-leader-key (state map localleader &rest bindings)
+    "Define leader key in MAP when STATE, a wrapper for
+`evil-define-key*'. All BINDINGS are prefixed with \"<leader>\"
+if LOCALLEADER is nil, otherwise \"<localleader>\"."
+    (cl-assert (cl-evenp (length bindings)))
+    (let ((prefix (if localleader "<localleader>" "<leader>"))
+          wk-replacements)
+      (while bindings
+        (let ((key (pop bindings))
+              (def (pop bindings)))
+          (when (symbolp def)
+            (evil-define-key* state map (kbd (concat prefix key)) def))
+          ;; Save which-key (key . replacement).
+          (pcase def
+            (`(:wk ,replacement)
+             (push (cons (concat "SPC " key) replacement) wk-replacements)))))
+      ;; which-key integration.
+      ;; XXX: replacement for localleader NOT supported.
+      (cl-loop for (key . replacement) in wk-replacements
+               unless localleader
+               do (which-key-add-key-based-replacements key replacement))))
+
+  (define-leader-key 'normal 'global nil
+    "SPC" 'execute-extended-command
+    "1"   'winum-select-window-1
+    "2"   'winum-select-window-2
+    "3"   'winum-select-window-3
+    "4"   'winum-select-window-4
+    "5"   'winum-select-window-5
+    "6"   'winum-select-window-6
+    "7"   'winum-select-window-7
+    "8"   'winum-select-window-8
+    "9"   'winum-select-window-9
+    "0"   'treemacs-select-window
+
+    "ae"  'easy-hugo
+    "as"  'agent-shell
+    "ajj" 'org-journal-new-entry
+    "ajs" 'org-journal-search-forever
+    "ajt" 'org-journal-new-scheduled-entry
+    "ajv" 'org-journal-schedule-view
+    "alt" 'clm/toggle-command-log-buffer
+    "aoo" 'org-agenda
+    "aoa" 'org-agenda-list
+    "aoc" 'org-capture
+    "aot" 'org-todo-list
+    "aol" 'appine-open-url
+    "aof" 'appine-open-file
+    "aor" 'appine-open-file-from-recentf
+    "aos" 'appine-rss
+    "aok" 'appine-kill
+    "aoc" 'appine-close-tab
+    "atl" 'global-command-log-mode
+    "ayl" 'ein:notebooklist-login
+    "ayo" 'ein:notebooklist-open
+    "ayr" 'ein:run
+    "ays" 'ein:stop
+
+    "bb"  'consult-buffer
+    "bd"  'kill-current-buffer
+    "bh"  'open-dashboard
+    "bi"  'consult-imenu
+    "bm"  'bookmark-set
+    "bj"  'bookmark-jump
+    "bl"  'xwidget-webkit-browse-url
+    "bI"  'ibuffer
+    "bp"  'previous-buffer
+    "bn"  'next-buffer
+    "bt"  'imenu-list-smart-toggle
+    "bs"  'switch-to-scratch-buffer
+
+    "ci" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "."  'evilnc-copy-and-comment-operator
+    "\\" 'evilnc-comment-operator ; if you prefer backslash key
+    "cp" 'compile
+
+    "ff"  'find-file
+    "fj"  'dired-jump
+    "fk"  'find-function-on-key
+    "fp"   'find-function-at-point
+    "fCd" 'unix2dos
+    "fCu" 'dos2unix
+    "fCp" 'copy-current-file
+    "fE"  'sudo-edit
+    "fd"  'trash-this-file
+    "fl"  'format-all-buffer
+    "ft"  'treemacs
+    "f."  'dirvish-side
+    "fo"  'open-file-or-directory-in-external-app
+    "fr"  'consult-recent-file
+    "fR"  'rename-this-file
+    "fs"  'save-buffer
+    "fa"  'save-some-buffers
+    "fyy" 'copy-file-name
+
+    "Fb"  'switch-to-buffer-other-frame
+    "FB"  'display-buffer-other-frame
+    "Fd"  'delete-frame
+    "FD"  'delete-other-frames
+    "Fn"  'make-frame
+    "Fo"  'other-frame
+    "FO"  'dired-other-frame
+    "Ff"  'find-file-other-frame
+
+    "gc"  'grab-mac-link-dwim
+    "gs"  'magit-status
+    "gt"  'git-timemachine
+    "gb"  'magit-blame
+    "gp"  'git-messenger:popup-message
+    "gl"  'avy-goto-line
+
+    "ge"  'gptel
+    "gd"  'gptel-send
+    "gm"  'gptel-menu
+
+    "hf"  'describe-function
+    "hk"  'describe-key
+    "hv"  'find-variable
+    "hp"  'describe-package
+
+    "il"  'org-insert-link-global ;; 不在org mode中使用https://orgmode.org/manual/Using-Links-Outside-Org.html
+    "ii"  'org-id-get-create
+    "it"  'insert-now-timestamp
+    "lo"  'link-hint-open-link
+    "lc"  'link-hint-copy-link
+    "ol"  'org-open-at-point-global
+
+    "nf"  'narrow-to-defun
+    "np"  'narrow-to-page
+    "nr"  'narrow-to-region
+    "nw"  'widen
+
+    ;; Project
+    "pb"  'project-switch-to-buffer
+    "pc"  'project-compile
+    "pd"  'project-find-dir
+    "pf"  'project-find-file
+    "pk"  'project-kill-buffers
+    "pp"  'project-switch-project
+    "pv"  'project-vc-dir
+    "px"  'project--remove-from-project-list
+
+    "po"  'poetry                       ;; Python poetry
+
+    "Pc"  'password-store-copy
+    "Pg"  'password-store-generate
+    "Pr"  'password-store-remove
+    "Pe"  'password-store-edit
+    "PR"  'password-store-rename
+    "Pi"  'password-store-insert
+    "Pu"  'password-store-url
+
+    "rn"  'cargo-process-new
+    "rs"  'restart-emacs
+    "rf"  'org-roam-node-find
+    "ri"  'org-roam-node-insert
+    "ra"  'org-roam-db-autosync-mode
+    "rl"  'org-roam-alias-add
+
+    "sa"  'mark-whole-buffer
+    "sp"  'consult-ripgrep
+    "ss"  'consult-line
+
+    "td"  'fanyi-dwim
+    "tg"  'gt-translate
+    "tp"  'gt-translate-prompt
+    "tt"  'insert-translated-name-insert
+    "tl"  'toggle-truncate-lines
+    "tw"  'toggle-frame-maximized
+    "tf"  'toggle-frame-fullscreen
+    "th"  'english-teacher-follow-mode
+    "tt"  'toggle-transparency
+    "ts"  'consult-theme
+
+    "ww"  'other-window
+    "wm"  'toggle-maximize-buffer
+    "wo"  'other-frame
+    "w/"  'split-window-right
+    "w-"  'split-window-below
+    "wd"  'delete-window
+    "w="  'balance-windows
+    "wh"  'evil-window-left
+    "wH"  'evil-window-move-far-left
+    "wl"  'evil-window-right
+    "wL"  'evil-window-move-far-right
+    "wj"  'evil-window-down
+    "wJ"  'evil-window-move-very-bottom
+    "wk"  'evil-window-up
+    "wK"  'evil-window-move-very-top
+
+    "v"   'er/expand-region
+
+    "xu"  'downcase-region
+    "xU"  'upcase-region
+    "u"   'downcase-word
+    "U"   'upcase-word
+
+    "yp"  'youdao-dictionary-search-at-point-posframe
+    "yi"  'youdao-dictionary-search-from-input
+    "yv"  'youdao-dictionary-play-voice-at-point
+    "ys"  'youdao-dictionary-play-voice-from-input
+
+    "qq"  'save-buffers-kill-terminal
+
+    "'"   'shell-pop-toggle
+    "TAB" 'switch-to-prev-buffer
+    )
+
   (evil-set-undo-system 'undo-redo)
   (evil-set-initial-state 'flycheck-error-list-mode 'normal)
   (evil-set-initial-state 'git-commit-mode 'insert)
