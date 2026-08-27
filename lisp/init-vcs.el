@@ -56,6 +56,8 @@
   :init (setq magit-diff-refine-hunk t
               git-commit-major-mode 'git-commit-elisp-text-mode)
   :config
+  (define-key magit-mode-map (kbd "SPC") nil)
+  (define-key magit-section-mode-map (kbd "SPC") nil)
   (setq magit-repository-directories '(("~/git/" . 2)
                                        ("~/.emacs.d" . 0))
         magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
