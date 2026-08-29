@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 261
+;;     Update #: 262
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -280,12 +280,7 @@ If FRAME is nil, it defaults to the selected frame."
 ;; Smooth scrolling
 (when (fboundp 'pixel-scroll-precision-mode) ;; 29+
   (use-package ultra-scroll
-    :functions (hl-todo-mode diff-hl-flydiff-mode)
-    :hook (after-init . ultra-scroll-mode)
-    :config
-    (add-hook 'ultra-scroll-hide-functions #'diff-hl-flydiff-mode)
-    (add-hook 'ultra-scroll-hide-functions #'hl-todo-mode)
-    (add-hook 'ultra-scroll-hide-functions #'jit-lock-mode)))
+    :hook (after-init . ultra-scroll-mode)))
 
 ;; Child frame
 (when (childframe-workable-p)
