@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 114
+;;     Update #: 116
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -134,7 +134,7 @@
 
   (setq devdocs-data-dir (expand-file-name "devdocs" user-emacs-directory))
 
-(defun devdocs-dwim()
+  (defun devdocs-dwim()
     "Look up a DevDocs documentation entry.
 
 Install the doc if it's not installed."
@@ -187,12 +187,17 @@ Install the doc if it's not installed."
   :hook ((prog-mode org-mode LaTeX-mode markdown-mode) . yas-minor-mode)
   :config (use-package yasnippet-snippets))
 
-(use-package treesit-auto
-  :commands (global-treesit-auto-mode)
-  :demand
-  :init (setq treesit-auto-install 'prompt
-              treesit-font-lock-level 4)
-  :config (global-treesit-auto-mode))
+(if (boundp 'treesit-enabled-modes)
+    ;; Built into Emacs 31+
+    (use-package treesit
+      :ensure nil
+      :custom (treesit-enabled-modes t))
+  (use-package treesit-auto
+    :commands (global-treesit-auto-mode)
+    :demand
+    :init (setq treesit-auto-install 'prompt
+                treesit-font-lock-level 4)
+    :config (global-treesit-auto-mode)))
 
 (provide 'init-prog)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
