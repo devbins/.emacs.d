@@ -122,7 +122,7 @@
     :protocol "http"
     :host "localhost:8000"
     :stream t
-    :models '((Qwen3.5-27B-Claude-4.6-Opus-Distilled-MLX-4bit :capabilities (media tool json))))
+    :models '((Qwen3.8-27B-4bit :capabilities (media tool json) :mime-types ("image/jpeg" "image/png" "image/webp" "image/heic" "image/heif" "text/plain" "text/csv" "text/html"))))
 
   (gptel-make-openai "bailian"
     :key (auth-source-pass-get 'secret "bailian")
