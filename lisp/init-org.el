@@ -739,7 +739,7 @@ prepended to the element after the #+HEADER: tag."
                     (url-generic-parse-url link)))))
             (dirname (concat "images/" (file-name-sans-extension (buffer-name)))))
         (unless (file-exists-p dirname)
-          (make-directory dirname))
+          (make-directory dirname t))
         (expand-file-name filename dirname)))
     (setq org-download-method 'my-org-download-method)
     (setq org-download-display-inline-images 'posframe
