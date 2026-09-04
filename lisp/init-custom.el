@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 68
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -90,8 +90,7 @@
          (set symbol value)
          (setq package-archives
                (or (alist-get value package-archives-alist)
-                   (error "Unknown package archives: `%s'" value)))
-         (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t))
+                   (error "Unknown package archives: `%s'" value))))
   :type `(choice ,@(mapcar
                     (lambda (item)
                       (let ((name (car item)))
