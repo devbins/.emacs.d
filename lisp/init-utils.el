@@ -297,6 +297,7 @@
   (advice-add 'holo-layer-get-emacs-frame-info :around #'holo-layer-mac-get-window-info))
 
 (use-package animation
+  :if sys/macp
   :load-path "site-lisp/animation"
   :init
   (require 'ripple-click)
