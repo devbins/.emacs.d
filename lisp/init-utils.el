@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 345
+;;     Update #: 348
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -305,12 +305,14 @@
   (bracket-lightning-mode))
 
 (use-package lolipop
+  :if sys/macp
   :load-path "site-lisp/lolipop"
   :config
   (require 'lolipop-mode)
   (lolipop-mode))
 
 (use-package appine
+  :if sys/macp
   :commands (appine appine-open-url appine-open-file appine-open-file-from-recentf appine-rss appine-grab-url)
   :load-path "site-lisp/appine"
   :config (setq appine-rss-path (expand-file-name "elfeed-feeds.org" user-emacs-directory)))
