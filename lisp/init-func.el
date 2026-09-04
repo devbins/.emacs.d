@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 82
+;;     Update #: 84
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,7 +138,7 @@ Same as `replace-string C-q C-m RET RET'."
 (defun copy-file-name ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
-  (if-let ((filename (if (equal major-mode 'dired-mode)
+  (if-let* ((filename (if (equal major-mode 'dired-mode)
                          default-directory
                        (buffer-file-name))))
       (progn

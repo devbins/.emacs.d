@@ -1236,7 +1236,7 @@ same directory as the org-buffer and insert a link to this file."
        (org-roam-node-title node))))
 
   (cl-defmethod org-roam-node-directories ((node org-roam-node))
-    (if-let ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
+    (if-let* ((dirs (file-name-directory (file-relative-name (org-roam-node-file node) org-roam-directory))))
         (format "(%s)" (directory-file-name dirs))
       ""))
 
