@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 26
+;;     Update #: 27
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -144,6 +144,8 @@
 ;; Better terminal emulator
 (unless sys/win32p
   (use-package ghostel
+    :custom
+    (ghostel-module-directory (locate-user-emacs-file ".cache"))
     :hook (eshell-load . ghostel-eshell-visual-command-mode)
     :config (use-package evil-ghostel
               :after (ghostel evil)
