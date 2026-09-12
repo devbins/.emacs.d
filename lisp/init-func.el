@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 84
+;;     Update #: 85
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -111,7 +111,7 @@ Same as `replace-string C-q C-m RET RET'."
     (error "No file is currently being edited"))
   (when (yes-or-no-p (format "Really trash '%s'?" (file-name-nondirectory buffer-file-name)))
     (move-file-to-trash (buffer-file-name))
-    (kill-this-buffer)))
+    (kill-current-buffer)))
 
 (defun rename-this-file (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
