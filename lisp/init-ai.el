@@ -367,6 +367,16 @@
           agent-shell-pet-speech-bubble-theme 'light
           agent-shell-pet-size 'medium)))
 
+(use-package dsh-emacs
+  :load-path "site-lisp/dsh-emacs"
+  :commands (dsh-emacs dsh-emacs-new-session)
+  :custom
+  (dsh-emacs-base-url "http://127.0.0.1:3080") ; server address
+  (dsh-emacs-default-preset "code")           ; preset for new sessions
+  :bind (("C-x d" . dsh-emacs)
+         :map dsh-emacs-mode-map
+         ("C-c C-a" . dsh-emacs-attach-file)))
+
 (provide 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-ai.el ends here
