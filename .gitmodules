@@ -88,3 +88,6 @@
 [submodule "appine"]
 	path = site-lisp/appine
 	url = https://github.com/devbins/appine.git
+[submodule "dsh-emacs"]
+	path = site-lisp/dsh-emacs
+	url = https://github.com/vritser/dsh-emacs.git
