@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 313
+;;     Update #: 314
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -174,7 +174,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
     "FB"  'display-buffer-other-frame
     "Fd"  'delete-frame
     "FD"  'delete-other-frames
-    "Fn"  'make-frame
+    "Fn"  'make-fullscreen-frame
     "Fo"  'other-frame
     "FO"  'dired-other-frame
     "Ff"  'find-file-other-frame
