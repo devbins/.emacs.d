@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 85
+;;     Update #: 89
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -382,6 +382,11 @@ confirmation."
   "Insert current timestamp in format %Y-%m-%d %H:%M"
   (interactive)
   (insert (format-time-string "%Y-%m-%d %H:%M" (current-time))))
+
+(defun make-fullscreen-frame ()
+  "Make fullscreen frame."
+  (interactive)
+  (make-frame '((fullscreen . maximized))))
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
