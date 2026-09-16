@@ -91,3 +91,6 @@
 [submodule "dsh-emacs"]
 	path = site-lisp/dsh-emacs
 	url = https://github.com/vritser/dsh-emacs.git
+[submodule "textui"]
+	path = site-lisp/textui
+	url = https://github.com/yibie/textui
