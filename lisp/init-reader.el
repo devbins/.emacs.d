@@ -224,6 +224,13 @@
         calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
         calibredb-format-nerd-icons t))
 
+(use-package epub-reader
+  :load-path "site-lisp/textui")
+
+(use-package epub-reader
+  :commands (epub-reader-open)
+  :load-path "site-lisp/epub-reader")
+
 (provide 'init-reader)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; reader.el ends here
