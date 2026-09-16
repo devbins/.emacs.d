@@ -94,3 +94,6 @@
 [submodule "textui"]
 	path = site-lisp/textui
 	url = https://github.com/yibie/textui
+[submodule "epub-reader"]
+	path = site-lisp/epub-reader
+	url = https://github.com/yibie/epub-reader
