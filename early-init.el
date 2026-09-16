@@ -69,6 +69,12 @@
 ;; It must be set before loading `use-package'.
 (setq use-package-enable-imenu-support t)
 
+;; Cache the contents of `load-path' directories so library loading can skip
+;; directories that cannot contain the requested file (Emacs 31+).
+(when (boundp 'load-path-filter-function)
+  (setq load-path-filter-function
+        #'load-path-filter-cache-directory-files))
+
 ;; In noninteractive sessions, prioritize non-byte-compiled source files to
 ;; prevent the use of stale byte-code. Otherwise, it saves us a little IO time
 ;; to skip the mtime checks on every *.elc file.
