@@ -28,9 +28,6 @@
 [submodule "dictionary-overlay"]
 	path = site-lisp/dictionary-overlay
 	url = https://github.com/ginqi7/dictionary-overlay
-[submodule "holo-layer"]
-	path = site-lisp/holo-layer
-	url = https://github.com/manateelazycat/holo-layer.git
 [submodule "emacs-anki-helper"]
 	path = site-lisp/emacs-anki-helper
 	url = https://github.com/Elilif/emacs-anki-helper.git
