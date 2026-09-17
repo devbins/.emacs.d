@@ -281,22 +281,6 @@
   :load-path "site-lisp/color-rg"
   :commands (color-rg-search-input color-rg-search-symbol color-rg-search-input-in-project color-rg-search-symbol-in-project color-rg-search-symbol-in-current-file color-rg-search-input-in-current-file color-rg-search-project-rails color-rg-search-symbol-with-type color-rg-search-project-with-type color-rg-search-project-rails-with-type))
 
-(use-package holo-layer
-  :load-path "site-lisp/holo-layer"
-  :commands (holo-layer-enable)
-  :hook (after-init . holo-layer-enable)
-  :init
-  (setq holo-layer-type-animation-style "lightning"
-        holo-layer-enable-cursor-animation t
-        holo-layer-enable-type-animation nil)
-  :config
-  (defun holo-layer-mac-get-window-info (orig-fn &rest args)
-    (if (memq (frame-parameter (car args) 'fullscreen)
-              '(fullscreen fullboth maximized))
-        (list 0 38 (frame-pixel-width) (frame-pixel-height) 0)
-      (apply orig-fn args)))
-  (advice-add 'holo-layer-get-emacs-frame-info :around #'holo-layer-mac-get-window-info))
-
 (use-package animation
   :if sys/macp
   :load-path "site-lisp/animation"
