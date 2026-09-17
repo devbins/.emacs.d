@@ -293,9 +293,9 @@
 (use-package lolipop
   :if sys/macp
   :load-path "site-lisp/lolipop"
+  :hook (after-init . lolipop-mode)
   :config
-  (require 'lolipop-mode)
-  (lolipop-mode))
+  (require 'lolipop-mode))
 
 (use-package appine
   :if sys/macp
