@@ -284,11 +284,10 @@
 (use-package animation
   :if sys/macp
   :load-path "site-lisp/animation"
+  :hook (after-init . (lambda () (progn (ripple-click-mode) (bracket-lightning-mode))))
   :init
   (require 'ripple-click)
-  (ripple-click-mode)
-  (require 'bracket-lightning)
-  (bracket-lightning-mode))
+  (require 'bracket-lightning))
 
 (use-package lolipop
   :if sys/macp
