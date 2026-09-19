@@ -348,6 +348,7 @@
          ("M-RET" . newline))
   :config
   (setq agent-shell-anthropic-claude-environment (my-llm-get-env-for-agent-shell)
+        agent-shell-show-usage-at-turn-end t
         agent-shell-prefer-viewport-interaction t)
   (use-package agent-shell-macext
     :if sys/macp
@@ -371,7 +372,6 @@
   :commands (dsh-emacs dsh-emacs-new-session)
   :custom
   (dsh-emacs-base-url "http://127.0.0.1:3080") ; server address
-  (dsh-emacs-default-preset "code")           ; preset for new sessions
   :bind (("C-x d" . dsh-emacs)
          :map dsh-emacs-mode-map
          ("C-c C-a" . dsh-emacs-attach-file)))
