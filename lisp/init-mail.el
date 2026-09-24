@@ -191,6 +191,7 @@
           )))
 
 (use-package mu4e-alert
+  :after mu4e
   :config
   (when (executable-find "notify-send")
     (mu4e-alert-set-default-style 'libnotify))
@@ -198,7 +199,8 @@
   ((after-init . mu4e-alert-enable-notifications)
    (after-init . mu4e-alert-enable-mode-line-display)))
 
-(use-package mu4e-overview)
+(use-package mu4e-overview
+  :after mu4e)
 (use-package mu4e-thread-folding
   :load-path "site-lisp/mu4e-thread-folding"
   :after mu4e
