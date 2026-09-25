@@ -1,4 +1,4 @@
-;;; early-init.el ---
+;;; early-init.el ---  -*- lexical-binding: t; -*-
 ;;
 ;; Filename: early-init.el
 ;; Description:
