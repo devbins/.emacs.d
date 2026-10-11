@@ -139,14 +139,13 @@
 
   (gptel-make-openai "modelscope"
     :key (auth-source-pass-get 'secret "modelscope")
-    :models '(Qwen/Qwen3.5-397B-A17B
-              Qwen/Qwen3-Next-80B-A3B-Instruct
-              Qwen/Qwen3-Coder-480B-A35B-Instruct
-              deepseek-ai/DeepSeek-V4-Pro
-              deepseek-ai/DeepSeek-V4-Flash
-              ZhipuAI/GLM-5.1
-              MiniMax/MiniMax-M2.7
-              moonshotai/Kimi-K2.5)
+    :models '(Qwen/Qwen3.8-Flash-Next
+              Qwen/Qwen3.8-27B
+              deepseek-ai/DeepSeek-V4.1-Flash
+              deepseek-ai/DeepSeek-V4-Pro-0813
+              ZhipuAI/GLM-5.3
+              ZhipuAI/GLM-5.3-Flash
+              moonshotai/Kimi-K3)
     :host "api-inference.modelscope.cn"
     :stream t)
 
