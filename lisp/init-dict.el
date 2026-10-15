@@ -78,8 +78,9 @@
           (window-height . 0.4)))
 
   (setq gt-pop-posframe-forecolor (face-foreground 'tooltip nil t)
-        gt-pop-posframe-backcolor (face-background 'tooltip nil t)
-        gt-pin-posframe-bdcolor (face-background 'posframe-border nil t))
+        gt-pop-posframe-backcolor (face-background 'tooltip nil t))
+  (when (display-graphic-p)
+    (setq gt-pin-posframe-bdcolor (face-background 'posframe-border nil t)))
   (setq gt-preset-translators
         `((default . ,(gt-translator
                        :taker   (list (gt-taker :pick nil :if 'selection)
