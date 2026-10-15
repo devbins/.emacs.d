@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 20
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,7 +58,7 @@
             `(:left-fringe 8
               :right-fringe 8
               :internal-border-width 2
-              :internal-border-color ,(face-background 'posframe-border nil t)
+              :internal-border-color ,(face-background (if (facep 'child-frame-border) 'child-frame-border 'posframe-border) nil t)
               :background-color ,(face-background 'tooltip nil t)
               :lines-truncate t
               :poshandler posframe-poshandler-frame-center-near-bottom)))
