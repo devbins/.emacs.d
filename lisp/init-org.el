@@ -313,6 +313,12 @@ prepended to the element after the #+HEADER: tag."
     :hook ((org-mode markdown-mode) . valign-mode)
     :init (setq valign-fancy-bar t))
 
+  (use-package org-modern-indent
+    :load-path "site-lisp/org-modern-indent"
+    :commands (org-modern-indent-mode)
+    :after org
+    :hook (org-mode . (lambda () (org-modern-indent-mode 90))))
+
   ;; Show hidden emphasis markers
   (use-package org-appear
     :commands (org-appear-manual-start org-appear-manual-stop)
