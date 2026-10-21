@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 1134
+;;     Update #: 1161
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,7 +138,6 @@ prepended to the element after the #+HEADER: tag."
               org-tags-column 0
               org-catch-invisible-edits 'show-and-error
               org-log-done 'notevery
-              org-html-checkbox-type 'unicode
 
               prettify-symbols-unprettify-at-point t
               org-log-into-drawer t
