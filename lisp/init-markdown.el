@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 37
+;;     Update #: 62
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -202,6 +202,27 @@ mermaid.initialize({
 ;;             (inline_link (link_text) @link)
 ;;             (inline_link (link_destination) @font-lock-comment-face)
 ;;             (shortcut_link (link_text) @link)]))))
+
+(use-package markdown-ts-mode
+  :ensure nil
+  :mode ("\\.md\\'" "\\.mdx\\'" "\\.markdown\\'")
+  :bind (:map markdown-ts-mode-map ("<tab>" . markdown-cycle))
+  :custom
+  (markdown-ts-ellipsis " ⌄")
+  (markdown-ts-inline-images t)
+  :config (require 'markdown-ts-mode-x))
+
+(use-package markdown-ts-appear
+  :hook (markdown-ts-mode . markdown-ts-appear-mode)
+  :config (setopt markdown-ts-appear-enable-math-preview t
+                  markdown-ts-appear-mathjax-edit-preview t
+                  markdown-ts-table-auto-align t
+                  markdown-ts-appear-diagram-renderers '(("mermaid" . markdown-ts-appear-diagram-mmdc))))
+
+(use-package mathjax
+  :after markdown-ts-appear-mode
+  :custom
+  (markdown-ts-appear-enable-math-preview t))
 
 (provide 'init-markdown)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
