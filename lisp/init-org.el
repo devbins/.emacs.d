@@ -313,6 +313,9 @@ prepended to the element after the #+HEADER: tag."
     :hook ((org-mode markdown-mode) . valign-mode)
     :init (setq valign-fancy-bar t))
 
+  (use-package org-block-decorate
+    :load-path "site-lisp/org-block-decorate"
+    :hook (org-mode . org-block-decorate--setup))
   ;; Show hidden emphasis markers
   (use-package org-appear
     :commands (org-appear-manual-start org-appear-manual-stop)
