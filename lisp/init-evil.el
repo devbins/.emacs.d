@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 316
+;;     Update #: 318
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -117,6 +117,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
     "aoa" 'org-agenda-list
     "aoc" 'org-capture
     "aot" 'org-todo-list
+    "app" 'appine
     "aol" 'appine-open-url
     "aof" 'appine-open-file
     "aor" 'appine-open-file-from-recentf
