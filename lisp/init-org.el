@@ -170,7 +170,7 @@ prepended to the element after the #+HEADER: tag."
               org-use-sub-superscripts '{}
 
               org-ditaa-jar-path (concat user-emacs-directory "ditaa.jar")
-              org-startup-indented t
+              ;; org-startup-indented t
               org-startup-folded    'show2levels
               org-adapt-indentation t
               org-indent-mode-turns-off-org-adapt-indentation nil
