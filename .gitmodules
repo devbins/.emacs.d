@@ -94,3 +94,6 @@
 [submodule "epub-reader"]
 	path = site-lisp/epub-reader
 	url = https://github.com/yibie/epub-reader
+[submodule "org-modern-indent"]
+	path = site-lisp/org-modern-indent
+	url = https://github.com/jdtsmith/org-modern-indent
