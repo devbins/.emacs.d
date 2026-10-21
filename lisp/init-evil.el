@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 314
+;;     Update #: 316
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -189,6 +189,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
     "ge"  'gptel
     "gd"  'gptel-send
     "gm"  'gptel-menu
+    "gr"  'gptel-rewrite
 
     "hf"  'describe-function
     "hk"  'describe-key
