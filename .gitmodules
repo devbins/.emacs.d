@@ -94,3 +94,6 @@
 [submodule "epub-reader"]
 	path = site-lisp/epub-reader
 	url = https://github.com/yibie/epub-reader
+[submodule "org-block-decorate"]
+	path = site-lisp/org-block-decorate
+	url = https://github.com/devbins/org-block-decorate.git
