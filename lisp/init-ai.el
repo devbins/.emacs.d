@@ -141,11 +141,10 @@
     :key (auth-source-pass-get 'secret "modelscope")
     :models '(Qwen/Qwen3.8-Flash-Next
               Qwen/Qwen3.8-27B
-              deepseek-ai/DeepSeek-V4.1-Flash
+              deepseek-ai/DeepSeek-V4.1-Flash-1017
               deepseek-ai/DeepSeek-V4-Pro-0813
-              ZhipuAI/GLM-5.3
               ZhipuAI/GLM-5.3-Flash
-              moonshotai/Kimi-K3)
+              ZhipuAI/GLM-5.2)
     :host "api-inference.modelscope.cn"
     :stream t)
 
