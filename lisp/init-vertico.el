@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 212
+;;     Update #: 214
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -105,7 +105,7 @@ matches case insensitively."
                      (pinyinlib-build-regexp-string (substring input 1))
                    input)))
     (cons (mapcar (lambda (x) (consult--convert-regexp x type)) input)
-          (when-let (regexps (seq-filter #'consult--valid-regexp-p input))
+          (when-let* ((regexps (seq-filter #'consult--valid-regexp-p input)))
             (apply-partially #'consult--highlight-regexps regexps ignore-case))))
 
   (advice-add 'consult--default-regexp-compiler :override #'my--consult-py-regexp-compiler))
