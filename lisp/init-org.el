@@ -174,7 +174,6 @@ prepended to the element after the #+HEADER: tag."
               org-startup-folded    'show2levels
               org-adapt-indentation t
               org-indent-mode-turns-off-org-adapt-indentation nil
-              org-indent-indentation-per-level 0
               org-startup-truncated nil
               org-ellipsis (if (char-displayable-p ?⤵) "  ⤵" "  ▼")
               org-tag-alist (quote ((:startgroup)
@@ -315,7 +314,7 @@ prepended to the element after the #+HEADER: tag."
 
   (use-package org-block-decorate
     :load-path "site-lisp/org-block-decorate"
-    :hook (org-mode . org-block-decorate--setup))
+    :hook (org-mode . org-block-decorate-mode))
 
   ;; Show hidden emphasis markers
   (use-package org-appear
