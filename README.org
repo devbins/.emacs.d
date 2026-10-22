@@ -289,11 +289,11 @@
        - 环境变量使用 env， =:env ["OPEN_API_KEY" "xxxx"]=
 
     4. 运行
-       =M-x dape=
+       使用 =M-x dape= 打开调试
 
     5. 调试前顺便编译一下
-       =lldb-dap :args ["-a" "123"] compile "llvm-g++ -g=
-       不要忘记 =-g= ，少了就没有调试信息，就不能调试了
+       编译的指令是 =lldb-dap :args ["-a" "123"] compile "llvm-g++ -g main.cpp"= 。
+       不要忘记 =-g= ，少了就没有调试信息，就不能调试了。
 *** js
     1. 安装 vscode-js-debug
        到[[https://github.com/microsoft/vscode-js-debug/releases][Releases · microsoft/vscode-js-debug]]下载最新的 Release
@@ -303,7 +303,8 @@
        #+end_src
 
     2. 运行
-       =M-x dape=
+       还是 =M-x dape= 打开调试
+
 ** 播放音乐
    音乐播放依赖 =mplayer= ，使用之前需要安装，可以通过如下方式安装
    #+begin_src sh
@@ -320,24 +321,25 @@
    #+end_src
 
 ** PDF
-   | 快捷键 | 描述                   | 对应函数                        |
-   |--------+------------------------+---------------------------------|
-   | C-w    | 复制选中的内容到剪切板 | =pdf-view-kill-ring-save=         |
-   | j      | 往下滚动               | =pdf-view-next-line-or-next-page= |
-   | k      | 往上滚动               | =pdf-view-previous-line-or-previous-page=                   |
+   | 快捷键 | 描述                   | 对应函数                                |
+   |--------+------------------------+-----------------------------------------|
+   | C-w    | 复制选中的内容到剪切板 | =pdf-view-kill-ring-save=                 |
+   | j      | 往下滚动               | =pdf-view-next-line-or-next-page=         |
+   | k      | 往上滚动               | =pdf-view-previous-line-or-previous-page= |
 
 ** mermaid
    #+begin_src mermaid
    sequenceDiagram
        A-->B: Works!
    #+end_src
-    
+   
 ** 安装字体 
 *** Mac
     #+begin_src sh
     brew tap homebrew/cask-fonts
     brew install --cask font-jetbrains-mono
     #+end_src
+
 *** Manjaro
     #+begin_src sh
     sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
