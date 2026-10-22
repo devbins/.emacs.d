@@ -51,12 +51,12 @@
   :hook ((gptel-post-stream . gptel-auto-scroll)
          (gptel-post-response-functions . gptel-end-of-response))
   :config
-  (setq gptel-model 'qwen3:14b
-        gptel-backend (gptel-make-ollama "Ollama"
+  (setq gptel-model 'qwen3.8:27b-mlx
+        gptel-backend (gptel-make-openai "Ollama"
+                        :protocol "http"
                         :host "localhost:11434"
-                        :models '(deepseek-r1:14b
-                                  (qwen3:14b :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
-                                             :capabilities (tool json))
+                        :models '((qwen3.8:27b-mlx :description "Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models."
+                                             :capabilities (tool json media))
                                   (deepseek-ocr:latest :description "DeepSeek-OCR is a vision-language model that can perform token-efficient OCR." :capabilities (json media) :mime-types ("image/jpeg" "image/png"))
                                   (gemma4:latest :description "Gemma 4 models are designed to deliver frontier-level performance at each size. They are well-suited for reasoning, agentic workflows, coding, and multimodal understanding."
                                                  :capabilities (json media)
