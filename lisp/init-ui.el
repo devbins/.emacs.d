@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 262
+;;     Update #: 267
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -231,27 +231,23 @@ If FRAME is nil, it defaults to the selected frame."
 ;; Fonts
 (when (display-graphic-p)
   ;; Set default font
-  (cl-loop for font in '("SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
+  (cl-loop for font in '("Maple Mono NF CN" "Iosevka Mono" "LXGW WenKai Mono" "Sarasa Mono SC" "SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
                          "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
-           return (set-face-attribute 'default nil :font
-                                      (format "%s:pixelsize=%d" font 16)))
+           return (set-face-attribute 'default nil :font (font-spec :family font :slant 'italic :size 16)))
 
-  ;; Specify font for all unicode characters
-  (cl-loop for font in '("Apple Symbols" "Symbola" "Symbol" "icons-in-terminal")
+  (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol" "icons-in-terminal")
            when (font-installed-p font)
-           return (set-fontset-font t 'unicode font nil 'prepend))
+           return (set-fontset-font t 'symbol (font-spec :family font) nil 'prepend))
 
-  (cl-loop for font in '("Apple Color Emoji")
+  (cl-loop for font in '("Noto Color Emoji" "Apple Color Emoji" "Segoe UI Emoji")
            when (font-installed-p font)
-           return (set-fontset-font t 'symbol font nil 'prepend))
+           return (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend))
 
   ;; Specify font for Chinese characters
-  (cl-loop for font in '("STKaiti" "Xingkai SC" "LingWai SC" "HanziPen SC" "WenQuanYi Micro Hei" "Microsoft Yahei")
+  (cl-loop for font in '("Maple Mono NF CN" "LXGW WenKai Mono" "STKaiti" "Xingkai SC" "LingWai SC" "HanziPen SC" "WenQuanYi Micro Hei" "Microsoft Yahei")
            when (font-installed-p font)
-           return (dolist (charset '(kana han symbol cjk-misc bopomofo))
-                    (set-fontset-font (frame-parameter nil 'font) charset
-                                      (font-spec :family font)))))
+           return (dolist (charset '(han symbol bopomofo kana)) (set-fontset-font t charset (font-spec :family font)))))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
 
