@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 70
+;;     Update #: 71
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -182,7 +182,11 @@
     ("#+end_src" . ?□)
     ("#+BEGIN_QUOTE" . ?»)
     ("#+END_QUOTE" . ?«)
+    ("#+END_QUOTE" . ?«)
+    ("#+begin_example" . ?⌸)
+    ("#+end_example" . ?⌸)
     ("#+HEADERS" . ?☰)
+    ("#+caption:" . ?☰)
     ("#+RESULTS:" . ?💻)
     ("#+attr_latex:"    . "🄛")
 	("#+attr_html:"     . "🄗")
