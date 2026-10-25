@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 214
+;;     Update #: 217
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -200,17 +200,7 @@ matches case insensitively."
   (consult-customize consult-goto-line :preview-key 'any
                      consult-theme :preview-key '(:debounce 0.5 "<up>" "<down>")
                      consult-line consult-line-multi consult-ripgrep consult-git-grep consult-grep
-                     :initial (selected-region-or-symbol-at-point))
-  (defvar-local consult-toggle-preview-orig nil)
-  (defun consult-toggle-preview ()
-    "Command to enable/disable preview."
-    (interactive)
-    (if consult-toggle-preview-orig
-        (setq consult--preview-function consult-toggle-preview-orig
-              consult-toggle-preview-orig nil)
-      (setq consult-toggle-preview-orig consult--preview-function
-            consult--preview-function #'ignore)))
-  (define-key vertico-map (kbd "M-P") #'consult-toggle-preview))
+                     :initial (selected-region-or-symbol-at-point)))
 
 (use-package consult-yasnippet
   :after (consult yasnippet)
