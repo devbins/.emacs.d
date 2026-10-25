@@ -198,7 +198,7 @@ matches case insensitively."
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
   (consult-customize consult-goto-line :preview-key 'any
-                     consult-theme :preview-key '(:debounce 0.5 "<up>" "<down>")
+                     consult-theme :preview-key '(:debounce 0.5 "<up>" "<down>" "C-n" "C-p")
                      consult-line consult-line-multi consult-ripgrep consult-git-grep consult-grep
                      :initial (selected-region-or-symbol-at-point)))
 
