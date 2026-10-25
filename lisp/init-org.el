@@ -1001,20 +1001,6 @@ prepended to the element after the #+HEADER: tag."
     :load-path "site-lisp/hurl-mode"
     :mode "\\.hurl\\'")
 
-  ;; Async src_block execution
-  ;; usage: begin_src sh :async
-  (use-package ob-async
-    :disabled
-    :config
-    (setq ob-async-no-async-languages-alist '("ipython"
-                                              "jupyter-python"
-                                              "jupyter-julia"
-                                              "jupyter-R"
-                                              "jupyter-javascript"))
-
-    (setq org-babel-default-header-args:jupyter-python '((:async . "yes")
-                                                         (:session . "py"))))
-
   (use-package ob-kotlin
     :init (cl-pushnew '(kotlin . t) load-language-list))
 
