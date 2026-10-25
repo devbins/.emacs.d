@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 35
+;;     Update #: 36
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -82,14 +82,6 @@
 
 ;; Update GPG keyring for GNU ELPA
 (use-package gnu-elpa-keyring-update)
-
-(use-package no-littering
-  :ensure t
-  :demand t
-  :config
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-  (load custom-file 'noerror))
-
 
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

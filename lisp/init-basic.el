@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 58
+;;     Update #: 59
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -273,8 +273,8 @@
   (add-hook 'window-setup-hook #'fix-fullscreen-cocoa)
   (bind-keys ("C-<f11>" . toggle-frame-fullscreen)))
 
-;; (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;; (load custom-file 'no-error 'no-message)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'no-error 'no-message)
 
 (provide 'init-basic)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
