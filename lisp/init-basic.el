@@ -204,7 +204,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default major-mode 'text-mode
               fill-column 120
-              line-spacing 2
+              line-spacing 0
               tab-width 4
               word-wrap nil
               word-wrap-by-category t
