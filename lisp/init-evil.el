@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 318
+;;     Update #: 319
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -378,6 +378,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
 
 (use-package evil-collection
   :custom (evil-collection-setup-minibuffer t)
+  (evil-collection-key-blacklist '("SPC"))
   :commands (evil-collection-init)
   :after evil
   :init
