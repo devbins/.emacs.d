@@ -779,17 +779,10 @@ prepended to the element after the #+HEADER: tag."
     :disabled)
 
   (use-package evil-org
-    :after org
-    :diminish
     :init
-    (setq evil-org-use-additional-insert t
-          evil-org-key-theme `(textobjects
-                               navigation
-                               additional
-                               ,@(when t '(todo))))
-    :hook (org-mode . (lambda ()
-                        (evil-org-mode)
-                        (evil-normalize-keymaps))))
+    (setq evil-org-use-additional-insert t)
+    :hook (org-mode . evil-org-mode)
+    :config (setopt evil-org-key-theme '(textobjects navigation additional todo)))
 
   (use-package auto-space-mode
     :ensure nil
