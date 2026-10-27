@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 267
+;;     Update #: 271
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -234,7 +234,7 @@ If FRAME is nil, it defaults to the selected frame."
   (cl-loop for font in '("Maple Mono NF CN" "Iosevka Mono" "LXGW WenKai Mono" "Sarasa Mono SC" "SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
                          "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
-           return (set-face-attribute 'default nil :font (font-spec :family font :slant 'italic :size 16)))
+           return (set-face-attribute 'default nil :font (font-spec :family font :slant 'italic :size 18)))
 
   (cl-loop for font in '("Apple Symbols" "Segoe UI Symbol" "Symbola" "Symbol" "icons-in-terminal")
            when (font-installed-p font)
@@ -245,9 +245,9 @@ If FRAME is nil, it defaults to the selected frame."
            return (set-fontset-font t 'emoji (font-spec :family font) nil 'prepend))
 
   ;; Specify font for Chinese characters
-  (cl-loop for font in '("Maple Mono NF CN" "LXGW WenKai Mono" "STKaiti" "Xingkai SC" "LingWai SC" "HanziPen SC" "WenQuanYi Micro Hei" "Microsoft Yahei")
+  (cl-loop for font in '("LXGW WenKai Mono" "Maple Mono NF CN" "STKaiti" "Xingkai SC" "LingWai SC" "HanziPen SC" "WenQuanYi Micro Hei" "Microsoft Yahei")
            when (font-installed-p font)
-           return (dolist (charset '(han symbol bopomofo kana)) (set-fontset-font t charset (font-spec :family font)))))
+           return (dolist (charset '(han symbol bopomofo kana)) (set-fontset-font t charset (font-spec :family font :slant 'normal)))))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
 
