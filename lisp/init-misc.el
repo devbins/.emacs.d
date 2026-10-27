@@ -47,7 +47,6 @@
 ;;; Code:
 
 (use-package aria2
-  :defer t
   :commands aria2-downloads-list
   :config
   (setq aria2-download-directory (expand-file-name "~/Downloads"))
