@@ -152,6 +152,7 @@
         insert-translated-name-ollama-model-name "qwen3:14b"))
 
 (use-package anki-editor
+  :commands (anki-editor-insert-note)
   :load-path "site-lisp/anki-editor")
 
 (use-package paw
