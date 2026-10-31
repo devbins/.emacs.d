@@ -1317,7 +1317,12 @@ same directory as the org-buffer and insert a link to this file."
 
   (use-package org-roam-bibtex
     :hook (org-roam-mode . org-roam-bibtex-mode)
-    :bind (:map org-mode-map (("C-c n a" . orb-note-actions)))))
+    :bind (:map org-mode-map (("C-c n a" . orb-note-actions))))
+
+  (use-package org-roam-gt
+    :init
+    (require 'org-roam-gt-transient)
+    (org-roam-gt-mode)))
 
 (use-package org-remark
   :bind (;; :bind keyword also implicitly defers org-remark itself.
