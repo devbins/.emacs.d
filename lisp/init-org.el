@@ -430,7 +430,7 @@ prepended to the element after the #+HEADER: tag."
     :config
     (add-to-list 'org-latex-classes
                  '("cn-article"
-                   "\\documentclass[UTF8,a4paper]{ctexart}" ;; nofonts 是 luaLatex 的要求，使用系统字体
+                   "\\documentclass[UTF8,a4paper,nofonts]{ctexart}" ;; nofonts 是 luaLatex 的要求，使用系统字体
                    ("\\section{%s}" . "\\section*{%s}")
                    ("\\subsection{%s}" . "\\subsection*{%s}")
                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -449,9 +449,9 @@ prepended to the element after the #+HEADER: tag."
           ;; org-latex-image-default-height "0.9\\textheight"
           ;; org-latex-image-default-width "\\linewidth"
           org-latex-image-actual-width "0.7\\textwidth"
-          org-latex-pdf-process '("latexmk -f -xelatex -shell-escape -output-directory=%o %F")
+          org-latex-pdf-process '("latexmk -f -lualatex -shell-escape -output-directory=%o %F") ;; latexmk -f -xelatex -shell-escape -output-directory=%o %F
           org-latex-src-block-backend 'minted ;; 使用 Listings 宏包格式化源代码(只是把代码框用 listing 环境框起来，还需要额外的设置)
-          org-latex-compiler "xelatex"
+          org-latex-compiler "lualatex" ;; xelatex
           org-latex-tables-booktabs t ;; 三线表
           org-latex-hyperref-template "\\hypersetup{hidelinks}")
 
