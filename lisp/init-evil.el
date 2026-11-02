@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 321
+;;     Update #: 322
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -405,11 +405,7 @@ if LOCALLEADER is nil, otherwise \"<localleader>\"."
   :hook (after-init . evil-lion-mode))
 
 (use-package evil-surround
-  :commands
-  (evil-surround-edit
-   evil-Surround-edit
-   evil-surround-region
-   evil-Surround-region)
+  :commands (evil-surround-edit evil-Surround-edit evil-surround-region evil-Surround-region)
   :config
   (evil-define-key 'operator global-map "s" 'evil-surround-edit)
   (evil-define-key 'operator global-map "S" 'evil-Surround-edit)
