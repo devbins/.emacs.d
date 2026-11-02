@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 319
+;;     Update #: 321
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,7 +69,9 @@
         evil-want-change-word-to-end t)
   :config
   (evil-set-leader 'normal (kbd "SPC"))
+  (evil-set-leader 'visual (kbd "SPC"))
   (evil-set-leader 'normal (kbd "<leader>m") :localleader)
+  (evil-set-leader 'visual (kbd "<leader>m") :localleader)
 
   (defun define-leader-key (state map localleader &rest bindings)
     "Define leader key in MAP when STATE, a wrapper for
