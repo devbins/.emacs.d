@@ -782,7 +782,7 @@ prepended to the element after the #+HEADER: tag."
     :init
     (setq evil-org-use-additional-insert t)
     :hook (org-mode . evil-org-mode)
-    :config (setopt evil-org-key-theme '(textobjects navigation additional todo)))
+    :config (setopt evil-org-key-theme '(navigation insert textobjects additional calendar todo)))
 
   (use-package auto-space-mode
     :ensure nil
