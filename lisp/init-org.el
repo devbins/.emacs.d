@@ -409,6 +409,8 @@ prepended to the element after the #+HEADER: tag."
   (setq org-latex-packages-alist '(
                                    ("" "amsmath"   t)
                                    ("" "amssymb"   t)
+                                   ("" "emoji" t)          ; lua 原生支持更好
+                                   ("" "luacode" t)        ; lua 代码
                                    ("" "graphicx" t)
                                    ("" "booktabs")
                                    ("" "physics2" t) ;; 带了 bm
