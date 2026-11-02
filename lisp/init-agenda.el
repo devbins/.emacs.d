@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 136
+;;     Update #: 138
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -205,18 +205,18 @@
     "M-l"          'org-agenda-later
     "C-h" nil
     "q"            'org-agenda-quit)
-  (evil-leader/set-key-for-mode 'org-agenda-mode
-    "ma"                        'org-agenda
-    "mCc"                       'org-agenda-clock-cancel
-    "mCi"                       'org-agenda-clock-in
-    "mCo"                       'org-agenda-clock-out
-    "mCp"                       'org-pomodoro
-    "mdd"                       'org-agenda-deadline
-    "mds"                       'org-agenda-schedule
-    "mie"                       'org-agenda-set-effort
-    "mit"                       'org-agenda-set-tags
-    "msr"                       'org-agenda-refile)
 
+  (define-leader-key 'normal org-agenda-mode-map :localleader
+    "a"                        'org-agenda
+    "Cc"                       'org-agenda-clock-cancel
+    "Ci"                       'org-agenda-clock-in
+    "Co"                       'org-agenda-clock-out
+    "Cp"                       'org-pomodoro
+    "dd"                       'org-agenda-deadline
+    "ds"                       'org-agenda-schedule
+    "ie"                       'org-agenda-set-effort
+    "it"                       'org-agenda-set-tags
+    "sr"                       'org-agenda-refile)
 
   (use-package org-habit
     :ensure nil
