@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 138
+;;     Update #: 144
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -174,49 +174,48 @@
                         (org-agenda-log-mode-items '(clock))))))))
 
   (evil-define-key 'normal org-agenda-mode-map
-    (kbd "RET")    'org-agenda-switch-to
-    "c"            'org-agenda-goto-calendar
-    "d"            'org-agenda-day-view
-    "e"            'org-agenda-set-effort
-    "f"            'org-agenda-follow-mode
-    "gd"           'org-agenda-toggle-time-grid
-    "gh"           'org-agenda-holidays
-    "gj"           'org-agenda-goto-date
-    "gJ"           'org-agenda-clock-goto
-    "gk"           'org-agenda-action
-    "gm"           'org-agenda-bulk-mark
-    "go"           'org-agenda-open-link
-    "gO"           'delete-other-windows
-    "gr"           'org-agenda-redo
-    "gv"           'org-agenda-view-mode-dispatch
-    "gw"           'org-agenda-week-view
-    "g/"           'org-agenda-filter-by-tag
-    "t"            'org-agenda-todo
-    "h"            'org-agenda-earlier
-    "i"            'org-agenda-diary-entry
-    "j"            'org-agenda-next-line
-    "k"            'org-agenda-previous-line
-    "l"            'org-agenda-later
-    "L"            'org-agenda-log-mode
-    "R"            'org-agenda-clockreport-mode
-    "M-j"          'org-agenda-next-item
-    "M-k"          'org-agenda-previous-item
-    "M-h"          'org-agenda-earlier
-    "M-l"          'org-agenda-later
-    "C-h" nil
-    "q"            'org-agenda-quit)
+    (kbd "RET") 'org-agenda-switch-to
+    "c"         'org-agenda-goto-calendar
+    "d"         'org-agenda-day-view
+    "e"         'org-agenda-set-effort
+    "f"         'org-agenda-follow-mode
+    "gd"        'org-agenda-toggle-time-grid
+    "gh"        'org-agenda-holidays
+    "gj"        'org-agenda-goto-date
+    "gJ"        'org-agenda-clock-goto
+    "gk"        'org-agenda-action
+    "gm"        'org-agenda-bulk-mark
+    "go"        'org-agenda-open-link
+    "gO"        'delete-other-windows
+    "gr"        'org-agenda-redo
+    "gv"        'org-agenda-view-mode-dispatch
+    "gw"        'org-agenda-week-view
+    "g/"        'org-agenda-filter-by-tag
+    "t"         'org-agenda-todo
+    "h"         'org-agenda-earlier
+    "i"         'org-agenda-diary-entry
+    "j"         'org-agenda-next-line
+    "k"         'org-agenda-previous-line
+    "l"         'org-agenda-later
+    "L"         'org-agenda-log-mode
+    "R"         'org-agenda-clockreport-mode
+    "M-j"       'org-agenda-next-item
+    "M-k"       'org-agenda-previous-item
+    "M-h"       'org-agenda-earlier
+    "M-l"       'org-agenda-later
+    "q"         'org-agenda-quit)
 
   (define-leader-key 'normal org-agenda-mode-map :localleader
-    "a"                        'org-agenda
-    "Cc"                       'org-agenda-clock-cancel
-    "Ci"                       'org-agenda-clock-in
-    "Co"                       'org-agenda-clock-out
-    "Cp"                       'org-pomodoro
-    "dd"                       'org-agenda-deadline
-    "ds"                       'org-agenda-schedule
-    "ie"                       'org-agenda-set-effort
-    "it"                       'org-agenda-set-tags
-    "sr"                       'org-agenda-refile)
+    "a"  'org-agenda
+    "Cc" 'org-agenda-clock-cancel
+    "Ci" 'org-agenda-clock-in
+    "Co" 'org-agenda-clock-out
+    "Cp" 'org-pomodoro
+    "dd" 'org-agenda-deadline
+    "ds" 'org-agenda-schedule
+    "ie" 'org-agenda-set-effort
+    "it" 'org-agenda-set-tags
+    "sr" 'org-agenda-refile)
 
   (use-package org-habit
     :ensure nil
