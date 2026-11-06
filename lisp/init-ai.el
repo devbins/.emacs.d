@@ -357,6 +357,14 @@
     (agent-shell-macext-notifications t)           ; enable native notifications
     (agent-shell-macext-notify-current-buffer nil)) ; nil = suppress when shell/viewport is current and Emacs is focused
 
+  (use-package agent-shell-math-renderer
+    :hook (agent-shell-mode . agent-shell-math-renderer-mode)
+    :config
+    (add-hook 'enable-theme-functions
+              #'agent-shell-math-renderer-on-appearance-change)
+    (add-hook 'after-setting-font-hook
+              #'agent-shell-math-renderer-on-appearance-change))
+
   (use-package agent-shell-pet
     :load-path "site-lisp/agent-shell-pet"
     :commands (global-agent-shell-pet-mode)
