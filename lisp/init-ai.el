@@ -360,10 +360,8 @@
   (use-package agent-shell-math-renderer
     :hook (agent-shell-mode . agent-shell-math-renderer-mode)
     :config
-    (add-hook 'enable-theme-functions
-              #'agent-shell-math-renderer-on-appearance-change)
-    (add-hook 'after-setting-font-hook
-              #'agent-shell-math-renderer-on-appearance-change))
+    (add-hook 'enable-theme-functions #'agent-shell-math-renderer-on-appearance-change)
+    (add-hook 'after-setting-font-hook #'agent-shell-math-renderer-on-appearance-change))
 
   (use-package agent-shell-pet
     :load-path "site-lisp/agent-shell-pet"
