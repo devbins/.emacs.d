@@ -85,7 +85,7 @@
         `((default . ,(gt-translator
                        :taker   (list (gt-taker :pick nil :if 'selection)
                                       (gt-taker :text 'paragraph :if '(Info-mode help-mode helpful-mode devdocs-mode))
-                                      (gt-taker :text 'buffer :pick 'fresh-word
+                                      (gt-taker :text 'buffer :pick 'word
                                                 :if (lambda (translatror)
                                                       (and (not (derived-mode-p 'fanyi-mode)) buffer-read-only)))
                                       (gt-taker :text 'word))
