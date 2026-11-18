@@ -346,6 +346,12 @@
     #+begin_src sh
     sudo pacman -S --noconfirm ttf-jetbrains-mono ttf-fira-code ttf-symbola
     #+end_src
+
+*** Ubuntu
+    #+begin_src sh
+    sudo apt install fonts-symbola
+    #+end_src
+
 ** native-comp 支持
 *** Mac
     #+begin_src sh
