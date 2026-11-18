@@ -4,6 +4,17 @@
    这份 =Emacs= 配置基于 [[https://github.com/seagle0128/.emacs.d][Centaur Emacs]] 定制而来，增加了 =Vim(Evil)= 的支持，使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 的快捷键绑定。因为之前一直使用 [[https://github.com/syl20bnr/spacemacs][Spacemacs]] 所以习惯了它的快捷键。
 ** Screenshot
    [[file:./screenshot.png]]
+** Emacs 编译
+   Ubuntu
+   #+begin_src sh
+   sudo apt install -y build-essential texinfo libx11-dev libxpm-dev libjpeg-dev libpng-dev libgif-dev libtiff-dev libgtk-3-dev libncurses-dev libgnutls28-dev libxml2-dev libjansson-dev librsvg2-dev libgccjit0 libgccjit-11-dev libmagickwand-dev libtree-sitter-dev
+   git clone https://github.com/emacs-mirror/emacs.git --depth=1
+   cd emacs
+   ./autogen.sh
+   ./configure --with-rsvg --with-tree-sitter --with-json --with-gnutls --with-pgtk --with-sqlite3
+   make -j$(nproc)
+   sudo make install
+   #+end_src
 ** 安装
    #+begin_src sh
    mv .emacs.d .emacs.d.bak
