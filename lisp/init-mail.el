@@ -237,6 +237,28 @@
   (mu4e-views-mu4e-use-view-msg-method "html") ;; select the default
   (setq mu4e-views-next-previous-message-behaviour 'stick-to-current-window) ;; when pressing n and p stay in the current window
   (setq mu4e-views-auto-view-selected-message t)) ;; automatically open messages when moving in the headers view
+
+(use-package org-msg
+  :after mu4e
+  :config
+  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t"
+	    org-msg-startup "hidestars indent inlineimages"
+	    org-msg-greeting-fmt "\nHi%s,\n\n"
+	    org-msg-recipient-names `((,user-mail-address . ,user-full-name))
+	    org-msg-greeting-name-limit 3
+	    org-msg-default-alternatives '((new		. (text html))
+				                       (reply-to-html	. (text html))
+				                       (reply-to-text	. (text)))
+	    org-msg-convert-citation t
+	    org-msg-signature (format "
+
+ Regards,
+
+ #+begin_signature
+ --
+ *%s*
+ #+end_signature" user-full-name)))
+
 (provide 'init-mail)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-mail.el ends here
