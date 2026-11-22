@@ -231,6 +231,8 @@
   :commands (epub-reader-open)
   :load-path "site-lisp/epub-reader")
 
+(use-package emureader)
+
 (provide 'init-reader)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; reader.el ends here
