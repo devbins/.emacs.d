@@ -97,3 +97,6 @@
 [submodule "org-block-decorate"]
 	path = site-lisp/org-block-decorate
 	url = https://github.com/devbins/org-block-decorate.git
+[submodule "pele"]
+	path = site-lisp/pele
+	url = https://github.com/LuciusChen/pele.el.git
