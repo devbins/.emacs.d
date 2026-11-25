@@ -999,12 +999,11 @@ prepended to the element after the #+HEADER: tag."
   (use-package gnuplot
     :init (cl-pushnew '(gnuplot . t) load-language-list))
 
-  ;;brew install mermaid-cli
-  (use-package mermaid-mode
-    :if (executable-find "mmdc"))
-  (use-package ob-mermaid
-    :if (executable-find "mmdc")
-    :init (cl-pushnew '(mermaid . t) load-language-list))
+  (use-package pele
+    :load-path "site-lisp/pele"
+    :custom
+    (pele-module-directory (locate-user-emacs-file ".cache/pele"))
+    :hook (org-mode . pele-org-mode))
 
   (use-package ob-dart
     :if (executable-find "dart")
