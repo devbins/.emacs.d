@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 286
+;;     Update #: 287
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -239,8 +239,10 @@
                  ('motion  'doom-modeline-evil-motion-state)
                  (_        'doom-modeline-evil-normal-state))
              'doom-modeline-evil-normal-state)))
+
   (doom-modeline-def-segment my-arrow-state-file
     (my-ml-sep-gap (my-ml-state-arrow-face) 'my-ml-arrow-filename 'left))
+
   (doom-modeline-def-segment my-filename
     (concat
      (when (my-ml-icons-p)
@@ -258,16 +260,21 @@
                  'face (if (buffer-modified-p)
                            'doom-modeline-buffer-modified
                          'doom-modeline-buffer-file))))
+
   (doom-modeline-def-segment my-arrow-file-base
     (my-ml-sep 'left 'my-ml-arrow-filename (my-ml-base-arrow-face)))
+
   (doom-modeline-def-segment my-git-branch
     (my-ml-git-branch))
+
   (doom-modeline-def-segment my-arrow-git-start
     (my-ml-sep 'right (my-ml-base-arrow-face)
                (if (my-ml-git-branch) 'my-ml-arrow-git 'my-ml-arrow-time)))
+
   (doom-modeline-def-segment my-arrow-git-time
     (when (my-ml-git-branch)
       (my-ml-sep-gap 'my-ml-arrow-git 'my-ml-arrow-time 'right)))
+
   (doom-modeline-def-segment my-time
     (concat
      (when (my-ml-icons-p)
