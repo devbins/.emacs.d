@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 287
+;;     Update #: 302
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -128,15 +128,20 @@
       (replace  "#f7768e" "black")
       (motion   "#bb9af7" "black")
       (filename "#3b4261" "#7aa2f7")
+      (modified "#3b4261" "#e0af68")
       (git      "#3b4261" "#7aa2f7")
       (time     "#7aa2f7" "black"))
     "modeline 各段配色.")
+
   (defun my-ml-bg (r) (nth 1 (assq r my-ml-palette)))
+
   (defun my-ml-fg (r) (nth 2 (assq r my-ml-palette)))
+
   (defun my-ml-icons-p ()
     (and (display-graphic-p)
          (bound-and-true-p doom-modeline-icon)
          (fboundp 'nerd-icons-mdicon)))
+
   ;; ---- face / 字体（全部显式 slant normal 压掉斜体）----
   (defun my-ml-set-faces ()
     (dolist (r '(normal insert visual replace motion))
@@ -144,7 +149,7 @@
                           :inherit 'doom-modeline :weight 'bold :slant 'normal
                           :background (my-ml-bg r) :foreground (my-ml-fg r)))
     (dolist (p '((doom-modeline-buffer-file . filename)
-                 (doom-modeline-buffer-modified . filename)
+                 (doom-modeline-buffer-modified . modified)
                  (doom-modeline-git-state . git)
                  (doom-modeline-time-state . time)))
       (unless (facep (car p)) (make-face (car p)))
@@ -163,9 +168,11 @@
                             :height (* my/ml-size 10)
                             :weight 'normal :slant 'normal
                             :box nil :underline nil)))
+
     (set-face-attribute 'doom-modeline nil :slant 'normal :weight 'normal)
+
     ;; 箭头取色用的 face
-    (dolist (r '(normal insert visual replace motion filename git time base inactive))
+    (dolist (r '(normal insert visual replace motion filename modified git time base inactive))
       (let* ((face (intern (format "my-ml-arrow-%s" r)))
              (bg (pcase r
                    ('base (or (face-background 'mode-line nil t) "#000000"))
@@ -240,29 +247,35 @@
                  (_        'doom-modeline-evil-normal-state))
              'doom-modeline-evil-normal-state)))
 
-  (doom-modeline-def-segment my-arrow-state-file
-    (my-ml-sep-gap (my-ml-state-arrow-face) 'my-ml-arrow-filename 'left))
+  (defun my-ml-file-arrow-face ()
+    (if (buffer-modified-p) 'my-ml-arrow-modified 'my-ml-arrow-filename))
 
-  (doom-modeline-def-segment my-filename
-    (concat
-     (when (my-ml-icons-p)
-       (let ((icon (doom-modeline-icon-for-buffer)))
-         (when (stringp icon)
-           (let ((face (get-text-property 0 'face icon)))
-             (concat
-              (propertize " " 'face 'doom-modeline-buffer-file)
-              (propertize icon 'face
-                          (append (if (listp face) face (list :inherit face))
-                                  (list :foreground (my-ml-fg 'filename)
-                                        :background (my-ml-bg 'filename)))))))))
-     (propertize (concat " " (buffer-name)
-                         (if (buffer-modified-p) "꙳" "") " ")
-                 'face (if (buffer-modified-p)
-                           'doom-modeline-buffer-modified
-                         'doom-modeline-buffer-file))))
+  (doom-modeline-def-segment my-arrow-state-file
+    (my-ml-sep-gap (my-ml-state-arrow-face) (my-ml-file-arrow-face) 'left))
 
   (doom-modeline-def-segment my-arrow-file-base
-    (my-ml-sep 'left 'my-ml-arrow-filename (my-ml-base-arrow-face)))
+    (my-ml-sep 'left (my-ml-file-arrow-face) (my-ml-base-arrow-face)))
+
+  (doom-modeline-def-segment my-filename
+    (let* ((modified (buffer-modified-p))
+           (role (if modified 'modified 'filename))
+           (face (if modified
+                     'doom-modeline-buffer-modified
+                   'doom-modeline-buffer-file)))
+      (concat
+       (when (my-ml-icons-p)
+         (let ((icon (doom-modeline-icon-for-buffer)))
+           (when (stringp icon)
+             (let ((iface (get-text-property 0 'face icon)))
+               (concat
+                (propertize " " 'face face)
+                (propertize icon 'face
+                            (append (if (listp iface) iface (list :inherit iface))
+                                    (list :foreground (my-ml-fg role)
+                                          :background (my-ml-bg role)))))))))
+       (propertize (concat " " (buffer-name)
+                           (if modified "꙳" "") " ")
+                   'face face))))
 
   (doom-modeline-def-segment my-git-branch
     (my-ml-git-branch))
