@@ -441,7 +441,7 @@ If FRAME is nil, it defaults to the selected frame."
 (when (display-graphic-p)
   ;; Set default font
   (cl-loop for font in '("Maple Mono NF CN" "Iosevka Mono" "LXGW WenKai Mono" "Sarasa Mono SC" "SF Mono" "JetBrains Mono" "Source Code Pro" "Fira Code"
-                         "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
+                        "Menlo" "Monaco" "DejaVu Sans Mono" "Consolas")
            when (font-installed-p font)
            return (set-face-attribute 'default nil :font (font-spec :family font :slant 'italic :size 18)))
 
