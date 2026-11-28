@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 302
+;;     Update #: 314
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -127,6 +127,8 @@
       (visual   "#e0af68" "black")
       (replace  "#f7768e" "black")
       (motion   "#bb9af7" "black")
+      (operator "orange"  "black")
+      (emacs    "purple"  "black")
       (filename "#3b4261" "#7aa2f7")
       (modified "#3b4261" "#e0af68")
       (git      "#3b4261" "#7aa2f7")
@@ -144,7 +146,7 @@
 
   ;; ---- face / 字体（全部显式 slant normal 压掉斜体）----
   (defun my-ml-set-faces ()
-    (dolist (r '(normal insert visual replace motion))
+    (dolist (r '(normal insert visual replace motion operator emacs))
       (set-face-attribute (intern (format "doom-modeline-evil-%s-state" r)) nil
                           :inherit 'doom-modeline :weight 'bold :slant 'normal
                           :background (my-ml-bg r) :foreground (my-ml-fg r)))
@@ -159,12 +161,12 @@
     (dolist (f '(mode-line mode-line-inactive))
       (if (display-graphic-p)
           (set-face-attribute f nil
-                              :family "JetBrains Mono"
+                              :family "Maple Mono NF CN"
                               :height (* my/ml-size 10)
                               :weight 'normal :slant 'normal
                               :box nil :underline nil)
         (set-face-attribute f nil
-                            :family "JetBrains Mono"
+                            :family "Maple Mono NF CN"
                             :height (* my/ml-size 10)
                             :weight 'normal :slant 'normal
                             :box nil :underline nil)))
@@ -172,7 +174,7 @@
     (set-face-attribute 'doom-modeline nil :slant 'normal :weight 'normal)
 
     ;; 箭头取色用的 face
-    (dolist (r '(normal insert visual replace motion filename modified git time base inactive))
+    (dolist (r '(normal insert visual replace motion operator emacs filename modified git time base inactive))
       (let* ((face (intern (format "my-ml-arrow-%s" r)))
              (bg (pcase r
                    ('base (or (face-background 'mode-line nil t) "#000000"))
@@ -216,11 +218,13 @@
   (defun my-ml-state-arrow-face ()
     (if (doom-modeline--active)
         (pcase (and (boundp 'evil-state) evil-state)
-          ('insert  'my-ml-arrow-insert)
-          ('visual  'my-ml-arrow-visual)
-          ('replace 'my-ml-arrow-replace)
-          ('motion  'my-ml-arrow-motion)
-          (_        'my-ml-arrow-normal))
+          ('insert   'my-ml-arrow-insert)
+          ('visual   'my-ml-arrow-visual)
+          ('replace  'my-ml-arrow-replace)
+          ('motion   'my-ml-arrow-motion)
+          ('operator 'my-ml-arrow-operator)
+          ('emacs    'my-ml-arrow-emacs)
+          (_         'my-ml-arrow-normal))
       'my-ml-arrow-normal))
   (defun my-ml-git-branch ()
     (when-let* ((file (buffer-file-name))
@@ -234,14 +238,16 @@
   (doom-modeline-def-segment my-evil-state
     (propertize
      (pcase (and (boundp 'evil-state) evil-state)
-       ('normal  " NORMAL ")  ('insert  " INSERT ")
-       ('visual  " VISUAL ")  ('replace " REPLACE ")
-       ('motion  " MOTION ")  ('emacs   " EMACS ")
-       (_        " EMACS "))
+       ('normal  "[  ]")  ('insert  "[  ]")
+       ('visual  "[  ]")  ('operator "[  ]")
+       ('motion  "[  ]")  ('emacs   "[  ]")
+       ('replace "[ ]") (_        "[  ]"))
      'face (if (doom-modeline--active)
                (pcase (and (boundp 'evil-state) evil-state)
                  ('insert  'doom-modeline-evil-insert-state)
                  ('visual  'doom-modeline-evil-visual-state)
+                 ('operator 'doom-modeline-evil-operator-state)
+                 ('emacs 'doom-modeline-evil-emacs-state)
                  ('replace 'doom-modeline-evil-replace-state)
                  ('motion  'doom-modeline-evil-motion-state)
                  (_        'doom-modeline-evil-normal-state))
